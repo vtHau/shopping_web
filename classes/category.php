@@ -30,6 +30,13 @@ class category
 		return $result;
 	}
 
+	public function countCategory()
+	{
+		$query = "SELECT COUNT(catID) AS countCategory FROM tbl_category ";
+		$result = $this->db->select($query)->fetch_assoc();
+		return $result;
+	}
+
 	public function insertCategory($data, $files)
 	{
 		$catName = mysqli_real_escape_string($this->db->link, $data["catName"]);

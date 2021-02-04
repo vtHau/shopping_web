@@ -1,6 +1,13 @@
 <?php include_once "./inc/header.php" ?>
 <?php include_once "./inc/setting.php" ?>
 
+<?php
+if (isset($_GET["deleteID"])) {
+	$ID = $_GET["deleteID"];
+	$deleteProduct = $product->deleteProduct($ID);
+}
+?>
+
 <div class="app-main">
 	<!-- add slidebar -->
 	<?php include_once "./inc/slidebar.php" ?>
@@ -18,14 +25,13 @@
 							<i class="pe-7s-car icon-gradient bg-mean-fruit">
 							</i>
 						</div>
-						<div>Danh sách Sản phẩm
+						<div>Danh sách sản phẩm
 							<div class="page-title-subheading">
-								Chỉnh sửa và Xóa Sản Phẩm
+								Chỉnh sửa và xóa sản phẩm
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
 
 			<div class="row">
@@ -33,77 +39,69 @@
 					<div class="main-card mb-3 card">
 						<div class="card-header">Danh sách sản phẩm</div>
 						<div class="table-responsive" style="padding-bottom: 10px;">
-							<table class="align-middle mb-0 table table-borderless table-striped table-hover">
-								<thead>
-									<tr>
-										<th class="text-center">STT</th>
-										<th>Tên sản phẩm</th>
-										<th class="text-center">Giá</th>
-										<th class="text-center">Thương hiệu</th>
-										<th class="text-center">Danh mục</th>
-										<th class="text-center">Thể loại</th>
-										<th class="text-center">Chức năng</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="text-center text-muted">#345</td>
-										<td>
-											<div class="widget-content p-0">
-												<div class="widget-content-wrapper">
-													<div class="widget-content-left mr-3">
-														<div class="widget-content-left">
-															<img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+							<?php
+							$getProduct = $product->getProduct();
+							if ($getProduct) {
+								$i = 0;
+							?>
+								<table class="align-middle mb-0 table table-borderless table-striped table-hover">
+									<thead>
+										<tr>
+											<th class="text-center">STT</th>
+											<th>Tên sản phẩm</th>
+											<th class="text-center">Giá</th>
+											<th class="text-center">Thương hiệu</th>
+											<th class="text-center">Danh mục</th>
+											<th class="text-center">Thể loại</th>
+											<th class="text-center">Tính năng</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										while ($result = $getProduct->fetch_assoc()) {
+											$i++;
+										?>
+											<tr>
+												<td class="text-center text-muted"><?php echo $i; ?></td>
+												<td>
+													<div class="widget-content p-0">
+														<div class="widget-content-wrapper">
+															<div class="widget-content-left mr-3">
+																<div class="widget-content-left">
+																	<img class="rounded-circle border-circle" src="uploads/products/<?php echo $result["productImage"] ?>" alt="">
+																</div>
+															</div>
+															<div class="widget-content-left flex2">
+																<div class="widget-heading"><?php echo $result["productName"] ?></div>
+																<div class="widget-subheading opacity-7"><?php echo $result["productDesc"] ?></div>
+															</div>
 														</div>
 													</div>
-													<div class="widget-content-left flex2">
-														<div class="widget-heading">John Doe</div>
-														<div class="widget-subheading opacity-7">Web Developer</div>
-													</div>
-												</div>
-											</div>
-										</td>
-										<td class="text-center text-muted">#345</td>
-										<td class="text-center text-muted">#345</td>
-										<td class="text-center text-muted">#345</td>
-										<td class="text-center text-muted">#345</td>
-
-										<td class="text-center">
-											<a href="" class="btn btn-primary btn-sm">Chỉnh sửa</a>
-											<a href="" class="btn btn-danger btn-sm">Xóa</a>
-										</td>
-									</tr>
-									<tr>
-										<td class="text-center text-muted">#347</td>
-										<td>
-											<div class="widget-content p-0">
-												<div class="widget-content-wrapper">
-													<div class="widget-content-left mr-3">
-														<div class="widget-content-left">
-															<img width="40" class="rounded-circle" src="assets/images/avatars/3.jpg" alt="">
-														</div>
-													</div>
-													<div class="widget-content-left flex2">
-														<div class="widget-heading">Ruben Tillman</div>
-														<div class="widget-subheading opacity-7">Etiam sit amet orci eget</div>
-													</div>
-												</div>
-											</div>
-										</td>
-
-										<td class="text-center text-muted">#345</td>
-										<td class="text-center text-muted">#345</td>
-										<td class="text-center text-muted">#345</td>
-										<td class="text-center text-muted">#345</td>
-										<td class="text-center">
-											<a href="" class="btn btn-primary btn-sm">Chỉnh sửa</a>
-											<a href="" class="btn btn-danger btn-sm">Xóa</a>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+												</td>
+												<td class="text-center text-muted"><?php echo $result["productPrice"] ?></td>
+												<td class="text-center text-muted"><?php echo $result["brandName"] ?></td>
+												<td class="text-center text-muted"><?php echo $result["catName"] ?></td>
+												<td class="text-center text-muted">
+													<?php
+													if ($result["productType"] == 1) {
+														echo "Sản phẩm nổi bật";
+													} else {
+														echo "Sản phẩm không nổi bật";
+													}
+													?>
+												</td>
+												<td class="text-center">
+													<a href="productedit.php?editID=<?php echo $result["productID"] ?>" class="btn btn-primary btn-sm">Chỉnh sửa</a>
+													<a href="?deleteID=<?php echo $result["productID"] ?>" class="btn btn-danger btn-sm">Xóa</a>
+												</td>
+											</tr>
+										<?php } ?>
+									</tbody>
+								</table>
+							<?php } else { ?>
+								<div class="text-center text-noti">Không có sản phẩm nào để hiển thị</div>
+							<?php } ?>
 						</div>
-
 					</div>
 				</div>
 			</div>

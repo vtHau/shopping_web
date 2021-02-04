@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
 									<div class="col-md-12 mb-3">
 										<div class="custom-file">
 											<input type="file" class="form-control" name="catImage" accept=".PNG, .JPEG, .JPG">
-											<div class="mess-file-new">Để trống nếu sử dụng logo cũ.</div>
+											<div class="text-noti">Để trống nếu sử dụng logo cũ.</div>
 
 										</div>
 									</div>

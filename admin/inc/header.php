@@ -16,6 +16,9 @@ $cat = new category();
 
 include_once "../classes/brand.php";
 $brand = new brand();
+
+include_once "../classes/product.php";
+$product = new product();
 ?>
 
 <?php
@@ -49,7 +52,7 @@ header("Cache-Control: max-age=2592000");
     <!-- start header -->
     <div class="app-header header-shadow">
       <div class="app-header__logo">
-        <div class="logo-src"></div>
+        <a href="index.php" class="logo-src"></a>
         <div class="header__pane ml-auto">
           <div>
             <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">

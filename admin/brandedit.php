@@ -87,14 +87,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
 										<div class="custom-file">
 											<input type="file" class="form-control" name="brandImage" accept=".PNG, .JPEG, .JPG">
 											<div class="mess-file-new">Để trống nếu sử dụng logo cũ.</div>
-
 										</div>
 									</div>
 								</div>
 
 								<div class="form-row text-center">
 									<div class="col-12">
-										<p class="mess-file-older">Logo danh mục hiện tại</p>
+										<p class="text-noti">Logo thương hiệu hiện tại</p>
 										<img class="rounded-circle border-circle" src="uploads/brands/<?php echo $result["brandImage"] ?>" alt="">
 									</div>
 								</div>

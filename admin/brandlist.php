@@ -63,7 +63,7 @@ if (isset($_GET["deleteID"])) {
 														<div class="widget-content-wrapper">
 															<div class="widget-content-left mr-3">
 																<div class="widget-content-left">
-																	<img width="40" class="rounded-circle border-circle" src="uploads/brands/<?php echo $result["brandImage"] ?>" alt="">
+																	<img class="rounded-circle border-circle" src="uploads/brands/<?php echo $result["brandImage"] ?>" alt="">
 																</div>
 															</div>
 															<div class="widget-content-left flex2">

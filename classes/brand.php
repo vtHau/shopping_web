@@ -29,6 +29,13 @@ class brand
 		return $result;
 	}
 
+	public function countBrand()
+	{
+		$query = "SELECT COUNT(brandID) AS countBrand FROM tbl_brand ";
+		$result = $this->db->select($query)->fetch_assoc();
+		return $result;
+	}
+
 	public function insertBrand($data, $files)
 	{
 		$brandName = mysqli_real_escape_string($this->db->link, $data["brandName"]);
