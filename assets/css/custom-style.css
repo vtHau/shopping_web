@@ -1,0 +1,29 @@
+.hide-cart-info {
+  display: none !important;
+}
+
+.show-cart-info {
+  display: block !important;
+}
+
+.info-avatar {
+  position: relative;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  z-index: 1;
+}
+
+.info-avatar:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background-image: linear-gradient(to right, #1abef4af, #5defb7af);
+  border-radius: inherit;
+  transform: scale(1.15);
+  z-index: -1;
+}
