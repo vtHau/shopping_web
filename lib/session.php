@@ -46,6 +46,24 @@ class Session
       }
    }
 
+   public static function isUserLogin()
+   {
+      self::init();
+      if (self::get("userLogin") == true) {
+         return true;
+      }
+      return false;
+   }
+
+   public static function checkUserLogin()
+   {
+      self::init();
+      if (self::get("userLogin") == false) {
+         self::destroy();
+         header("Location:login.php");
+      }
+   }
+
    public static function destroy()
    {
       session_destroy();
@@ -53,4 +71,3 @@ class Session
    }
    // xóa or hủy phiên làm việc
 }
-?>

@@ -1,3 +1,38 @@
+<?php
+ob_start();
+include_once "lib/session.php";
+Session::init();
+?>
+
+<?php
+include_once "classes/category.php";
+$cat = new category();
+
+include_once "classes/brand.php";
+$brand = new brand();
+
+include_once "classes/product.php";
+$product = new product();
+
+include_once "classes/user.php";
+$cus = new user();
+?>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
+	$loginCustomer = $cus->loginCustomer($_POST);
+}
+?>
+
+<?php
+header("Cache-Control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+header("Cache-Control: max-age=2592000");
+?>
+
+
+
 <!doctype html>
 <html class="no-js" lang="vn">
 
@@ -7,13 +42,14 @@
 	<title>Website bán hàng</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicons -->
-	<link rel="shortcut icon" href="assets\assets\img\favicon.ico">
+	<link rel="shortcut icon" href="assets\img\favicon.ico">
 	<!-- Fontawesome css -->
 	<link rel="stylesheet" href="assets\css\font-awesome.min.css">
 	<!-- Ionicons css -->
 	<link rel="stylesheet" href="assets\css\ionicons.min.css">
 	<!-- linearicons css -->
 	<link rel="stylesheet" href="assets\css\linearicons.css">
+	<link rel="stylesheet" href="assets\css\css.css">
 	<!-- Nice select css -->
 	<link rel="stylesheet" href="assets\css\nice-select.css">
 	<!-- Jquery fancybox css -->
@@ -32,19 +68,29 @@
 	<link rel="stylesheet" href="assets\css\default.css">
 	<!-- Main css -->
 	<link rel="stylesheet" href="assets\css\style.css">
-	<link rel="stylesheet" href="assets\css\custom-style.css">
-
 	<!-- Responsive css -->
 	<link rel="stylesheet" href="assets\css\responsive.css">
-
 	<!-- Modernizer js -->
-	<script src="js\vendor\modernizr-3.5.0.min.js"></script>
+	<script src="assets\js\vendor\modernizr-3.5.0.min.js"></script>
+
+	<link rel="stylesheet" href="assets\css\custom-style.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
-	<!--[if lte IE 9]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-    <![endif]-->
+	<div class="wrap-login-form">
+		<form class="login-form" autocomplete="off" action="" method="POST">
+			<div class="btn-form-hide"><i class="fa fa-times" aria-hidden="true"></i></div>
+			<img class="avatar-login" src="assets/img/avatar.svg" alt="">
+			<h4 class="text-login-form">Đăng nhập</h4>
+			<input class="custom-in" type="text" name="username" placeholder="Tên người dùng" />
+			<div class="input-icon">
+				<input class="custom-in" type="password" name="password" placeholder="Mật khẩu" />
+				<i class="fa fa-eye show-password"></i>
+			</div>
+			<a href="#" class="forgot">Quên mật khẩu?</a>
+			<button type="submit" name="login" class="btn-custom">Đăng Nhập</button>
+		</form>
+	</div>
 
 	<!-- Main Wrapper Start Here -->
 	<div class="wrapper">
@@ -81,49 +127,6 @@
 
 		<!-- Main Header Area Start Here -->
 		<header>
-			<!-- Header Top Start Here -->
-			<div class="header-top-area">
-				<div class="container">
-					<!-- Header Top Start -->
-					<div class="header-top">
-						<ul>
-							<li><a href="#">Free Shipping on order over $99</a></li>
-							<li><a href="#">Shopping Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>
-						</ul>
-						<ul>
-							<li><span>Language</span> <a href="#">English<i class="lnr lnr-chevron-down"></i></a>
-								<!-- Dropdown Start -->
-								<ul class="ht-dropdown">
-									<li><a href="#"><img src="assets\img\header\1.jpg" alt="language-selector">English</a></li>
-									<li><a href="#"><img src="assets\img\header\2.jpg" alt="language-selector">Francis</a></li>
-								</ul>
-								<!-- Dropdown End -->
-							</li>
-							<li><span>Currency</span><a href="#"> USD $ <i class="lnr lnr-chevron-down"></i></a>
-								<!-- Dropdown Start -->
-								<ul class="ht-dropdown">
-									<li><a href="#">&#36; USD</a></li>
-									<li><a href="#"> € Euro</a></li>
-									<li><a href="#">&#163; Pound Sterling</a></li>
-								</ul>
-								<!-- Dropdown End -->
-							</li>
-							<li><a href="#">My Account<i class="lnr lnr-chevron-down"></i></a>
-								<!-- Dropdown Start -->
-								<ul class="ht-dropdown">
-									<li><a href="login.html">Login</a></li>
-									<li><a href="register.html">Register</a></li>
-								</ul>
-								<!-- Dropdown End -->
-							</li>
-						</ul>
-					</div>
-					<!-- Header Top End -->
-				</div>
-				<!-- Container End -->
-			</div>
-			<!-- Header Top End Here -->
 			<!-- Header Middle Start Here -->
 			<div class="header-middle ptb-15">
 				<div class="container">
@@ -231,12 +234,20 @@
 													(0)</span></span></a>
 									</li>
 									<li>
-										<a href="#">
-											<i class="lnr lnr-user  align-middle"></i>
-											<span class="my-cart align-middle">
-												<strong>Trung Hau</strong>
-											</span>
-										</a>
+										<?php
+										if (Session::isUserLogin()) {
+										?>
+											<img class="avatar-user align-middle" src="uploads/avatars/<?php echo Session::get("userImage") ?>" alt="">
+											<span class="fullname-user align-middle"><?php echo Session::get("userFullName"); ?></span>
+										<?php } else { ?>
+											<a href="#">
+												<i class="lnr lnr-user"></i>
+												<span class="my-cart">
+													<strong>Dang Ky</strong>
+													<span class="btn-form-show"><strong>Dang Nhap</strong></span>
+												</span>
+											</a>
+										<?php } ?>
 									</li>
 								</ul>
 							</div>
@@ -252,9 +263,11 @@
 			<div class="header-bottom  header-sticky">
 				<div class="container">
 					<div class="row align-items-center">
+
 						<div class="col-xl-3 col-lg-4 col-md-6 vertical-menu d-none d-lg-block">
 							<span class="categorie-title">Shop by Categories</span>
 						</div>
+
 						<div class="col-xl-6 col-lg-8 col-md-12 ">
 							<nav class="d-none d-lg-block">
 								<ul class="header-bottom-list d-flex">
@@ -354,15 +367,17 @@
 									<span class="my-cart align-middle">5</span>
 									<i class="lnr lnr-cart align-middle"></i>
 								</a>
-
 								<a href="#" class="align-middle">
 									<span class="my-cart align-middle">5</span>
 									<i class="lnr lnr-heart align-middle"></i>
 								</a>
-
 								<a href="" class="align-middle">
-									<strong class="my-cart align-middle">Trung Hau</strong>
-									<img class="info-avatar" src="assets/img/trunghau.png" alt="" />
+									<?php
+									if (Session::isUserLogin()) {
+									?>
+										<img class="info-avatar" src="uploads/avatars/<?php echo Session::get("userImage") ?>" alt="" />
+										<strong class="my-cart align-middle" style="margin-left: 2px;"><?php echo Session::get("userFullName"); ?></strong>
+									<?php } ?>
 								</a>
 							</div>
 						</div>
@@ -451,8 +466,12 @@
 					</nav>
 				</div>
 			</div>
-			<!-- Categorie Menu & Slider Area Start Here -->
-			<div class="container home-3">
+			<!-- Mobile Vertical Menu Start End -->
+		</header>
+		<!-- Main Header Area End Here
+    <!-- Categorie Menu & Slider Area Start Here -->
+		<div class="main-page-banner off-white-bg home-3">
+			<div class="container">
 				<div class="row">
 					<!-- Vertical Menu Start Here -->
 					<div class="col-xl-3 col-lg-4 d-none d-lg-block">
@@ -679,8 +698,4 @@
 				</div>
 				<!-- Row End -->
 			</div>
-			<!-- Mobile Vertical Menu Start End -->
-		</header>
-		<!-- Main Header Area End Here -->
-		<!-- Main Header Area End Here
-   
+			<!-- Container End -->
