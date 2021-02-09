@@ -29,9 +29,39 @@ class product
 		return $result;
 	}
 
+	public function getProductFeathered()
+	{
+		$query =
+			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
+			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
+			 INNER JOIN tbl_brand ON tbl_product.productBrand = tbl_brand.brandID
+			 WHERE productType = 1 
+			 ORDER BY tbl_product.productID DESC ";
+
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function getProductLimit()
+	{
+		$query =
+			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
+			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
+			 INNER JOIN tbl_brand ON tbl_product.productBrand = tbl_brand.brandID
+			 ORDER BY tbl_product.productID DESC LIMIT 20";
+
+		$result = $this->db->select($query);
+		return $result;
+	}
+
 	public function getProductByID($ID)
 	{
-		$query = "SELECT * FROM tbl_product WHERE productID = '$ID' ";
+		$query =
+			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
+		 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
+		 INNER JOIN tbl_brand ON tbl_product.productBrand = tbl_brand.brandID
+		 WHERE productID = '$ID'";
+
 		$result = $this->db->select($query);
 		return $result;
 	}

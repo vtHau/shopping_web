@@ -156,3 +156,8 @@ button.btn-custom {
   font-weight: 600;
   font-family: var(--font);
 }
+
+i.lnr.lnr-arrow-right,
+i.lnr.lnr-arrow-left {
+  line-height: 2;
+}

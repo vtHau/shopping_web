@@ -187,7 +187,6 @@
     <!-- Footer Bottom Start -->
     <div class="footer-bottom pb-30">
       <div class="container">
-
         <div class="copyright-text text-center">
           <p>Copyright © 2018 <a target="_blank" href="#">Truemart</a> All Rights Reserved.</p>
         </div>
@@ -303,10 +302,12 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
   <!-- Quick View Content End -->
   </div>
   <!-- Main Wrapper End Here -->
+  </body>
+  <script src="assets\js\vendor\modernizr-3.5.0.min.js"></script>
 
   <!-- jquery 3.2.1 -->
   <script src="assets\js\vendor\jquery-3.2.1.min.js"></script>
@@ -335,8 +336,6 @@
   <!-- Main activaion js -->
   <script src="assets\js\main.js"></script>
   <script src="assets\js\custom-script.js"></script>
-
-  </body>
 
   </html>
   <?php

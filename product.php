@@ -1,4 +1,18 @@
 ﻿<?php include_once "inc/header.php"; ?>
+
+<?php
+if (!isset($_GET["productID"]) || $_GET["productID"] == NULL) {
+  echo '<script> window.location = "404.php" </script>';
+} else {
+  $productID = $_GET["productID"];
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
+  $productQuantity = $_POST["productQuantity"];
+  $insertCart = $cart->insertCart($productID, $productQuantity);
+}
+?>
+
 </div>
 <!-- Breadcrumb Start -->
 <div class="breadcrumb-area mt-30">
@@ -18,79 +32,75 @@
 <div class="main-product-thumbnail ptb-60 ptb-sm-60">
   <div class="container">
     <div class="thumb-bg">
-      <div class="row">
-        <!-- Main Thumbnail Image Start -->
-        <div class="col-lg-5 mb-all-40">
-          <!-- Thumbnail Large Image start -->
-          <div class="tab-content">
-            <div id="thumb1" class="tab-pane fade show active">
-              <a data-fancybox="images" href="img\products\35.jpg"><img src="assets\img\products\35.jpg" alt="product-view"></a>
-            </div>
-            <div id="thumb2" class="tab-pane fade">
-              <a data-fancybox="images" href="img\products\13.jpg"><img src="assets\img\products\13.jpg" alt="product-view"></a>
-            </div>
-            <div id="thumb3" class="tab-pane fade">
-              <a data-fancybox="images" href="img\products\15.jpg"><img src="assets\img\products\15.jpg" alt="product-view"></a>
-            </div>
-            <div id="thumb4" class="tab-pane fade">
-              <a data-fancybox="images" href="img\products\4.jpg"><img src="assets\img\products\4.jpg" alt="product-view"></a>
-            </div>
-            <div id="thumb5" class="tab-pane fade">
-              <a data-fancybox="images" href="img\products\5.jpg"><img src="assets\img\products\5.jpg" alt="product-view"></a>
-            </div>
-          </div>
-          <!-- Thumbnail Large Image End -->
-
-        </div>
-        <!-- Main Thumbnail Image End -->
-        <!-- Thumbnail Description Start -->
-        <div class="col-lg-7">
-          <div class="thubnail-desc fix">
-            <h3 class="product-header">Faded Short Sleeves T-shirt</h3>
-            <div class="rating-summary fix mtb-10">
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-              </div>
-              <div class="rating-feedback">
-                <a href="#">(1 review)</a>
-                <a href="#">add to your review</a>
-              </div>
-            </div>
-            <div class="pro-price mtb-30">
-              <p class="d-flex align-items-center"><span class="prev-price">16.51</span><span class="price">$15.19</span><span class="saving-price">save 8%</span></p>
-            </div>
-            <p class="mb-20 pro-desc-details">Faded short sleeves t-shirt with high neckline. Soft
-              and stretchy material for a comfortable fit. Accessorize with a straw hat and you're
-              ready for summer!</p>
-            <div class="box-quantity d-flex hot-product2">
-              <form action="#">
-                <input class="quantity mr-15" type="number" min="1" value="1">
-              </form>
-              <div class="pro-actions">
-                <div class="actions-primary">
-                  <a href="cart.html" title="" data-original-title="Add to Cart"> + Add To
-                    Cart</a>
-                </div>
-                <div class="actions-secondary">
-                  <a href="compare.html" title="" data-original-title="Compare"><i class="lnr lnr-sync"></i>
-                    <span>Add To Compare</span></a>
-                  <a href="wishlist.html" title="" data-original-title="WishList"><i class="lnr lnr-heart"></i>
-                    <span>Add to WishList</span></a>
+      <?php
+      $getProduct = $product->getProductByID($productID);
+      if ($getProduct) {
+        while ($result = $getProduct->fetch_assoc()) {
+      ?>
+          <div class="row">
+            <!-- Main Thumbnail Image Start -->
+            <div class="col-lg-5 mb-all-40">
+              <!-- Thumbnail Large Image start -->
+              <div class="tab-content">
+                <div id="thumb1" class="tab-pane fade show active">
+                  <a data-fancybox="images" href=""><img style="width: 400px; height: 400px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="product-view"></a>
                 </div>
               </div>
+              <!-- Thumbnail Large Image End -->
             </div>
-            <div class="pro-ref mt-20">
-              <p><span class="in-stock"><i class="ion-checkmark-round"></i> IN STOCK</span></p>
-            </div>
+            <!-- Main Thumbnail Image End -->
+            <!-- Thumbnail Description Start -->
+            <div class="col-lg-7">
+              <div class="thubnail-desc fix">
+                <h3 class="product-header"><?php echo $result["productName"] ?></h3>
+                <div class="rating-summary fix mtb-10">
+                  <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                  </div>
+                  <div class="rating-feedback">
+                    <a href="#">(1 review)</a>
+                    <a href="#">add to your review</a>
+                  </div>
+                </div>
+                <div class="pro-price mtb-30">
+                  <p class="d-flex align-items-center"><span class="prev-price"></span><span class="price"><?php echo $result["productPrice"] ?></span><span class="saving-price" style="display: none;"></span></p>
+                </div>
+                <p class="mb-20 pro-desc-details"><?php echo $result["productDesc"] ?></p>
+                <div class="box-quantity d-flex hot-product2">
+                  <form action="" method="POST">
+                    <div style="display: flex;">
+                      <input class="quantity mr-15" type="number" name="productQuantity" min="1" value="1" />
+                      <input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" />
+                    </div>
+                  </form>
 
+                  <div class="ml-md-2 pro-actions">
+                    <div class="actions-secondary">
+                      <a href="compare.html" title="" data-original-title="Compare"><i class="lnr lnr-sync"></i>
+                        <span>Add To Compare</span></a>
+                      <a href="wishlist.html" title="" data-original-title="WishList"><i class="lnr lnr-heart"></i>
+                        <span>Add to WishList</span></a>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="pro-ref mt-20">
+                  <p><span class="in-stock"><i class="ion-checkmark-round"></i> IN STOCK</span></p>
+                </div>
+
+              </div>
+            </div>
+            <!-- Thumbnail Description End -->
           </div>
-        </div>
-        <!-- Thumbnail Description End -->
-      </div>
+      <?php
+        }
+      }
+      ?>
+
       <!-- Row End -->
     </div>
   </div>
