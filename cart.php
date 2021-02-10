@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
   $cartID = $_POST["cartID"];
   $productQuantity = $_POST["productQuantity"];
   $updateQuantity = $cart->updateQuantityCart($cartID, $productQuantity);
-  // $insertCart = $cart->insertCart($productID, $productQuantity);
 }
 
 ?>
@@ -21,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
   <div class="container">
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
-        <li><a href="index.html">Home</a></li>
-        <li class="active"><a href="cart.html">Cart</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li class="active"><a href="cart.php">Cart</a></li>
       </ul>
     </div>
   </div>
@@ -51,24 +50,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
               </thead>
               <tbody>
                 <?php
-                $userID = session_id();
-                if (Session::isUserLogin()) {
-                  $userID = Session::get("userID");
-                }
-
-                $getCartByUserID = $cart->getCartByUserID($userID);
-                if ($getCartByUserID) {
+                $getCart = $cart->getCart();
+                if ($getCart) {
                   $i = 0;
                   $total = 0;
-                  while ($result = $getCartByUserID->fetch_assoc()) {
+                  while ($result = $getCart->fetch_assoc()) {
                     $i++;
                     $total += $result["productPrice"] * $result["productQuantity"];
                 ?>
                     <tr>
                       <td class="product-thumbnail">
-                        <a href="#"><img style="height: 102px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="cart-image"></a>
+                        <a href="product.php?productID=<?php echo $result["productID"] ?>"><img style="height: 102px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="cart-image"></a>
                       </td>
-                      <td class="product-name"><a href="#"><?php echo $result["productName"] ?></a></td>
+                      <td class="product-name"><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></td>
                       <td class="product-price"><span class="amount"><?php echo $result["productPrice"] ?></span></td>
                       <td class="product-quantity">
                         <form action="" method="POST">
@@ -101,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
                 <br>
                 <table class="float-md-right">
                   <?php
-                  if ($getCartByUserID) {
+                  if ($getCart) {
                   ?>
                     <tbody>
                       <tr class="cart-subtotal">

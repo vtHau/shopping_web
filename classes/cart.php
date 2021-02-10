@@ -10,16 +10,40 @@ class cart
 {
 	private $db;
 	private $fm;
+
 	public function __construct()
 	{
 		$this->db = new Database();
 		$this->fm = new Format();
 	}
 
-	public function getCartByUserID($userID)
+	public function getUserID()
 	{
+		$userID = session_id();
+		if (Session::isUserLogin()) {
+			$userID = Session::get("userID");
+		}
+		return $userID;
+	}
+
+	public function getCart()
+	{
+		$userID = session_id();
+		if (Session::isUserLogin()) {
+			$userID = Session::get("userID");
+		}
+
 		$query = "SELECT * FROM tbl_cart WHERE userID = '$userID'";
 		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function getCountCart()
+	{
+		$userID = $this->getUserID();
+
+		$query = "SELECT COUNT(productID) AS countCart FROM tbl_cart WHERE userID = '$userID'";
+		$result = $this->db->select($query)->fetch_assoc();
 		return $result;
 	}
 

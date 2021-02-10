@@ -33,8 +33,7 @@ class Session
    {
       self::init();
       if (self::get("adminLogined") == false) {
-         self::destroy();
-         header("Location:login.php");
+         self::logoutAdmin();
       }
    }
    //check phiên làm việc có tồn tại hay không
@@ -60,13 +59,34 @@ class Session
       self::init();
       if (self::get("userLogin") == false) {
          self::destroy();
-         header("Location:login.php");
+         header("Location:index.php");
       }
    }
 
    public static function destroy()
    {
       session_destroy();
+      header("Location:index.php");
+   }
+
+   public static function logoutUser()
+   {
+      unset($_SESSION["userLogin"]);
+      unset($_SESSION["userID"]);
+      unset($_SESSION["username"]);
+      unset($_SESSION["userFullName"]);
+      unset($_SESSION["userImage"]);
+      header("Location:index.php");
+   }
+
+   public static function logoutAdmin()
+   {
+      unset($_SESSION["adminLogined"]);
+      unset($_SESSION["adminID"]);
+      unset($_SESSION["adminUser"]);
+      unset($_SESSION["adminName"]);
+      unset($_SESSION["adminImage"]);
+      unset($_SESSION["adminDescription"]);
       header("Location:login.php");
    }
    // xóa or hủy phiên làm việc

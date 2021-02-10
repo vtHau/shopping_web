@@ -1,11 +1,24 @@
 ﻿<?php include_once "inc/header.php"; ?>
+
+<?php
+if (isset($_GET["deleteID"])) {
+  $wishlistID = $_GET["deleteID"];
+  $deleteWishlist = $wish->deleteWishlist($wishlistID);
+}
+
+if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
+  $productID = $_GET["productID"];
+  $insertCart = $cart->insertCart($productID, 1);
+}
+?>
+
 </div>
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
-        <li><a href="index.html">Home</a></li>
-        <li class="active"><a href="wishlist.html">Wishlist</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li class="active"><a href="wishlist.php">Wishlist</a></li>
       </ul>
     </div>
   </div>
@@ -33,26 +46,25 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="product-thumbnail">
-                    <a href="#"><img src="assets\img\products\6.jpg" alt="cart-image"></a>
-                  </td>
-                  <td class="product-name"><a href="#">Vestibulum suscipit</a></td>
-                  <td class="product-price"><span class="amount">£165.00</span></td>
-                  <td class="product-stock-status"><span>in stock</span></td>
-                  <td class="product-add-to-cart"><a href="#">add to cart</a></td>
-                  <td class="product-remove"> <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></td>
-                </tr>
-                <tr>
-                  <td class="product-thumbnail">
-                    <a href="#"><img src="assets\img\products\22.jpg" alt="cart-image"></a>
-                  </td>
-                  <td class="product-name"><a href="#">Vestibulum dictum magna</a></td>
-                  <td class="product-price"><span class="amount">£50.00</span></td>
-                  <td class="product-stock-status"><span>in stock</span></td>
-                  <td class="product-add-to-cart"><a href="#">add to cart</a></td>
-                  <td class="product-remove"> <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></td>
-                </tr>
+                <?php
+                $getWishlist = $wish->getWishlist();
+                if ($getWishlist) {
+                  while ($result = $getWishlist->fetch_assoc()) {
+                ?>
+                    <tr>
+                      <td class="product-thumbnail">
+                        <a href="product.php?productID=<?php echo $result["productID"] ?>"><img style="height: 102px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="cart-image"></a>
+                      </td>
+                      <td class="product-name"><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></td>
+                      <td class="product-price"><span class="amount"><?php echo $result["productPrice"] ?></span></td>
+                      <td class="product-stock-status"><span>in stock</span></td>
+                      <td class="product-add-to-cart"><a href="wishlist.php?productID=<?php echo $result["productID"] ?>">Add to cart</a></td>
+                      <td class="product-remove"> <a href="wishlist.php?deleteID=<?php echo $result["wishlistID"] ?>"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                    </tr>
+                <?php
+                  }
+                }
+                ?>
               </tbody>
             </table>
           </div>

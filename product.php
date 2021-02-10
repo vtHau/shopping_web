@@ -11,6 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
   $productQuantity = $_POST["productQuantity"];
   $insertCart = $cart->insertCart($productID, $productQuantity);
 }
+
+if (isset($_GET["wishlistID"]) && $_GET["wishlistID"] != NULL) {
+  $productID = $_GET["wishlistID"];
+  $insertWishlist = $wish->insertWishlist($productID);
+}
 ?>
 
 </div>
@@ -19,9 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
   <div class="container">
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li class="active"><a href="product.html">Products</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="shop.php">Shop</a></li>
+        <li class="active"><a href="product.php">Products</a></li>
       </ul>
     </div>
   </div>
@@ -75,23 +80,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
                     <div style="display: flex;">
                       <input class="quantity mr-15" type="number" name="productQuantity" min="1" value="1" />
                       <input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" />
+                      <div class="ml-md-2 pro-actions">
+                        <div class="ml-2 actions-secondary">
+                          <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="" data-original-title="WishList"><i class="lnr lnr-heart"></i>
+                            <span>Add to WishList</span></a>
+                          <a href="product.php?compare=<?php echo $result["productID"] ?>" title="" data-original-title="Compare"><i class="lnr lnr-sync"></i>
+                            <span>Add To Compare</span></a>
+                        </div>
+                      </div>
                     </div>
                   </form>
-
-                  <div class="ml-md-2 pro-actions">
-                    <div class="actions-secondary">
-                      <a href="compare.html" title="" data-original-title="Compare"><i class="lnr lnr-sync"></i>
-                        <span>Add To Compare</span></a>
-                      <a href="wishlist.html" title="" data-original-title="WishList"><i class="lnr lnr-heart"></i>
-                        <span>Add to WishList</span></a>
-                    </div>
-                  </div>
-
                 </div>
                 <div class="pro-ref mt-20">
                   <p><span class="in-stock"><i class="ion-checkmark-round"></i> IN STOCK</span></p>
                 </div>
-
               </div>
             </div>
             <!-- Thumbnail Description End -->
@@ -253,7 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
       <div class="single-product">
         <!-- Product Image Start -->
         <div class="pro-img">
-          <a href="product.html">
+          <a href="product.php">
             <img class="primary-img" src="assets\img\products\17.jpg" alt="single-product">
             <img class="secondary-img" src="assets\img\products\18.jpg" alt="single-product">
           </a>
@@ -263,17 +265,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
         <!-- Product Content Start -->
         <div class="pro-content">
           <div class="pro-info">
-            <h4><a href="product.html">Eames and Vortex Side</a></h4>
+            <h4><a href="product.php">Eames and Vortex Side</a></h4>
             <p><span class="price">$160.45</span></p>
           </div>
           <div class="pro-actions">
             <div class="actions-primary">
-              <a href="cart.html" title="Add to Cart"> + Add To Cart</a>
+              <a href="cart.php" title="Add to Cart"> + Add To Cart</a>
             </div>
             <div class="actions-secondary">
-              <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
+              <a href="compare.php" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
                   Compare</span></a>
-              <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
+              <a href="wishlist.php" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
                   WishList</span></a>
             </div>
           </div>
@@ -286,7 +288,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
       <div class="single-product">
         <!-- Product Image Start -->
         <div class="pro-img">
-          <a href="product.html">
+          <a href="product.php">
             <img class="primary-img" src="assets\img\products\19.jpg" alt="single-product">
             <img class="secondary-img" src="assets\img\products\20.jpg" alt="single-product">
           </a>
@@ -296,18 +298,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
         <!-- Product Content Start -->
         <div class="pro-content">
           <div class="pro-info">
-            <h4><a href="product.html">Work Lamp Silver Proin</a></h4>
+            <h4><a href="product.php">Work Lamp Silver Proin</a></h4>
             <p><span class="price">$320.45</span> <del class="prev-price">$330.50</del></p>
             <div class="label-product l_sale">15<span class="symbol-percent">%</span></div>
           </div>
           <div class="pro-actions">
             <div class="actions-primary">
-              <a href="cart.html" title="Add to Cart"> + Add To Cart</a>
+              <a href="cart.php" title="Add to Cart"> + Add To Cart</a>
             </div>
             <div class="actions-secondary">
-              <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
+              <a href="compare.php" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
                   Compare</span></a>
-              <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
+              <a href="wishlist.php" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
                   WishList</span></a>
             </div>
           </div>
@@ -319,7 +321,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
       <div class="single-product">
         <!-- Product Image Start -->
         <div class="pro-img">
-          <a href="product.html">
+          <a href="product.php">
             <img class="primary-img" src="assets\img\products\21.jpg" alt="single-product">
             <img class="secondary-img" src="assets\img\products\22.jpg" alt="single-product">
           </a>
@@ -329,18 +331,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
         <!-- Product Content Start -->
         <div class="pro-content">
           <div class="pro-info">
-            <h4><a href="product.html">Gpoly and Bark Eames Style</a></h4>
+            <h4><a href="product.php">Gpoly and Bark Eames Style</a></h4>
             <p><span class="price">$150.30</span> <del class="prev-price">$105.50</del></p>
             <div class="label-product l_sale">22<span class="symbol-percent">%</span></div>
           </div>
           <div class="pro-actions">
             <div class="actions-primary">
-              <a href="cart.html" title="Add to Cart"> + Add To Cart</a>
+              <a href="cart.php" title="Add to Cart"> + Add To Cart</a>
             </div>
             <div class="actions-secondary">
-              <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
+              <a href="compare.php" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
                   Compare</span></a>
-              <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
+              <a href="wishlist.php" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
                   WishList</span></a>
             </div>
           </div>
@@ -352,7 +354,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
       <div class="single-product">
         <!-- Product Image Start -->
         <div class="pro-img">
-          <a href="product.html">
+          <a href="product.php">
             <img class="primary-img" src="assets\img\products\22.jpg" alt="single-product">
             <img class="secondary-img" src="assets\img\products\23.jpg" alt="single-product">
           </a>
@@ -362,17 +364,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
         <!-- Product Content Start -->
         <div class="pro-content">
           <div class="pro-info">
-            <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+            <h4><a href="product.php">Poly and Bark Vortex Side</a></h4>
             <p><span class="price">$90.45</span></p>
           </div>
           <div class="pro-actions">
             <div class="actions-primary">
-              <a href="cart.html" title="Add to Cart"> + Add To Cart</a>
+              <a href="cart.php" title="Add to Cart"> + Add To Cart</a>
             </div>
             <div class="actions-secondary">
-              <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
+              <a href="compare.php" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
                   Compare</span></a>
-              <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
+              <a href="wishlist.php" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
                   WishList</span></a>
             </div>
           </div>
@@ -385,7 +387,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
       <div class="single-product">
         <!-- Product Image Start -->
         <div class="pro-img">
-          <a href="product.html">
+          <a href="product.php">
             <img class="primary-img" src="assets\img\products\8.jpg" alt="single-product">
             <img class="secondary-img" src="assets\img\products\9.jpg" alt="single-product">
           </a>
@@ -395,18 +397,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
         <!-- Product Content Start -->
         <div class="pro-content">
           <div class="pro-info">
-            <h4><a href="product.html">Eames and Bark Style</a></h4>
+            <h4><a href="product.php">Eames and Bark Style</a></h4>
             <p><span class="price">$90.45</span><del class="prev-price">$100.50</del></p>
             <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
           </div>
           <div class="pro-actions">
             <div class="actions-primary">
-              <a href="cart.html" title="Add to Cart"> + Add To Cart</a>
+              <a href="cart.php" title="Add to Cart"> + Add To Cart</a>
             </div>
             <div class="actions-secondary">
-              <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
+              <a href="compare.php" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
                   Compare</span></a>
-              <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
+              <a href="wishlist.php" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
                   WishList</span></a>
             </div>
           </div>
@@ -418,7 +420,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
       <div class="single-product">
         <!-- Product Image Start -->
         <div class="pro-img">
-          <a href="product.html">
+          <a href="product.php">
             <img class="primary-img" src="assets\img\products\15.jpg" alt="single-product">
             <img class="secondary-img" src="assets\img\products\16.jpg" alt="single-product">
           </a>
@@ -428,17 +430,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
         <!-- Product Content Start -->
         <div class="pro-content">
           <div class="pro-info">
-            <h4><a href="product.html">Bark Vortex Side Eames</a></h4>
+            <h4><a href="product.php">Bark Vortex Side Eames</a></h4>
             <p><span class="price">$84.45</span></p>
           </div>
           <div class="pro-actions">
             <div class="actions-primary">
-              <a href="cart.html" title="Add to Cart"> + Add To Cart</a>
+              <a href="cart.php" title="Add to Cart"> + Add To Cart</a>
             </div>
             <div class="actions-secondary">
-              <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
+              <a href="compare.php" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
                   Compare</span></a>
-              <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
+              <a href="wishlist.php" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
                   WishList</span></a>
             </div>
           </div>
@@ -450,7 +452,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
       <div class="single-product">
         <!-- Product Image Start -->
         <div class="pro-img">
-          <a href="product.html">
+          <a href="product.php">
             <img class="primary-img" src="assets\img\products\13.jpg" alt="single-product">
             <img class="secondary-img" src="assets\img\products\14.jpg" alt="single-product">
           </a>
@@ -460,17 +462,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
         <!-- Product Content Start -->
         <div class="pro-content">
           <div class="pro-info">
-            <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+            <h4><a href="product.php">Poly and Bark Vortex Side</a></h4>
             <p><span class="price">$95.45</span></p>
           </div>
           <div class="pro-actions">
             <div class="actions-primary">
-              <a href="cart.html" title="Add to Cart"> + Add To Cart</a>
+              <a href="cart.php" title="Add to Cart"> + Add To Cart</a>
             </div>
             <div class="actions-secondary">
-              <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
+              <a href="compare.php" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
                   Compare</span></a>
-              <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
+              <a href="wishlist.php" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
                   WishList</span></a>
             </div>
           </div>
@@ -482,7 +484,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
       <div class="single-product">
         <!-- Product Image Start -->
         <div class="pro-img">
-          <a href="product.html">
+          <a href="product.php">
             <img class="primary-img" src="assets\img\products\1.jpg" alt="single-product">
             <img class="secondary-img" src="assets\img\products\7.jpg" alt="single-product">
           </a>
@@ -492,17 +494,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
         <!-- Product Content Start -->
         <div class="pro-content">
           <div class="pro-info">
-            <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+            <h4><a href="product.php">Poly and Bark Vortex Side</a></h4>
             <p><span class="price">$84.45</span></p>
           </div>
           <div class="pro-actions">
             <div class="actions-primary">
-              <a href="cart.html" title="Add to Cart"> + Add To Cart</a>
+              <a href="cart.php" title="Add to Cart"> + Add To Cart</a>
             </div>
             <div class="actions-secondary">
-              <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
+              <a href="compare.php" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To
                   Compare</span></a>
-              <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
+              <a href="wishlist.php" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to
                   WishList</span></a>
             </div>
           </div>

@@ -161,3 +161,21 @@ i.lnr.lnr-arrow-right,
 i.lnr.lnr-arrow-left {
   line-height: 2;
 }
+
+.logout-user {
+  cursor: pointer;
+  position: relative;
+}
+
+.logout-user:hover .logout-user-hover {
+  display: block;
+}
+
+.logout-user-hover {
+  position: absolute;
+  display: none;
+  top: 40px;
+  left: 50px;
+  width: 150px;
+  background-color: #eee;
+}
