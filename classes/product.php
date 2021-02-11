@@ -1,5 +1,4 @@
 <?php
-
 $filepath = realpath(dirname(__FILE__));
 include_once($filepath . '/../lib/database.php');
 include_once($filepath . '/../helpers/format.php');
@@ -11,6 +10,7 @@ class product
 {
 	private $db;
 	private $fm;
+
 	public function __construct()
 	{
 		$this->db = new Database();
@@ -29,13 +29,39 @@ class product
 		return $result;
 	}
 
-	public function getProductFeathered()
+	public function getProductFeather()
 	{
 		$query =
 			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
 			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
 			 INNER JOIN tbl_brand ON tbl_product.productBrand = tbl_brand.brandID
-			 WHERE productType = 1 
+			 WHERE productFeather = 1 
+			 ORDER BY tbl_product.productID DESC ";
+
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function getProductSell()
+	{
+		$query =
+			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
+			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
+			 INNER JOIN tbl_brand ON tbl_product.productBrand = tbl_brand.brandID
+			 WHERE productSell = 1 
+			 ORDER BY tbl_product.productID DESC ";
+
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function getProductHotDeal()
+	{
+		$query =
+			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
+			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
+			 INNER JOIN tbl_brand ON tbl_product.productBrand = tbl_brand.brandID
+			 WHERE productHotDeal = 1 
 			 ORDER BY tbl_product.productID DESC ";
 
 		$result = $this->db->select($query);
@@ -80,7 +106,9 @@ class product
 		$productBrand = mysqli_real_escape_string($this->db->link, $data['productBrand']);
 		$productDesc = mysqli_real_escape_string($this->db->link, $data['productDesc']);
 		$productPrice = mysqli_real_escape_string($this->db->link, $data['productPrice']);
-		$productType = mysqli_real_escape_string($this->db->link, $data['productType']);
+		$productFeather = mysqli_real_escape_string($this->db->link, $data['productFeather']);
+		$productSell = mysqli_real_escape_string($this->db->link, $data['productSell']);
+		$productHotDeal = mysqli_real_escape_string($this->db->link, $data['productHotDeal']);
 
 		$permited = array('jpg', 'jpeg', 'png', 'gif');
 		$file_name = $files['productImage']['name'];
@@ -92,13 +120,13 @@ class product
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "../admin/uploads/products/" . $unique_image;
 
-		if ($productName == "" || $productCategory == "" || $productBrand == "" || $productDesc == "" || $productPrice == "" || $productType == "" || $file_name == "") {
+		if ($productName == "" || $productCategory == "" || $productBrand == "" || $productDesc == "" || $productPrice == "" || $productFeather == "" || $productSell == "" || $productHotDeal == "" || $file_name == "") {
 			$alert = "<span class='error'>Fiedls must be not empty</span>";
 			return $alert;
 		} else {
 			move_uploaded_file($file_temp, $uploaded_image);
 
-			$query = "INSERT INTO tbl_product(productName, productCategory, productBrand, productDesc, productPrice, productType, productImage) VALUES('$productName','$productCategory','$productBrand','$productDesc','$productPrice','$productType','$unique_image') ";
+			$query = "INSERT INTO tbl_product(productName, productCategory, productBrand, productDesc, productPrice, productFeather, productSell, productHotDeal, productImage) VALUES('$productName','$productCategory','$productBrand','$productDesc','$productPrice','$productFeather', '$productSell', '$productHotDeal','$unique_image') ";
 			$result = $this->db->insert($query);
 			if ($result) {
 				header("Location: productlist.php");
@@ -116,7 +144,9 @@ class product
 		$productBrand = mysqli_real_escape_string($this->db->link, $data['productBrand']);
 		$productDesc = mysqli_real_escape_string($this->db->link, $data['productDesc']);
 		$productPrice = mysqli_real_escape_string($this->db->link, $data['productPrice']);
-		$productType = mysqli_real_escape_string($this->db->link, $data['productType']);
+		$productFeather = mysqli_real_escape_string($this->db->link, $data['productFeather']);
+		$productSell = mysqli_real_escape_string($this->db->link, $data['productSell']);
+		$productHotDeal = mysqli_real_escape_string($this->db->link, $data['productHotDeal']);
 
 		$permited = array('jpg', 'jpeg', 'png', 'gif');
 		$file_name = $files['productImage']['name'];
@@ -128,7 +158,7 @@ class product
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "../admin/uploads/products/" . $unique_image;
 
-		if ($productName == "" || $productCategory == "" || $productBrand == "" || $productDesc == "" || $productPrice == "" || $productType == "") {
+		if ($productName == "" || $productCategory == "" || $productBrand == "" || $productDesc == "" || $productPrice == "" || $productFeather == "" || $productSell == "" || $productHotDeal == "") {
 			$alert = "<span class='error'>Fiedls must be not empty</span>";
 			return $alert;
 		} else {
@@ -136,23 +166,27 @@ class product
 				move_uploaded_file($file_temp, $uploaded_image);
 
 				$query = "UPDATE tbl_product SET
-					productName = '$productName',
-					productCategory = '$productCategory',
-					productBrand = '$productBrand',
-					productDesc = '$productDesc',
-					productPrice = '$productPrice', 
-					productType = '$productType', 
-					productImage = '$unique_image'
-					WHERE productID = '$ID'";
+									productName = '$productName',
+									productCategory = '$productCategory',
+									productBrand = '$productBrand',
+									productDesc = '$productDesc',
+									productPrice = '$productPrice', 
+									productFeather = '$productFeather', 
+									productSell = '$productSell', 
+									productHotDeal = '$productHotDeal', 
+									productImage = '$unique_image'
+									WHERE productID = '$ID'";
 			} else {
 				$query = "UPDATE tbl_product SET
-				productName = '$productName',
-				productCategory = '$productCategory',
-				productBrand = '$productBrand',
-				productDesc = '$productDesc',
-				productPrice = '$productPrice', 
-				productType = '$productType'
-				WHERE productID = '$ID'";
+									productName = '$productName',
+									productCategory = '$productCategory',
+									productBrand = '$productBrand',
+									productDesc = '$productDesc',
+									productPrice = '$productPrice', 
+									productFeather = '$productFeather', 
+									productSell = '$productSell', 
+									productHotDeal = '$productHotDeal'
+									WHERE productID = '$ID'";
 			}
 
 			$result = $this->db->update($query);
@@ -214,18 +248,21 @@ class product
 			}
 		}
 	}
+
 	public function show_slider()
 	{
 		$query = "SELECT * FROM tbl_slider where type='1' order by sliderId desc";
 		$result = $this->db->select($query);
 		return $result;
 	}
+
 	public function show_slider_list()
 	{
 		$query = "SELECT * FROM tbl_slider order by sliderId desc";
 		$result = $this->db->select($query);
 		return $result;
 	}
+
 	public function show_product_warehouse()
 	{
 		$query =
@@ -240,7 +277,6 @@ class product
 		return $result;
 	}
 
-
 	public function update_type_slider($id, $type)
 	{
 
@@ -249,6 +285,7 @@ class product
 		$result = $this->db->update($query);
 		return $result;
 	}
+
 	public function del_slider($id)
 	{
 		$query = "DELETE FROM tbl_slider where sliderId = '$id' ";
@@ -261,6 +298,7 @@ class product
 			return $alert;
 		}
 	}
+
 	public function update_quantity_product($data, $files, $id)
 	{
 		$product_more_quantity = mysqli_real_escape_string($this->db->link, $data['product_more_quantity']);
@@ -319,12 +357,14 @@ class product
 		$result = $this->db->select($query);
 		return $result;
 	}
+
 	public function getproduct_new()
 	{
 		$query = "SELECT * FROM tbl_product order by productId desc LIMIT 4 ";
 		$result = $this->db->select($query);
 		return $result;
 	}
+
 	public function get_details($id)
 	{
 		$query =
@@ -338,42 +378,49 @@ class product
 		$result = $this->db->select($query);
 		return $result;
 	}
+
 	public function getLastestDell()
 	{
 		$query = "SELECT * FROM tbl_product where brandId = '10' order by productId desc limit 1";
 		$result = $this->db->select($query);
 		return $result;
 	}
+
 	public function getLastestHuawei()
 	{
 		$query = "SELECT * FROM tbl_product where brandId = '8' order by productId desc limit 1";
 		$result = $this->db->select($query);
 		return $result;
 	}
+
 	public function getLastestApple()
 	{
 		$query = "SELECT * FROM tbl_product where brandId = '7' order by productId desc limit 1";
 		$result = $this->db->select($query);
 		return $result;
 	}
+
 	public function getLastestSamsum()
 	{
 		$query = "SELECT * FROM tbl_product where brandId = '6' order by productId desc limit 1";
 		$result = $this->db->select($query);
 		return $result;
 	}
+
 	public function get_compare($customer_id)
 	{
 		$query = "SELECT * FROM tbl_compare where customer_id = '$customer_id' order by id desc";
 		$result = $this->db->select($query);
 		return $result;
 	}
+
 	public function get_wishlist($customer_id)
 	{
 		$query = "SELECT * FROM tbl_wishlist where customer_id = '$customer_id' order by id desc";
 		$result = $this->db->select($query);
 		return $result;
 	}
+
 	public function insertCompare($productid, $customer_id)
 	{
 		$productid = mysqli_real_escape_string($this->db->link, $productid);
@@ -394,8 +441,6 @@ class product
 			$price = $result["price"];
 			$image = $result["image"];
 
-
-
 			$query_insert = "INSERT INTO tbl_compare(productId,price,image,customer_id,productName) VALUES('$productid','$price','$image','$customer_id','$productName')";
 			$insert_compare = $this->db->insert($query_insert);
 
@@ -408,6 +453,7 @@ class product
 			}
 		}
 	}
+
 	public function insertWishlist($productid, $customer_id)
 	{
 		$productid = mysqli_real_escape_string($this->db->link, $productid);

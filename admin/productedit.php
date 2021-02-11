@@ -137,9 +137,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
 
 									<div class="col-md-4 mb-3">
 										<label for="validationTooltip01">Nổi bật</label>
-										<select class="mb-2 form-control" name="productType">
+										<select class="mb-2 form-control" name="productFeather">
 											<?php
-											if ($resultProduct['productType'] == 1) {
+											if ($resultProduct['productFeather'] == 1) {
 											?>
 												<option selected value="1">Sản phẩm nổi bật</option>
 												<option value="0">Sản phẩm không nổi bật</option>
@@ -154,15 +154,52 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
 										</select>
 									</div>
 
-								</div>
+									<div class="col-md-4 mb-3">
+										<label for="validationTooltip01">Bán chạy</label>
+										<select class="mb-2 form-control" name="productSell">
+											<?php
+											if ($resultProduct['productSell'] == 1) {
+											?>
+												<option selected value="1">Sản phẩm bán chạy</option>
+												<option value="0">Sản phẩm không bán chạy</option>
+											<?php
+											} else {
+											?>
+												<option value="1">Sản phẩm bán chạy</option>
+												<option selected value="0">Sản phẩm không bán chạy</option>
+											<?php
+											}
+											?>
+										</select>
+									</div>
 
-								<div class="form-row ">
-									<div class="col-md-12 mb-3">
+									<div class="col-md-4 mb-3">
+										<label for="validationTooltip01">Hot Deal</label>
+										<select class="mb-2 form-control" name="productHotDeal">
+											<?php
+											if ($resultProduct['productHotDeal'] == 1) {
+											?>
+												<option selected value="1">Sản phẩm Hot Deal</option>
+												<option value="0">Sản phẩm không Hot Deal</option>
+											<?php
+											} else {
+											?>
+												<option value="1">Sản phẩm Hot Deal</option>
+												<option selected value="0">Sản phẩm không Hot Deal</option>
+											<?php
+											}
+											?>
+										</select>
+									</div>
+
+									<div class="col-md-4 mb-3">
 										<div class="custom-file">
+											<label for="validationTooltip01">Hình ảnh</label>
 											<input type="file" class="form-control" name="productImage" accept=".PNG, .JPEG, .JPG">
 											<div class="mess-file-new">Để trống nếu sử dụng logo cũ.</div>
 										</div>
 									</div>
+
 								</div>
 
 								<div class="form-row text-center">

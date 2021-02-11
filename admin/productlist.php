@@ -52,7 +52,9 @@ if (isset($_GET["deleteID"])) {
 											<th class="text-center">Giá</th>
 											<th class="text-center">Thương hiệu</th>
 											<th class="text-center">Danh mục</th>
-											<th class="text-center">Thể loại</th>
+											<th class="text-center">Nổi bật</th>
+											<th class="text-center">Bán chạy</th>
+											<th class="text-center">Hot Deal</th>
 											<th class="text-center">Tính năng</th>
 										</tr>
 									</thead>
@@ -83,10 +85,30 @@ if (isset($_GET["deleteID"])) {
 												<td class="text-center text-muted"><?php echo $result["catName"] ?></td>
 												<td class="text-center text-muted">
 													<?php
-													if ($result["productType"] == 1) {
-														echo "Sản phẩm nổi bật";
+													if ($result["productFeather"] == 1) {
+														echo "Nổi bật";
 													} else {
-														echo "Sản phẩm không nổi bật";
+														echo "Không nổi bật";
+													}
+													?>
+												</td>
+
+												<td class="text-center text-muted">
+													<?php
+													if ($result["productSell"] == 1) {
+														echo "Bán chạy";
+													} else {
+														echo "Không bán chạy";
+													}
+													?>
+												</td>
+
+												<td class="text-center text-muted">
+													<?php
+													if ($result["productHotDeal"] == 1) {
+														echo "HOT Deal";
+													} else {
+														echo "Không Hot Deal";
 													}
 													?>
 												</td>

@@ -116,22 +116,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
 
 							<div class="col-md-4 mb-3">
 								<label for="validationTooltip01">Nổi bật</label>
-								<select class="mb-2 form-control" name="productType">
+								<select class="mb-2 form-control" name="productFeather">
 									<option value="1" selected>Sản phẩm nổi bật</option>
 									<option value="0">Sản phẩm không nổi bật</option>
 								</select>
 							</div>
 
-						</div>
+							<div class="col-md-4 mb-3">
+								<label for="validationTooltip01">Bán chạy</label>
+								<select class="mb-2 form-control" name="productSell">
+									<option value="1" selected>Sản phẩm bán chạy</option>
+									<option value="0">Sản phẩm không không bán chạy</option>
+								</select>
+							</div>
 
-						<div class="form-row ">
-							<div class="col-md-12 mb-3">
+							<div class="col-md-4 mb-3">
+								<label for="validationTooltip01">Hot Deal</label>
+								<select class="mb-2 form-control" name="productHotDeal">
+									<option value="1" selected>Sản phẩm Hot Deal</option>
+									<option value="0">Sản phẩm không Hot Deal</option>
+								</select>
+							</div>
+
+							<div class="col-md-4 mb-3">
 								<div class="custom-file">
+									<label for="validationTooltip01">Hình ảnh</label>
 									<input type="file" class="form-control" name="productImage" id="validatedCustomFile" accept=".PNG, .JPEG, .JPG" required>
 									<div class="invalid-feedback">Vui lòng chọn một trong các định dạng ảnh: PNG, JPG, JPEG.</div>
 									<div class="valid-feedback">Tuyệt vời!!!</div>
 								</div>
 							</div>
+
 						</div>
 
 						<div class="form-row text-center">
