@@ -15,6 +15,7 @@ class brand
 		$this->db = new Database();
 		$this->fm = new Format();
 	}
+
 	public function getBrand()
 	{
 		$query = "SELECT * FROM tbl_brand ORDER BY brandID DESC";

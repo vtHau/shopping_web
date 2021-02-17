@@ -29,6 +29,32 @@ class product
 		return $result;
 	}
 
+	public function getProductByBrand($brandID)
+	{
+		$query =
+			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
+			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
+			 INNER JOIN tbl_brand ON tbl_product.productBrand = tbl_brand.brandID
+			 WHERE productBrand = '$brandID'
+			 ORDER BY tbl_product.productID DESC ";
+
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function getProductByCategory($catID)
+	{
+		$query =
+			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
+			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
+			 INNER JOIN tbl_brand ON tbl_product.productBrand = tbl_brand.brandID
+			 WHERE productCategory = '$catID'
+			 ORDER BY tbl_product.productID DESC ";
+
+		$result = $this->db->select($query);
+		return $result;
+	}
+
 	public function getProductFeather()
 	{
 		$query =

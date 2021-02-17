@@ -144,36 +144,20 @@ header("Cache-Control: max-age=2592000");
 								<form action="#">
 									<div class="form-group">
 										<select class="bootstrap-select" name="poscats">
-											<option value="0">All categories</option>
-											<option value="2">Arrivals</option>
-											<option value="3">Cameras</option>
-											<option value="4">Cords and Cables</option>
-											<option value="5">gps accessories</option>
-											<option value="6">Microphones</option>
-											<option value="7">Wireless Transmitters</option>
-											<option value="8">GamePad</option>
-											<option value="9">cube lifestyle hd</option>
-											<option value="10">Bags</option>
-											<option value="11">Bottoms</option>
-											<option value="12">Shirts</option>
-											<option value="13">Tailored</option>
-											<option value="14">Home &amp; Kitchen</option>
-											<option value="15">Large Appliances</option>
-											<option value="16">Armchairs</option>
-											<option value="17">Bunk Bed</option>
-											<option value="18">Mattress</option>
-											<option value="19">Sideboard</option>
-											<option value="20">Small Appliances</option>
-											<option value="21">Bootees Bags</option>
-											<option value="22">Jackets</option>
-											<option value="23">Shelf</option>
-											<option value="24">Shoes</option>
-											<option value="25">Phones &amp; Tablets</option>
-											<option value="26">Tablet</option>
-											<option value="27">phones</option>
+											<option value="0">Danh mục</option>
+											<?php
+											$getCat = $cat->getCategory();
+											if ($getCat) {
+												while ($resultCat = $getCat->fetch_assoc()) {
+											?>
+													<option value="0"><?php echo $resultCat["catName"] ?></option>
+											<?php
+												}
+											}
+											?>
 										</select>
 									</div>
-									<input type="text" name="search" placeholder="I’m shopping for...">
+									<input type="text" name="search" placeholder="Nhập từ khóa để tìm kiếm...">
 									<button><i class="lnr lnr-magnifier"></i></button>
 								</form>
 							</div>
@@ -194,7 +178,7 @@ header("Cache-Control: max-age=2592000");
 														echo "0";
 													}
 													?>
-												</span><span>cart</span></span>
+												</span><span>Giỏ hàng</span></span>
 										</a>
 										<ul class="ht-dropdown cart-box-width">
 											<?php
@@ -241,7 +225,7 @@ header("Cache-Control: max-age=2592000");
 											<?php }  ?>
 										</ul>
 									</li>
-									<li><a href="wishlist.php"><i class="lnr lnr-heart"></i><span class="my-cart"><span>Wish</span><span>list
+									<li><a href="wishlist.php"><i class="lnr lnr-heart"></i><span class="my-cart"><span>Yêu</span><span>thích
 													(<?php
 														$countWishlist = $wish->getCountWishlist();
 														if ($countWishlist) {
@@ -258,16 +242,18 @@ header("Cache-Control: max-age=2592000");
 											<div class="logout-user">
 												<img class="avatar-user align-middle" src="uploads/avatars/<?php echo Session::get("userImage") ?>" alt="">
 												<span class="fullname-user align-middle"><?php echo Session::get("userFullName"); ?> <i style="line-height: inherit; font-size: inherit;" class="fa fa-angle-down"></i></span>
-												<ul class="list-group logout-user-hover">
-													<li class="list-group-item list-group-item-action"><a href="?action=logout" style="color: #212529;">Đăng xuất</a></li>
+												<ul class="ht-dropdown dropdown-style-two" style="width: 200px;">
+													<li class="list-group-item list-group-item-action" style="border: none;"><a href="?action=logout" style="color: #212529;">Đăng xuất</a></li>
+													<li class="list-group-item list-group-item-action" style="border: none;"><a href="" style="color: #212529;">Thay đổi mật khẩu</a></li>
+													<li class="list-group-item list-group-item-action" style="border: none;"><a href="" style="color: #212529;">Thông tin tài khoản</a></li>
 												</ul>
 											</div>
 										<?php } else { ?>
 											<a href="#">
 												<i class="lnr lnr-user"></i>
 												<span class="my-cart">
-													<strong>Dang Ky</strong>
-													<span class="btn-form-show"><strong>Dang Nhap</strong></span>
+													<strong>Đăng ký</strong>
+													<span class="btn-form-show"><strong>Đăng nhập</strong></span>
 												</span>
 											</a>
 										<?php } ?>
@@ -290,53 +276,24 @@ header("Cache-Control: max-age=2592000");
 					<div class="row align-items-center">
 
 						<div class="col-xl-3 col-lg-4 col-md-6 vertical-menu d-none d-lg-block">
-							<span class="categorie-title">Shop by Categories</span>
+							<span class="categorie-title">Danh mục</span>
 						</div>
 
 						<div class="col-xl-6 col-lg-8 col-md-12 ">
 							<nav class="d-none d-lg-block">
 								<ul class="header-bottom-list d-flex">
-									<li class="active"><a href="index.php">home<i class="fa fa-angle-down"></i></a>
-										<!-- Home Version Dropdown Start -->
-										<ul class="ht-dropdown">
-											<li><a href="index.php">Home Version 1</a></li>
-											<li><a href="index-2.php">Home Version 2</a></li>
-											<li><a href="index-3.php">Home Version 3</a></li>
-											<li><a href="index-4.php">Home Version 4</a></li>
-										</ul>
-										<!-- Home Version Dropdown End -->
-									</li>
-									<li><a href="shop.php">shop<i class="fa fa-angle-down"></i></a>
+									<li class="active"><a href="index.php">Trang chủ</a>
+									<li><a href="cart.php">Giỏ hàng</a>
+									<li><a href="wishlist.php">Yêu thích</a></li>
+									<li><a href="compare.php">So sánh</a></li>
+									<li><a href="contact.php">Thanh toán</a></li>
+									<li><a href="shop.php">Thêm<i class="fa fa-angle-down"></i></a>
 										<!-- Home Version Dropdown Start -->
 										<ul class="ht-dropdown dropdown-style-two">
-											<li><a href="product.php">product details</a></li>
-											<li><a href="compare.php">compare</a></li>
-											<li><a href="cart.php">cart</a></li>
-											<li><a href="checkout.php">checkout</a></li>
-											<li><a href="wishlist.php">wishlist</a></li>
+											<li><a href="product.php">Thông tin tài khoản</a></li>
 										</ul>
 										<!-- Home Version Dropdown End -->
 									</li>
-									<li><a href="blog.php">blog<i class="fa fa-angle-down"></i></a>
-										<!-- Home Version Dropdown Start -->
-										<ul class="ht-dropdown dropdown-style-two">
-											<li><a href="single-blog.php">blog details</a></li>
-										</ul>
-										<!-- Home Version Dropdown End -->
-									</li>
-									<li><a href="#">pages<i class="fa fa-angle-down"></i></a>
-										<!-- Home Version Dropdown Start -->
-										<ul class="ht-dropdown dropdown-style-two">
-											<li><a href="contact.php">contact us</a></li>
-											<li><a href="register.php">register</a></li>
-											<li><a href="login.php">sign in</a></li>
-											<li><a href="forgot-password.php">forgot password</a></li>
-											<li><a href="404.php">404</a></li>
-										</ul>
-										<!-- Home Version Dropdown End -->
-									</li>
-									<li><a href="about.php">About us</a></li>
-									<li><a href="contact.php">contact us</a></li>
 								</ul>
 							</nav>
 							<div class="mobile-menu d-block d-lg-none">
@@ -346,9 +303,6 @@ header("Cache-Control: max-age=2592000");
 											<!-- Home Version Dropdown Start -->
 											<ul>
 												<li><a href="index.php">Home Version 1</a></li>
-												<li><a href="index-2.php">Home Version 2</a></li>
-												<li><a href="index-3.php">Home Version 3</a></li>
-												<li><a href="index-4.php">Home Version 4</a></li>
 											</ul>
 											<!-- Home Version Dropdown End -->
 										</li>
@@ -388,12 +342,30 @@ header("Cache-Control: max-age=2592000");
 						</div>
 						<div class="col-xl-3 col-lg-8 col-md-12 hide-cart-info">
 							<div class="float-right">
-								<a href="#" class="align-middle">
-									<span class="my-cart align-middle">5</span>
+								<a href="cart.php" class="align-middle">
+									<span class="my-cart align-middle">
+										<?php
+										$countCart = $cart->getCountCart();
+										if ($countCart) {
+											echo $countCart["countCart"];
+										} else {
+											echo "0";
+										}
+										?>
+									</span>
 									<i class="lnr lnr-cart align-middle"></i>
 								</a>
-								<a href="#" class="align-middle">
-									<span class="my-cart align-middle">5</span>
+								<a href="wishlist.php" class="align-middle">
+									<span class="my-cart align-middle">
+										<?php
+										$countWishlist = $wish->getCountWishlist();
+										if ($countWishlist) {
+											echo $countWishlist["countWishlist"];
+										} else {
+											echo "0";
+										}
+										?>
+									</span>
 									<i class="lnr lnr-heart align-middle"></i>
 								</a>
 								<a href="" class="align-middle">
@@ -421,70 +393,16 @@ header("Cache-Control: max-age=2592000");
 					<nav>
 						<div id="cate-mobile-toggle" class="category-menu sidebar-menu sidbar-style mobile-categorei-menu-list menu-hidden ">
 							<ul>
-								<li class="has-sub"><a href="#">Automotive & Motorcycle </a>
-									<ul class="category-sub">
-										<li class="has-sub"><a href="shop.php">Office chair</a>
-											<ul class="category-sub">
-												<li><a href="shop.php">Bibendum Cursus</a></li>
-												<li><a href="shop.php">Dignissim Turpis</a></li>
-												<li><a href="shop.php">Dining room</a></li>
-												<li><a href="shop.php">Dining room</a></li>
-											</ul>
-										</li>
-										<li class="has-sub"><a href="shop.php">Purus Lacus</a>
-											<ul class="category-sub">
-												<li><a href="shop.php">Magna Pellentesq</a></li>
-												<li><a href="shop.php">Molestie Tortor</a></li>
-												<li><a href="shop.php">Vehicula Element</a></li>
-												<li><a href="shop.php">Sagittis Blandit</a></li>
-											</ul>
-										</li>
-										<li><a href="shop.php">gps accessories</a></li>
-										<li><a href="shop.php">Microphones</a></li>
-										<li><a href="shop.php">Wireless Transmitters</a></li>
-									</ul>
-									<!-- category submenu end-->
-								</li>
-								<li class="has-sub"><a href="#">Sports & Outdoors</a>
-									<ul class="category-sub">
-										<li class="menu-tile">Cameras</li>
-										<li><a href="shop.php">Cords and Cables</a></li>
-										<li><a href="shop.php">gps accessories</a></li>
-										<li><a href="shop.php">Microphones</a></li>
-										<li><a href="shop.php">Wireless Transmitters</a></li>
-									</ul>
-									<!-- category submenu end-->
-								</li>
-								<li class="has-sub"><a href="#">Home & Kitchen</a>
-									<ul class="category-sub">
-										<li><a href="shop.php">kithen one</a></li>
-										<li><a href="shop.php">kithen two</a></li>
-										<li><a href="shop.php">kithen three</a></li>
-										<li><a href="shop.php">kithen four</a></li>
-									</ul>
-									<!-- category submenu end-->
-								</li>
-								<li class="has-sub"><a href="#">Phones & Tablets</a>
-									<ul class="category-sub">
-										<li><a href="shop.php">phone one</a></li>
-										<li><a href="shop.php">Tablet two</a></li>
-										<li><a href="shop.php">Tablet three</a></li>
-										<li><a href="shop.php">phone four</a></li>
-									</ul>
-									<!-- category submenu end-->
-								</li>
-								<li class="has-sub"><a href="#">TV & Video</a>
-									<ul class="category-sub">
-										<li><a href="shop.php">smart tv</a></li>
-										<li><a href="shop.php">real video</a></li>
-										<li><a href="shop.php">Microphones</a></li>
-										<li><a href="shop.php">Wireless Transmitters</a></li>
-									</ul>
-									<!-- category submenu end-->
-								</li>
-								<li><a href="#">Beauty</a> </li>
-								<li><a href="#">Sport & tourisim</a></li>
-								<li><a href="#">Meat & Seafood</a></li>
+								<?php
+								$getCat = $cat->getCategory();
+								if ($getCat) {
+									while ($resultCat = $getCat->fetch_assoc()) {
+								?>
+										<li><a href="#"><?php echo $resultCat["catName"] ?></a></li>
+								<?php
+									}
+								}
+								?>
 							</ul>
 						</div>
 						<!-- category-menu-end -->
@@ -503,209 +421,20 @@ header("Cache-Control: max-age=2592000");
 						<div class="vertical-menu mb-all-30">
 							<nav>
 								<ul class="vertical-menu-list">
-									<li class=""><a href="shop.php"><span><img src="assets\img\vertical-menu\1.png" alt="menu-icon"></span>Automotive & Motorcycle<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+									<?php
+									$getCat = $cat->getCategory();
+									if ($getCat) {
+										while ($resultCat = $getCat->fetch_assoc()) {
+									?>
+											<li>
+												<a href="shop.php"><span><img src="assets\img\vertical-menu\10.png" alt="menu-icon"></span><?php echo $resultCat["catName"] ?></a>
+											</li>
+									<?php
+										}
+									}
+									?>
 
-										<ul class="ht-dropdown mega-child">
-											<li><a href="shop.php">Office chair <i class="fa fa-angle-right"></i></a>
-												<!-- category submenu end-->
-												<ul class="ht-dropdown mega-child">
-													<li><a href="shop.php">Bibendum Cursus</a></li>
-													<li><a href="shop.php">Dignissim Turpis</a></li>
-													<li><a href="shop.php">Dining room</a></li>
-													<li><a href="shop.php">Dining room</a></li>
-												</ul>
-												<!-- category submenu end-->
-											</li>
-											<li><a href="shop.php">Purus Lacus <i class="fa fa-angle-right"></i></a>
-												<!-- category submenu end-->
-												<ul class="ht-dropdown mega-child">
-													<li><a href="shop.php">Magna Pellentesq</a></li>
-													<li><a href="shop.php">Molestie Tortor</a></li>
-													<li><a href="shop.php">Vehicula Element</a></li>
-													<li><a href="shop.php">Sagittis Blandit</a></li>
-												</ul>
-												<!-- category submenu end-->
-											</li>
-											<li><a href="shop.php">Sagittis Eget</a></li>
-											<li><a href="shop.php">Sagittis Eget</a></li>
-										</ul>
-										<!-- category submenu end-->
-									</li>
-									<li><a href="shop.php"><span><img src="assets\img\vertical-menu\3.png" alt="menu-icon"></span>Sports &
-											Outdoors<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-										<!-- Vertical Mega-Menu Start -->
-										<ul class="ht-dropdown megamenu first-megamenu">
-											<!-- Single Column Start -->
-											<li class="single-megamenu">
-												<ul>
-													<li class="menu-tile">Cameras</li>
-													<li><a href="shop.php">Cords and Cables</a></li>
-													<li><a href="shop.php">gps accessories</a></li>
-													<li><a href="shop.php">Microphones</a></li>
-													<li><a href="shop.php">Wireless Transmitters</a></li>
-												</ul>
-												<ul>
-													<li class="menu-tile">GamePad</li>
-													<li><a href="shop.php">real game hd</a></li>
-													<li><a href="shop.php">fighting game</a></li>
-													<li><a href="shop.php">racing pad</a></li>
-													<li><a href="shop.php">puzzle pad</a></li>
-												</ul>
-											</li>
-											<!-- Single Column End -->
-											<!-- Single Column Start -->
-											<li class="single-megamenu">
-												<ul>
-													<li class="menu-tile">Digital Cameras</li>
-													<li><a href="shop.php">Camera one</a></li>
-													<li><a href="shop.php">Camera two</a></li>
-													<li><a href="shop.php">Camera three</a></li>
-													<li><a href="shop.php">Camera four</a></li>
-												</ul>
-												<ul>
-													<li class="menu-tile">Virtual Reality</li>
-													<li><a href="shop.php">Reality one</a></li>
-													<li><a href="shop.php">Reality two</a></li>
-													<li><a href="shop.php">Reality three</a></li>
-													<li><a href="shop.php">Reality four</a></li>
-												</ul>
-											</li>
-											<!-- Single Column End -->
-											<!-- Single Megamenu Image Start -->
-											<li class="megamenu-img">
-												<a href="shop.php"><img src="assets\img\vertical-menu\sub-img1.jpg" alt="menu-image"></a>
-												<a href="shop.php"><img src="assets\img\vertical-menu\sub-img2.jpg" alt="menu-image"></a>
-												<a href="shop.php"><img src="assets\img\vertical-menu\sub-img3.jpg" alt="menu-image"></a>
-											</li>
-											<!-- Single Megamenu Image End -->
-										</ul>
-										<!-- Vertical Mega-Menu End -->
-									</li>
-									<li><a href="shop.php"><span><img src="assets\img\vertical-menu\6.png" alt="menu-icon"></span>Fashion<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-										<!-- Vertical Mega-Menu Start -->
-										<ul class="ht-dropdown megamenu megamenu-two">
-											<!-- Single Column Start -->
-											<li class="single-megamenu">
-												<ul>
-													<li class="menu-tile">Men’s Fashion</li>
-													<li><a href="shop.php">Blazers</a></li>
-													<li><a href="shop.php">Boots</a></li>
-													<li><a href="shop.php">pants</a></li>
-													<li><a href="shop.php">Tops & Tees</a></li>
-												</ul>
-											</li>
-											<!-- Single Column End -->
-											<!-- Single Column Start -->
-											<li class="single-megamenu">
-												<ul>
-													<li class="menu-tile">Women’s Fashion</li>
-													<li><a href="shop.php">Bags</a></li>
-													<li><a href="shop.php">Bottoms</a></li>
-													<li><a href="shop.php">Shirts</a></li>
-													<li><a href="shop.php">Tailored</a></li>
-												</ul>
-											</li>
-											<!-- Single Column End -->
-										</ul>
-										<!-- Vertical Mega-Menu End -->
-									</li>
-									<li><a href="shop.php"><span><img src="assets\img\vertical-menu\7.png" alt="menu-icon"></span>Home &
-											Kitchen<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-										<!-- Vertical Mega-Menu Start -->
-										<ul class="ht-dropdown megamenu megamenu-two">
-											<!-- Single Column Start -->
-											<li class="single-megamenu">
-												<ul>
-													<li class="menu-tile">Large Appliances</li>
-													<li><a href="shop.php">Armchairs</a></li>
-													<li><a href="shop.php">Bunk Bed</a></li>
-													<li><a href="shop.php">Mattress</a></li>
-													<li><a href="shop.php">Sideboard</a></li>
-												</ul>
-											</li>
-											<!-- Single Column End -->
-											<!-- Single Column Start -->
-											<li class="single-megamenu">
-												<ul>
-													<li class="menu-tile">Small Appliances</li>
-													<li><a href="shop.php">Bootees Bags</a></li>
-													<li><a href="shop.php">Jackets</a></li>
-													<li><a href="shop.php">Shelf</a></li>
-													<li><a href="shop.php">Shoes</a></li>
-												</ul>
-											</li>
-											<!-- Single Column End -->
-										</ul>
-										<!-- Vertical Mega-Menu End -->
-									</li>
-									<li><a href="shop.php"><span><img src="assets\img\vertical-menu\4.png" alt="menu-icon"></span>Phones &
-											Tablets<i class="fa fa-angle-right" aria-hidden="true"></i>
-										</a>
-										<!-- Vertical Mega-Menu Start -->
-										<ul class="ht-dropdown megamenu megamenu-two">
-											<!-- Single Column Start -->
-											<li class="single-megamenu">
-												<ul>
-													<li class="menu-tile">Tablet</li>
-													<li><a href="shop.php">tablet one</a></li>
-													<li><a href="shop.php">tablet two</a></li>
-													<li><a href="shop.php">tablet three</a></li>
-													<li><a href="shop.php">tablet four</a></li>
-												</ul>
-											</li>
-											<!-- Single Column End -->
-											<!-- Single Column Start -->
-											<li class="single-megamenu">
-												<ul>
-													<li class="menu-tile">Smartphone</li>
-													<li><a href="shop.php">phone one</a></li>
-													<li><a href="shop.php">phone two</a></li>
-													<li><a href="shop.php">phone three</a></li>
-													<li><a href="shop.php">phone four</a></li>
-												</ul>
-											</li>
-											<!-- Single Column End -->
-										</ul>
-										<!-- Vertical Mega-Menu End -->
-									</li>
-									<li><a href="shop.php"><span><img src="assets\img\vertical-menu\6.png" alt="menu-icon"></span>TV & Video<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-										<!-- Vertical Mega-Menu Start -->
-										<ul class="ht-dropdown megamenu megamenu-two">
-											<!-- Single Column Start -->
-											<li class="single-megamenu">
-												<ul>
-													<li class="menu-tile">Gaming Desktops</li>
-													<li><a href="shop.php">Alpha Desktop</a></li>
-													<li><a href="shop.php">rober Desktop</a></li>
-													<li><a href="shop.php">Ultra Desktop </a></li>
-													<li><a href="shop.php">beta desktop</a></li>
-												</ul>
-											</li>
-											<!-- Single Column End -->
-											<!-- Single Column Start -->
-											<li class="single-megamenu">
-												<ul>
-													<li class="menu-tile">Women’s Fashion</li>
-													<li><a href="shop.php">3D-Capable</a></li>
-													<li><a href="shop.php">Clearance</a></li>
-													<li><a href="shop.php">Free Shipping Eligible</a></li>
-													<li><a href="shop.php">On Sale</a></li>
-												</ul>
-											</li>
-											<!-- Single Column End -->
-										</ul>
-										<!-- Vertical Mega-Menu End -->
-									</li>
-									<li><a href="shop.php"><span><img src="assets\img\vertical-menu\5.png" alt="menu-icon"></span>Beauty</a>
-									</li>
-									<li><a href="shop.php"><span><img src="assets\img\vertical-menu\8.png" alt="menu-icon"></span>Fruits &
-											Veggies</a></li>
-									<li><a href="shop.php"><span><img src="assets\img\vertical-menu\9.png" alt="menu-icon"></span>Computer &
-											Laptop</a></li>
-									<li><a href="shop.php"><span><img src="assets\img\vertical-menu\10.png" alt="menu-icon"></span>Meat &
-											Seafood</a></li>
-									<!-- More Categoies Start -->
-									<li id="cate-toggle" class="category-menu v-cat-menu">
+									<!-- <li id="cate-toggle" class="category-menu v-cat-menu">
 										<ul>
 											<li class="has-sub"><a href="#">More Categories</a>
 												<ul class="category-sub">
@@ -713,8 +442,8 @@ header("Cache-Control: max-age=2592000");
 												</ul>
 											</li>
 										</ul>
-									</li>
-									<!-- More Categoies End -->
+									</li> -->
+
 								</ul>
 							</nav>
 						</div>
