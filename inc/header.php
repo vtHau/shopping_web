@@ -286,7 +286,7 @@ header("Cache-Control: max-age=2592000");
 									<li><a href="cart.php">Giỏ hàng</a>
 									<li><a href="wishlist.php">Yêu thích</a></li>
 									<li><a href="compare.php">So sánh</a></li>
-									<li><a href="contact.php">Thanh toán</a></li>
+									<li><a href="order.php">Thanh toán</a></li>
 									<li><a href="shop.php">Thêm<i class="fa fa-angle-down"></i></a>
 										<!-- Home Version Dropdown Start -->
 										<ul class="ht-dropdown dropdown-style-two">

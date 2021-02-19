@@ -84,14 +84,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
             <!-- Cart Button Start -->
             <div class="col-md-8 col-sm-12">
               <div class="buttons-cart">
-                <a href="index.php">Continue Shopping</a>
+                <a href="index.php">Tiếp tục mua sắm</a>
               </div>
             </div>
             <!-- Cart Button Start -->
             <!-- Cart Totals Start -->
             <div class="col-md-4 col-sm-12">
               <div class="cart_totals float-md-right text-md-right">
-                <h2>Cart Totals</h2>
+                <h2>Tổng tiền</h2>
                 <br>
                 <table class="float-md-right">
                   <?php
@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
                   <?php }  ?>
                 </table>
                 <div class="wc-proceed-to-checkout">
-                  <a href="#">Proceed to Checkout</a>
+                  <a href="order.php">Đặt hàng</a>
                 </div>
               </div>
             </div>

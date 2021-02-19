@@ -179,3 +179,10 @@ i.lnr.lnr-arrow-left {
   width: 150px;
   background-color: #eee;
 }
+
+.box-both {
+  width: 100%;
+  border: 1px solid #666;
+  padding: 4px;
+  box-sizing: border-box;
+}

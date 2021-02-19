@@ -83,7 +83,7 @@ class user
 
 	public function getCustomer($ID)
 	{
-		$query = "SELECT * FROM tbl_customer WHERE ID = '$ID'";
+		$query = "SELECT * FROM tbl_customer WHERE userID = '$ID'";
 		$result = $this->db->select($query);
 		return $result;
 	}
