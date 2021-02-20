@@ -17,6 +17,9 @@ $product = new product();
 include_once "classes/cart.php";
 $cart = new cart();
 
+include_once "classes/order.php";
+$order = new order();
+
 include_once "classes/wishlist.php";
 $wish = new wishlist();
 
@@ -286,7 +289,16 @@ header("Cache-Control: max-age=2592000");
 									<li><a href="cart.php">Giỏ hàng</a>
 									<li><a href="wishlist.php">Yêu thích</a></li>
 									<li><a href="compare.php">So sánh</a></li>
-									<li><a href="order.php">Thanh toán</a></li>
+
+									<li><a>Đơn hàng<i class="fa fa-angle-down"></i></a>
+										<!-- Home Version Dropdown Start -->
+										<ul class="ht-dropdown dropdown-style-two">
+											<li><a href="order.php">Đặt hàng</a></li>
+											<li><a href="orderdetails.php">Chi tiết đơn hàng</a></li>
+										</ul>
+										<!-- Home Version Dropdown End -->
+									</li>
+
 									<li><a href="shop.php">Thêm<i class="fa fa-angle-down"></i></a>
 										<!-- Home Version Dropdown Start -->
 										<ul class="ht-dropdown dropdown-style-two">

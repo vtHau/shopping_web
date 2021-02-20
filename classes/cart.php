@@ -143,6 +143,24 @@ class cart
 		}
 	}
 
+	public function deleteAllCart()
+	{
+		$userID = session_id();
+		if (Session::isUserLogin()) {
+			$userID = Session::get("userID");
+		}
+
+		$query = "DELETE FROM tbl_cart WHERE userID = '$userID'";
+		$result = $this->db->delete($query);
+
+		if ($result) {
+			header('Location: orderdetails.php');
+		} else {
+			$msg = "<span class='error'>Sản phẩm đã được xóa</span>";
+			return $msg;
+		}
+	}
+
 	public function check_cart()
 	{
 		$sId = session_id();

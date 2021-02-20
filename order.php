@@ -1,13 +1,23 @@
 ﻿<?php include_once "inc/header.php"; ?>
 <?php Session::checkUserLogin() ?>
 
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
+  $insertOrder = $order->insertOrder();
+
+  if ($insertOrder) {
+    $deleteAllCart = $cart->deleteAllCart();
+  }
+}
+?>
+
 </div>
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
-        <li><a href="index.html">Home</a></li>
-        <li class="active"><a href="order.php">Order</a></li>
+        <li><a href="index.html">Trang chủ</a></li>
+        <li class="active"><a href="order.php">Đặt hàng</a></li>
       </ul>
     </div>
   </div>
@@ -67,7 +77,7 @@
     </div>
     <div class="row mt-20">
       <div class="col-md-12">
-        <form>
+        <form action="" method="POST">
           <div class="box-both">
             <div class="form-group" style="padding: 40px; padding-bottom: 4px;">
               <?php
