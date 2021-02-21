@@ -6,8 +6,16 @@
   <div class="slider-wrapper theme-default">
     <!-- Slider Background  Image Start-->
     <div id="slider" class="nivoSlider">
-      <a href="shop.php"><img src="assets\img\slider\5.jpg" data-thumb="img/slider/5.jpg" alt="" title="#htmlcaption"></a>
-      <a href="shop.php"><img src="assets\img\slider\6.jpg" data-thumb="img/slider/6.jpg" alt="" title="#htmlcaption2"></a>
+      <?php
+      $getSlider = $slider->getSliderInUser();
+      if ($getSlider) {
+        while ($result = $getSlider->fetch_assoc()) {
+      ?>
+          <a style="width: 1920px; height: 409px; object-fit: cover; " href="product.php?productID=<?php echo $result["productID"] ?>"><img style="width: 1920px; height: 409px; object-fit: cover; " src="admin/uploads/sliders/<?php echo $result["sliderImage"] ?>" /></a>
+      <?php
+        }
+      }
+      ?>
     </div>
     <!-- Slider Background  Image Start-->
   </div>

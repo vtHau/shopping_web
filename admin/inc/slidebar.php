@@ -113,6 +113,29 @@
           </ul>
         </li>
 
+        <li>
+          <a href="#">
+            <i class="metismenu-icon pe-7s-diamond"></i>
+            Slider
+            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+          </a>
+          <ul>
+            <li>
+              <a href="slideradd.php">
+                <i class="metismenu-icon"></i>
+                Thêm slider
+              </a>
+            </li>
+            <li>
+              <a href="sliderlist.php">
+                <i class="metismenu-icon">
+                </i>
+                Danh sách slider
+              </a>
+            </li>
+          </ul>
+        </li>
+
       </ul>
     </div>
   </div>

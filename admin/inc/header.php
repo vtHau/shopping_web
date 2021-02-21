@@ -17,6 +17,9 @@ $cat = new category();
 include_once "../classes/brand.php";
 $brand = new brand();
 
+include_once "../classes/slider.php";
+$slider = new slider();
+
 include_once "../classes/product.php";
 $product = new product();
 ?>

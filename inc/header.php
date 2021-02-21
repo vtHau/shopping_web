@@ -14,6 +14,9 @@ $brand = new brand();
 include_once "classes/product.php";
 $product = new product();
 
+include_once "classes/slider.php";
+$slider = new slider();
+
 include_once "classes/cart.php";
 $cart = new cart();
 
