@@ -44,37 +44,50 @@ class user
 		}
 	}
 
-	public function insertCustomer($data)
+	public function insertUser($data, $files)
 	{
-		$name = mysqli_real_escape_string($this->db->link, $data["name"]);
-		$city = mysqli_real_escape_string($this->db->link, $data["city"]);
-		$zipcode = mysqli_real_escape_string($this->db->link, $data["zipcode"]);
+		$userFullName = mysqli_real_escape_string($this->db->link, $data["userFullName"]);
 		$username = mysqli_real_escape_string($this->db->link, $data["username"]);
-		$address = mysqli_real_escape_string($this->db->link, $data["address"]);
-		$country = mysqli_real_escape_string($this->db->link, $data["country"]);
-		$phone = mysqli_real_escape_string($this->db->link, $data["phone"]);
+		$userSex = mysqli_real_escape_string($this->db->link, $data["userSex"]);
+		$userBirthDay = mysqli_real_escape_string($this->db->link, $data["userBirthDay"]);
+		$userPhone = mysqli_real_escape_string($this->db->link, $data["userPhone"]);
+		$userEmail = mysqli_real_escape_string($this->db->link, $data["userEmail"]);
+		$userAddress = mysqli_real_escape_string($this->db->link, $data["userAddress"]);
+		$userStatus = mysqli_real_escape_string($this->db->link, $data["userStatus"]);
 		$password = mysqli_real_escape_string($this->db->link, $data["password"]);
 		$password = md5($password);
 
-		if ($name == '' || $city == "" || $zipcode == "" || $username == "" || $address == "" || $country == "" || $phone == "" || $password == "") {
+		$permited = array('jpg', 'jpeg', 'png', 'gif');
+		$file_name = $files['userImage']['name'];
+		$file_size = $files['userImage']['size'];
+		$file_temp = $files['userImage']['tmp_name'];
+
+		$div = explode('.', $file_name);
+		$file_ext = strtolower(end($div));
+		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
+		$uploaded_image = "../admin/uploads/avatars/" . $unique_image;
+
+		if ($userFullName == "" || $username == "" || $userSex == "" || $userBirthDay == "" || $userPhone == "" || $userEmail == "" || $userAddress == "" || $userStatus == "" ||  $password == "") {
 			$alert = "<span class='error'>Fiedls must be not empty</span>";
 			return $alert;
 		} else {
-			$checkusername = "SELECT * FROM  tbl_customer WHERE username = '$username' LIMIT 1";
-			$resultCheck = $this->db->select($checkusername);
-			if ($resultCheck) {
-				$alert = "<span class='error'>Dia chi username khong hop le</span>";
-				return $alert;
+			if (empty($file_name)) {
+				$unique_image = "default.png";
 			} else {
-				$query = "INSERT INTO tbl_customer(name, address, city, country,zipcode, phone, username, password) VALUES('$name','$address', '$city', '$country', '$zipcode', '$phone', '$username', '$password')";
-				$result = $this->db->insert($query);
-				if ($result) {
-					$alert = "<span class='error'>Them nguoi dung thanh cong</span>";
-					return $alert;
-				} else {
-					$alert = "<span class='error'>Them nguoi dung khong thanh cong</span>";
-					return $alert;
-				}
+				move_uploaded_file($file_temp, $uploaded_image);
+			}
+
+			$query = "INSERT INTO tbl_customer(username, password, userFullName, userEmail, userPhone, userBirthDay, userSex, userAddress, userImage, userStatus) VALUES('$username','$password','$userFullName','$userEmail','$userPhone', '$userBirthDay', '$userSex', '$userAddress','$unique_image', '$userStatus') ";
+			echo "<script>console.log('$query')</script>";
+			$result = $this->db->insert($query);
+
+			if ($result) {
+				header("Location: index.php");
+				echo "<script>console.log('them tai khaon tanh cong')</script>";
+			} else {
+				echo "<script>console.log('them tai khaon that bai')</script>";
+				$alert = '<div class="text-center text-noti-red">Thêm sản phẩm không thành công</div>';
+				return $alert;
 			}
 		}
 	}

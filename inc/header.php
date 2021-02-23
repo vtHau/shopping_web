@@ -89,6 +89,7 @@ header("Cache-Control: max-age=2592000");
 	<link rel="stylesheet" href="assets\css\responsive.css">
 	<!-- Modernizer js -->
 	<link rel="stylesheet" href="assets\css\custom-style.css?v=<?php echo time(); ?>">
+
 </head>
 <!-- hello -->
 
