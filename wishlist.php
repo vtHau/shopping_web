@@ -17,8 +17,8 @@ if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
   <div class="container">
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
-        <li><a href="index.php">Home</a></li>
-        <li class="active"><a href="wishlist.php">Wishlist</a></li>
+        <li><a href="index.php">Trang chủ</a></li>
+        <li class="active"><a href="wishlist.php">Yên thích</a></li>
       </ul>
     </div>
   </div>

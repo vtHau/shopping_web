@@ -20,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
   <div class="container">
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
-        <li><a href="index.php">Home</a></li>
-        <li class="active"><a href="cart.php">Cart</a></li>
+        <li><a href="index.php">Trang chủ</a></li>
+        <li class="active"><a href="cart.php">Giỏ hàng</a></li>
       </ul>
     </div>
   </div>

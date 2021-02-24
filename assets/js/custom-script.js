@@ -1,4 +1,5 @@
 $(window).scroll(function () {
+  console.log("hell");
   if ($(this).scrollTop() > 300) {
     $(".hide-cart-info").addClass("show-cart-info");
   } else {
@@ -8,15 +9,29 @@ $(window).scroll(function () {
 
 (function ($) {
   "use Strict";
-  $(".btn-form-show").on("click", function () {
-    $(".wrap-login-form").css({
+  $(".btn-signin-show").on("click", function () {
+    $(".wrap-signin-form").css({
       visibility: "visible",
     });
     document.body.style.overflow = "hidden"; // ADD THIS LINE
   });
 
-  $(".btn-form-hide").on("click", function () {
-    $(".wrap-login-form").css({
+  $(".btn-signin-hide").on("click", function () {
+    $(".wrap-signin-form").css({
+      visibility: "hidden",
+    });
+    document.body.style.overflow = "auto"; // ADD THIS LINE
+  });
+
+  $(".btn-signup-show").on("click", function () {
+    $(".wrap-signup-form").css({
+      visibility: "visible",
+    });
+    document.body.style.overflow = "hidden"; // ADD THIS LINE
+  });
+
+  $(".btn-signup-hide").on("click", function () {
+    $(".wrap-signup-form").css({
       visibility: "hidden",
     });
     document.body.style.overflow = "auto"; // ADD THIS LINE

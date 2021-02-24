@@ -96,9 +96,10 @@ header("Cache-Control: max-age=2592000");
 <body>
 	<!-- Main Wrapper Start Here -->
 	<div class="wrapper">
-		<div class="wrap-login-form">
+
+		<div class="wrap-signin-form">
 			<form class="login-form" autocomplete="off" action="" method="POST">
-				<div class="btn-form-hide"><i class="fa fa-times" aria-hidden="true"></i></div>
+				<div class="btn-signin-hide"><i class="fa fa-times" aria-hidden="true"></i></div>
 				<img class="avatar-login" src="assets/img/avatar.svg" alt="">
 				<h4 class="text-login-form">Đăng nhập</h4>
 				<input class="custom-in" type="text" name="username" placeholder="Tên người dùng" />
@@ -108,6 +109,27 @@ header("Cache-Control: max-age=2592000");
 				</div>
 				<a href="#" class="forgot">Quên mật khẩu?</a>
 				<button type="submit" name="login" class="btn-custom">Đăng Nhập</button>
+			</form>
+		</div>
+
+		<div class="wrap-signup-form">
+			<form class="login-form" autocomplete="off" action="" method="POST">
+				<div class="btn-signup-hide"><i class="fa fa-times" aria-hidden="true"></i></div>
+				<img class="avatar-login" src="assets/img/avatar.svg" alt="">
+				<h4 class="text-login-form" style="margin-bottom: 35px;">Thay đổi mật khẩu</h4>
+
+				<div class="input-icon">
+					<input class="custom-in" type="password" name="oldPassword" placeholder="Mật khẩu cũ" />
+				</div>
+				<div class="input-icon">
+					<input class="custom-in" type="password" name="newPassword" placeholder="Mật khẩu mới" />
+				</div>
+				<div class="input-icon">
+					<input class="custom-in" type="password" name="reNewPassword" placeholder="Nhập lại mật khẩu" />
+				</div>
+
+				<a href="#" class="forgot">Quên mật khẩu?</a>
+				<button type="submit" name="change-password" class="btn-custom">Cập Nhập</button>
 			</form>
 		</div>
 
@@ -251,17 +273,17 @@ header("Cache-Control: max-age=2592000");
 												<span class="fullname-user align-middle"><?php echo Session::get("userFullName"); ?> <i style="line-height: inherit; font-size: inherit;" class="fa fa-angle-down"></i></span>
 												<ul class="ht-dropdown dropdown-style-two" style="width: 200px;">
 													<li class="list-group-item list-group-item-action" style="border: none;"><a href="?action=logout" style="color: #212529;">Đăng xuất</a></li>
-													<li class="list-group-item list-group-item-action" style="border: none;"><a href="" style="color: #212529;">Thay đổi mật khẩu</a></li>
+													<li class="list-group-item list-group-item-action btn-signup-show" style="border: none; color: #212529;"> Thay đổi mật khẩu</li>
 													<li class="list-group-item list-group-item-action" style="border: none;"><a href="" style="color: #212529;">Thông tin tài khoản</a></li>
 												</ul>
 											</div>
 										<?php } else { ?>
-											<a href="#">
+											<a href="#" class="align-middle">
 												<i class="lnr lnr-user"></i>
-												<span class="my-cart">
-													<strong>Đăng ký</strong>
-													<span class="btn-form-show"><strong>Đăng nhập</strong></span>
-												</span>
+												<div class="my-cart align-middle">
+													<a href="signup.php" style="font-weight: bold;">Đăng ký</a>
+													<p><strong class="btn-signin-show">Đăng nhập</strong></p>
+												</div>
 											</a>
 										<?php } ?>
 									</li>
