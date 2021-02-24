@@ -4,8 +4,8 @@
   <div class="container">
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
-        <li><a href="index.html">Home</a></li>
-        <li class="active"><a href="about.html">About Us</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li class="active"><a href="about.php">About Us</a></li>
       </ul>
     </div>
   </div>

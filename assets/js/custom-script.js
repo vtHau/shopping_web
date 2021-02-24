@@ -1,5 +1,4 @@
 $(window).scroll(function () {
-  console.log("hell");
   if ($(this).scrollTop() > 300) {
     $(".hide-cart-info").addClass("show-cart-info");
   } else {

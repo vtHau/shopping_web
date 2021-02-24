@@ -5,8 +5,8 @@
   <div class="container">
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
-        <li><a href="index.html">Home</a></li>
-        <li class="active"><a href="404.html">404</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li class="active"><a href="404.php">404</a></li>
       </ul>
     </div>
   </div>
@@ -31,7 +31,7 @@
             </form>
           </div>
           <div class="error-button">
-            <a href="index.html">Back to home page</a>
+            <a href="index.php">Back to home page</a>
           </div>
         </div>
       </div>

@@ -26,6 +26,9 @@ $order = new order();
 include_once "classes/wishlist.php";
 $wish = new wishlist();
 
+include_once "classes/compare.php";
+$com = new compare();
+
 include_once "classes/user.php";
 $cus = new user();
 
@@ -36,6 +39,10 @@ $fm = new format();
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
 	$loginCustomer = $cus->loginCustomer($_POST);
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["change-password"])) {
+	$changePassword = $cus->changePassword($_POST);
 }
 
 if (isset($_GET["action"]) && $_GET["action"] == "logout") {
@@ -127,7 +134,11 @@ header("Cache-Control: max-age=2592000");
 				<div class="input-icon">
 					<input class="custom-in" type="password" name="reNewPassword" placeholder="Nhập lại mật khẩu" />
 				</div>
-
+				<?php
+				if (isset($changePassword)) {
+					echo $changePassword;
+				}
+				?>
 				<a href="#" class="forgot">Quên mật khẩu?</a>
 				<button type="submit" name="change-password" class="btn-custom">Cập Nhập</button>
 			</form>

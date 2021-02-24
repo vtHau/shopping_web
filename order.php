@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
   <div class="container">
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
-        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="index.php">Trang chủ</a></li>
         <li class="active"><a href="order.php">Đặt hàng</a></li>
       </ul>
     </div>

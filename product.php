@@ -16,6 +16,12 @@ if (isset($_GET["wishlistID"]) && $_GET["wishlistID"] != NULL) {
   $productID = $_GET["wishlistID"];
   $insertWishlist = $wish->insertWishlist($productID);
 }
+
+if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
+  $productID = $_GET["compareID"];
+  $inserCompare = $com->inserCompare($productID);
+}
+
 ?>
 
 </div>
@@ -85,7 +91,7 @@ if (isset($_GET["wishlistID"]) && $_GET["wishlistID"] != NULL) {
                         <div class="ml-2 actions-secondary">
                           <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="" data-original-title="WishList"><i class="lnr lnr-heart"></i>
                             <span>Add to WishList</span></a>
-                          <a href="product.php?compare=<?php echo $result["productID"] ?>" title="" data-original-title="Compare"><i class="lnr lnr-sync"></i>
+                          <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="" data-original-title="Compare"><i class="lnr lnr-sync"></i>
                             <span>Add To Compare</span></a>
                         </div>
                       </div>
@@ -281,7 +287,7 @@ if (isset($_GET["wishlistID"]) && $_GET["wishlistID"] != NULL) {
                   <a href="product.php?productID=<?php echo $result["productID"] ?>" title="Xem chi tiết thông tin về sản phẩm">Xem chi tiết</a>
                 </div>
                 <div class="actions-secondary">
-                  <a href="compare.php" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
+                  <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
                   <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="Thêm vào yêu thích"><i class="lnr lnr-heart"></i> <span>Thêm yêu thích</span></a>
                 </div>
               </div>

@@ -16,6 +16,15 @@ class user
 		$this->fm = new Format();
 	}
 
+	public function getUserID()
+	{
+		$userID = session_id();
+		if (Session::isUserLogin()) {
+			$userID = Session::get("userID");
+		}
+		return $userID;
+	}
+
 	public function loginCustomer($data)
 	{
 		$username = mysqli_real_escape_string($this->db->link, $data["username"]);
@@ -92,7 +101,45 @@ class user
 		}
 	}
 
+	public function changePassword($data)
+	{
+		$userID = session_id();
+		if (Session::isUserLogin()) {
+			$userID = Session::get("userID");
+		}
 
+		$oldPassword = mysqli_real_escape_string($this->db->link, $data["oldPassword"]);
+		$newPassword = mysqli_real_escape_string($this->db->link, $data["newPassword"]);
+		$reNewPassword = mysqli_real_escape_string($this->db->link, $data["reNewPassword"]);
+
+		$queryPassword = "SELECT * FROM tbl_customer WHERE userID = '$userID'";
+		$resutlPassword = $this->db->select($queryPassword)->fetch_assoc();
+		$password = $resutlPassword["password"];
+
+		if ($password != md5($oldPassword)) {
+			$alert = '<div class="text-center text-noti-red">Sai mat khau</div>';
+			return $alert;
+		}
+
+		if ($oldPassword == "" || $newPassword == "" || $reNewPassword == "") {
+			$alert = '<div class="text-center text-noti-red">Ban phai nhap day du cac truong</div>';
+			return $alert;
+		} elseif ($newPassword != $reNewPassword) {
+			$alert = '<div class="text-center text-noti-red">Hai mat khau khong khop</div>';
+			return $alert;
+		} else {
+			$password = md5($newPassword);
+			$queryUpdate = "UPDATE tbl_customer SET password = '$password' WHERE userID = '$userID'";
+			$resultUpdate = $this->db->update($queryUpdate);
+
+			if ($resultUpdate) {
+				header("Location: cart.php");
+			} else {
+				$alert = '<div class="text-center text-noti-red">Cap nhap mat khau khong thanh cong</div>';
+				return $alert;
+			}
+		}
+	}
 
 	public function getCustomer($ID)
 	{

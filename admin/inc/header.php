@@ -22,6 +22,9 @@ $slider = new slider();
 
 include_once "../classes/product.php";
 $product = new product();
+
+include_once "../classes/order.php";
+$order = new order();
 ?>
 
 <?php

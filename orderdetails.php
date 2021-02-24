@@ -18,7 +18,7 @@ if (isset($_GET["received"])) {
   <div class="container">
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
-        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="index.php">Trang chủ</a></li>
         <li class="active"><a href="orderdetails.php">Chi tiết đơn hàng</a></li>
       </ul>
     </div>
