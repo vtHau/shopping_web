@@ -25,6 +25,14 @@ class user
 		return $userID;
 	}
 
+	public function getAllUser()
+	{
+		$query = "SELECT * FROM tbl_customer";
+		$result = $this->db->select($query);
+
+		return $result;
+	}
+
 	public function loginCustomer($data)
 	{
 		$username = mysqli_real_escape_string($this->db->link, $data["username"]);

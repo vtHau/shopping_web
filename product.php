@@ -48,6 +48,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
       if ($getProduct) {
         while ($result = $getProduct->fetch_assoc()) {
           $catID = $result["productCategory"];
+          $detailsProduct = $result["productDesc"];
       ?>
           <div class="row">
             <!-- Main Thumbnail Image Start -->
@@ -67,39 +68,58 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                 <h3 class="product-header"><?php echo $result["productName"] ?></h3>
                 <div class="rating-summary fix mtb-10">
                   <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                    <i class="fa fa-star-o"></i>
-                    <i class="fa fa-star-o"></i>
+                    <?php
+                    $getStar = $review->getStar($productID);
+                    if ($getStar) {
+                      $starText = $getStar->fetch_assoc()["totalStar"];
+                      $star = floor($starText);
+
+                      for ($i = 0; $i < $star; $i++) {
+                        echo ' <i class="fa fa-star"></i>';
+                      }
+                      for ($star; $star < 5; $star++) {
+                        echo ' <i class="fa fa-star-o"></i>';
+                      }
+                    }
+                    echo " " . number_format((float)$starText, 1, '.', '');
+                    ?>
                   </div>
                   <div class="rating-feedback">
-                    <a href="#">(1 review)</a>
-                    <a href="#">add to your review</a>
+                    <a href="#">
+                      <?php
+                      $getCountReview = $review->getCountReview($productID);
+                      if ($getCountReview) {
+                        $countReview = $getCountReview->fetch_assoc()["countReview"];
+                        echo "Có " . $countReview . " đánh giá về sản phẩm.";
+                      } else {
+                        echo "Chưa có đánh giá nào.";
+                      }
+                      ?>
+                    </a>
                   </div>
                 </div>
                 <div class="pro-price mtb-30">
-                  <p class="d-flex align-items-center"><span class="prev-price"></span><span class="price"><?php echo $result["productPrice"] ?></span><span class="saving-price" style="display: none;"></span></p>
+                  <p class="d-flex align-items-center"><span class="prev-price"></span><span class="price"><?php echo $fm->formatMoney($result["productPrice"]) ?></span><span class="saving-price" style="display: none;"></span></p>
                 </div>
                 <p class="mb-20 pro-desc-details"><?php echo $result["productDesc"] ?></p>
                 <div class="box-quantity d-flex hot-product2">
                   <form action="" method="POST">
                     <div style="display: flex;">
                       <input class="quantity mr-15" type="number" name="productQuantity" min="1" value="1" />
-                      <input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" />
+                      <input type="submit" name="submit" class="btn btn-primary" value="Thêm vào giỏ hàng" />
                       <div class="ml-md-2 pro-actions">
                         <div class="ml-2 actions-secondary">
                           <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="" data-original-title="WishList"><i class="lnr lnr-heart"></i>
-                            <span>Add to WishList</span></a>
+                            <span>Yêu thích</span></a>
                           <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="" data-original-title="Compare"><i class="lnr lnr-sync"></i>
-                            <span>Add To Compare</span></a>
+                            <span>So sánh</span></a>
                         </div>
                       </div>
                     </div>
                   </form>
                 </div>
                 <div class="pro-ref mt-20">
-                  <p><span class="in-stock"><i class="ion-checkmark-round"></i> IN STOCK</span></p>
+                  <p><span class="in-stock"><i class="ion-checkmark-round"></i> Còn hàng</span></p>
                 </div>
               </div>
             </div>
@@ -122,25 +142,73 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
     <div class="row">
       <div class="col-sm-12">
         <ul class="main-thumb-desc nav tabs-area" role="tablist">
-          <li><a class="active" data-toggle="tab" href="#dtail">Product Details</a></li>
-          <li><a data-toggle="tab" href="#review">Reviews 1</a></li>
+          <li><a class="active" data-toggle="tab" href="#dtail">Mô tả</a></li>
+          <li><a data-toggle="tab" href="#all-review">Đánh giá</a></li>
+          <li><a data-toggle="tab" href="#your-review">Đánh giá của bạn</a></li>
         </ul>
         <!-- Product Thumbnail Tab Content Start -->
         <div class="tab-content thumb-content border-default">
+
           <div id="dtail" class="tab-pane fade show active">
-            <p>Fashion has been creating well-designed collections since 2010. The brand offers
-              feminine designs delivering stylish separates and statement dresses which have since
-              evolved into a full ready-to-wear collection in which every item is a vital part of
-              a woman's wardrobe. The result? Cool, easy, chic looks with youthful elegance and
-              unmistakable signature style. All the beautiful pieces are made in Italy and
-              manufactured with the greatest attention. Now Fashion extends to a range of
-              accessories including shoes, hats, belts and more!</p>
+            <p><?php echo $detailsProduct ?></p>
           </div>
-          <div id="review" class="tab-pane fade">
+
+          <div id="all-review" class="tab-pane fade ">
+            <?php
+            $getReview = $review->getReview($productID);
+            if ($getReview) {
+              $i = 0;
+              while ($resultReview = $getReview->fetch_assoc()) {
+                $i++;
+            ?>
+                <div class="row d-flex <?php if ($i % 2 == 0) {
+                                          echo "justify-content-end";
+                                        } ?>">
+                  <div class="row comment-box">
+                    <div class="comment-box-image">
+                      <img class="avatar-comment" src="admin/uploads/avatars/<?php echo $resultReview["userImage"] ?>">
+                    </div>
+                    <div class="ml-1 mr-2 col">
+                      <div class="row">
+                        <p><b><?php echo $resultReview["userFullName"] ?></b></p>
+                      </div>
+                      <div class="row">
+                        <p class="break-word"><?php echo $resultReview["comment"] ?></p>
+                      </div>
+                      <div class="row">
+                        <div class="mr-2">
+                          <div class="list-star">
+                            <?php
+                            $star = $resultReview["star"];
+                            for ($j = 0; $j < $star; $j++) {
+                              echo ' <i class="fa fa-star"></i>';
+                            }
+                            for ($star; $star < 5; $star++) {
+                              echo ' <i class="fa fa-star-o"></i>';
+                            }
+                            ?>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="time-comment">
+                            <?php echo $resultReview["timeReview"] ?>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <?php
+              }
+            }
+            ?>
+          </div>
+
+          <div id="your-review" class="tab-pane fade">
             <!-- Reviews Start -->
             <div class="review border-default universal-padding">
               <div class="group-title">
-                <h2>customer review</h2>
+                <h2>Đánh giá của khách hàng</h2>
               </div>
               <h4 class="review-mini-title">Truemart</h4>
               <ul class="review-list">
@@ -238,7 +306,47 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
               <!-- Reviews Field Start -->
             </div>
             <!-- Reviews End -->
+
+
+            <!-- Reviews Start -->
+            <div class="review border-default universal-padding mt-30">
+              <h2 class="review-title mb-30">Các bài đánh giá</h2>
+              <ul class="review-list">
+                <!-- Single Review List Start -->
+                <li>
+                  <span>Quality</span>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-o"></i>
+                  <i class="fa fa-star-o"></i>
+                </li>
+                <!-- Single Review List End -->
+
+              </ul>
+              <!-- Reviews Field Start -->
+              <div class="riview-field mt-40">
+                <form autocomplete="off" action="#">
+                  <div class="form-group">
+                    <label class="req" for="sure-name">Nickname</label>
+                    <input type="text" class="form-control" id="sure-name" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label class="req" for="subject">Summary</label>
+                    <input type="text" class="form-control" id="subject" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label class="req" for="comments">Review</label>
+                    <textarea class="form-control" rows="5" id="comments" required="required"></textarea>
+                  </div>
+                  <button type="submit" class="customer-btn">Submit Review</button>
+                </form>
+              </div>
+              <!-- Reviews Field Start -->
+            </div>
+            <!-- Reviews End -->
           </div>
+
         </div>
         <!-- Product Thumbnail Tab Content End -->
       </div>

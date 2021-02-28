@@ -25,6 +25,11 @@ $product = new product();
 
 include_once "../classes/order.php";
 $order = new order();
+
+include_once "../classes/user.php";
+$user = new user();
+
+
 ?>
 
 <?php

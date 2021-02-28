@@ -208,3 +208,45 @@ i.lnr.lnr-arrow-left {
   padding: 4px;
   box-sizing: border-box;
 }
+
+.list-star {
+  height: 20px;
+  font-size: 11px;
+  color: #f39c11;
+}
+
+.time-comment {
+  color: rgb(44, 43, 43);
+  height: 20px;
+  font-size: 11px;
+}
+
+.comment-box {
+  padding: 5px 0;
+  width: 40%;
+  margin: 0 10px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.comment-box-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+}
+
+.avatar-comment {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.break-word {
+  word-break: break-word !important;
+}
+
+.tab-pane.fade > .row.d-flex:not(:last-child) {
+  margin-bottom: 3rem !important;
+}

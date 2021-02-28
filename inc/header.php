@@ -29,6 +29,9 @@ $wish = new wishlist();
 include_once "classes/compare.php";
 $com = new compare();
 
+include_once "classes/review.php";
+$review = new review();
+
 include_once "classes/user.php";
 $cus = new user();
 
@@ -476,7 +479,7 @@ header("Cache-Control: max-age=2592000");
 										while ($resultCat = $getCat->fetch_assoc()) {
 									?>
 											<li>
-												<a href="shop.php"><span><img src="assets\img\vertical-menu\10.png" alt="menu-icon"></span><?php echo $resultCat["catName"] ?></a>
+												<a href="category.php?catID=<?php echo $resultCat["catID"] ?>"><span><img src="assets\img\vertical-menu\10.png" alt="menu-icon"></span><?php echo $resultCat["catName"] ?></a>
 											</li>
 									<?php
 										}

@@ -66,14 +66,35 @@
                 <div class="pro-content">
                   <div class="pro-info">
                     <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
-                    <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span> <del class="prev-price"></del></p>
+                    <p>
+                      <span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span>
+                    </p>
+                    <div class="rating">
+                      <?php
+                      $getStar = $review->getStar($result["productID"]);
+                      if ($getStar) {
+                        $starText = $getStar->fetch_assoc()["totalStar"];
+                        $star = floor($starText);
+
+                        for ($i = 0; $i < $star; $i++) {
+                          echo ' <i class="fa fa-star"></i>';
+                        }
+                        for ($star; $star < 5; $star++) {
+                          echo ' <i class="fa fa-star-o"></i>';
+                        }
+                      }
+                      if ($starText != 0) {
+                        echo " " . number_format((float)$starText, 1, '.', '');
+                      }
+                      ?>
+                    </div>
                   </div>
                   <div class="pro-actions">
                     <div class="actions-primary">
                       <a href="product.php?productID=<?php echo $result["productID"] ?>" title="Xem chi tiết thông tin về sản phẩm">Xem chi tiết</a>
                     </div>
                     <div class="actions-secondary">
-                      <a href="compare.php" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
+                      <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
                       <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="Thêm vào yêu thích"><i class="lnr lnr-heart"></i> <span>Thêm yêu thích</span></a>
                     </div>
                   </div>
@@ -124,14 +145,33 @@
                 <div class="pro-content">
                   <div class="pro-info">
                     <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
-                    <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span> <del class="prev-price"></del></p>
+                    <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span></p>
+                    <div class="rating">
+                      <?php
+                      $getStar = $review->getStar($result["productID"]);
+                      if ($getStar) {
+                        $starText = $getStar->fetch_assoc()["totalStar"];
+                        $star = floor($starText);
+
+                        for ($i = 0; $i < $star; $i++) {
+                          echo ' <i class="fa fa-star"></i>';
+                        }
+                        for ($star; $star < 5; $star++) {
+                          echo ' <i class="fa fa-star-o"></i>';
+                        }
+                      }
+                      if ($starText != 0) {
+                        echo " " . number_format((float)$starText, 1, '.', '');
+                      }
+                      ?>
+                    </div>
                   </div>
                   <div class="pro-actions">
                     <div class="actions-primary">
                       <a href="product.php?productID=<?php echo $result["productID"] ?>" title="Xem chi tiết thông tin về sản phẩm">Xem chi tiết</a>
                     </div>
                     <div class="actions-secondary">
-                      <a href="compare.php" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
+                      <a href="product.php?compareID=<?php echo $result["productID"] ?>" title=" Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
                       <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="Thêm vào yêu thích"><i class="lnr lnr-heart"></i> <span>Thêm yêu thích</span></a>
                     </div>
                   </div>
@@ -184,14 +224,33 @@
             <div class="pro-content">
               <div class="pro-info">
                 <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
-                <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span> <del class="prev-price"></del></p>
+                <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span></p>
+                <div class="rating">
+                  <?php
+                  $getStar = $review->getStar($result["productID"]);
+                  if ($getStar) {
+                    $starText = $getStar->fetch_assoc()["totalStar"];
+                    $star = floor($starText);
+
+                    for ($i = 0; $i < $star; $i++) {
+                      echo ' <i class="fa fa-star"></i>';
+                    }
+                    for ($star; $star < 5; $star++) {
+                      echo ' <i class="fa fa-star-o"></i>';
+                    }
+                  }
+                  if ($starText != 0) {
+                    echo " " . number_format((float)$starText, 1, '.', '');
+                  }
+                  ?>
+                </div>
               </div>
               <div class="pro-actions">
                 <div class="actions-primary">
                   <a href="product.php?productID=<?php echo $result["productID"] ?>" title="Xem chi tiết thông tin về sản phẩm">Xem chi tiết</a>
                 </div>
                 <div class="actions-secondary">
-                  <a href="compare.php" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
+                  <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
                   <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="Thêm vào yêu thích"><i class="lnr lnr-heart"></i> <span>Thêm yêu thích</span></a>
                 </div>
               </div>
@@ -276,7 +335,26 @@
                         <div class="pro-content">
                           <div class="pro-info">
                             <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
-                            <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span><del class="prev-price"></del></p>
+                            <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span></p>
+                            <div class="rating">
+                              <?php
+                              $getStar = $review->getStar($result["productID"]);
+                              if ($getStar) {
+                                $starText = $getStar->fetch_assoc()["totalStar"];
+                                $star = floor($starText);
+
+                                for ($i = 0; $i < $star; $i++) {
+                                  echo ' <i class="fa fa-star"></i>';
+                                }
+                                for ($star; $star < 5; $star++) {
+                                  echo ' <i class="fa fa-star-o"></i>';
+                                }
+                              }
+                              if ($starText != 0) {
+                                echo " " . number_format((float)$starText, 1, '.', '');
+                              }
+                              ?>
+                            </div>
                             <div class="label-product l_sale"><span class="symbol-percent"></span></div>
                           </div>
                           <div class="pro-actions">
@@ -284,7 +362,7 @@
                               <a href="product.php?productID=<?php echo $result["productID"] ?>" title="Xem chi tiết thông tin về sản phẩm">Xem chi tiết</a>
                             </div>
                             <div class="actions-secondary">
-                              <a href="product.php?compare=<?php echo $result["productID"] ?>" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
+                              <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
                               <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="Thêm vào yêu thích"><i class="lnr lnr-heart"></i> <span>Thêm yêu thích</span></a>
                             </div>
                           </div>
@@ -313,7 +391,26 @@
                           <div class="pro-content">
                             <div class="pro-info">
                               <h4><a href="product.php?productID=<?php echo $rowResult["productID"] ?>"><?php echo $rowResult["productName"] ?></a></h4>
-                              <p><span class="price"><?php echo $fm->formatMoney($rowResult["productPrice"]); ?></span><del class="prev-price"></del></p>
+                              <p><span class="price"><?php echo $fm->formatMoney($rowResult["productPrice"]); ?></span></p>
+                              <div class="rating">
+                                <?php
+                                $getStar = $review->getStar($result["productID"]);
+                                if ($getStar) {
+                                  $starText = $getStar->fetch_assoc()["totalStar"];
+                                  $star = floor($starText);
+
+                                  for ($i = 0; $i < $star; $i++) {
+                                    echo ' <i class="fa fa-star"></i>';
+                                  }
+                                  for ($star; $star < 5; $star++) {
+                                    echo ' <i class="fa fa-star-o"></i>';
+                                  }
+                                }
+                                if ($starText != 0) {
+                                  echo " " . number_format((float)$starText, 1, '.', '');
+                                }
+                                ?>
+                              </div>
                               <div class="label-product l_sale"><span class="symbol-percent"></span></div>
                             </div>
                             <div class="pro-actions">
@@ -418,7 +515,26 @@
                         <div class="pro-content">
                           <div class="pro-info">
                             <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
-                            <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span><del class="prev-price"></del></p>
+                            <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span></p>
+                            <div class="rating">
+                              <?php
+                              $getStar = $review->getStar($result["productID"]);
+                              if ($getStar) {
+                                $starText = $getStar->fetch_assoc()["totalStar"];
+                                $star = floor($starText);
+
+                                for ($i = 0; $i < $star; $i++) {
+                                  echo ' <i class="fa fa-star"></i>';
+                                }
+                                for ($star; $star < 5; $star++) {
+                                  echo ' <i class="fa fa-star-o"></i>';
+                                }
+                              }
+                              if ($starText != 0) {
+                                echo " " . number_format((float)$starText, 1, '.', '');
+                              }
+                              ?>
+                            </div>
                             <div class="label-product l_sale"><span class="symbol-percent"></span></div>
                           </div>
                           <div class="pro-actions">
@@ -426,7 +542,7 @@
                               <a href="product.php?productID=<?php echo $result["productID"] ?>" title="Xem chi tiết thông tin về sản phẩm">Xem chi tiết</a>
                             </div>
                             <div class="actions-secondary">
-                              <a href="product.php?compare=<?php echo $result["productID"] ?>" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
+                              <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
                               <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="Thêm vào yêu thích"><i class="lnr lnr-heart"></i> <span>Thêm yêu thích</span></a>
                             </div>
                           </div>
@@ -455,7 +571,26 @@
                           <div class="pro-content">
                             <div class="pro-info">
                               <h4><a href="product.php?productID=<?php echo $rowResult["productID"] ?>"><?php echo $rowResult["productName"] ?></a></h4>
-                              <p><span class="price"><?php echo $fm->formatMoney($rowResult["productPrice"]); ?></span><del class="prev-price"></del></p>
+                              <p><span class="price"><?php echo $fm->formatMoney($rowResult["productPrice"]); ?></span></p>
+                              <div class="rating">
+                                <?php
+                                $getStar = $review->getStar($result["productID"]);
+                                if ($getStar) {
+                                  $starText = $getStar->fetch_assoc()["totalStar"];
+                                  $star = floor($starText);
+
+                                  for ($i = 0; $i < $star; $i++) {
+                                    echo ' <i class="fa fa-star"></i>';
+                                  }
+                                  for ($star; $star < 5; $star++) {
+                                    echo ' <i class="fa fa-star-o"></i>';
+                                  }
+                                }
+                                if ($starText != 0) {
+                                  echo " " . number_format((float)$starText, 1, '.', '');
+                                }
+                                ?>
+                              </div>
                               <div class="label-product l_sale"><span class="symbol-percent"></span></div>
                             </div>
                             <div class="pro-actions">
@@ -521,7 +656,26 @@
               <div class="pro-content">
                 <div class="pro-info">
                   <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
-                  <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span><del class="prev-price"></del></p>
+                  <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span></p>
+                  <div class="rating">
+                    <?php
+                    $getStar = $review->getStar($result["productID"]);
+                    if ($getStar) {
+                      $starText = $getStar->fetch_assoc()["totalStar"];
+                      $star = floor($starText);
+
+                      for ($i = 0; $i < $star; $i++) {
+                        echo ' <i class="fa fa-star"></i>';
+                      }
+                      for ($star; $star < 5; $star++) {
+                        echo ' <i class="fa fa-star-o"></i>';
+                      }
+                    }
+                    if ($starText != 0) {
+                      echo " " . number_format((float)$starText, 1, '.', '');
+                    }
+                    ?>
+                  </div>
                   <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
                 </div>
                 <div class="pro-actions">
@@ -529,7 +683,7 @@
                     <a href="product.php?productID=<?php echo $result["productID"] ?>" title="Xem chi tiết về thông tin sản phẩm">Xem chi tiêt</a>
                   </div>
                   <div class="actions-secondary">
-                    <a href="compare.php" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
+                    <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
                     <a href=product.php?wishlistID=<?php echo $result["productID"] ?>" title="Thêm vào so sánh"><i class="lnr lnr-heart"></i> <span>Thêm yêu thích</span></a>
                   </div>
                 </div>
