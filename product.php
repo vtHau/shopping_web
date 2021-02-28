@@ -12,6 +12,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
   $insertCart = $cart->insertCart($productID, $productQuantity);
 }
 
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["comment"])) {
+  $productID = $_POST["productID"];
+  $comment = $_POST["comment"];
+  $star = $_POST["star"];
+  $insertReview = $review->insertReview($productID, $star, $comment);
+}
+
 if (isset($_GET["wishlistID"]) && $_GET["wishlistID"] != NULL) {
   $productID = $_GET["wishlistID"];
   $insertWishlist = $wish->insertWishlist($productID);
@@ -21,6 +28,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
   $productID = $_GET["compareID"];
   $inserCompare = $com->inserCompare($productID);
 }
+
 
 ?>
 
@@ -49,6 +57,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
         while ($result = $getProduct->fetch_assoc()) {
           $catID = $result["productCategory"];
           $detailsProduct = $result["productDesc"];
+          $productName = $result["productName"];
       ?>
           <div class="row">
             <!-- Main Thumbnail Image Start -->
@@ -144,7 +153,10 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
         <ul class="main-thumb-desc nav tabs-area" role="tablist">
           <li><a class="active" data-toggle="tab" href="#dtail">Mô tả</a></li>
           <li><a data-toggle="tab" href="#all-review">Đánh giá</a></li>
-          <li><a data-toggle="tab" href="#your-review">Đánh giá của bạn</a></li>
+          <?php
+          if (Session::isUserLogin()) {
+            echo '<li><a data-toggle="tab" href="#your-review">Đánh giá của bạn</a></li>';
+          }  ?>
         </ul>
         <!-- Product Thumbnail Tab Content Start -->
         <div class="tab-content thumb-content border-default">
@@ -205,141 +217,34 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
           </div>
 
           <div id="your-review" class="tab-pane fade">
-            <!-- Reviews Start -->
-            <div class="review border-default universal-padding">
-              <div class="group-title">
-                <h2>Đánh giá của khách hàng</h2>
-              </div>
-              <h4 class="review-mini-title">Truemart</h4>
-              <ul class="review-list">
-                <!-- Single Review List Start -->
-                <li>
-                  <span>Quality</span>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <label>Truemart</label>
-                </li>
-                <!-- Single Review List End -->
-                <!-- Single Review List Start -->
-                <li>
-                  <span>price</span>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <label>Review by <a href="https://themeforest.net/user/hastech">Truemart</a></label>
-                </li>
-                <!-- Single Review List End -->
-                <!-- Single Review List Start -->
-                <li>
-                  <span>value</span>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-o"></i>
-                  <label>Posted on 7/20/18</label>
-                </li>
-                <!-- Single Review List End -->
-              </ul>
-            </div>
-            <!-- Reviews End -->
+
             <!-- Reviews Start -->
             <div class="review border-default universal-padding mt-30">
-              <h2 class="review-title mb-30">You're reviewing: <br><span>Faded Short Sleeves
-                  T-shirt</span></h2>
-              <p class="review-mini-title">your rating</p>
+              <h2 class="review-title mb-30">
+                SẢN PHẨM: <br>
+                <span><?php echo $productName ?></span>
+              </h2>
+              <p class="review-mini-title">Đánh giá</p>
               <ul class="review-list">
                 <!-- Single Review List Start -->
-                <li>
-                  <span>Quality</span>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                </li>
-                <!-- Single Review List End -->
-                <!-- Single Review List Start -->
-                <li>
-                  <span>price</span>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                </li>
-                <!-- Single Review List End -->
-                <!-- Single Review List Start -->
-                <li>
-                  <span>value</span>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-o"></i>
+                <li class="review-list-li">
+                  <i class="fa fa-star-o" data-index="1"></i>
+                  <i class="fa fa-star-o" data-index="2"></i>
+                  <i class="fa fa-star-o" data-index="3"></i>
+                  <i class="fa fa-star-o" data-index="4"></i>
+                  <i class="fa fa-star-o" data-index="5"></i>
                 </li>
                 <!-- Single Review List End -->
               </ul>
               <!-- Reviews Field Start -->
               <div class="riview-field mt-40">
-                <form autocomplete="off" action="#">
+                <form autocomplete="off" action="" method="POST">
                   <div class="form-group">
-                    <label class="req" for="sure-name">Nickname</label>
-                    <input type="text" class="form-control" id="sure-name" required="required">
+                    <label class="req" for="comments">Bình luận</label>
+                    <input type="hidden" class="productID" value="<?php echo $productID; ?>">
+                    <textarea class="form-control review-comment" rows="5" id="comment" name="review-comment" required="required"></textarea>
                   </div>
-                  <div class="form-group">
-                    <label class="req" for="subject">Summary</label>
-                    <input type="text" class="form-control" id="subject" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label class="req" for="comments">Review</label>
-                    <textarea class="form-control" rows="5" id="comments" required="required"></textarea>
-                  </div>
-                  <button type="submit" class="customer-btn">Submit Review</button>
-                </form>
-              </div>
-              <!-- Reviews Field Start -->
-            </div>
-            <!-- Reviews End -->
-
-
-            <!-- Reviews Start -->
-            <div class="review border-default universal-padding mt-30">
-              <h2 class="review-title mb-30">Các bài đánh giá</h2>
-              <ul class="review-list">
-                <!-- Single Review List Start -->
-                <li>
-                  <span>Quality</span>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                </li>
-                <!-- Single Review List End -->
-
-              </ul>
-              <!-- Reviews Field Start -->
-              <div class="riview-field mt-40">
-                <form autocomplete="off" action="#">
-                  <div class="form-group">
-                    <label class="req" for="sure-name">Nickname</label>
-                    <input type="text" class="form-control" id="sure-name" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label class="req" for="subject">Summary</label>
-                    <input type="text" class="form-control" id="subject" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label class="req" for="comments">Review</label>
-                    <textarea class="form-control" rows="5" id="comments" required="required"></textarea>
-                  </div>
-                  <button type="submit" class="customer-btn">Submit Review</button>
+                  <button class="customer-btn review-submit">Gửi</button>
                 </form>
               </div>
               <!-- Reviews Field Start -->

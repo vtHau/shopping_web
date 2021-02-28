@@ -6,6 +6,8 @@ $(window).scroll(function () {
   }
 });
 
+var ratedIndex = -1;
+
 (function ($) {
   "use Strict";
   $(".btn-signin-show").on("click", function () {
@@ -35,6 +37,73 @@ $(window).scroll(function () {
     });
     document.body.style.overflow = "auto"; // ADD THIS LINE
   });
+
+  // tinh nang ajax
+  $(document).ready(function () {
+    $(".review-list > .review-list-li > i.fa").on("click", function () {
+      ratedIndex = parseInt($(this).data("index"));
+      resetStar();
+      setStar(ratedIndex);
+    });
+
+    $(".review-submit").on("click", function (e) {
+      console.log("da lcicj");
+      saveToDB();
+    });
+
+    // resetStar();
+    // if (localStorage.getItem("ratedIndex") != null) {
+    //   ratedIndex = parseInt(localStorage.getItem("ratedIndex"));
+    //   setStar(ratedIndex);
+    // }
+
+    // $(".review-list > .review-list-li > i.fa").mouseover(function () {
+    //   ratedIndex = parseInt($(this).data("index"));
+    //   setStar(ratedIndex);
+    //   console.log("Hover Index: " + ratedIndex);
+    // });
+
+    // $(".review-list > .review-list-li > i.fa").mouseleave(function () {
+    //   resetStar();
+    // });
+  });
+
+  function insertDatabase() {
+    var productID = $(".productID").val();
+    var comment = $(".review-comment").val();
+    console.log(comment + ratedIndex + productID);
+
+    $.ajax({
+      url: "product.php",
+      method: "POST",
+      data: {
+        productID: productID,
+        comment: comment,
+        star: ratedIndex,
+      },
+      success: function (res) {},
+      error: function (rep) {
+        alert("that abi");
+      },
+    });
+  }
+
+  function setStar(star) {
+    for (var i = 0; i < star; i++) {
+      $(".review-list > .review-list-li > i.fa:eq(" + i + ")").removeClass(
+        "fa-star-o"
+      );
+      $(".review-list > .review-list-li > i.fa:eq(" + i + ")").addClass(
+        "fa-star"
+      );
+    }
+  }
+
+  function resetStar() {
+    $(".review-list > .review-list-li > i.fa.fa-star")
+      .removeClass("fa-star")
+      .addClass("fa-star-o");
+  }
 })(jQuery);
 
 window.addEventListener("load", function () {

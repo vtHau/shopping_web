@@ -40,6 +40,14 @@ class review
 		return $result;
 	}
 
+	public function getMyStar($productID)
+	{
+		$userID = $this->getUserID();
+		$query = "SELECT star FROM tbl_review WHERE productID = '$productID' AND tbl_review.status = 1 AND tbl_review.userID = '$userID'";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
 	public function getCountReview($productID)
 	{
 		$query = "SELECT count(reviewID) countReview FROM tbl_review WHERE productID = '$productID' AND status = 1";
@@ -54,34 +62,16 @@ class review
 		return $result;
 	}
 
-	public function insertOrder()
+	public function insertReview($productID, $star, $comment)
 	{
 		$userID = session_id();
 		if (Session::isUserLogin()) {
 			$userID = Session::get("userID");
 		}
 
-		$query = "SELECT * FROM tbl_cart WHERE userID = '$userID'";
-		$getCart = $this->db->select($query);
-
-		if ($getCart) {
-			while ($result = $getCart->fetch_assoc()) {
-				$productID = $result['productID'];
-				$productName = $result['productName'];
-				$productQuantity = $result['productQuantity'];
-				$productPrice = $result['productPrice'] * $productQuantity;
-				$productImage = $result['productImage'];
-
-				$queryOrder = "INSERT INTO tbl_order(userID, productID, productName, productQuantity, productPrice, productImage) VALUES('$userID','$productID','$productName','$productQuantity','$productPrice','$productImage')";
-				$inserOrder = $this->db->insert($queryOrder);
-			}
-		}
-
-		if ($inserOrder) {
-			return true;
-		}
-
-		return false;
+		$query = "INSERT INTO tbl_review(userID, productID, comment, star, status) VALUES('$userID', '$productID', '$comment', '$star', 1)";
+		$result = $this->db->insert($query);
+		return $result;
 	}
 
 	public function deleteOrderInUser($orderID)
