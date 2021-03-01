@@ -65,7 +65,26 @@ if (!isset($_GET["catID"]) || $_GET["catID"] == NULL) {
             <div class="pro-content">
               <div class="pro-info">
                 <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
-                <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span> <del class="prev-price"></del></p>
+                <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span> </p>
+                <div class="rating">
+                  <?php
+                  $getStar = $review->getStar($result["productID"]);
+                  if ($getStar) {
+                    $starText = $getStar->fetch_assoc()["totalStar"];
+                    $star = floor($starText);
+
+                    for ($i = 0; $i < $star; $i++) {
+                      echo ' <i class="fa fa-star"></i>';
+                    }
+                    for ($star; $star < 5; $star++) {
+                      echo ' <i class="fa fa-star-o"></i>';
+                    }
+                  }
+                  if ($starText != 0) {
+                    echo " " . number_format((float)$starText, 1, '.', '');
+                  }
+                  ?>
+                </div>
               </div>
               <div class="pro-actions">
                 <div class="actions-primary">
@@ -155,7 +174,26 @@ if (!isset($_GET["catID"]) || $_GET["catID"] == NULL) {
                         <div class="pro-content">
                           <div class="pro-info">
                             <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
-                            <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span><del class="prev-price"></del></p>
+                            <p><span class="price"><?php echo $fm->formatMoney($result["productPrice"]); ?></span></p>
+                            <div class="rating">
+                              <?php
+                              $getStar = $review->getStar($result["productID"]);
+                              if ($getStar) {
+                                $starText = $getStar->fetch_assoc()["totalStar"];
+                                $star = floor($starText);
+
+                                for ($i = 0; $i < $star; $i++) {
+                                  echo ' <i class="fa fa-star"></i>';
+                                }
+                                for ($star; $star < 5; $star++) {
+                                  echo ' <i class="fa fa-star-o"></i>';
+                                }
+                              }
+                              if ($starText != 0) {
+                                echo " " . number_format((float)$starText, 1, '.', '');
+                              }
+                              ?>
+                            </div>
                             <div class="label-product l_sale"><span class="symbol-percent"></span></div>
                           </div>
                           <div class="pro-actions">
@@ -192,7 +230,26 @@ if (!isset($_GET["catID"]) || $_GET["catID"] == NULL) {
                           <div class="pro-content">
                             <div class="pro-info">
                               <h4><a href="product.php?productID=<?php echo $rowResult["productID"] ?>"><?php echo $rowResult["productName"] ?></a></h4>
-                              <p><span class="price"><?php echo $fm->formatMoney($rowResult["productPrice"]); ?></span><del class="prev-price"></del></p>
+                              <p><span class="price"><?php echo $fm->formatMoney($rowResult["productPrice"]); ?></span></p>
+                              <div class="rating">
+                                <?php
+                                $getStar = $review->getStar($result["productID"]);
+                                if ($getStar) {
+                                  $starText = $getStar->fetch_assoc()["totalStar"];
+                                  $star = floor($starText);
+
+                                  for ($i = 0; $i < $star; $i++) {
+                                    echo ' <i class="fa fa-star"></i>';
+                                  }
+                                  for ($star; $star < 5; $star++) {
+                                    echo ' <i class="fa fa-star-o"></i>';
+                                  }
+                                }
+                                if ($starText != 0) {
+                                  echo " " . number_format((float)$starText, 1, '.', '');
+                                }
+                                ?>
+                              </div>
                               <div class="label-product l_sale"><span class="symbol-percent"></span></div>
                             </div>
                             <div class="pro-actions">

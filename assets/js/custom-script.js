@@ -47,8 +47,8 @@ var ratedIndex = -1;
     });
 
     $(".review-submit").on("click", function (e) {
-      console.log("da lcicj");
-      saveToDB();
+      e.preventDefault();
+      insertDatabase();
     });
 
     // resetStar();
@@ -71,7 +71,7 @@ var ratedIndex = -1;
   function insertDatabase() {
     var productID = $(".productID").val();
     var comment = $(".review-comment").val();
-    console.log(comment + ratedIndex + productID);
+    // alert(comment + ratedIndex + productID);
 
     $.ajax({
       url: "product.php",
@@ -81,7 +81,10 @@ var ratedIndex = -1;
         comment: comment,
         star: ratedIndex,
       },
-      success: function (res) {},
+      success: function (res) {
+        location.reload();
+        // alert("thanh cong");
+      },
       error: function (rep) {
         alert("that abi");
       },

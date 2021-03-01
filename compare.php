@@ -81,7 +81,7 @@ if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
             if ($getCom) {
               while ($result = $getCom->fetch_assoc()) {
             ?>
-                <td class="product-description"><?php echo $result["productPrice"] ?></td>
+                <td class="product-description"><?php echo $fm->formatMoney($result["productPrice"]) ?></td>
             <?php
               }
             }
@@ -124,35 +124,36 @@ if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
           </tr>
           <tr>
             <td class="product-title">Đánh giá</td>
+            <?php
+            $getCom = $com->getCompare();
+            if ($getCom) {
+              while ($result = $getCom->fetch_assoc()) {
+            ?>
+                <td class="product-description">
+                  <div class="rating">
+                    <?php
+                    $getStar = $review->getStar($result["productID"]);
+                    if ($getStar) {
+                      $starText = $getStar->fetch_assoc()["totalStar"];
+                      $star = floor($starText);
 
-            <td class="product-description">
-              <div class="product-rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-              </div>
-
-            </td>
-            <td class="product-description">
-              <div class="product-rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-            </td>
-            <td class="product-description">
-              <div class="product-rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-              </div>
-            </td>
+                      for ($i = 0; $i < $star; $i++) {
+                        echo ' <i class="fa fa-star"></i>';
+                      }
+                      for ($star; $star < 5; $star++) {
+                        echo ' <i class="fa fa-star-o"></i>';
+                      }
+                    }
+                    if ($starText != 0) {
+                      echo " " . number_format((float)$starText, 1, '.', '');
+                    }
+                    ?>
+                  </div>
+                </td>
+            <?php
+              }
+            }
+            ?>
           </tr>
 
         </tbody>

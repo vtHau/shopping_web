@@ -229,6 +229,11 @@ i.lnr.lnr-arrow-left {
   border-radius: 0.25rem;
 }
 
+.single-product {
+  border: 2px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
 .comment-box-image {
   display: flex;
   justify-content: center;

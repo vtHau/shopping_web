@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
                         <a href="product.php?productID=<?php echo $result["productID"] ?>"><img style="height: 102px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="cart-image"></a>
                       </td>
                       <td class="product-name"><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></td>
-                      <td class="product-price"><span class="amount"><?php echo $result["productPrice"] ?></span></td>
+                      <td class="product-price"><span class="amount"><?php echo $fm->formatMoney($result["productPrice"]) ?></span></td>
                       <td class="product-quantity">
                         <form action="" method="POST">
                           <input type="hidden" name="cartID" value="<?php echo $result["cartID"] ?>" />
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
                           <input type="submit" name="updateCart" value="Update" class="btn btn-primary btn-sm">
                         </form>
                       </td>
-                      <td class="product-subtotal"><?php echo $result["productPrice"] * $result["productQuantity"] ?></td>
+                      <td class="product-subtotal"><?php echo $fm->formatMoney($result["productPrice"] * $result["productQuantity"]) ?></td>
                       <td class="product-remove"> <a href="cart.php?deleteID=<?php echo $result["cartID"] ?>"><i class="fa fa-times" aria-hidden="true"></i></a></td>
                     </tr>
                 <?php   }
@@ -98,14 +98,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
                   if ($getCart) {
                   ?>
                     <tbody>
-                      <tr class="cart-subtotal">
+                      <!-- <tr class="cart-subtotal">
                         <th>Subtotal</th>
-                        <td><span class="amount"><?php echo $total ?></span></td>
-                      </tr>
+                        <td><span class="amount"><?php echo $fm->formatMoney($total) ?></span></td>
+                      </tr> -->
                       <tr class="order-total">
                         <th>Tổng tiền</th>
                         <td>
-                          <strong><span class="amount"><?php echo $total ?></span></strong>
+                          <strong><span class="amount"><?php echo $fm->formatMoney($total) ?></span></strong>
                         </td>
                       </tr>
                     </tbody>

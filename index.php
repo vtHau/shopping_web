@@ -55,7 +55,7 @@
               <div class="single-product">
                 <!-- Product Image Start -->
                 <div class="pro-img">
-                  <a href=product.php?productID=<?php echo $result["productID"] ?>">
+                  <a href="product.php?productID=<?php echo $result["productID"] ?>">
                     <img class="primary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                     <img class="secondary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                   </a>
@@ -134,7 +134,7 @@
               <div class="single-product">
                 <!-- Product Image Start -->
                 <div class="pro-img">
-                  <a href=product.php?productID=<?php echo $result["productID"] ?>">
+                  <a href="product.php?productID=<?php echo $result["productID"] ?>">
                     <img class="primary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                     <img class="secondary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                   </a>
@@ -213,7 +213,7 @@
           <div class="single-product">
             <!-- Product Image Start -->
             <div class="pro-img">
-              <a href=product.php?productID=<?php echo $result["productID"] ?>">
+              <a href="product.php?productID=<?php echo $result["productID"] ?>">
                 <img class="primary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                 <img class="secondary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
               </a>
@@ -646,8 +646,8 @@
               <!-- Product Image Start -->
               <div class="pro-img">
                 <a href="product.php?productID=<?php echo $result["productID"] ?>">
-                  <img class="primary-img" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
-                  <img class="secondary-img" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
+                  <img class="primary-img" style="height: 277px; width: 222px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
+                  <img class="secondary-img" style="height: 277px; width: 222px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                 </a>
                 <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
               </div>

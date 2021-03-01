@@ -242,7 +242,7 @@ header("Cache-Control: max-age=2592000");
 															</div>
 															<div class="cart-content">
 																<h6><a href="product.php"><?php echo $result["productName"] ?></a></h6>
-																<span class="cart-price"><?php echo $result["productPrice"] ?></span>
+																<span class="cart-price"><?php echo $fm->formatMoney($result["productPrice"]) ?></span>
 																<span></span>
 																<span></span>
 															</div>
@@ -254,13 +254,10 @@ header("Cache-Control: max-age=2592000");
 													?>
 													<div class="cart-footer">
 														<ul class="price-content">
-															<li>Subtotal <span><?php echo $total ?></span></li>
-															<li>Shipping <span><?php echo $total ?></span></li>
-															<li>Taxes <span><?php echo $total ?></span></li>
-															<li>Total <span><?php echo $total ?></span></li>
+															<li>Total <span><?php echo $fm->formatMoney($total) ?></span></li>
 														</ul>
 														<div class="cart-actions text-center">
-															<a class="cart-checkout" href="checkout.php">Checkout</a>
+															<a class="cart-checkout" href="checkout.php">Thanh toán</a>
 														</div>
 													</div>
 													<!-- Cart Footer Inner End -->

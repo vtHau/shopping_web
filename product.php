@@ -238,13 +238,13 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
               </ul>
               <!-- Reviews Field Start -->
               <div class="riview-field mt-40">
-                <form autocomplete="off" action="" method="POST">
+                <form autocomplete="off" action="" id="form-review" method="POST">
                   <div class="form-group">
                     <label class="req" for="comments">Bình luận</label>
                     <input type="hidden" class="productID" value="<?php echo $productID; ?>">
                     <textarea class="form-control review-comment" rows="5" id="comment" name="review-comment" required="required"></textarea>
                   </div>
-                  <button class="customer-btn review-submit">Gửi</button>
+                  <div class="customer-btn review-submit">Gửi</div>
                 </form>
               </div>
               <!-- Reviews Field Start -->

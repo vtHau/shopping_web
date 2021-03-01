@@ -335,7 +335,8 @@
   <script src="assets\js\plugins.js"></script>
   <!-- Main activaion js -->
   <script src="assets\js\main.js"></script>
-  <script src="assets\js\custom-script.js"></script>
+  <!-- <script src="assets\js\custom-script.js"></script> -->
+  <script src="http:\\127.0.0.1\webshop\assets\js\custom-script.js"></script>
 
   </html>
   <?php

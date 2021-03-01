@@ -677,7 +677,7 @@ span.total-pro {
     font-weight: 700;
     padding: 10px 15px;
     position: relative;
-    text-transform: capitalize;
+    text-transform: none;
     font-family: "Lato",sans-serif;
 }
 
@@ -686,7 +686,7 @@ span.total-pro {
     padding: 7px 20px;
     font-size: 14px;
     font-weight: 400;
-    text-transform: capitalize;
+    text-transform: none;
 }
 
 .header-bottom-list > li > ul.ht-dropdown li:hover a {
@@ -1380,7 +1380,7 @@ li.megamenu-img a {
   transform: scale(0.6);
 }
 .l_sale {
-  background: rgba(0, 0, 0, 0) url("img/icon/bg-l-sale.png") no-repeat scroll right center;
+  background: rgba(0, 0, 0, 0) url() no-repeat scroll right center;
   bottom: 20px;
   color: #e62e04;
   font-size: 20px;
@@ -2360,7 +2360,6 @@ li.megamenu-img a {
     font-size: 14px;
     line-height: 25px;
     margin-right: 5px;
-    text-transform: capitalize;
 }
 
 .breadcrumb-area .breadcrumb li.active a,
