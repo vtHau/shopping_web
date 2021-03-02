@@ -29,6 +29,12 @@ $order = new order();
 include_once "../classes/user.php";
 $user = new user();
 
+include_once "../helpers/format.php";
+$fm = new format();
+
+include_once "../classes/review.php";
+$review = new review();
+
 
 ?>
 
@@ -53,6 +59,7 @@ header("Cache-Control: max-age=2592000");
   <meta name="msapplication-tap-highlight" content="no">
 
   <link href="./main.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
   <link href="assets/style/admin-style.css" rel="stylesheet">
 
 </head>

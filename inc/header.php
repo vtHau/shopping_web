@@ -69,8 +69,8 @@ header("Cache-Control: max-age=2592000");
 
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Website bán hàng</title>
+	<meta http-equiv="x-ua-compatible">
+	<title>THStore</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicons -->
 	<link rel="shortcut icon" href="assets\img\favicon.ico">

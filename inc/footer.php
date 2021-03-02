@@ -361,7 +361,9 @@
 
   $toast->showToastify("loginToast", "Thành công", "Đăng nhập thành công");
   $toast->showToastify("logoutToast", "Thành công", "Đăng xuất thành công");
+  $toast->showToastify("insertReview", "Thành công", "Bình luận thành công");
   $toast->showToastify("updateComment", "Thành công", "Cập nhật bình luận thành công");
+  $toast->showToastify("deleteReview", "Thành công", "Xóa bình luận thành công");
   ?>
 
   </html>

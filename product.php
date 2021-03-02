@@ -216,10 +216,12 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                     </div>
                   </div>
                 </div>
-            <?php
+              <?php
               }
-            }
-            ?>
+            } else {
+              ?>
+              <p>Không có bình luận nào để hiển thị</p>
+            <?php } ?>
           </div>
 
           <div id="your-review" class="tab-pane fade">
@@ -263,7 +265,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
               <?php } else {
               while ($resultCom = $getComment->fetch_assoc()) {
               ?>
-                <h5 class="text-center mb-4">Bạn đã bình luận về sản phẩm này rồi.</h5>
+                <h5 class="text-center mb-4">Bạn đã bình luận về sản phẩm này rồi</h5>
                 <div class="row d-flex justify-content-center">
                   <div class="row comment-box">
                     <div class="comment-box-image">
@@ -299,8 +301,15 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                     </div>
                     <div class="mr-2 feature-review">
                       <input type="hidden" class="productID" value="<?php echo $productID; ?>">
-                      <i class="fa fa-trash" id="delete-comment"></i>
+                      <?php
+                      if ($resultCom["status"] == 0) {
+                        echo '<i class="fa fa-spinner" style="color: green;"></i>';
+                      } else {
+                        echo '<i class="fa fa-check-circle-o" style="color: green;"></i>';
+                      }
+                      ?>
                       <i class="fa fa-edit" id="edit-comment"></i>
+                      <i class="fa fa-trash" id="delete-comment"></i>
                     </div>
                   </div>
                 </div>
@@ -354,7 +363,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
 </div>
 <!-- Product Thumbnail Description End -->
 <!-- Hot Deal Products Start Here -->
-<div class="hot-deal-products off-white-bg pb-90 pb-sm-50">
+<div class="hot-deal-products off-white-bg pt-60 pb-90 pb-sm-50">
   <div class="container">
     <!-- Product Title Start -->
     <div class="post-title pb-30">

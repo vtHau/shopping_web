@@ -50,6 +50,7 @@ if (isset($_GET["deleteID"])) {
 											<th class="text-center">STT</th>
 											<th>Tên sản phẩm</th>
 											<th class="text-center">Giá</th>
+											<th class="text-center">Số lượng</th>
 											<th class="text-center">Thương hiệu</th>
 											<th class="text-center">Danh mục</th>
 											<th class="text-center">Nổi bật</th>
@@ -75,18 +76,19 @@ if (isset($_GET["deleteID"])) {
 															</div>
 															<div class="widget-content-left flex2">
 																<div class="widget-heading"><?php echo $result["productName"] ?></div>
-																<div class="widget-subheading opacity-7"><?php echo $result["productDesc"] ?></div>
+																<div class="widget-subheading opacity-7"><?php echo $fm->textShorten($result["productDesc"], 40) ?></div>
 															</div>
 														</div>
 													</div>
 												</td>
-												<td class="text-center text-muted"><?php echo $result["productPrice"] ?></td>
+												<td class="text-center text-muted"><?php echo $fm->formatMoney($result["productPrice"]) ?></td>
+												<td class="text-center text-muted"><?php echo $result["productQuantity"] ?></td>
 												<td class="text-center text-muted"><?php echo $result["brandName"] ?></td>
 												<td class="text-center text-muted"><?php echo $result["catName"] ?></td>
 												<td class="text-center text-muted">
 													<?php
 													if ($result["productFeather"] == 1) {
-														echo "Nổi bật";
+														echo "Có";
 													} else {
 														echo "Không nổi bật";
 													}

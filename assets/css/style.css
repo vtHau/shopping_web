@@ -1463,6 +1463,7 @@ li.megamenu-img a {
   font-weight: 900;
   line-height: 1;
   margin: 0;
+  font-family: "Anton";
   text-transform: capitalize;
 }
 .tab-menu {
@@ -1509,6 +1510,7 @@ li.megamenu-img a {
   font-size: 24px;
   font-weight: 900;
   text-align: center;
+  font-family: "Anton";
 }
 
 .owl-dots{
