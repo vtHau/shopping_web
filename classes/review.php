@@ -48,16 +48,17 @@ class review
 		return $result;
 	}
 
-	public function getCountReview($productID)
+	public function getComment($productID)
 	{
-		$query = "SELECT count(reviewID) countReview FROM tbl_review WHERE productID = '$productID' AND status = 1";
+		$userID = $this->getUserID();
+		$query = "SELECT * FROM tbl_review , tbl_customer WHERE productID = '$productID' AND tbl_review.status = 1 AND tbl_review.userID = tbl_customer.userID AND tbl_review.userID = '$userID'";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
-	public function getOrderInAdmin()
+	public function getCountReview($productID)
 	{
-		$query = "SELECT * FROM tbl_order , tbl_customer WHERE tbl_order.userID = tbl_customer.userID";
+		$query = "SELECT count(reviewID) countReview FROM tbl_review WHERE productID = '$productID' AND status = 1";
 		$result = $this->db->select($query);
 		return $result;
 	}
@@ -74,79 +75,28 @@ class review
 		return $result;
 	}
 
-	public function deleteOrderInUser($orderID)
+	public function updateReview($productID, $star, $comment)
 	{
-		$orderID = mysqli_real_escape_string($this->db->link, $orderID);
-		$query = "UPDATE tbl_order SET statusOrder = 4 WHERE orderID = '$orderID'";
-
-		$result = $this->db->update($query);
-
-		if ($result) {
-			header('Location:orderdetails.php');
-		} else {
-			$msg = "<span class='error'>Sản phẩm đã được xóa</span>";
-			return $msg;
+		$userID = session_id();
+		if (Session::isUserLogin()) {
+			$userID = Session::get("userID");
 		}
+
+		$query = "UPDATE tbl_review SET comment = '$comment' , star = '$star' WHERE userID = '$userID' AND productID = '$productID'";
+		$result = $this->db->update($query);
+		return $result;
 	}
 
-	public function deleteOrderInAdmin($orderID)
+	public function deleteReview($productID)
 	{
-		$orderID = mysqli_real_escape_string($this->db->link, $orderID);
-		$query = "DELETE FROM tbl_order WHERE orderID = '$orderID'";
-
-		$result = $this->db->delete($query);
-
-		if ($result) {
-			header('Location:orderlist.php');
-		} else {
-			$msg = "<span class='error'>Sản phẩm đã được xóa</span>";
-			return $msg;
+		$userID = session_id();
+		if (Session::isUserLogin()) {
+			$userID = Session::get("userID");
 		}
-	}
 
-	public function confirmOrder($orderID)
-	{
-		$orderID = mysqli_real_escape_string($this->db->link, $orderID);
-		$query = "UPDATE tbl_order SET statusOrder = 1 WHERE orderID = '$orderID'";
-
-		$result = $this->db->update($query);
-
-		if ($result) {
-			header('Location:orderlist.php');
-		} else {
-			$msg = "<span class='error'>Sản phẩm đã được xóa</span>";
-			return $msg;
-		}
-	}
-
-	public function transportOrder($orderID)
-	{
-		$orderID = mysqli_real_escape_string($this->db->link, $orderID);
-		$query = "UPDATE tbl_order SET statusOrder = 2 WHERE orderID = '$orderID'";
-
-		$result = $this->db->update($query);
-
-		if ($result) {
-			header('Location:orderlist.php');
-		} else {
-			$msg = "<span class='error'>Sản phẩm đã được xóa</span>";
-			return $msg;
-		}
-	}
-
-	public function receivedOrderInUser($orderID)
-	{
-		$orderID = mysqli_real_escape_string($this->db->link, $orderID);
-		$query = "UPDATE tbl_order SET statusOrder = 3 WHERE orderID = '$orderID'";
-
-		$result = $this->db->update($query);
-
-		if ($result) {
-			header('Location:orderdetails.php');
-		} else {
-			$msg = "<span class='error'>Sản phẩm đã được xóa</span>";
-			return $msg;
-		}
+		$query = "DELETE FROM tbl_review WHERE productID = '$productID' AND userID = '$userID'";
+		$result = 	$this->db->delete($query);
+		return $result;
 	}
 }
 ?>

@@ -49,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["change-password"])) {
 }
 
 if (isset($_GET["action"]) && $_GET["action"] == "logout") {
+	Session::set("logout", 0);
 	Session::logoutUser();
 }
 ?>
@@ -97,6 +98,7 @@ header("Cache-Control: max-age=2592000");
 	<link rel="stylesheet" href="assets\css\style.css?v=<?php echo time(); ?>">
 	<!-- Responsive css -->
 	<link rel="stylesheet" href="assets\css\responsive.css">
+	<link rel="stylesheet" href="assets\css\toastr.min.css">
 	<!-- Modernizer js -->
 	<link rel="stylesheet" href="assets\css\custom-style.css?v=<?php echo time(); ?>">
 

@@ -335,8 +335,46 @@
   <script src="assets\js\plugins.js"></script>
   <!-- Main activaion js -->
   <script src="assets\js\main.js"></script>
+  <script src="assets\js\toastr.min.js"></script>
   <!-- <script src="assets\js\custom-script.js"></script> -->
   <script src="http:\\127.0.0.1\webshop\assets\js\custom-script.js"></script>
+  <script>
+    toastr.options = {
+      closeButton: true,
+      debug: false,
+      newestOnTop: false,
+      progressBar: true,
+      positionClass: "toast-top-right",
+      preventDuplicates: true,
+      onclick: null,
+      showDuration: "300",
+      hideDuration: "1000",
+      timeOut: "3000",
+      extendedTimeOut: "1000",
+      showEasing: "swing",
+      hideEasing: "linear",
+      showMethod: "fadeIn",
+      hideMethod: "fadeOut",
+
+    }
+  </script>
+  <?php
+  $show = (int)Session::get("showToast");
+
+  if ($show < 2) {
+    echo '<script> toastr["success"]("Bạn đã đăng nhập thành công.", "Đăng nhập");</script>';
+    $show++;
+    Session::set("showToast", $show);
+  }
+
+  $logout = (int)Session::get("logout");
+
+  if ($logout < 2) {
+    echo '<script> toastr["success"]("Bạn đã đăng xuất thành công.", "Đăng xuất");</script>';
+    $logout++;
+    Session::set("logout", $logout);
+  }
+  ?>
 
   </html>
   <?php

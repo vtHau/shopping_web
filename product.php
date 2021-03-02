@@ -12,11 +12,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
   $insertCart = $cart->insertCart($productID, $productQuantity);
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["comment"])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
   $productID = $_POST["productID"];
   $comment = $_POST["comment"];
   $star = $_POST["star"];
-  $insertReview = $review->insertReview($productID, $star, $comment);
+
+  if ($_POST["type"] == "insert") {
+    $insertReview = $review->insertReview($productID, $star, $comment);
+  } elseif ($_POST["type"] == "update") {
+    $updateReview = $review->updateReview($productID, $star, $comment);
+  } elseif ($_POST["type"] == "delete") {
+    $deleteReview = $review->deleteReview($productID);
+  }
 }
 
 if (isset($_GET["wishlistID"]) && $_GET["wishlistID"] != NULL) {
@@ -28,8 +35,6 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
   $productID = $_GET["compareID"];
   $inserCompare = $com->inserCompare($productID);
 }
-
-
 ?>
 
 </div>
@@ -166,6 +171,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
           </div>
 
           <div id="all-review" class="tab-pane fade ">
+
             <?php
             $getReview = $review->getReview($productID);
             if ($getReview) {
@@ -217,41 +223,127 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
           </div>
 
           <div id="your-review" class="tab-pane fade">
+            <?php
+            $getComment = $review->getComment($productID);
+            if (!$getComment) {
+            ?>
+              <!-- Reviews Start -->
+              <div class="review border-default universal-padding mt-30">
 
-            <!-- Reviews Start -->
-            <div class="review border-default universal-padding mt-30">
-              <h2 class="review-title mb-30">
-                SẢN PHẨM: <br>
-                <span><?php echo $productName ?></span>
-              </h2>
-              <p class="review-mini-title">Đánh giá</p>
-              <ul class="review-list">
-                <!-- Single Review List Start -->
-                <li class="review-list-li">
-                  <i class="fa fa-star-o" data-index="1"></i>
-                  <i class="fa fa-star-o" data-index="2"></i>
-                  <i class="fa fa-star-o" data-index="3"></i>
-                  <i class="fa fa-star-o" data-index="4"></i>
-                  <i class="fa fa-star-o" data-index="5"></i>
-                </li>
-                <!-- Single Review List End -->
-              </ul>
-              <!-- Reviews Field Start -->
-              <div class="riview-field mt-40">
-                <form autocomplete="off" action="" id="form-review" method="POST">
-                  <div class="form-group">
-                    <label class="req" for="comments">Bình luận</label>
-                    <input type="hidden" class="productID" value="<?php echo $productID; ?>">
-                    <textarea class="form-control review-comment" rows="5" id="comment" name="review-comment" required="required"></textarea>
-                  </div>
-                  <div class="customer-btn review-submit">Gửi</div>
-                </form>
+                <h2 class="review-title mb-30">
+                  SẢN PHẨM: <br>
+                  <span><?php echo $productName ?></span>
+                </h2>
+                <p class="review-mini-title">Đánh giá</p>
+                <ul class="review-list">
+                  <!-- Single Review List Start -->
+                  <li class="review-list-li">
+                    <i class="fa fa-star-o" data-index="1"></i>
+                    <i class="fa fa-star-o" data-index="2"></i>
+                    <i class="fa fa-star-o" data-index="3"></i>
+                    <i class="fa fa-star-o" data-index="4"></i>
+                    <i class="fa fa-star-o" data-index="5"></i>
+                  </li>
+                  <!-- Single Review List End -->
+                </ul>
+                <!-- Reviews Field Start -->
+                <div class="riview-field mt-40">
+                  <form autocomplete="off" action="" id="form-review" method="POST">
+                    <div class="form-group">
+                      <label class="req" for="comments">Bình luận</label>
+                      <input type="hidden" class="productID" value="<?php echo $productID; ?>">
+                      <textarea class="form-control review-comment" rows="5" id="comment" name="review-comment" required="required"></textarea>
+                    </div>
+                    <div class="customer-btn review-submit">Gửi</div>
+                  </form>
+                </div>
+                <!-- Reviews Field Start -->
               </div>
-              <!-- Reviews Field Start -->
-            </div>
-            <!-- Reviews End -->
-          </div>
+              <!-- Reviews End -->
+              <?php } else {
+              while ($resultCom = $getComment->fetch_assoc()) {
+              ?>
+                <h5 class="text-center mb-4">Bạn đã bình luận về sản phẩm này rồi.</h5>
+                <div class="row d-flex justify-content-center">
+                  <div class="row comment-box">
+                    <div class="comment-box-image">
+                      <img class="avatar-comment" src="admin/uploads/avatars/<?php echo $resultCom["userImage"] ?>">
+                    </div>
+                    <div class="ml-1 col">
+                      <div class="row">
+                        <p><b><?php echo $resultCom["userFullName"] ?></b></p>
+                      </div>
+                      <div class="row">
+                        <p class="break-word"><?php echo $resultCom["comment"] ?></p>
+                      </div>
+                      <div class="row">
+                        <div class="mr-2">
+                          <div class="list-star">
+                            <?php
+                            $star = $resultCom["star"];
+                            for ($j = 0; $j < $star; $j++) {
+                              echo ' <i class="fa fa-star"></i>';
+                            }
+                            for ($star; $star < 5; $star++) {
+                              echo ' <i class="fa fa-star-o"></i>';
+                            }
+                            ?>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="time-comment">
+                            <?php echo $resultCom["timeReview"] ?>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mr-2 feature-review">
+                      <input type="hidden" class="productID" value="<?php echo $productID; ?>">
+                      <i class="fa fa-trash" id="delete-comment"></i>
+                      <i class="fa fa-edit" id="edit-comment"></i>
+                    </div>
+                  </div>
+                </div>
 
+                <div class="review border-default universal-padding mt-30 box-edit">
+                  <h2 class="review-title mb-30 text-center">
+                    Chỉnh sửa bình luận
+                  </h2>
+                  <p class="review-mini-title">Đánh giá</p>
+                  <ul class="review-list">
+                    <!-- Single Review List Start -->
+                    <li class="review-list-li">
+                      <?php
+                      $star = floor($resultCom["star"]);
+
+                      for ($i = 0; $i < $star; $i++) {
+                        echo '<i class="fa fa-star" data-index="' . $i + 1 . '"></i>';
+                      }
+                      for ($star; $star < 5; $star++) {
+                        echo '<i class="fa fa-star-o" data-index="' . $star + 1 . '"></i>';
+                      }
+                      ?>
+                    </li>
+                    <!-- Single Review List End -->
+                  </ul>
+                  <!-- Reviews Field Start -->
+                  <div class="riview-field mt-40">
+                    <form autocomplete="off" action="" id="form-review" method="POST">
+                      <div class="form-group">
+                        <label class="req" for="comments">Bình luận</label>
+                        <input type="hidden" class="productID" value="<?php echo $productID; ?>">
+                        <textarea class="form-control review-comment" rows="5" id="comment" name="review-comment" required="required"><?php echo $resultCom["comment"] ?></textarea>
+                      </div>
+                      <div class="customer-btn review-update">Gửi</div>
+                    </form>
+                  </div>
+                  <!-- Reviews Field Start -->
+                </div>
+            <?php
+              }
+            }
+            ?>
+          </div>
         </div>
         <!-- Product Thumbnail Tab Content End -->
       </div>

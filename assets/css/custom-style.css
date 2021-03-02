@@ -255,3 +255,27 @@ i.lnr.lnr-arrow-left {
 .tab-pane.fade > .row.d-flex:not(:last-child) {
   margin-bottom: 3rem !important;
 }
+
+.feature-review {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.feature-review i,
+.feature-review > a {
+  color: rgba(102, 102, 102, 0.589);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.feature-review > i:hover {
+  color: red;
+}
+
+.box-edit {
+  width: 60%;
+  margin: 0 auto;
+  display: none;
+}

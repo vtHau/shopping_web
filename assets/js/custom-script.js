@@ -1,15 +1,14 @@
-$(window).scroll(function () {
-  if ($(this).scrollTop() > 300) {
-    $(".hide-cart-info").addClass("show-cart-info");
-  } else {
-    $(".hide-cart-info").removeClass("show-cart-info");
-  }
-});
+var ratedIndex = 0;
 
-var ratedIndex = -1;
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 300) {
+      $(".hide-cart-info").addClass("show-cart-info");
+    } else {
+      $(".hide-cart-info").removeClass("show-cart-info");
+    }
+  });
 
-(function ($) {
-  "use Strict";
   $(".btn-signin-show").on("click", function () {
     $(".wrap-signin-form").css({
       visibility: "visible",
@@ -38,55 +37,52 @@ var ratedIndex = -1;
     document.body.style.overflow = "auto"; // ADD THIS LINE
   });
 
-  // tinh nang ajax
-  $(document).ready(function () {
-    $(".review-list > .review-list-li > i.fa").on("click", function () {
-      ratedIndex = parseInt($(this).data("index"));
-      resetStar();
-      setStar(ratedIndex);
-    });
-
-    $(".review-submit").on("click", function (e) {
-      e.preventDefault();
-      insertDatabase();
-    });
-
-    // resetStar();
-    // if (localStorage.getItem("ratedIndex") != null) {
-    //   ratedIndex = parseInt(localStorage.getItem("ratedIndex"));
-    //   setStar(ratedIndex);
-    // }
-
-    // $(".review-list > .review-list-li > i.fa").mouseover(function () {
-    //   ratedIndex = parseInt($(this).data("index"));
-    //   setStar(ratedIndex);
-    //   console.log("Hover Index: " + ratedIndex);
-    // });
-
-    // $(".review-list > .review-list-li > i.fa").mouseleave(function () {
-    //   resetStar();
-    // });
+  $("#edit-comment").on("click", function () {
+    $(".box-edit").toggle();
   });
 
-  function insertDatabase() {
+  $(".review-list > .review-list-li > i.fa").on("click", function () {
+    ratedIndex = parseInt($(this).data("index"));
+    resetStar();
+    setStar(ratedIndex);
+  });
+
+  $(".review-submit").on("click", function (e) {
+    e.preventDefault();
+    sendReviewAjax("insert");
+  });
+
+  $(".review-update").on("click", function (e) {
+    e.preventDefault();
+    sendReviewAjax("update");
+    setInterval(() => {
+      location.reload();
+    }, 2000);
+  });
+
+  $("#delete-comment").on("click", function (e) {
+    e.preventDefault();
+    sendReviewAjax("delete");
+  });
+
+  function sendReviewAjax(type) {
     var productID = $(".productID").val();
     var comment = $(".review-comment").val();
-    // alert(comment + ratedIndex + productID);
 
     $.ajax({
       url: "product.php",
       method: "POST",
       data: {
+        type: type,
         productID: productID,
         comment: comment,
         star: ratedIndex,
       },
       success: function (res) {
-        location.reload();
-        // alert("thanh cong");
+        showToast("success", "Thành công", "Cập nhập thành công");
       },
       error: function (rep) {
-        alert("that abi");
+        alert("Thất bại");
       },
     });
   }
@@ -107,7 +103,45 @@ var ratedIndex = -1;
       .removeClass("fa-star")
       .addClass("fa-star-o");
   }
-})(jQuery);
+
+  function showToast(typeToast, titleToast, contentToast) {
+    toastr.options = {
+      closeButton: true,
+      debug: false,
+      newestOnTop: false,
+      progressBar: true,
+      positionClass: "toast-top-right",
+      preventDuplicates: true,
+      onclick: null,
+      showDuration: "300",
+      hideDuration: "1000",
+      timeOut: "2000",
+      extendedTimeOut: "1000",
+      showEasing: "swing",
+      hideEasing: "linear",
+      showMethod: "fadeIn",
+      hideMethod: "fadeOut",
+    };
+
+    toastr[typeToast](contentToast, titleToast);
+  }
+
+  // resetStar();
+  // if (localStorage.getItem("ratedIndex") != null) {
+  //   ratedIndex = parseInt(localStorage.getItem("ratedIndex"));
+  //   setStar(ratedIndex);
+  // }
+
+  // $(".review-list > .review-list-li > i.fa").mouseover(function () {
+  //   ratedIndex = parseInt($(this).data("index"));
+  //   setStar(ratedIndex);
+  //   console.log("Hover Index: " + ratedIndex);
+  // });
+
+  // $(".review-list > .review-list-li > i.fa").mouseleave(function () {
+  //   resetStar();
+  // });
+});
 
 window.addEventListener("load", function () {
   const loginForm = document.querySelector(".login-form");
