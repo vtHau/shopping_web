@@ -355,25 +355,13 @@
       hideEasing: "linear",
       showMethod: "fadeIn",
       hideMethod: "fadeOut",
-
     }
   </script>
   <?php
-  $show = (int)Session::get("showToast");
 
-  if ($show < 2) {
-    echo '<script> toastr["success"]("Bạn đã đăng nhập thành công.", "Đăng nhập");</script>';
-    $show++;
-    Session::set("showToast", $show);
-  }
-
-  $logout = (int)Session::get("logout");
-
-  if ($logout < 2) {
-    echo '<script> toastr["success"]("Bạn đã đăng xuất thành công.", "Đăng xuất");</script>';
-    $logout++;
-    Session::set("logout", $logout);
-  }
+  $toast->showToastify("loginToast", "Thành công", "Đăng nhập thành công");
+  $toast->showToastify("logoutToast", "Thành công", "Đăng xuất thành công");
+  $toast->showToastify("updateComment", "Thành công", "Cập nhật bình luận thành công");
   ?>
 
   </html>

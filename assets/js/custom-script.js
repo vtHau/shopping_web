@@ -55,9 +55,6 @@ $(document).ready(function () {
   $(".review-update").on("click", function (e) {
     e.preventDefault();
     sendReviewAjax("update");
-    setInterval(() => {
-      location.reload();
-    }, 2000);
   });
 
   $("#delete-comment").on("click", function (e) {
@@ -79,7 +76,7 @@ $(document).ready(function () {
         star: ratedIndex,
       },
       success: function (res) {
-        showToast("success", "Thành công", "Cập nhập thành công");
+        location.reload();
       },
       error: function (rep) {
         alert("Thất bại");
@@ -102,28 +99,6 @@ $(document).ready(function () {
     $(".review-list > .review-list-li > i.fa.fa-star")
       .removeClass("fa-star")
       .addClass("fa-star-o");
-  }
-
-  function showToast(typeToast, titleToast, contentToast) {
-    toastr.options = {
-      closeButton: true,
-      debug: false,
-      newestOnTop: false,
-      progressBar: true,
-      positionClass: "toast-top-right",
-      preventDuplicates: true,
-      onclick: null,
-      showDuration: "300",
-      hideDuration: "1000",
-      timeOut: "2000",
-      extendedTimeOut: "1000",
-      showEasing: "swing",
-      hideEasing: "linear",
-      showMethod: "fadeIn",
-      hideMethod: "fadeOut",
-    };
-
-    toastr[typeToast](contentToast, titleToast);
   }
 
   // resetStar();

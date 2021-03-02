@@ -10,6 +10,7 @@ class review
 {
 	private $db;
 	private $fm;
+	private $toast;
 
 	public function __construct()
 	{
@@ -84,6 +85,9 @@ class review
 
 		$query = "UPDATE tbl_review SET comment = '$comment' , star = '$star' WHERE userID = '$userID' AND productID = '$productID'";
 		$result = $this->db->update($query);
+		if ($result) {
+			Session::set("updateComment", 0);
+		}
 		return $result;
 	}
 

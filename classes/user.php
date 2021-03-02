@@ -49,7 +49,7 @@ class user
 			if ($resultCheck) {
 				$value = $resultCheck->fetch_assoc();
 				Session::set("userLogin", true);
-				Session::set("showToast", 0);
+				Session::set("loginToast", 0);
 				Session::set("userID",  $value["userID"]);
 				Session::set("username",  $value["username"]);
 				Session::set("userFullName",  $value["userFullName"]);

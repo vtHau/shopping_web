@@ -35,6 +35,9 @@ $review = new review();
 include_once "classes/user.php";
 $cus = new user();
 
+include_once "classes/toastify.php";
+$toast = new toastify();
+
 include_once "helpers/format.php";
 $fm = new format();
 ?>
@@ -49,8 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["change-password"])) {
 }
 
 if (isset($_GET["action"]) && $_GET["action"] == "logout") {
-	Session::set("logout", 0);
 	Session::logoutUser();
+	Session::set("logoutToast", 0);
 }
 ?>
 
