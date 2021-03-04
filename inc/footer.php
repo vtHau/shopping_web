@@ -338,6 +338,7 @@
   <script src="assets\js\toastr.min.js"></script>
   <!-- <script src="assets\js\custom-script.js"></script> -->
   <script src="http:\\127.0.0.1\webshop\assets\js\custom-script.js"></script>
+
   <script>
     toastr.options = {
       closeButton: true,
@@ -357,8 +358,30 @@
       hideMethod: "fadeOut",
     }
   </script>
-  <?php
 
+  <script>
+    function updateUserStatus() {
+      $.ajax({
+        url: 'classes/updateuser.php',
+        method: "POST",
+        data: {
+          type: "updateStatus"
+        },
+        success: function(ress) {}
+      });
+    }
+  </script>
+
+  <?php
+  if (Session::isUserLogin()) {
+    echo '<script>
+            setInterval(function() {
+              updateUserStatus();
+            }, 3000);
+          </script>';
+  }
+
+  $toast->showToastify("thanhcong", "Thành công", "xx");
   $toast->showToastify("loginToast", "Thành công", "Đăng nhập thành công");
   $toast->showToastify("logoutToast", "Thành công", "Đăng xuất thành công");
   $toast->showToastify("insertReview", "Thành công", "Bình luận thành công");

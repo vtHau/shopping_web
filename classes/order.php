@@ -40,7 +40,7 @@ class order
 
 	public function getOrderInAdmin()
 	{
-		$query = "SELECT * FROM tbl_order , tbl_customer WHERE tbl_order.userID = tbl_customer.userID";
+		$query = "SELECT * FROM tbl_order , tbl_user WHERE tbl_order.userID = tbl_user.userID";
 		$result = $this->db->select($query);
 		return $result;
 	}

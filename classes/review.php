@@ -29,21 +29,21 @@ class review
 
 	public function getReview($productID)
 	{
-		$query = "SELECT * FROM tbl_review , tbl_customer WHERE productID = '$productID' AND tbl_review.status = 1 AND tbl_review.userID = tbl_customer.userID";
+		$query = "SELECT * FROM tbl_review , tbl_user WHERE productID = '$productID' AND tbl_review.status = 1 AND tbl_review.userID = tbl_user.userID";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	public function getAllReview()
 	{
-		$query = "SELECT * FROM tbl_review , tbl_customer WHERE tbl_review.userID = tbl_customer.userID";
+		$query = "SELECT * FROM tbl_review , tbl_user WHERE tbl_review.userID = tbl_user.userID";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	public function getReivewNotConfirm()
 	{
-		$query = "SELECT * FROM tbl_review , tbl_customer WHERE  tbl_review.status = 0 AND tbl_review.userID = tbl_customer.userID";
+		$query = "SELECT * FROM tbl_review , tbl_user WHERE  tbl_review.status = 0 AND tbl_review.userID = tbl_user.userID";
 		$result = $this->db->select($query);
 		return $result;
 	}
@@ -66,7 +66,7 @@ class review
 	public function getComment($productID)
 	{
 		$userID = $this->getUserID();
-		$query = "SELECT * FROM tbl_review , tbl_customer WHERE productID = '$productID'  AND tbl_review.userID = tbl_customer.userID AND tbl_review.userID = '$userID'";
+		$query = "SELECT * FROM tbl_review , tbl_user WHERE productID = '$productID'  AND tbl_review.userID = tbl_user.userID AND tbl_review.userID = '$userID'";
 		$result = $this->db->select($query);
 		return $result;
 	}

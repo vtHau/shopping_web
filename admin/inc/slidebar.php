@@ -164,7 +164,14 @@
               <a href="userlist.php">
                 <i class="metismenu-icon">
                 </i>
-                Danh sách khách hàng
+                Danh sách người dùng
+              </a>
+            </li>
+            <li>
+              <a href="useronline.php">
+                <i class="metismenu-icon">
+                </i>
+                Người dùng đang trực tuyến
               </a>
             </li>
           </ul>
@@ -189,6 +196,23 @@
                 <i class="metismenu-icon">
                 </i>
                 Tât cả bình luận
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#">
+            <i class="metismenu-icon pe-7s-diamond"></i>
+            Thông tin
+            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+          </a>
+          <ul>
+            <li>
+              <a href="infoadmin.php">
+                <i class="metismenu-icon">
+                </i>
+                Thông tin thiết bị
               </a>
             </li>
           </ul>

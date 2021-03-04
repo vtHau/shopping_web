@@ -60,7 +60,7 @@ header("Cache-Control: max-age=2592000");
 
   <link href="./main.css" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
-  <link href="assets/style/admin-style.css" rel="stylesheet">
+  <link href="assets/style/admin-style.css?v=<?php echo time(); ?>" rel="stylesheet">
 
 </head>
 

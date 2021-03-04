@@ -70,8 +70,10 @@ if (isset($_GET["deleteID"])) {
 												<td>
 													<div class="widget-content p-0">
 														<div class="widget-content-wrapper">
-															<div class="widget-content-left mr-3">
-																<div class="widget-content-left">
+															<div class="widget-content-left mr-3  ">
+																<div class="widget-content-left <?php if ($result["userLastLogin"] > time()) {
+																																	echo "user-on";
+																																} ?>" style="position: relative;">
 																	<img class="rounded-circle border-circle" src="uploads/avatars/<?php echo $result["userImage"] ?>" alt="">
 																</div>
 															</div>

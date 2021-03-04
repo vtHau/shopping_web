@@ -27,7 +27,7 @@ class user
 
 	public function getAllUser()
 	{
-		$query = "SELECT * FROM tbl_customer";
+		$query = "SELECT * FROM tbl_user";
 		$result = $this->db->select($query);
 
 		return $result;
@@ -43,7 +43,7 @@ class user
 			return $alert;
 		} else {
 			$password = md5($password);
-			$check = "SELECT * FROM tbl_customer WHERE username = '$username' AND password = '$password'";
+			$check = "SELECT * FROM tbl_user WHERE username = '$username' AND password = '$password'";
 			$resultCheck = $this->db->select($check);
 
 			if ($resultCheck) {
@@ -54,12 +54,34 @@ class user
 				Session::set("username",  $value["username"]);
 				Session::set("userFullName",  $value["userFullName"]);
 				Session::set("userImage",  $value["userImage"]);
+
+				$userID = Session::get("userID");
+				$lastLogin = time() + 10;
+				$queryOnline = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
+				$this->db->update($queryOnline);
+
 				header("Location: index.php");
 			} else {
 				$alert = "<span class='error'>username hoac mat khau khong hop le</span>";
 				return $alert;
 			}
 		}
+	}
+
+	public function getUserOnline()
+	{
+		$time = time();
+		$query = "SELECT * FROM tbl_user WHERE userLastLogin > '$time'";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function updateStatus()
+	{
+		$userID = Session::get("userID");
+		$lastLogin = time() + 10;
+		$queryOnline = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
+		$this->db->update($queryOnline);
 	}
 
 	public function insertUser($data, $files)
@@ -95,7 +117,7 @@ class user
 				move_uploaded_file($file_temp, $uploaded_image);
 			}
 
-			$query = "INSERT INTO tbl_customer(username, password, userFullName, userEmail, userPhone, userBirthDay, userSex, userAddress, userImage, userStatus) VALUES('$username','$password','$userFullName','$userEmail','$userPhone', '$userBirthDay', '$userSex', '$userAddress','$unique_image', '$userStatus') ";
+			$query = "INSERT INTO tbl_user(username, password, userFullName, userEmail, userPhone, userBirthDay, userSex, userAddress, userImage, userStatus) VALUES('$username','$password','$userFullName','$userEmail','$userPhone', '$userBirthDay', '$userSex', '$userAddress','$unique_image', '$userStatus') ";
 			echo "<script>console.log('$query')</script>";
 			$result = $this->db->insert($query);
 
@@ -121,7 +143,7 @@ class user
 		$newPassword = mysqli_real_escape_string($this->db->link, $data["newPassword"]);
 		$reNewPassword = mysqli_real_escape_string($this->db->link, $data["reNewPassword"]);
 
-		$queryPassword = "SELECT * FROM tbl_customer WHERE userID = '$userID'";
+		$queryPassword = "SELECT * FROM tbl_user WHERE userID = '$userID'";
 		$resutlPassword = $this->db->select($queryPassword)->fetch_assoc();
 		$password = $resutlPassword["password"];
 
@@ -138,7 +160,7 @@ class user
 			return $alert;
 		} else {
 			$password = md5($newPassword);
-			$queryUpdate = "UPDATE tbl_customer SET password = '$password' WHERE userID = '$userID'";
+			$queryUpdate = "UPDATE tbl_user SET password = '$password' WHERE userID = '$userID'";
 			$resultUpdate = $this->db->update($queryUpdate);
 
 			if ($resultUpdate) {
@@ -152,35 +174,8 @@ class user
 
 	public function getCustomer($ID)
 	{
-		$query = "SELECT * FROM tbl_customer WHERE userID = '$ID'";
+		$query = "SELECT * FROM tbl_user WHERE userID = '$ID'";
 		$result = $this->db->select($query);
 		return $result;
-	}
-
-	public function updateCustomer($data, $ID)
-	{
-		$name = mysqli_real_escape_string($this->db->link, $data["name"]);
-		// $city = mysqli_real_escape_string($this->db->link, $data["city"]);
-		$zipcode = mysqli_real_escape_string($this->db->link, $data["zipcode"]);
-		$username = mysqli_real_escape_string($this->db->link, $data["username"]);
-		$address = mysqli_real_escape_string($this->db->link, $data["address"]);
-		$phone = mysqli_real_escape_string($this->db->link, $data["phone"]);
-		// $password = mysqli_real_escape_string($this->db->link, $data["password"]);
-		// $password = md5($password);
-
-		if ($name == ''  || $zipcode == "" || $username == "" || $address == "" || $phone == "") {
-			$alert = "<span class='error'>Fiedls must be not empty</span>";
-			return $alert;
-		} else {
-			$query = "UPDATE tbl_customer SET name = '$name', address = '$address', zipcode = '$zipcode', phone = '$phone', username = '$username'";
-			$result = $this->db->update($query);
-			if ($result) {
-				$alert = "<span class='error'>Cap nhap thong tin thanh cong</span>";
-				return $alert;
-			} else {
-				$alert = "<span class='error'>Cap nhap thong tin khong thanh cong</span>";
-				return $alert;
-			}
-		}
 	}
 }
