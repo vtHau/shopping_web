@@ -362,12 +362,23 @@
   <script>
     function updateUserStatus() {
       $.ajax({
-        url: 'classes/updateuser.php',
+        url: 'classes/request.php',
         method: "POST",
         data: {
           type: "updateStatus"
         },
-        success: function(ress) {}
+        success: function() {}
+      });
+    }
+
+    function sendDevice() {
+      $.ajax({
+        url: 'classes/request.php',
+        method: "POST",
+        data: {
+          type: "sendDevice"
+        },
+        success: function() {}
       });
     }
   </script>
@@ -377,6 +388,7 @@
     echo '<script>
             setInterval(function() {
               updateUserStatus();
+              sendDevice();
             }, 3000);
           </script>';
   }

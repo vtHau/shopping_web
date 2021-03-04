@@ -156,22 +156,22 @@
         <li>
           <a href="#">
             <i class="metismenu-icon pe-7s-diamond"></i>
-            Khách hàng
+            Người dùng
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
           </a>
           <ul>
-            <li>
-              <a href="userlist.php">
-                <i class="metismenu-icon">
-                </i>
-                Danh sách người dùng
-              </a>
-            </li>
             <li>
               <a href="useronline.php">
                 <i class="metismenu-icon">
                 </i>
                 Người dùng đang trực tuyến
+              </a>
+            </li>
+            <li>
+              <a href="userlist.php">
+                <i class="metismenu-icon">
+                </i>
+                Tất cả người dùng
               </a>
             </li>
           </ul>
@@ -185,14 +185,14 @@
           </a>
           <ul>
             <li>
-              <a href="commentlist.php">
+              <a href="commentnotconfirm.php">
                 <i class="metismenu-icon">
                 </i>
                 Bình luận chờ duyệt
               </a>
             </li>
             <li>
-              <a href="allcomment.php">
+              <a href="commentlist.php">
                 <i class="metismenu-icon">
                 </i>
                 Tât cả bình luận

@@ -100,7 +100,7 @@ class review
 			$userID = Session::get("userID");
 		}
 
-		$query = "UPDATE tbl_review SET comment = '$comment' , star = '$star' WHERE userID = '$userID' AND productID = '$productID'";
+		$query = "UPDATE tbl_review SET comment = '$comment' , star = '$star'  WHERE userID = '$userID' AND productID = '$productID'";
 		$result = $this->db->update($query);
 		if ($result) {
 			Session::set("updateComment", 0);

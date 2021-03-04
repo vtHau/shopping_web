@@ -43,27 +43,53 @@ class user
 			return $alert;
 		} else {
 			$password = md5($password);
-			$check = "SELECT * FROM tbl_user WHERE username = '$username' AND password = '$password'";
-			$resultCheck = $this->db->select($check);
+			$query = "SELECT * FROM tbl_user WHERE username = '$username' AND password = '$password'";
+			$result = $this->db->select($query);
 
-			if ($resultCheck) {
-				$value = $resultCheck->fetch_assoc();
-				Session::set("userLogin", true);
-				Session::set("loginToast", 0);
-				Session::set("userID",  $value["userID"]);
-				Session::set("username",  $value["username"]);
-				Session::set("userFullName",  $value["userFullName"]);
-				Session::set("userImage",  $value["userImage"]);
+			if ($result) {
+				$value = $result->fetch_assoc();
+				$isBlock = $value["userBlock"];
 
-				$userID = Session::get("userID");
-				$lastLogin = time() + 10;
-				$queryOnline = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
-				$this->db->update($queryOnline);
+				if ($isBlock < 5) {
+					Session::set("userBlock", false);
+					Session::set("userLogin", true);
+					Session::set("loginToast", 0);
+					Session::set("userID",  $value["userID"]);
+					Session::set("username",  $value["username"]);
+					Session::set("userFullName",  $value["userFullName"]);
+					Session::set("userImage",  $value["userImage"]);
 
-				header("Location: index.php");
+					$userID =  $value["userID"];
+					$lastLogin = time() + 10;
+					$query = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
+					$this->db->update($query);
+
+					header("Location: index.php");
+				} else {
+					Session::set("userBlock", true);
+					Session::set("userID",  $value["userID"]);
+					Session::set("userFullName",  $value["userFullName"]);
+					header("Location: userblock.php");
+				}
 			} else {
-				$alert = "<span class='error'>username hoac mat khau khong hop le</span>";
-				return $alert;
+				$query = "SELECT * FROM tbl_user WHERE username = '$username'";
+				$result = $this->db->select($query);
+
+				if ($result) {
+					$value = $result->fetch_assoc();
+					$userID = $value["userID"];
+					$isBlock = $value["userBlock"];
+					$isBlock++;
+					$query = "UPDATE tbl_user SET userBlock = '$isBlock' WHERE userID = '$userID' AND username = '$username'";
+					$result = $this->db->update($query);
+					// header("Location: index.php");
+
+					$alert = "<span class='error'>username hoac mat khau khong hop le</span>";
+					return $alert;
+				} else {
+					$alert = "<span class='error'>username hoac mat khau khong hop le</span>";
+					return $alert;
+				}
 			}
 		}
 	}

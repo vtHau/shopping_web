@@ -1,7 +1,8 @@
 <?php
 include_once "inc/header.php";
 include_once "inc/setting.php";
-include_once "../classes/userinfo.php";
+include_once "../classes/device.php";
+$device = new device();
 ?>
 
 <div class="app-main">
@@ -63,13 +64,13 @@ include_once "../classes/userinfo.php";
 											</div>
 										</td>
 										<td class="text-center text-muted">
-											<?= userInfo::getDevices(); ?>
+											<?php echo $device->getDevices() ?>
 										</td>
 										<td class="text-center text-muted">
-											<?= userInfo::getOS(); ?>
+											<?php echo $device->getOS() ?>
 										</td>
 										<td class="text-center text-muted">
-											<?= userInfo::getBrowser(); ?>
+											<?php echo $device->getBrowser() ?>
 										</td>
 									</tr>
 								</tbody>

@@ -45,7 +45,7 @@ if (isset($_GET["deleteReviewID"])) {
 						<div class="card-header">Danh sách bình luận</div>
 						<div class="table-responsive" style="padding-bottom: 10px;">
 							<?php
-							$getReview = $review->getAllReview();
+							$getReview = $review->getReivewNotConfirm();
 							if ($getReview) {
 								$i = 0;
 							?>
@@ -104,7 +104,7 @@ if (isset($_GET["deleteReviewID"])) {
 												<td class="text-center text-muted"><?php echo $result["timeReview"] ?></td>
 												<td class="text-center text-muted">
 													<?php
-													if ($result["comment"] == 1) {
+													if ($result["status"] == 1) {
 														echo "Đã xác nhận";
 													} else {
 														echo "Chờ xác nhận";
@@ -113,10 +113,7 @@ if (isset($_GET["deleteReviewID"])) {
 												</td>
 
 												<td class="text-center">
-													<?php
-													if ($result["status"] == 0) { 	?>
-														<a href="commentlist.php?confirmReviewID=<?php echo $result["reviewID"] ?>" class="btn btn-success btn-sm">Xác nhận</a>
-													<?php	}	?>
+													<a href="commentlist.php?confirmReviewID=<?php echo $result["reviewID"] ?>" class="btn btn-success btn-sm">Xác nhận</a>
 													<a href="commentlist.php?deleteReviewID=<?php echo $result["reviewID"] ?>" class="btn btn-danger btn-sm">Xóa</a>
 												</td>
 											</tr>

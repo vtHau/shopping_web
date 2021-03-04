@@ -297,8 +297,8 @@ header("Cache-Control: max-age=2592000");
 											<a href="#" class="align-middle">
 												<i class="lnr lnr-user"></i>
 												<div class="my-cart align-middle">
-													<a href="signup.php" style="font-weight: bold;">Đăng ký</a>
-													<p><strong class="btn-signin-show">Đăng nhập</strong></p>
+													<a href="signup.php" style="font-weight: bold; cursor:pointer">Đăng ký</a>
+													<p><strong class="btn-signin-show" style="cursor:pointer">Đăng nhập</strong></p>
 												</div>
 											</a>
 										<?php } ?>

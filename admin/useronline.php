@@ -49,7 +49,7 @@ if (isset($_GET["deleteID"])) {
 		<script>
 			function getUserStatus() {
 				$.ajax({
-					url: '../classes/updateuser.php',
+					url: '../classes/request.php',
 					method: "POST",
 					data: {
 						type: "getUserOnline"
@@ -60,6 +60,7 @@ if (isset($_GET["deleteID"])) {
 				});
 			}
 
-			
+			setInterval(function() {
 				getUserStatus();
+			}, 3000);
 		</script>
