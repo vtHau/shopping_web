@@ -54,3 +54,36 @@
   background-image: linear-gradient(to right, #0bf04fe7, #0bf04fe7);
   z-index: 1;
 }
+
+.card-device {
+  margin: 10px auto;
+  width: 200px;
+  border-radius: 4px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.card-device-title {
+  font-size: 15px;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+  padding: 20px 0;
+}
+.card-device-body {
+  font-size: 18px;
+  text-align: center;
+  padding: 60px 0;
+}
+
+.card-device-title::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -40%;
+  width: 80%;
+  height: 1.5px;
+  background-color: rgba(26, 54, 126, 0.1);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  z-index: 1;
+}

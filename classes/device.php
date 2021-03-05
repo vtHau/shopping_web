@@ -178,6 +178,12 @@ class device
 		}
 	}
 
+	public function getInfoDevice($userID)
+	{
+		$query = "SELECT * FROM tbl_device WHERE userID = '$userID'";
+		$result = $this->db->select($query);
+		return $result;
+	}
 	public function checkDevice()
 	{
 		$userID = $this->getUserID();
