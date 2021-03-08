@@ -59,6 +59,7 @@
   margin: 10px auto;
   width: 200px;
   border-radius: 4px;
+  color: rgba(13, 27, 62, 0.7);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -87,3 +88,14 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   z-index: 1;
 }
+
+.more-feature {
+  cursor: pointer;
+}
+
+.more-feature:hover {
+  text-decoration: none;
+  color: #3f6ad8;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 20px 0px;
+}
+

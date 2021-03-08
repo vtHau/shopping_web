@@ -2,6 +2,7 @@
 ob_start();
 include_once "lib/session.php";
 Session::init();
+Session::isUserBlock();
 ?>
 
 <?php

@@ -1,13 +1,6 @@
 <?php include_once "./inc/header.php" ?>
 <?php include_once "./inc/setting.php" ?>
 
-<?php
-if (isset($_GET["deleteID"])) {
-	$ID = $_GET["deleteID"];
-	$deleteProduct = $product->deleteProduct($ID);
-}
-?>
-
 <div class="app-main">
 	<!-- add slidebar -->
 	<?php include_once "./inc/slidebar.php" ?>
@@ -99,7 +92,7 @@ if (isset($_GET["deleteID"])) {
 												<td class="text-center text-muted"><?php echo $result["userAddress"] ?></td>
 												<td class="text-center text-muted"><?php echo $result["userStatus"] ?></td>
 												<td class="text-center">
-													<a href="" class="btn btn-danger btn-sm">Xóa</a>
+													<a href="morefeature.php?userID=<?php echo $result["userID"] ?>" class="btn btn-primary btn-sm">Nhiều hơn</a>
 												</td>
 											</tr>
 										<?php } ?>

@@ -204,4 +204,42 @@ class user
 		$result = $this->db->select($query);
 		return $result;
 	}
+
+	public function blockUser($userID)
+	{
+		$query = "UPDATE tbl_user SET userBlock = 6 WHERE userID = '$userID'";
+		$result = $this->db->update($query);
+		return $result;
+	}
+
+	public function unBlockUser($userID)
+	{
+		$query = "UPDATE tbl_user SET userBlock = 0 WHERE userID = '$userID'";
+		$result = $this->db->update($query);
+
+		unset($_SESSION["userBlock"]);
+
+		return $result;
+	}
+
+	public function isBlockUser()
+	{
+		$userID = Session::get("userID");
+		$query = "SELECT *  FROM tbl_user WHERE userID = '$userID'";
+		$result = $this->db->select($query)->fetch_assoc();
+
+		$userBlock = $result["userBlock"];
+		$userID = $result["userID"];
+		$userFullName = $result["userFullName"];
+
+		if ($userBlock >= 5) {
+
+			Session::set("userBlock", true);
+			Session::set("userLogin", false);
+			Session::set("userID", $userID);
+			Session::set("userFullName", $userFullName);
+
+			return true;
+		}
+	}
 }

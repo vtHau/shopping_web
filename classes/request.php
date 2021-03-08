@@ -14,6 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 			$updateStatus = $user->updateStatus();
 		}
 
+		if ($_POST["type"] == "isBlockUser") {
+			$isBlockUser = $user->isBlockUser();
+
+			if ($isBlockUser) {
+				echo "true";
+			}
+		}
+
 		if ($_POST["type"] == "sendDevice") {
 			$isDevice = $device->checkDevice();
 			if ($isDevice) {

@@ -360,6 +360,8 @@
   </script>
 
   <script>
+    var isBlock;
+
     function updateUserStatus() {
       $.ajax({
         url: 'classes/request.php',
@@ -381,13 +383,33 @@
         success: function() {}
       });
     }
-  </script>
+
+    function isBlockUser() {
+      $.ajax({
+        url: 'classes/request.php',
+        method: "POST",
+        data: {
+          type: "isBlockUser"
+        },
+        success: function(result) {
+          result = result.trim();
+          if (result == "true") {
+            isBlock = true;
+          }
+        }
+      });
+      if (isBlock) {
+        window.location = "userblock.php"
+      }
+    }
+  </script>   
 
   <?php
   if (Session::isUserLogin()) {
     echo '<script>
             setInterval(function() {
               updateUserStatus();
+              isBlockUser();
               sendDevice();
             }, 3000);
           </script>';
