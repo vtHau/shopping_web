@@ -35,6 +35,8 @@ $fm = new format();
 include_once "../classes/review.php";
 $review = new review();
 
+include_once "../classes/toastify.php";
+$toast = new toastify();
 
 ?>
 
@@ -61,6 +63,7 @@ header("Cache-Control: max-age=2592000");
   <link href="./main.css" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
   <link href="assets/style/admin-style.css?v=<?php echo time(); ?>" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/toastr.min.css">
 
 </head>
 

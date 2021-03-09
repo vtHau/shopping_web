@@ -32,18 +32,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 		}
 	}
 
+	// if ($_POST["type"] == "blockUser") {
+	// 	$userID = $_POST["userID"];
+	// 	$blockUser = $user->blockUser($userID);
+
+	// 	if ($blockUser) {
+	// 		echo "true";
+	// 	}
+	// }
+
 	if ($_POST["type"] == "getUserOnline") {
 		$userOnline = $user->getUserOnline();
 		$result = '';
 		$i = 0;
 		$sex;
+		$status;
 		if ($userOnline) {
 			$result .= '
 								<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 								<thead>
 									<tr>
 										<th class="text-center">STT</th>
-										<th class="text-center">ID</th>
 										<th class="text-center">Tên người dùng</th>
 										<th class="text-center">Ngày sinh</th>
 										<th class="text-center">Giới tính</th>
@@ -51,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 										<th class="text-center">Email</th>
 										<th class="text-center">Địa chỉ</th>
 										<th class="text-center">Trạng thái</th>
+										<th class="text-center">Mô tả</th>
 										<th class="text-center">Tính năng</th>
 									</tr>
 								</thead>
@@ -58,15 +68,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 							';
 			while ($getUser = $userOnline->fetch_assoc()) {
 				$i++;
+
 				if ($getUser["userSex"]  == 0) {
 					$sex = "Nam";
 				} else {
 					$sex = "Nữ";
 				}
+
+				if ($getUser["userBlock"]  < 5) {
+					$status = "Hoạt động";
+				} else {
+					$status = "Đã khóa";
+				}
 				$result .= '
 									<tr>
 											<td class="text-center text-muted">' . $i . '</td>
-											<td class="text-center text-muted">' . $getUser["userID"] . '</td>
 											<td>
 												<div class="widget-content p-0">
 													<div class="widget-content-wrapper">
@@ -89,9 +105,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 											<td class="text-center text-muted">' . $getUser["userPhone"] . '</td>
 											<td class="text-center text-muted">' . $getUser["userImage"] . '</td>
 											<td class="text-center text-muted">' . $getUser["userAddress"] . '</td>
+											<td class="text-center text-muted">' . $status . '</td>
 											<td class="text-center text-muted">' . $getUser["userStatus"] . '</td>
 											<td class="text-center">
-												<a href="" class="btn btn-danger btn-sm">Xóa</a>
+												<a href="morefeature.php?userID=' . $getUser["userID"] . '" class="btn btn-success btn-sm">Xem thêm</a>
 											</td>
 									</tr>
 								';

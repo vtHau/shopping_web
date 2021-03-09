@@ -41,7 +41,6 @@
 									<thead>
 										<tr>
 											<th class="text-center">STT</th>
-											<th class="text-center">ID</th>
 											<th class="text-center">Tên người dùng</th>
 											<th class="text-center">Ngày sinh</th>
 											<th class="text-center">Giới tính</th>
@@ -49,6 +48,7 @@
 											<th class="text-center">Email</th>
 											<th class="text-center">Địa chỉ</th>
 											<th class="text-center">Trạng thái</th>
+											<th class="text-center">Mô tả</th>
 											<th class="text-center">Tính năng</th>
 										</tr>
 									</thead>
@@ -59,7 +59,6 @@
 										?>
 											<tr>
 												<td class="text-center text-muted"><?php echo $i; ?></td>
-												<td class="text-center text-muted"><?php echo $result["userID"] ?></td>
 												<td>
 													<div class="widget-content p-0">
 														<div class="widget-content-wrapper">
@@ -90,16 +89,25 @@
 												<td class="text-center text-muted"><?php echo $result["userPhone"] ?></td>
 												<td class="text-center text-muted"><?php echo $result["userEmail"] ?></td>
 												<td class="text-center text-muted"><?php echo $result["userAddress"] ?></td>
+												<td class="text-center text-muted">
+													<?php
+													if ($result["userBlock"] < 5) {
+														echo "Hoạt động";
+													} else {
+														echo "Đã khóa";
+													}
+													?>
+												</td>
 												<td class="text-center text-muted"><?php echo $result["userStatus"] ?></td>
 												<td class="text-center">
-													<a href="morefeature.php?userID=<?php echo $result["userID"] ?>" class="btn btn-primary btn-sm">Nhiều hơn</a>
+													<a href="morefeature.php?userID=<?php echo $result["userID"] ?>" class="btn btn-success btn-sm">Xem thêm</a>
 												</td>
 											</tr>
 										<?php } ?>
 									</tbody>
 								</table>
 							<?php } else { ?>
-								<div class="text-center text-noti">Không có sản phẩm nào để hiển thị</div>
+								<div class="text-center text-noti">Không có người dùng nào để hiển thị</div>
 							<?php } ?>
 						</div>
 					</div>

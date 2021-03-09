@@ -402,7 +402,7 @@
         window.location = "userblock.php"
       }
     }
-  </script>   
+  </script>
 
   <?php
   if (Session::isUserLogin()) {

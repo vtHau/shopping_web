@@ -209,6 +209,11 @@ class user
 	{
 		$query = "UPDATE tbl_user SET userBlock = 6 WHERE userID = '$userID'";
 		$result = $this->db->update($query);
+
+		if ($result) {
+			Session::set("blockUserSuccess", 0);
+		}
+
 		return $result;
 	}
 
@@ -218,6 +223,10 @@ class user
 		$result = $this->db->update($query);
 
 		unset($_SESSION["userBlock"]);
+
+		if ($result) {
+			Session::set("unBlockUserSuccess", 0);
+		}
 
 		return $result;
 	}

@@ -13,9 +13,15 @@ if (isset($_GET["deleteID"])) {
 	$deleteProduct = $product->deleteProduct($ID);
 }
 
-if (isset($_GET["block"])) {
-	$ID = $_GET["block"];
-	$blockUser = $user->blockUser($ID);
+
+if (isset($_POST["type"]) && $_POST["type"] == "blockUser") {
+	$userID = $_POST["userID"];
+	$blockUser = $user->blockUser($userID);
+}
+
+if (isset($_POST["type"]) && $_POST["type"] == "unBlockUser") {
+	$userID = $_POST["userID"];
+	$blockUser = $user->unBlockUser($userID);
 }
 
 if (isset($_GET["unblock"])) {
@@ -60,9 +66,9 @@ if (isset($_GET["unblock"])) {
 						?>
 					</h5>
 					<div class="row mt-5 mb-4">
-						<div class="col-md-3 text-center">
+						<div class="col-md-4 text-center">
 							<a href="device.php?userID=<?php echo $userID ?>">
-								<div class="card-device more-feature">
+								<div class="card-device more-feature float-right">
 									<div class="card-device-title">
 										<i class="fas fa-mobile-alt" style="font-size: 25px;"></i>
 										<br />
@@ -71,34 +77,34 @@ if (isset($_GET["unblock"])) {
 								</div>
 							</a>
 						</div>
-
-						<div class="col-md-3 text-center">
-							<a href="?unblock=<?php echo $userID ?>">
+						<?php
+						if ($result["userBlock"] < 5) {
+						?>
+							<div class="col-md-4 text-center">
 								<div class="card-device more-feature">
-									<div class="card-device-title">
-										<i class="fas fa-unlock" style="font-size: 25px;"></i>
-										<br />
-										Mở khóa tài khoản
-									</div>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-md-3 text-center">
-							<a href="?block=<?php echo $userID ?>">
-								<div class="card-device more-feature">
-									<div class="card-device-title">
+									<div class="card-device-title block-user">
 										<i class="fas fa-user-lock" style="font-size: 25px;"></i>
 										<br />
 										Khóa tài khoản
 									</div>
 								</div>
-							</a>
-						</div>
+							</div>
+						<?php } else { ?>
 
-						<div class="col-md-3 text-center">
-							<a href="deleteID=<?php echo $userID ?>">
+							<div class="col-md-4 text-center">
 								<div class="card-device more-feature">
+									<div class="card-device-title unblock-user">
+										<i class="fas fa-unlock" style="font-size: 25px;"></i>
+										<br />
+										Mở khóa tài khoản
+									</div>
+								</div>
+							</div>
+						<?php } ?>
+
+						<div class="col-md-4 text-center">
+							<a href="deleteID=<?php echo $userID ?>">
+								<div class="card-device more-feature float-left">
 									<div class="card-device-title">
 										<i class="fa fa-trash" style="font-size: 25px;"></i>
 										<br />
@@ -107,7 +113,7 @@ if (isset($_GET["unblock"])) {
 								</div>
 							</a>
 						</div>
-
+						<input type="hidden" class="user-id" style="display: none;" value="<?php echo $userID; ?>" />
 					</div>
 				</div>
 			</div>
