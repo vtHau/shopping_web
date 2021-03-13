@@ -9,6 +9,8 @@ $(document).ready(function () {
     }
   });
 
+  // $(".box-mess").last()[1].scrollIntoView();
+
   $(".btn-signin-show").on("click", function () {
     $(".wrap-signin-form").css({
       visibility: "visible",
@@ -61,6 +63,48 @@ $(document).ready(function () {
     e.preventDefault();
     sendReviewAjax("delete");
   });
+
+  getChat();
+
+  $(".footer-chat-send").on("click", function () {
+    var message = $(".message-content").val();
+
+    if (message != "") {
+      $.ajax({
+        url: "classes/request.php",
+        method: "POST",
+        data: {
+          type: "insertChat",
+          message: message,
+        },
+        success: function (res) {
+          getChat();
+          // location.reload();
+        },
+        error: function (rep) {
+          alert("Thất bại");
+        },
+      });
+    }
+  });
+
+  function getChat() {
+    $.ajax({
+      url: "classes/request.php",
+      method: "POST",
+      data: {
+        type: "getChat",
+      },
+      success: function (res) {
+        $(".message-content").val("");
+        res = res.trim();
+        $(".body-chat").html(res);
+      },
+      error: function (rep) {
+        alert("Thất bại");
+      },
+    });
+  }
 
   function sendReviewAjax(type) {
     var productID = $(".productID").val();

@@ -65,12 +65,12 @@ class Session
 
   public static function isUserBlock()
   {
-    if (self::get("userBlock") == true) {
-      $url = $_SERVER['REQUEST_URI'];
-      if ($url != "/webshop/userblock.php") {
-        header("Location:userblock.php");
-      }
-    }
+    // if (self::get("userBlock") == true) {
+    //   $url = $_SERVER['REQUEST_URI'];
+    //   if ($url != "/webshop/userblock.php") {
+    //     header("Location:userblock.php");
+    //   }
+    // }
   }
 
   public static function destroy()

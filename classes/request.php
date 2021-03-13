@@ -5,6 +5,9 @@ $user = new user();
 include_once "device.php";
 $device = new device();
 
+include_once "chat.php";
+$chat = new chat();
+
 include_once "../lib/session.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
@@ -32,14 +35,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 		}
 	}
 
-	// if ($_POST["type"] == "blockUser") {
-	// 	$userID = $_POST["userID"];
-	// 	$blockUser = $user->blockUser($userID);
+	if ($_POST["type"] == "insertChat") {
+		$message = $_POST["message"];
+		$insertChat = $chat->insertChat($message);
+	}
 
-	// 	if ($blockUser) {
-	// 		echo "true";
-	// 	}
-	// }
+	if ($_POST["type"] == "getChat") {
+		$getChat = $chat->getChat();
+		if ($getChat) {
+			$xhtml = '';
+			while ($result = $getChat->fetch_assoc()) {
+				$toRight = "";
+				if ($result["fromID"] == Session::get("userID")) {
+					$toRight = "to-right";
+				}
+				$message = $result["message"];
+				$xhtml .= '
+									<div class="box-mess ' . $toRight . '">
+										<div class="box-image">
+											<img src="avatar.png" alt="">
+										</div>
+										<div class="mess-content">
+											<p>' . $message . '</p>
+										</div>
+								</div>
+								';
+			}
+		}
+		echo $xhtml;
+	}
 
 	if ($_POST["type"] == "getUserOnline") {
 		$userOnline = $user->getUserOnline();

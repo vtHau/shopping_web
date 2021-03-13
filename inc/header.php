@@ -39,6 +39,9 @@ $cus = new user();
 include_once "classes/toastify.php";
 $toast = new toastify();
 
+include_once "classes/chat.php";
+$chat = new chat();
+
 include_once "helpers/format.php";
 $fm = new format();
 ?>
