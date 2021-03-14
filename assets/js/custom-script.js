@@ -9,8 +9,6 @@ $(document).ready(function () {
     }
   });
 
-  // $(".box-mess").last()[1].scrollIntoView();
-
   $(".btn-signin-show").on("click", function () {
     $(".wrap-signin-form").css({
       visibility: "visible",
@@ -66,6 +64,10 @@ $(document).ready(function () {
 
   getChat();
 
+  setInterval(() => {
+    getChat();
+  }, 1000);
+
   $(".footer-chat-send").on("click", function () {
     var message = $(".message-content").val();
 
@@ -78,8 +80,8 @@ $(document).ready(function () {
           message: message,
         },
         success: function (res) {
+          $(".message-content").val("");
           getChat();
-          // location.reload();
         },
         error: function (rep) {
           alert("Thất bại");
@@ -96,9 +98,17 @@ $(document).ready(function () {
         type: "getChat",
       },
       success: function (res) {
-        $(".message-content").val("");
         res = res.trim();
         $(".body-chat").html(res);
+
+        var height = 0;
+
+        $(".body-chat .box-mess").each(function (i, value) {
+          height += parseInt($(this).height());
+        });
+
+        height += "";
+        $(".body-chat").animate({ scrollTop: height });
       },
       error: function (rep) {
         alert("Thất bại");
