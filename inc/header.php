@@ -106,6 +106,7 @@ header("Cache-Control: max-age=2592000");
 	<!-- Responsive css -->
 	<link rel="stylesheet" href="assets\css\responsive.css">
 	<link rel="stylesheet" href="assets\css\toastr.min.css">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"> -->
 	<!-- Modernizer js -->
 	<link rel="stylesheet" href="assets\css\custom-style.css?v=<?php echo time(); ?>">
 

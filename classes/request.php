@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 				$xhtml .= '
 									<div class="box-mess ' . $toRight . '">
 										<div class="box-image">
-											<img src="avatar.png" alt="">
+											<img src="admin.png" alt="">
 										</div>
 										<div class="mess-content">
 											<p>' . $message . '</p>

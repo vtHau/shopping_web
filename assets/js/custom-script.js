@@ -62,11 +62,29 @@ $(document).ready(function () {
     sendReviewAjax("delete");
   });
 
-  getChat();
+  $(".message-content").keyup(function (e) {
+    if (e.keyCode == 13 || e.which == 13) {
+      var message = $(".message-content").val();
 
-  setInterval(() => {
-    getChat();
-  }, 1000);
+      if (message != "") {
+        $.ajax({
+          url: "classes/request.php",
+          method: "POST",
+          data: {
+            type: "insertChat",
+            message: message,
+          },
+          success: function (res) {
+            $(".message-content").val("");
+            getChat();
+          },
+          error: function (rep) {
+            alert("Thất bại");
+          },
+        });
+      }
+    }
+  });
 
   $(".footer-chat-send").on("click", function () {
     var message = $(".message-content").val();
@@ -154,6 +172,20 @@ $(document).ready(function () {
       .removeClass("fa-star")
       .addClass("fa-star-o");
   }
+
+  $("#btn-chat").click(function () {
+    $("#btn-chat").toggle();
+    $("#popup-chat").toggle();
+    getChat();
+    setInterval(() => {
+      getChat();
+    }, 1000);
+  });
+
+  $("#btn-close-chat").click(function () {
+    $("#btn-chat").toggle();
+    $("#popup-chat").toggle();
+  });
 
   // resetStar();
   // if (localStorage.getItem("ratedIndex") != null) {
