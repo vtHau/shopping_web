@@ -37,6 +37,19 @@ class chat
 		return $result;
 	}
 
+	public function getChatInAdmin($userID)
+	{
+		$adminID = Session::get("adminID");
+
+		$query = "SELECT * FROM tbl_chat
+						 	WHERE fromID =  '$adminID' AND toID = '$userID'
+							OR fromID = '$userID' 	AND toID = '$adminID'
+						";
+
+		$result = $this->db->select($query);
+		return $result;
+	}
+
 	public function insertChat($message)
 	{
 		$userID = Session::get("userID");
@@ -46,6 +59,21 @@ class chat
 			return $alert;
 		} else {
 			$query = "INSERT INTO tbl_chat(fromID , toID , message ) VALUES( '$userID' , 'admin' , '$message' ) ";
+			$result = $this->db->insert($query);
+
+			return $result;
+		}
+	}
+
+	public function insertChatInAdmin($userID, $message)
+	{
+		$adminID = Session::get("adminID");
+
+		if ($message == "") {
+			$alert = "<span class='error'>Fiedls must be not empty</span>";
+			return $alert;
+		} else {
+			$query = "INSERT INTO tbl_chat(fromID , toID , message ) VALUES( '$adminID' , '$userID' , '$message' ) ";
 			$result = $this->db->insert($query);
 
 			return $result;

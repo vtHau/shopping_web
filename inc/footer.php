@@ -309,7 +309,7 @@
   if (Session::isUserLogin()) {
   ?>
     <div id="btn-chat">
-      <i class="far fa-comments"></i>
+      <i class="fa fa-comments"></i>
     </div>
   <?php } ?>
   <div id="popup-chat">

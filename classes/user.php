@@ -25,6 +25,14 @@ class user
 		return $userID;
 	}
 
+	public function getUserByID($userID)
+	{
+		$query = "SELECT * FROM tbl_user WHERE userID = '$userID'";
+		$result = $this->db->select($query);
+
+		return $result;
+	}
+
 	public function getAllUser()
 	{
 		$query = "SELECT * FROM tbl_user";

@@ -40,8 +40,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 		$insertChat = $chat->insertChat($message);
 	}
 
+	if ($_POST["type"] == "insertChatInAdmin") {
+		$message = $_POST["message"];
+		$userID = $_POST["userID"];
+		$insertChatInAdmin = $chat->insertChatInAdmin($userID, $message);
+	}
+
 	if ($_POST["type"] == "getChat") {
 		$getChat = $chat->getChat();
+
 		if ($getChat) {
 			$xhtml = '';
 			while ($result = $getChat->fetch_assoc()) {
@@ -61,8 +68,45 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 								</div>
 								';
 			}
+			echo $xhtml;
+		} else {
+			echo '<h6 style="text-align: center; margin-top: 140px;">Không có tin nhắn.</h6>';
 		}
-		echo $xhtml;
+	}
+
+	if ($_POST["type"] == "getChatInAdmin") {
+		$userID = $_POST["userID"];
+		$userImage =  $_POST["userImage"];
+
+		$getChatInAdmin = $chat->getChatInAdmin($userID);
+
+		if ($getChatInAdmin) {
+			$xhtml = '';
+
+			while ($result = $getChatInAdmin->fetch_assoc()) {
+				$toRight = "";
+				if ($result["fromID"] == Session::get("adminID")) {
+					$toRight = "to-right";
+				}
+
+				$message = $result["message"];
+
+				$xhtml .= '
+									<div class="box-mess ' . $toRight . '">
+										<div class="box-image">
+											<img src="uploads/avatars/' . $userImage . '" alt="">
+										</div>
+										<div class="mess-content">
+											<p>' . $message . '</p>
+										</div>
+								</div>
+								';
+			}
+
+			echo $xhtml;
+		} else {
+			echo '<h6 style="text-align: center; margin-top: 140px;">Không có tin nhắn.</h6>';
+		}
 	}
 
 	if ($_POST["type"] == "getUserOnline") {

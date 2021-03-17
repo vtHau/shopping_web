@@ -74,6 +74,30 @@
     sendFeatureAjax("unBlockUser");
   });
 
+  $("#btn-chat-show").click(function() {
+    $("#popup-chat").toggle();
+    getChatInAdmin();
+    setInterval(() => {
+      getChatInAdmin();
+    }, 1000);
+  });
+
+  $("#btn-close-chat").click(function() {
+    $("#popup-chat").toggle();
+  });
+
+
+  $(".footer-chat-send").on("click", function() {
+    sendChatFormAdmin();
+  });
+
+  $(".message-content").keyup(function(e) {
+    if (e.keyCode == 13 || e.which == 13) {
+      sendChatFormAdmin();
+    }
+  });
+
+
   function sendFeatureAjax(type) {
     var userID = $(".user-id").val();
 
@@ -91,6 +115,64 @@
         alert("Thất bại");
       },
     });
+  }
+
+  function getChatInAdmin() {
+    var userID = parseInt($(".footer-chat-send").data("userid"));
+    var userImage = $(".footer-chat-send").data("userimage");
+
+    $.ajax({
+      url: '../classes/request.php',
+      method: "POST",
+      data: {
+        type: "getChatInAdmin",
+        userID: userID,
+        userImage: userImage,
+      },
+      success: function(res) {
+        res = res.trim();
+        console.log(res);
+        $(".body-chat").html(res);
+
+        var height = 0;
+
+        $(".body-chat .box-mess").each(function(i, value) {
+          height += parseInt($(this).height());
+        });
+
+        height += "";
+        $(".body-chat").animate({
+          scrollTop: height + 1
+        });
+      },
+      error: function(rep) {
+        alert("Thất bại");
+      },
+    });
+  }
+
+  function sendChatFormAdmin() {
+    var message = $(".message-content").val();
+    var userID = parseInt($(".footer-chat-send").data("userid"));
+
+    if (message != "") {
+      $.ajax({
+        url: '../classes/request.php',
+        method: "POST",
+        data: {
+          type: "insertChatInAdmin",
+          message: message,
+          userID: userID,
+        },
+        success: function(res) {
+          $(".message-content").val("");
+          getChatInAdmin();
+        },
+        error: function(rep) {
+          alert("Thất bại");
+        },
+      });
+    }
   }
 </script>
 

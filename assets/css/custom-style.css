@@ -437,7 +437,6 @@ i.lnr.lnr-arrow-left {
 
 .to-right .mess-content > p {
   color: #ffffff;
-
   background-color: rgba(0, 132, 255, 0.945);
 }
 
@@ -517,6 +516,4 @@ i.lnr.lnr-arrow-left {
   color: white;
 }
 
-.active-box-chat {
-  display: flex;
-}
+
