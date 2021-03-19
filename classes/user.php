@@ -5,16 +5,24 @@ include_once($filepath . '/../helpers/format.php');
 ?>
 
 <?php
+include_once "email.php";
+?>
+
+<?php
 class user
 {
 	private $db;
 	private $fm;
+	private $email;
 
 	public function __construct()
 	{
 		$this->db = new Database();
 		$this->fm = new Format();
+		$this->email = new email();
 	}
+
+
 
 	public function getUserID()
 	{
@@ -59,20 +67,24 @@ class user
 				$isBlock = $value["userBlock"];
 
 				if ($isBlock < 5) {
-					Session::set("userBlock", false);
-					Session::set("userLogin", true);
-					Session::set("loginToast", 0);
-					Session::set("userID",  $value["userID"]);
-					Session::set("username",  $value["username"]);
-					Session::set("userFullName",  $value["userFullName"]);
-					Session::set("userImage",  $value["userImage"]);
+					if ($value["userActive"] != 1) {
+						Session::set("userCode", $value["userActive"]);
+						header("Location: confirmcode.php");
+					} else {
+						Session::set("userBlock", false);
+						Session::set("userLogin", true);
+						Session::set("loginToast", 0);
+						Session::set("userID",  $value["userID"]);
+						Session::set("username",  $value["username"]);
+						Session::set("userFullName",  $value["userFullName"]);
+						Session::set("userImage",  $value["userImage"]);
+						$userID =  $value["userID"];
+						$lastLogin = time() + 10;
+						$query = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
+						$this->db->update($query);
 
-					$userID =  $value["userID"];
-					$lastLogin = time() + 10;
-					$query = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
-					$this->db->update($query);
-
-					header("Location: index.php");
+						header("Location: index.php");
+					}
 				} else {
 					Session::set("userBlock", true);
 					Session::set("userID",  $value["userID"]);
@@ -151,20 +163,21 @@ class user
 				move_uploaded_file($file_temp, $uploaded_image);
 			}
 
-			$query = "INSERT INTO tbl_user(username, password, userFullName, userEmail, userPhone, userBirthDay, userSex, userAddress, userImage, userStatus) VALUES('$username','$password','$userFullName','$userEmail','$userPhone', '$userBirthDay', '$userSex', '$userAddress','$unique_image', '$userStatus') ";
-			echo "<script>console.log('$query')</script>";
+			$userCode =  "HTStore:" . strval(md5(time())) . strval(md5($username)) . strval(md5($userEmail)) . strval(md5($userPhone));
+			$query = "INSERT INTO tbl_user(username, password, userFullName, userEmail, userPhone, userBirthDay, userSex, userAddress, userImage, userStatus , userActive) VALUES('$username','$password','$userFullName','$userEmail','$userPhone', '$userBirthDay', '$userSex', '$userAddress','$unique_image', '$userStatus' , '$userCode') ";
 			$result = $this->db->insert($query);
+			$sendEmail = $this->email->sendEmail($username, $userEmail, $userCode);
 
-			if ($result) {
-				header("Location: index.php");
-				echo "<script>console.log('them tai khaon tanh cong')</script>";
+			if ($result && $sendEmail) {
+				header("Location: confirmaccount.php");
 			} else {
-				echo "<script>console.log('them tai khaon that bai')</script>";
 				$alert = '<div class="text-center text-noti-red">Thêm sản phẩm không thành công</div>';
 				return $alert;
 			}
 		}
 	}
+
+
 
 	public function changePassword($data)
 	{
@@ -257,6 +270,32 @@ class user
 			Session::set("userFullName", $userFullName);
 
 			return true;
+		}
+	}
+
+	function activeUser($username)
+	{
+		$query = "UPDATE tbl_user SET userActive = 1 WHERE username = '$username'";
+		$result = $this->db->update($query);
+
+		if ($result) {
+			$query = "SELECT * FROM tbl_user  WHERE username = '$username'";
+			$result = $this->db->select($query);
+			$value = $result->fetch_assoc();
+
+			Session::set("userBlock", false);
+			Session::set("userLogin", true);
+			Session::set("loginToast", 0);
+			Session::set("userID",  $value["userID"]);
+			Session::set("username",  $value["username"]);
+			Session::set("userFullName",  $value["userFullName"]);
+			Session::set("userImage",  $value["userImage"]);
+			$userID =  $value["userID"];
+			$lastLogin = time() + 10;
+			$query = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
+			$this->db->update($query);
+
+			header("Location: index.php");
 		}
 	}
 }
