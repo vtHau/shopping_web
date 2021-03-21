@@ -65,11 +65,19 @@ class user
 			if ($result) {
 				$value = $result->fetch_assoc();
 				$isBlock = $value["userBlock"];
+				$userEmail = $value["userEmail"];
+				$userCode = $value["userActive"];
+				$userPhone = $value["userPhone"];
+				$username = $value["username"];
 
 				if ($isBlock < 5) {
 					if ($value["userActive"] != 1) {
 						Session::set("userCode", $value["userActive"]);
-						header("Location: confirmcode.php");
+						$userCode =  "HTStore:" . strval(md5(time())) . strval(md5($username)) . strval(md5($userEmail)) . strval(md5($userPhone));
+						$sendEmail = $this->email->sendEmail($username, $userEmail, $userCode);
+						if ($sendEmail) {
+							header("Location: reconfirm.php");
+						}
 					} else {
 						Session::set("userBlock", false);
 						Session::set("userLogin", true);
@@ -78,6 +86,7 @@ class user
 						Session::set("username",  $value["username"]);
 						Session::set("userFullName",  $value["userFullName"]);
 						Session::set("userImage",  $value["userImage"]);
+						unset($_SESSION["userCode"]);
 						$userID =  $value["userID"];
 						$lastLogin = time() + 10;
 						$query = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
@@ -290,6 +299,8 @@ class user
 			Session::set("username",  $value["username"]);
 			Session::set("userFullName",  $value["userFullName"]);
 			Session::set("userImage",  $value["userImage"]);
+			unset($_SESSION["userCode"]);
+
 			$userID =  $value["userID"];
 			$lastLogin = time() + 10;
 			$query = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";

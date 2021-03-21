@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["code"]) && $_GET["code"
     }
   }
 } else {
-  header("Location: 404.php");
+  header("Location: index.php");
 }
 ?>
 

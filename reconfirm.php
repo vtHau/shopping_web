@@ -1,7 +1,7 @@
 ﻿<?php include_once "inc/header.php"; ?>
 
 <?php
-if (!isset($_SESSION["username"])) {
+if (!isset($_SESSION["userCode"])) {
   header("Location: index.php");
 }
 ?>
@@ -12,7 +12,7 @@ if (!isset($_SESSION["username"])) {
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
         <li><a href="index.php">Trang chủ</a></li>
-        <li class="active"><a href="confirmaccount.php">Đăng ký tài khoản thành công</a></li>
+        <li class="active"><a href="reconfirm.php">Kiểm tra Email</a></li>
       </ul>
     </div>
   </div>
@@ -26,7 +26,7 @@ if (!isset($_SESSION["username"])) {
       <div class="col-md-12">
         <div class="error-wrapper text-center">
           <div class="error-text">
-            <p>Bạn đã đăng ký tài khoản thành công, vui lòng kiểm tra địa chỉ Email bạn đã đăng ký để kích hoạt tài khoản.</p>
+            <p>Chúng tôi đã gửi lại Email xác nhận vào Email bạn đã đăng ký, vui lòng kiểm tra lại để kích hoạt tài khoản.</p>
           </div>
           <div class="search-error">
             <form id="search-form" action="#">

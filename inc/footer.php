@@ -316,7 +316,7 @@
     <div class="box-chat">
       <div class="header-chat">
         <div class="header-chat-avatar">
-          <img src="admin.png" alt="">
+          <img src="assets/img/avatars/admin.png" alt="">
         </div>
         <div class="header-chat-info">
           <p class="name">Quản trị viên <i class="fa fa-angle-down"></i></p>
