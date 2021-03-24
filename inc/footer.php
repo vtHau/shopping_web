@@ -483,5 +483,8 @@
 
   </html>
   <?php
+  $updatevsitor = $visitor->updateVisit();
+  ?>
+  <?php
   ob_end_flush();
   ?>

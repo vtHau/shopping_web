@@ -42,6 +42,9 @@ $toast = new toastify();
 include_once "classes/chat.php";
 $chat = new chat();
 
+include_once "classes/visitor.php";
+$visitor = new visitor();
+
 include_once "helpers/format.php";
 $fm = new format();
 ?>
