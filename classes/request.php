@@ -109,6 +109,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 		}
 	}
 
+	if ($_POST["type"] == "getCountUserOnline") {
+		$getCountUserOnline = $user->countUserOnline();
+		if ($getCountUserOnline) {
+			echo $getCountUserOnline->fetch_assoc()["countUserOnline"];
+		} else {
+			echo "0";
+		}
+	}
+
 	if ($_POST["type"] == "getUserOnline") {
 		$userOnline = $user->getUserOnline();
 		$result = '';

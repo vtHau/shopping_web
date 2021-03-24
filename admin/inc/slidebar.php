@@ -217,6 +217,23 @@
             </li>
           </ul>
         </li>
+
+        <li>
+          <a href="#">
+            <i class="metismenu-icon pe-7s-diamond"></i>
+            Thống kê
+            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+          </a>
+          <ul>
+            <li>
+              <a href="viewvisit.php">
+                <i class="metismenu-icon">
+                </i>
+                Truy cập
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

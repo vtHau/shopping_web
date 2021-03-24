@@ -131,6 +131,14 @@ class user
 		return $result;
 	}
 
+	public function countUserOnline()
+	{
+		$time = time();
+		$query = "SELECT count(userID) AS countUserOnline FROM tbl_user WHERE userLastLogin > '$time'";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
 	public function updateStatus()
 	{
 		$userID = Session::get("userID");

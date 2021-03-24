@@ -17,6 +17,13 @@ class visitor
 		$this->fm = new Format();
 	}
 
+	public function getCountVisitor()
+	{
+		$query = "SELECT quantity FROM tbl_countvisitor WHERE visitID = 1 ";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
 	public function updateVisit()
 	{
 		$query = "UPDATE tbl_countvisitor SET quantity = quantity + 1 WHERE visitID = 1";

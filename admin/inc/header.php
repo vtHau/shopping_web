@@ -35,6 +35,9 @@ $fm = new format();
 include_once "../classes/review.php";
 $review = new review();
 
+include_once "../classes/visitor.php";
+$visitor = new visitor();
+
 include_once "../classes/toastify.php";
 $toast = new toastify();
 
