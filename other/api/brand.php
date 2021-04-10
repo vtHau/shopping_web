@@ -10,8 +10,12 @@ if ($getBrand) {
     $result[] = $row;
   }
 }
+if (isset($getBrand)) {
+  $brandResult = ["brand" => $result];
+  echo json_encode($brandResult);
+} else {
+  echo "NOT_FOUND_BRAND";
+}
 
-$brandResult = ["brand" => $result];
 
-echo json_encode($brandResult);
 ?>

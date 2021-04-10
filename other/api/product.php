@@ -48,7 +48,7 @@ $product = new product();
 //     $result[] = $row;
 //   }
 // }
-$keyword = "xxxxxxx";
+$keyword = "mi";
 
 $searchProduct = $product->searchProduct($keyword);
 if ($searchProduct) {
