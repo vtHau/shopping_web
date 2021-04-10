@@ -23,15 +23,6 @@
 </div>
 <!-- Slider Area End Here -->
 
-
-<!-- Brand Banner Area Start Here -->
-<div class="image-banner pb-30 off-white-bg">
-  <div class="container">
-    <div class="col-img">
-      <a href="#"><img src="assets\img\banner\h1-banner.jpg" alt="image banner"></a>
-    </div>
-  </div>
-  <!-- Container End -->
 </div>
 <!-- Brand Banner Area End Here -->
 
@@ -707,7 +698,7 @@
 <div class="main-brand-banner off-white-bg  pb-100 pb-sm-60 pt-sm-55" style="padding-top: 60px;">
   <div class="container">
     <div class="section-ttitle mb-30 text-center">
-      <h2 class="section-ttitle2 mb-30" style="font-size: 40px;">Sản Phẩm Mới</h2>
+      <h2 class="section-ttitle2 mb-30" style="font-size: 40px;">Danh sách thương hiệu</h2>
     </div>
     <div class="row no-gutters">
       <div class="col-lg-3">

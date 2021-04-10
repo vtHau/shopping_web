@@ -26,7 +26,8 @@
 				<div class="card-body">
 					<h5 class="card-title text-center mt-3 pb-4" style="font-size: 25px; border-bottom: 1px solid rgba(26,54,126,0.125);"><i class="fas fa-cogs" style="font-size: 40px;"></i> <br>Thông tin truy cập</h5>
 
-					<div class="row mt-4 mb-4">
+					<div class="row mt-4 mb-4 text-center justify-content-center">
+
 						<div class="col-md-4 text-center">
 							<div class="card-device">
 								<div class="card-device-title">
@@ -45,21 +46,11 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-md-4 text-center">
 							<div class="card-device">
 								<div class="card-device-title">
-									<i class="fa fa-windows" style="font-size: 25px;"></i>
-									<br />
-									Khách truy cập
-								</div>
-								<div class="card-device-body">
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 text-center">
-							<div class="card-device">
-								<div class="card-device-title">
-									<i class="fa fa-chrome" style="font-size: 25px;"></i>
+									<i class="fas fa-user" style="font-size: 25px;"></i>
 									<br />
 									Người dùng
 								</div>
@@ -68,6 +59,7 @@
 								</div>
 							</div>
 						</div>
+
 					</div>
 
 				</div>

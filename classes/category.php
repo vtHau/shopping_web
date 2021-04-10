@@ -10,6 +10,7 @@ class category
 {
 	private $db;
 	private $fm;
+
 	public function __construct()
 	{
 		$this->db = new Database();
@@ -19,6 +20,13 @@ class category
 	public function getCategory()
 	{
 		$query = "SELECT * FROM tbl_category ORDER BY catID DESC";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function getCategoryLimit($limit)
+	{
+		$query = "SELECT * FROM tbl_category ORDER BY catID DESC LIMIT $limit ";
 		$result = $this->db->select($query);
 		return $result;
 	}
@@ -116,33 +124,6 @@ class category
 			$alert = "<span class='success'>Category Deleted Not Success</span>";
 			return $alert;
 		}
-	}
-	public function getcatbyId($id)
-	{
-		$query = "SELECT * FROM tbl_category where catId = '$id' ";
-		$result = $this->db->select($query);
-		return $result;
-	}
-	public function show_category_fontend()
-	{
-		$query = "SELECT * FROM tbl_category order by catId desc ";
-		$result = $this->db->select($query);
-		return $result;
-	}
-	public function get_product_by_cat($id)
-	{
-		$query = "SELECT * FROM tbl_product where catId = '$id' order by catId desc LIMIT 8";
-		$result = $this->db->select($query);
-		return $result;
-	}
-	public function get_name_by_cat($id)
-	{
-		$query = "SELECT tbl_product.*,tbl_category.catName,tbl_category.catId 
-					  FROM tbl_product,tbl_category 
-					  WHERE tbl_product.catId = tbl_category.catId
-					  AND tbl_product.catId ='$id' LIMIT 1 ";
-		$result = $this->db->select($query);
-		return $result;
 	}
 }
 ?>

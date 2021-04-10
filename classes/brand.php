@@ -23,6 +23,13 @@ class brand
 		return $result;
 	}
 
+	public function getBrandLimit($limit)
+	{
+		$query = "SELECT * FROM tbl_brand ORDER BY brandID DESC LIMIT $limit";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
 	public function getBrandByID($ID)
 	{
 		$query = "SELECT * FROM tbl_brand WHERE brandID = '$ID' ORDER BY brandID DESC";
