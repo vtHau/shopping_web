@@ -20,13 +20,13 @@ $product = new product();
 //   }
 // }
 
-$limit = 7;
-$productLimit = $product->getProductLimit();
-if ($productLimit) {
-  while ($row = $productLimit->fetch_object()) {
-    $result[] = $row;
-  }
-}
+// $limit = 7;
+// $productLimit = $product->getProductLimit();
+// if ($productLimit) {
+//   while ($row = $productLimit->fetch_object()) {
+//     $result[] = $row;
+//   }
+// }
 
 // $productFeather = $product->getProductFeather();
 // if ($productFeather) {
@@ -48,8 +48,21 @@ if ($productLimit) {
 //     $result[] = $row;
 //   }
 // }
+$keyword = "xxxxxxx";
 
-$productResult = ["product" => $result];
+$searchProduct = $product->searchProduct($keyword);
+if ($searchProduct) {
+  while ($row = $searchProduct->fetch_object()) {
+    $result[] = $row;
+  }
+}
 
-echo json_encode($productResult);
+if (isset($result)) {
+  $productResult = ["product" => $result];
+  echo json_encode($productResult);
+} else {
+  echo "NOT_FOUND_PRODUCT";
+}
+
+
 ?>

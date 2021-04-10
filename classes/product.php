@@ -94,6 +94,19 @@ class product
 		return $result;
 	}
 
+	public function searchProduct($keyword)
+	{
+		$query =
+			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
+			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
+			 INNER JOIN tbl_brand ON tbl_product.productBrand = tbl_brand.brandID
+			 WHERE tbl_product.productName LIKE '%$keyword%' 
+			 ORDER BY tbl_product.productID DESC";
+
+		$result = $this->db->select($query);
+		return $result;
+	}
+
 	public function getProductLimit()
 	{
 		$query =
