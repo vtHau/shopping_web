@@ -49,6 +49,8 @@ class user
 		return $result;
 	}
 
+
+
 	public function loginCustomer($data)
 	{
 		$username = mysqli_real_escape_string($this->db->link, $data["username"]);
@@ -123,6 +125,18 @@ class user
 		}
 	}
 
+	public function loginInMobile($userEmail, $password)
+	{
+		$query = "SELECT userFullName , userEmail , userPhone , userAddress , userImage , userSex , userStatus , userBirthDay   FROM tbl_user WHERE userEmail = '$userEmail' AND password = '$password'";
+		$result = $this->db->select($query);
+
+		if ($result) {
+			return $result;
+		}
+
+		return false;
+	}
+
 	public function getUserOnline()
 	{
 		$time = time();
@@ -145,6 +159,40 @@ class user
 		$lastLogin = time() + 10;
 		$queryOnline = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
 		$this->db->update($queryOnline);
+	}
+
+	public function insertUserInMobile($data)
+	{
+		$userFullName = mysqli_real_escape_string($this->db->link, $data["name"]);
+		$userEmail = mysqli_real_escape_string($this->db->link, $data["email"]);
+		$password = mysqli_real_escape_string($this->db->link, $data["password"]);
+		$password = md5($password);
+
+		$userPhone = "12345678";
+		$username = strval(md5(time()));
+		$userBirthDay = "01-01-2001";
+		$userSex = 1;
+		$userAddress	= "";
+		$userStatus = "";
+
+		$userCode =  "HTStore:" . strval(md5(time()))  . strval(md5($userEmail)) . strval(md5($userPhone));
+		$query = "INSERT INTO tbl_user(username, password, userFullName, userEmail, userPhone, userBirthDay, userSex, userAddress, userImage, userStatus , userActive) VALUES('$username','$password','$userFullName','$userEmail','$userPhone', '$userBirthDay', '$userSex', '$userAddress','default.png', '$userStatus' , '$userCode') ";
+		$result = $this->db->insert($query);
+		if ($result) {
+			return true;
+		}
+		return false;
+	}
+
+	public function emailExist($data)
+	{
+		$userEmail = mysqli_real_escape_string($this->db->link, $data["email"]);
+		$query = "SELECT * FROM tbl_user WHERE userEmail = '$userEmail'";
+		$result = $this->db->select($query);
+		if ($result) {
+			return true;
+		}
+		return false;
 	}
 
 	public function insertUser($data, $files)
