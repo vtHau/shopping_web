@@ -16,9 +16,9 @@ $emailExist = $user->emailExist($dataSignUp);
 if (!$emailExist) {
   $signUp = $user->insertUserInMobile($dataSignUp);
   if ($signUp) {
-    echo "ADD_ACCOUNT_SUCCESS";
+    echo "SIGNUP_SUCCESS";
   } else {
-    echo "ADD_ACCOUNT_FAIL";
+    echo "SIGNUP_FAIL";
   }
 } else {
   echo "EMAIL_EXIST";

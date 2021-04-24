@@ -2,9 +2,13 @@
 
 <?php
 if (!isset($_GET["catID"]) || $_GET["catID"] == NULL) {
-  echo '<script> window.location = "404.php" </script>';
+  header("Location: index.php");
 } else {
   $catID = $_GET["catID"];
+  $getCategory = $cat->getCategoryByID($catID);
+  if (!$getCategory) {
+    header("Location: index.php");
+  }
 }
 ?>
 

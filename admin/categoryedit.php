@@ -3,9 +3,14 @@
 
 <?php
 if (!isset($_GET["editID"]) || $_GET["editID"] == NULL) {
-	echo "<script>window.location = 'categorylist.php'</script>";
+	header("Location: categorylist.php");
 } else {
 	$ID = $_GET["editID"];
+
+	$getCatByID = $cat->getCategoryByID($ID);
+	if (!$getCatByID) {
+		header("Location: categorylist.php");
+	}
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {

@@ -3,9 +3,14 @@
 
 <?php
 if (!isset($_GET["editID"]) || $_GET["editID"] == NULL) {
-	echo "<script>window.location = 'sliderlist.php'</script>";
+	header("Location: sliderlist.php");
 } else {
 	$ID = $_GET["editID"];
+
+	$getSliderByID = $slider->getSliderByID($ID);
+	if (!$getSliderByID) {
+		header("Location: sliderlist.php");
+	}
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {

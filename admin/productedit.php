@@ -3,9 +3,14 @@
 
 <?php
 if (!isset($_GET["editID"]) || $_GET["editID"] == NULL) {
-	echo "<script>window.location = 'productlist.php'</script>";
+	header("Location: productlist.php");
 } else {
 	$ID = $_GET["editID"];
+
+	$getProductByID = $product->getProductByID($ID);
+	if (!$getProductByID) {
+		header("Location: productlist.php");
+	}
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {

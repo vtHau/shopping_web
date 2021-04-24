@@ -3,7 +3,6 @@
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
-  echo "<script>console.log('d chay')</script>";
   $inserUser = $cus->insertUser($_POST, $_FILES);
 }
 ?>

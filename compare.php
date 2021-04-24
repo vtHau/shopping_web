@@ -2,8 +2,14 @@
 
 <?php
 if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
-  $productID = $_GET["productID"];
-  $insertCart = $cart->insertCart($productID, 1);
+  $productID = (int)$_GET["productID"];
+  $getProduct = $product->getProductByID((int)$_GET["productID"]);
+
+  if (!$getProduct) {
+    header("Location: index.php");
+  } else {
+    $insertCart = $cart->insertCart($productID, 1);
+  }
 }
 
 if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {

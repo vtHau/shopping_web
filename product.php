@@ -2,9 +2,13 @@
 
 <?php
 if (!isset($_GET["productID"]) || $_GET["productID"] == NULL) {
-  echo '<script> window.location = "404.php" </script>';
+  header("Location: index.php");
 } else {
-  $productID = $_GET["productID"];
+  $productID = (int)$_GET["productID"];
+  $getProduct = $product->getProductByID((int)$_GET["productID"]);
+  if (!$getProduct) {
+    header("Location: index.php");
+  }
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
@@ -57,7 +61,6 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
     <div class="thumb-bg">
       <?php
       $getProduct = $product->getProductByID($productID);
-      $catID;
       if ($getProduct) {
         while ($result = $getProduct->fetch_assoc()) {
           $catID = $result["productCategory"];

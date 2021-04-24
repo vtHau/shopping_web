@@ -3,9 +3,13 @@
 
 <?php
 if (!isset($_GET["editID"]) || $_GET["editID"] == NULL) {
-	echo "<script>window.location = 'brandlist.php'</script>";
+	header("Location: brandlist.php");
 } else {
 	$ID = $_GET["editID"];
+	$getBrandByID = $brand->getBrandByID($ID);
+	if (!$getBrandByID) {
+		header("Location: brandlist.php");
+	}
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {

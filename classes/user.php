@@ -170,12 +170,12 @@ class user
 
 		$userPhone = "12345678";
 		$username = strval(md5(time()));
-		$userBirthDay = "01-01-2001";
+		$userBirthDay = "2001-01-01";
 		$userSex = 1;
-		$userAddress	= "";
-		$userStatus = "";
+		$userAddress	= "no infomation";
+		$userStatus = "no infomation";
 
-		$userCode =  "HTStore:" . strval(md5(time()))  . strval(md5($userEmail)) . strval(md5($userPhone));
+		$userCode =  "1";
 		$query = "INSERT INTO tbl_user(username, password, userFullName, userEmail, userPhone, userBirthDay, userSex, userAddress, userImage, userStatus , userActive) VALUES('$username','$password','$userFullName','$userEmail','$userPhone', '$userBirthDay', '$userSex', '$userAddress','default.png', '$userStatus' , '$userCode') ";
 		$result = $this->db->insert($query);
 		if ($result) {
