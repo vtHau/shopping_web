@@ -12,8 +12,7 @@ if ($getCate) {
 }
 
 if (isset($result)) {
-  $cateResult = ["category" => $result];
-  echo json_encode($cateResult);
+  echo json_encode($result);
 } else {
   echo "NOT_FOUND_CATEGORY";
 }
