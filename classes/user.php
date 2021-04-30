@@ -127,7 +127,7 @@ class user
 
 	public function loginInMobile($userEmail, $password)
 	{
-		$query = "SELECT userFullName , userEmail , userPhone , userAddress , userImage , userSex , userStatus , userBirthDay   FROM tbl_user WHERE userEmail = '$userEmail' AND password = '$password'";
+		$query = "SELECT userID , userFullName , userEmail , userPhone , userAddress , userImage , userSex , userStatus , userBirthDay   FROM tbl_user WHERE userEmail = '$userEmail' AND password = '$password'";
 		$result = $this->db->select($query);
 
 		if ($result) {
@@ -135,6 +135,20 @@ class user
 		}
 
 		return false;
+	}
+
+	public function updateInfoUser($datas)
+	{
+		$userFullName = mysqli_real_escape_string($this->db->link, $datas["name"]);
+		$userPhone = mysqli_real_escape_string($this->db->link, $datas["phone"]);
+		$userAddress = mysqli_real_escape_string($this->db->link, $datas["address"]);
+		$userStatus = mysqli_real_escape_string($this->db->link, $datas["status"]);
+		$userID = mysqli_real_escape_string($this->db->link, $datas["userID"]);
+
+		$query = "UPDATE tbl_user SET userFullName = '$userFullName' , userPhone = '$userPhone' , userStatus = '$userStatus' , userAddress = '$userAddress' WHERE userID = '$userID' ";
+
+		$result = $this->db->update($query);
+		return $result;
 	}
 
 	public function getUserOnline()
