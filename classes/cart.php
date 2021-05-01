@@ -40,7 +40,11 @@ class cart
 
 	public function getCartByID($userID)
 	{
-		$query = "SELECT * FROM tbl_cart WHERE userID = '$userID'";
+		$query =
+			"SELECT tbl_product.*, tbl_cart.* ,  tbl_category.catName, tbl_brand.brandName 
+			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
+			 INNER JOIN tbl_brand ON tbl_product.productBrand = tbl_brand.brandID INNER JOIN tbl_cart ON  tbl_cart.productID = tbl_product.productID  
+			   WHERE tbl_cart.userID = '$userID'";
 		$result = $this->db->select($query);
 		return $result;
 	}
