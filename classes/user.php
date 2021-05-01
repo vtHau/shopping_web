@@ -137,6 +137,18 @@ class user
 		return false;
 	}
 
+	public function getUserInfo($userEmail)
+	{
+		$query = "SELECT userID , userFullName , userEmail , userPhone , userAddress , userImage , userSex , userStatus , userBirthDay   FROM tbl_user WHERE userEmail = '$userEmail'";
+		$result = $this->db->select($query);
+
+		if ($result) {
+			return $result;
+		}
+
+		return false;
+	}
+
 	public function updateInfoUser($datas)
 	{
 		$userFullName = mysqli_real_escape_string($this->db->link, $datas["name"]);

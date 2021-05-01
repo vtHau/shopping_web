@@ -38,6 +38,13 @@ class order
 		return $result;
 	}
 
+	public function getOrderHistory($userID)
+	{
+		$query = "SELECT * FROM tbl_order WHERE userID = '$userID' AND statusOrder <> 4";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
 	public function getOrderInAdmin()
 	{
 		$query = "SELECT * FROM tbl_order , tbl_user WHERE tbl_order.userID = tbl_user.userID";
