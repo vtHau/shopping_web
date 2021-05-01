@@ -14,8 +14,9 @@ $userID = $info["userID"];
 
 $getOrderHistory = $order->getOrderHistory($userID);
 if ($getOrderHistory) {
-  $orderHistory = $getOrderHistory->fetch_object();
-  $result = ["orderHistory" => $orderHistory];
+  while ($row = $getOrderHistory->fetch_object()) {
+    $result[] = $row;
+  }
   echo json_encode($result);
 } else {
   echo 'NOT_FOUND_ORDER_HISTORY';
