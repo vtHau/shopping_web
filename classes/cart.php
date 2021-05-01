@@ -38,6 +38,13 @@ class cart
 		return $result;
 	}
 
+	public function getCartByID($userID)
+	{
+		$query = "SELECT * FROM tbl_cart WHERE userID = '$userID'";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
 	public function getCountCart()
 	{
 		$userID = $this->getUserID();
@@ -91,6 +98,21 @@ class cart
 		// }
 	}
 
+	public function updateCartQuantity($cartID, $productQuantity)
+	{
+		$cartID = mysqli_real_escape_string($this->db->link, $cartID);
+		$productQuantity = mysqli_real_escape_string($this->db->link, $productQuantity);
+
+		$query = "UPDATE tbl_cart SET productQuantity = '$productQuantity' WHERE cartID = '$cartID'";
+		$result = $this->db->update($query);
+
+		if ($result) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 
 	public function updateQuantityCart($cartID, $productQuantity)
 	{
@@ -128,6 +150,18 @@ class cart
 		// 	$msg = "<span class='erorr'> Số lượng " . $quantity . " bạn đặt quá số lượng chúng tôi chỉ còn " . $result_product['product_remain'] . " cái</span> ";
 		// 	return $msg;
 		// }
+	}
+
+	public function deleteCartByID($cartID)
+	{
+		$cartID = mysqli_real_escape_string($this->db->link, $cartID);
+		$query = "DELETE FROM tbl_cart WHERE cartID = '$cartID'";
+		$result = $this->db->delete($query);
+		if ($result) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function deleteCart($cartID)
