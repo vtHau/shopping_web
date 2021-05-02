@@ -102,6 +102,41 @@ class cart
 		// }
 	}
 
+	public function insertCartMobile($userID, $productID, $productQuantity)
+	{
+		$productQuantity = $this->fm->validation($productQuantity);
+		$productQuantity = mysqli_real_escape_string($this->db->link, $productQuantity);
+		$productID = mysqli_real_escape_string($this->db->link, $productID);
+		$query = "SELECT * FROM tbl_cart WHERE userID = '$userID' AND productID = '$productID'";
+		$result = $this->db->select($query);
+
+		if ($result) {
+			$productQuantity = $result->fetch_assoc()["productQuantity"] + 1;
+			$query = "UPDATE tbl_cart SET productQuantity = '$productQuantity' WHERE userID = '$userID' AND productID = '$productID' ";
+			$result = $this->db->update($query);
+			if ($result) {
+				return true;
+			}
+			return false;
+		} else {
+			$query = "SELECT * FROM tbl_product WHERE productID = '$productID' ";
+			$result = $this->db->select($query)->fetch_assoc();
+
+			$productName = $result['productName'];
+			$productPrice = $result['productPrice'];
+			$productImage = $result['productImage'];
+
+			$queryInsert = "INSERT INTO tbl_cart(userID, productID, productName, productPrice, productQuantity, productImage) VALUES('$userID', '$productID', '$productName','$productPrice','$productQuantity','$productImage' ) ";
+			$resultInsert = $this->db->insert($queryInsert);
+
+			if ($resultInsert) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+
 	public function updateCartQuantity($cartID, $productQuantity)
 	{
 		$cartID = mysqli_real_escape_string($this->db->link, $cartID);
@@ -112,11 +147,9 @@ class cart
 
 		if ($result) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
-
 
 	public function updateQuantityCart($cartID, $productQuantity)
 	{

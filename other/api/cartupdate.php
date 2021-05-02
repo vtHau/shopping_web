@@ -9,10 +9,24 @@ $cart = new cart();
 $json = file_get_contents('php://input');
 $update = json_decode($json, true);
 $type =  $update["type"];
-$cartID =  $update["cartID"];
 
 switch ($type) {
+  case "INSERT_CART":
+    $userID = $update["userID"];
+    $productID = $update["productID"];
+    $quantity = $update["quantity"];
+
+    $inserCart = $cart->insertCartMobile($userID, $productID, $quantity);
+    if ($inserCart) {
+      echo "INSERT_CART_SUCCESS";
+    } else {
+      echo "INSERT_CART_FAIL";
+    }
+    break;
+
   case 'UPDATE_QUANTITY':
+    $cartID =  $update["cartID"];
+
     $productQuantity =  $update["quantity"];
     $updateCart = $cart->updateCartQuantity($cartID, $productQuantity);
     if ($updateCart) {
@@ -23,6 +37,8 @@ switch ($type) {
     break;
 
   case "DELETE_CART":
+    $cartID =  $update["cartID"];
+
     $deleteCart = $cart->deleteCartByID($cartID);
     if ($deleteCart) {
       echo "DELETE_CART_SUCCESS";
