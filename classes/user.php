@@ -268,7 +268,26 @@ class user
 		}
 	}
 
+	public function updatePassword($datas)
+	{
+		$userID = mysqli_real_escape_string($this->db->link, $datas["userID"]);
+		$password = mysqli_real_escape_string($this->db->link, $datas["password"]);
+		$password = md5($password);
+		$newPassword = mysqli_real_escape_string($this->db->link, $datas["newPassword"]);
 
+		$query = "SELECT * FROM tbl_user WHERE userID = '$userID' AND password = '$password' ";
+		$result = $this->db->select($query);
+		if ($result) {
+			$newPassword = md5($newPassword);
+			$query = "UPDATE tbl_user SET password = '$newPassword' WHERE userID = '$userID'";
+			$result = $this->db->update($query);
+			if ($result) {
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
 
 	public function changePassword($data)
 	{

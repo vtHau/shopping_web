@@ -29,7 +29,7 @@ class review
 
 	public function getReview($productID)
 	{
-		$query = "SELECT * FROM tbl_review , tbl_user WHERE productID = '$productID' AND tbl_review.status = 1 AND tbl_review.userID = tbl_user.userID";
+		$query = "SELECT tbl_review.reviewID , tbl_review.comment , tbl_review.timeReview , tbl_review.star , tbl_user.userImage , tbl_user.userFullName  FROM tbl_review , tbl_user WHERE productID = '$productID' AND tbl_review.status = 1 AND tbl_review.userID = tbl_user.userID";
 		$result = $this->db->select($query);
 		return $result;
 	}
