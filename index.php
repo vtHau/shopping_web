@@ -28,7 +28,7 @@
 
 
 <!-- Trending Products Start Here -->
-<div class="trendig-product pb-10 off-white-bg">
+<div class="trendig-product pb-10 ">
   <div class="container">
     <div class="trending-box">
       <div class="title-box">
@@ -48,7 +48,6 @@
                 <div class="pro-img">
                   <a href="product.php?productID=<?php echo $result["productID"] ?>">
                     <img class="primary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
-                    <img class="secondary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                   </a>
                   <a href="product.php?productID=<?php echo $result["productID"] ?>" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
                 </div>
@@ -107,7 +106,7 @@
 
 
 <!-- Ban chay Start Here -->
-<div class="trendig-product pb-100 off-white-bg">
+<div class="trendig-product pb-100 ">
   <div class="container">
     <div class="trending-box">
       <div class="title-box">
@@ -127,7 +126,6 @@
                 <div class="pro-img">
                   <a href="product.php?productID=<?php echo $result["productID"] ?>">
                     <img class="primary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
-                    <img class="secondary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                   </a>
                   <a href="product.php?productID=<?php echo $result["productID"] ?>" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
                 </div>
@@ -184,7 +182,7 @@
 
 
 <!-- Hot Deal Products Start Here -->
-<div class="hot-deal-products off-white-bg pb-90 pb-sm-50">
+<div class="hot-deal-products  pb-90 pb-sm-50">
   <div class="container">
     <!-- Product Title Start -->
     <div class="post-title pb-30">
@@ -206,7 +204,6 @@
             <div class="pro-img">
               <a href="product.php?productID=<?php echo $result["productID"] ?>">
                 <img class="primary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
-                <img class="secondary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
               </a>
               <a href="product.php?productID=<?php echo $result["productID"] ?>" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
             </div>
@@ -317,7 +314,6 @@
                         <div class="pro-img">
                           <a href="product.php?productID=<?php echo $result["productID"] ?>">
                             <img class="primary-img" style="height: 381px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
-                            <img class="secondary-img" style="height: 381px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                           </a>
                           <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
                         </div>
@@ -373,7 +369,6 @@
                           <div class="pro-img">
                             <a href="product.php?productID=<?php echo $rowResult["productID"] ?>">
                               <img class="primary-img" style="height: 381px; object-fit: cover;" src="admin/uploads/products/<?php echo $rowResult["productImage"] ?>" alt="single-product">
-                              <img class="secondary-img" style="height: 381px; object-fit: cover;" src="admin/uploads/products/<?php echo $rowResult["productImage"] ?>" alt="single-product">
                             </a>
                             <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
                           </div>
@@ -497,7 +492,6 @@
                         <div class="pro-img">
                           <a href="product.php?productID=<?php echo $result["productID"] ?>">
                             <img class="primary-img" style="height: 381px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
-                            <img class="secondary-img" style="height: 381px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                           </a>
                           <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
                         </div>
@@ -553,7 +547,6 @@
                           <div class="pro-img">
                             <a href="product.php?productID=<?php echo $rowResult["productID"] ?>">
                               <img class="primary-img" style="height: 381px; object-fit: cover;" src="admin/uploads/products/<?php echo $rowResult["productImage"] ?>" alt="single-product">
-                              <img class="secondary-img" style="height: 381px; object-fit: cover;" src="admin/uploads/products/<?php echo $rowResult["productImage"] ?>" alt="single-product">
                             </a>
                             <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
                           </div>
@@ -622,7 +615,7 @@
 
 
 <!-- San pham moi -->
-<div class="like-product pt-50 off-white-bg pt-sm-50 pb-sm-55 ">
+<div class="like-product pt-50  pt-sm-50 pb-sm-55 ">
   <div class="container">
     <div class="like-product-area">
       <h2 class="section-ttitle2 mb-30" style="font-size: 40px;">Sản Phẩm Mới</h2>
@@ -638,7 +631,6 @@
               <div class="pro-img">
                 <a href="product.php?productID=<?php echo $result["productID"] ?>">
                   <img class="primary-img" style="height: 277px; width: 222px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
-                  <img class="secondary-img" style="height: 277px; width: 222px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                 </a>
                 <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
               </div>
@@ -695,7 +687,7 @@
 
 
 <!-- Brand Banner Area Start Here -->
-<div class="main-brand-banner off-white-bg  pb-100 pb-sm-60 pt-sm-55" style="padding-top: 60px;">
+<div class="main-brand-banner   pb-100 pb-sm-60 pt-sm-55" style="padding-top: 60px;">
   <div class="container">
     <div class="section-ttitle mb-30 text-center">
       <h2 class="section-ttitle2 mb-30" style="font-size: 40px;">Danh sách thương hiệu</h2>

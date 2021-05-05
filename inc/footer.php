@@ -395,6 +395,7 @@
 
 
   <script src="assets\js\custom-script.js?v=<?php echo time(); ?>"></script>
+  <script src="assets\js\zoom.js?v=<?php echo time(); ?>"></script>
   <!-- <script src="http:\\127.0.0.1\webshop\assets\js\custom-script.js"></script> -->
 
   <script>

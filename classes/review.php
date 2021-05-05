@@ -67,6 +67,15 @@ class review
 	{
 		$userID = $this->getUserID();
 		$query = "SELECT * FROM tbl_review , tbl_user WHERE productID = '$productID'  AND tbl_review.userID = tbl_user.userID AND tbl_review.userID = '$userID'";
+
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function getReviewByUser($userID, $productID)
+	{
+		$query = "SELECT tbl_review.reviewID , tbl_review.comment , tbl_review.timeReview , tbl_review.star , tbl_user.userImage , tbl_user.userFullName , tbl_review.status
+					 FROM tbl_review , tbl_user WHERE productID = '$productID'  AND tbl_review.userID = tbl_user.userID AND tbl_review.userID = '$userID'";
 		$result = $this->db->select($query);
 		return $result;
 	}
@@ -93,6 +102,16 @@ class review
 		return $result;
 	}
 
+	public function newYourReview($userID, $productID, $star, $comment)
+	{
+		$query = "INSERT INTO tbl_review(userID, productID, comment, star) VALUES('$userID', '$productID', '$comment', '$star')";
+		$result = $this->db->insert($query);
+		if ($result) {
+			return true;
+		}
+		return false;
+	}
+
 	public function updateReview($productID, $star, $comment)
 	{
 		$userID = session_id();
@@ -108,6 +127,18 @@ class review
 		return $result;
 	}
 
+	public function updateYourReview($userID, $productID, $star, $comment)
+	{
+		$query = "UPDATE tbl_review SET comment = '$comment' , star = '$star'  WHERE userID = '$userID' AND productID = '$productID'";
+
+		$result = $this->db->update($query);
+
+		if ($result) {
+			return true;
+		}
+		return false;
+	}
+
 	public function deleteReview($productID)
 	{
 		$userID = session_id();
@@ -121,6 +152,16 @@ class review
 			Session::set("deleteReview", 0);
 		}
 		return $result;
+	}
+
+	public function deleteYourReview($userID, $productID)
+	{
+		$query = "DELETE FROM tbl_review WHERE productID = '$productID' AND userID = '$userID'";
+		$result = 	$this->db->delete($query);
+		if ($result) {
+			return true;
+		}
+		return false;
 	}
 
 	public function deleteReviewID($reviewID)

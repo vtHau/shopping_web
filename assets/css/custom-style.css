@@ -230,8 +230,8 @@ i.lnr.lnr-arrow-left {
 }
 
 .single-product {
-  border: 2px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.6rem;
 }
 
 .comment-box-image {

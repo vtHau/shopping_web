@@ -73,7 +73,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
               <!-- Thumbnail Large Image start -->
               <div class="tab-content">
                 <div id="thumb1" class="tab-pane fade show active">
-                  <a data-fancybox="images" href=""><img style="width: 400px; height: 400px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="product-view"></a>
+                  <a data-fancybox="images" href=""><img id='zoom-img' style="width: 400px; height: 400px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="product-view"></a>
                 </div>
               </div>
               <!-- Thumbnail Large Image End -->
@@ -366,10 +366,10 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
 </div>
 <!-- Product Thumbnail Description End -->
 <!-- Hot Deal Products Start Here -->
-<div class="hot-deal-products off-white-bg pt-60 pb-90 pb-sm-50">
+<div class="hot-deal-products pb-90 pb-sm-50">
   <div class="container">
     <!-- Product Title Start -->
-    <div class="post-title pb-30">
+    <div class="post-title pb-10">
       <h2>Sản phẩm liên quan</h2>
     </div>
     <!-- Product Title End -->

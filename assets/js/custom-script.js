@@ -1,6 +1,9 @@
 var ratedIndex = 0;
 
 $(document).ready(function () {
+  $("#zoom-img").elevateZoom({
+    scrollZoom: true,
+  });
   $(window).scroll(function () {
     if ($(this).scrollTop() > 300) {
       $(".hide-cart-info").addClass("show-cart-info");

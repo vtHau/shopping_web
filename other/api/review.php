@@ -25,6 +25,57 @@ switch ($type) {
     }
     break;
 
+  case "GET_YOUR_REVIEW":
+    $productID = $product["productID"];
+    $userID = $product["userID"];
+    $getUserReview = $review->getReviewByUser($userID, $productID);
+    if ($getUserReview) {
+      while ($row = $getUserReview->fetch_object()) {
+        $result[] = $row;
+      };
+      echo json_encode($result);
+    } else {
+      echo "NOT_FOUND_YOUR_REVIEW";
+    }
+
+    break;
+  case "NEW_YOUR_REVIEW":
+    $productID = $product["productID"];
+    $userID = $product["userID"];
+    $comment = $product["comment"];
+    $star = $product["star"];
+
+    $newInsert = $review->newYourReview($userID, $productID, $star, $comment);
+    if ($newInsert) {
+      echo "NEW_YOUR_REVIEW_SUCCESS";
+    } else {
+      echo "NEW_YOUR_REVIEW_FAIL";
+    }
+    break;
+  case "UPDATE_YOUR_REVIEW":
+    $productID = $product["productID"];
+    $userID = $product["userID"];
+    $comment = $product["comment"];
+    $star = $product["star"];
+
+    $updateReview = $review->updateYourReview($userID, $productID, $star, $comment);
+    if ($updateReview) {
+      echo "UPDATE_YOUR_REVIEW_SUCCESS";
+    } else {
+      echo "UPDATE_YOUR_REVIEW_FAIL";
+    }
+    break;
+  case "DELETE_YOUR_REVIEW":
+    $productID = $product["productID"];
+    $userID = $product["userID"];
+    $deleteReview = $review->deleteYourReview($userID, $productID);
+    if ($deleteReview) {
+      echo 'DELETE_YOUR_REVIEW_SUCCESS';
+    } else {
+      echo 'DELETE_YOUR_REVIEW_FAIL';
+    }
+    break;
+
   default:
     # code...
     break;
