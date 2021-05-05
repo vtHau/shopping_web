@@ -630,7 +630,7 @@
               <!-- Product Image Start -->
               <div class="pro-img">
                 <a href="product.php?productID=<?php echo $result["productID"] ?>">
-                  <img class="primary-img" style="height: 277px; width: 222px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
+                  <img class="primary-img" style="height: 277px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                 </a>
                 <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
               </div>

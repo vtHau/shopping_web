@@ -234,6 +234,17 @@ i.lnr.lnr-arrow-left {
   border-radius: 0.6rem;
 }
 
+.single-product:hover .pro-img {
+  transform: rotateY(180deg) !important;
+  padding: 10px 10px !important;
+}
+.pro-img {
+  transition: transform 0.6s ease 0s !important;
+}
+.primary-img {
+  border-radius: 10px;
+}
+
 .comment-box-image {
   display: flex;
   justify-content: center;
@@ -515,5 +526,3 @@ i.lnr.lnr-arrow-left {
   font-size: 32px;
   color: white;
 }
-
-
