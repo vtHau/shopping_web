@@ -309,7 +309,7 @@
   if (Session::isUserLogin()) {
   ?>
     <div id="btn-chat">
-      <i class="fa fa-comments"></i>
+    <i class="far fa-envelope"></i>
     </div>
   <?php } ?>
   <div id="popup-chat">
@@ -390,7 +390,7 @@
   <!-- Plugin js -->
   <script src="assets\js\plugins.js"></script>
   <!-- Main activaion js -->
-  <script src="assets\js\main.js"></script>
+  <script src="assets\js\main.js?v=<?php echo time(); ?>"></script>
   <script src="assets\js\toastr.min.js"></script>
 
 

@@ -122,13 +122,13 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                 <div class="box-quantity d-flex hot-product2">
                   <form action="" method="POST">
                     <div style="display: flex;">
-                      <input class="quantity mr-15" type="number" name="productQuantity" min="1" value="1" />
-                      <input type="submit" name="submit" class="btn btn-primary" value="Thêm vào giỏ hàng" />
+                      <input class="quantity mr-15 custom-box-quantity" type="number" name="productQuantity" min="1" value="1" />
+                      <input type="submit" name="submit" class="btn btn-primary custom-btn-submit" value="Thêm vào giỏ hàng" />
                       <div class="ml-md-2 pro-actions">
                         <div class="ml-2 actions-secondary">
-                          <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="" data-original-title="WishList"><i class="lnr lnr-heart"></i>
+                          <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="" data-original-title="WishList"><i class="fas fa-heartbeat"></i>
                             <span>Yêu thích</span></a>
-                          <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="" data-original-title="Compare"><i class="lnr lnr-sync"></i>
+                          <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="" data-original-title="Compare"><i class="fas fa-sync-alt"></i>
                             <span>So sánh</span></a>
                         </div>
                       </div>
@@ -404,8 +404,8 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                   <a href="product.php?productID=<?php echo $result["productID"] ?>" title="Xem chi tiết thông tin về sản phẩm">Xem chi tiết</a>
                 </div>
                 <div class="actions-secondary">
-                  <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="Thêm vào so sánh"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a>
-                  <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="Thêm vào yêu thích"><i class="lnr lnr-heart"></i> <span>Thêm yêu thích</span></a>
+                  <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="Thêm vào so sánh"><i class="fas fa-sync-alt"></i> <span>Thêm so sánh</span></a>
+                  <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="Thêm vào yêu thích"><i class="fas fa-heartbeat"></i> <span>Thêm yêu thích</span></a>
                 </div>
               </div>
             </div>

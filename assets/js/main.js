@@ -123,8 +123,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     controlNavThumbs: false,
     pauseOnHover: true,
     controlNav: false,
-    prevText: "<i class='lnr lnr-arrow-left'></i>",
-    nextText: "<i class='lnr lnr-arrow-right'></i>",
+    prevText: "<i class='fas fa-angle-double-left'></i>",
+    nextText: "<i class='fas fa-angle-double-right'></i>",
   });
 
   /*----------------------------------------------------
@@ -136,8 +136,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     dots: false,
     smartSpeed: 1500,
     navText: [
-      "<i class='lnr lnr-arrow-left'></i>",
-      "<i class='lnr lnr-arrow-right'></i>",
+      "<i class='fas fa-angle-double-left'></i>",
+      "<i class='fas fa-angle-double-right'></i>",
     ],
     margin: 10,
     responsive: {
@@ -166,8 +166,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     dots: false,
     smartSpeed: 1500,
     navText: [
-      "<i class='lnr lnr-arrow-left'></i>",
-      "<i class='lnr lnr-arrow-right'></i>",
+      "<i class='fas fa-angle-double-left'></i>",
+      "<i class='fas fa-angle-double-right'></i>",
     ],
     margin: 10,
     responsive: {
@@ -200,8 +200,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     autoplay: true,
     dots: false,
     navText: [
-      "<i class='lnr lnr-arrow-left'></i>",
-      "<i class='lnr lnr-arrow-right'></i>",
+      "<i class='fas fa-angle-double-left'></i>",
+      "<i class='fas fa-angle-double-right'></i>",
     ],
     smartSpeed: 1200,
     margin: 0,
@@ -228,8 +228,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     autoplay: true,
     dots: false,
     navText: [
-      "<i class='lnr lnr-arrow-left'></i>",
-      "<i class='lnr lnr-arrow-right'></i>",
+      "<i class='fas fa-angle-double-left'></i>",
+      "<i class='fas fa-angle-double-right'></i>",
     ],
     smartSpeed: 1200,
     margin: 0,
@@ -268,8 +268,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
       dots: false,
       smartSpeed: 1000,
       navText: [
-        "<i class='lnr lnr-arrow-left'></i>",
-        "<i class='lnr lnr-arrow-right'></i>",
+        "<i class='fas fa-angle-double-left'></i>",
+        "<i class='fas fa-angle-double-right'></i>",
       ],
       margin: 10,
       responsive: {
@@ -304,8 +304,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
       dots: false,
       smartSpeed: 1000,
       navText: [
-        "<i class='lnr lnr-arrow-left'></i>",
-        "<i class='lnr lnr-arrow-right'></i>",
+        "<i class='fas fa-angle-double-left'></i>",
+        "<i class='fas fa-angle-double-right'></i>",
       ],
       margin: 10,
       responsive: {
@@ -335,8 +335,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     dots: false,
     smartSpeed: 1500,
     navText: [
-      "<i class='lnr lnr-arrow-left'></i>",
-      "<i class='lnr lnr-arrow-right'></i>",
+      "<i class='fas fa-angle-double-left'></i>",
+      "<i class='fas fa-angle-double-right'></i>",
     ],
     margin: 10,
     responsive: {
@@ -365,8 +365,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     dots: true,
     smartSpeed: 1500,
     navText: [
-      "<i class='lnr lnr-arrow-left'></i>",
-      "<i class='lnr lnr-arrow-right'></i>",
+      "<i class='fas fa-angle-double-left'></i>",
+      "<i class='fas fa-angle-double-right'></i>",
     ],
     margin: 10,
     responsive: {
@@ -399,8 +399,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     dots: true,
     smartSpeed: 1500,
     navText: [
-      "<i class='lnr lnr-arrow-left'></i>",
-      "<i class='lnr lnr-arrow-right'></i>",
+      "<i class='fas fa-angle-double-left'></i>",
+      "<i class='fas fa-angle-double-right'></i>",
     ],
     margin: 10,
     responsive: {
@@ -441,8 +441,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
       dots: false,
       smartSpeed: 1500,
       navText: [
-        "<i class='lnr lnr-arrow-left'></i>",
-        "<i class='lnr lnr-arrow-right'></i>",
+        "<i class='fas fa-angle-double-left'></i>",
+        "<i class='fas fa-angle-double-right'></i>",
       ],
       margin: 0,
       responsive: {
@@ -472,8 +472,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     dots: false,
     smartSpeed: 1500,
     navText: [
-      "<i class='lnr lnr-arrow-left'></i>",
-      "<i class='lnr lnr-arrow-right'></i>",
+      "<i class='fas fa-angle-double-left'></i>",
+      "<i class='fas fa-angle-double-right'></i>",
     ],
     margin: 0,
     responsive: {
@@ -503,8 +503,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     dots: true,
     smartSpeed: 1500,
     navText: [
-      "<i class='lnr lnr-arrow-left'></i>",
-      "<i class='lnr lnr-arrow-right'></i>",
+      "<i class='fas fa-angle-double-left'></i>",
+      "<i class='fas fa-angle-double-right'></i>",
     ],
     margin: 20,
     responsive: {
@@ -534,8 +534,8 @@ NOTE: main.js, All custom script and plugin activation script in this file.
   $(".thumb-menu").owlCarousel({
     loop: false,
     navText: [
-      "<i class='lnr lnr-arrow-left'></i>",
-      "<i class='lnr lnr-arrow-right'></i>",
+      "<i class='fas fa-angle-double-left'></i>",
+      "<i class='fas fa-angle-double-right'></i>",
     ],
     margin: 15,
     smartSpeed: 1000,

@@ -1,10 +1,8 @@
 <?php include_once "inc/header.php"; ?>
 
 
-<!-- Slider Area Start Here -->
 <div class="slider_box">
   <div class="slider-wrapper theme-default">
-    <!-- Slider Background  Image Start-->
     <div id="slider" class="nivoSlider">
       <?php
       $getSlider = $slider->getSliderInUser();
@@ -17,42 +15,32 @@
       }
       ?>
     </div>
-    <!-- Slider Background  Image Start-->
   </div>
 </div>
 </div>
-<!-- Slider Area End Here -->
 
 </div>
-<!-- Brand Banner Area End Here -->
 
-
-<!-- Trending Products Start Here -->
-<div class="trendig-product pb-10 ">
+<div class="trendig-product mt-70">
   <div class="container">
     <div class="trending-box">
-      <div class="title-box">
-        <h2>Xu <br>Hướng</h2>
+      <div class="">
+        <h2>Xu Hướng</h2>
       </div>
       <div class="product-list-box">
-        <!-- Arrivals Product Activation Start Here -->
         <div class="trending-pro-active owl-carousel">
           <?php
           $productFeather = $product->getProductFeather();
           if ($productFeather) {
             while ($result = $productFeather->fetch_assoc()) {
           ?>
-              <!-- Single Product Start -->
               <div class="single-product">
-                <!-- Product Image Start -->
                 <div class="pro-img">
                   <a href="product.php?productID=<?php echo $result["productID"] ?>">
                     <img class="primary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                   </a>
                   <a href="product.php?productID=<?php echo $result["productID"] ?>" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
                 </div>
-                <!-- Product Image End -->
-                <!-- Product Content Start -->
                 <div class="pro-content">
                   <div class="pro-info">
                     <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
@@ -89,28 +77,22 @@
                     </div>
                   </div>
                 </div>
-                <!-- Product Content End -->
               </div>
-              <!-- Single Product End -->
           <?php }
           } ?>
         </div>
-        <!-- Arrivals Product Activation End Here -->
       </div>
-      <!-- main-product-tab-area-->
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Trending Products End Here -->
 
 
 <!-- Ban chay Start Here -->
-<div class="trendig-product pb-100 ">
+<div class="trendig-product mt-70">
   <div class="container">
     <div class="trending-box">
-      <div class="title-box">
-        <h2>Bán<br>Chạy</h2>
+      <div class="">
+        <h2>Bán Chạy</h2>
       </div>
       <div class="product-list-box">
         <!-- Arrivals Product Activation Start Here -->
@@ -182,12 +164,16 @@
 
 
 <!-- Hot Deal Products Start Here -->
-<div class="hot-deal-products  pb-90 pb-sm-50">
+<div class="hot-deal-products mt-70">
   <div class="container">
     <!-- Product Title Start -->
-    <div class="post-title pb-30">
-      <h2>hot deals</h2>
+    <div class="tab-menu" style="margin-bottom:  38px;">
+      <div class="">
+        <h2>Hot Deal</h2>
+      </div>
+
     </div>
+
     <!-- Product Title End -->
     <!-- Hot Deal Product Activation Start -->
     <div class="hot-deal-active owl-carousel">
@@ -259,11 +245,11 @@
 
 
 <!-- Thuong hieu Products Area Start Here -->
-<div class="arrivals-product pb-80 pb-sm-45" style="padding-top: 60px;">
+<div class="arrivals-product mt-70">
   <div class="container">
     <div class="main-product-tab-area">
       <div class="tab-menu mb-25">
-        <div class="section-ttitle">
+        <div class="">
           <h2>Thương hiệu</h2>
         </div>
         <!-- Nav tabs -->
@@ -437,11 +423,11 @@
 
 
 <!-- Danh muc Products Area Start Here -->
-<div class="arrivals-product pb-80 pb-sm-45">
+<div class="arrivals-product mt-70">
   <div class="container">
     <div class="main-product-tab-area">
       <div class="tab-menu mb-25">
-        <div class="section-ttitle">
+        <div class="s">
           <h2>Danh muc</h2>
         </div>
         <!-- Nav tabs -->

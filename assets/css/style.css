@@ -1350,10 +1350,11 @@ li.megamenu-img a {
 .actions-primary a,
 .product-description .compare-cart,
 .cart-main-area.wish-list .product-add-to-cart a {
-  background: #eeeeee none repeat scroll 0 0;
+  background: red none repeat scroll 0 0;
+  background-image: linear-gradient(to right, #ffcd2b, #fb07ee);
   border: 1px solid #cbcbcb;
-  border-radius: 3px;
-  color: #333333;
+  border-radius: 10px;
+  color: #fff;
   height: 40px;
   line-height: 40px;
   position: relative;
@@ -1379,6 +1380,8 @@ li.megamenu-img a {
   border-color: #414dd1;
   border-radius: 20px;
   background-image: linear-gradient(to right, #37ccff, #7b22ff);
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 .actions-secondary a {
   background: transparent none repeat scroll 0 0;
@@ -1521,9 +1524,11 @@ li.megamenu-img a {
 }
 
 .owl-dots {
+  display: none;
   text-align: center;
 }
 .owl-dot {
+  display: none;
   background: #a9a9a9 none repeat scroll 0 0;
   border-radius: 100%;
   display: inline-block;
@@ -1533,6 +1538,7 @@ li.megamenu-img a {
   width: 7px;
 }
 .owl-dot.active {
+  display: none;
   border-radius: 10px;
   width: 29px;
   background: #414dd1;
@@ -1764,6 +1770,8 @@ li.megamenu-img a {
 
 #scrollUp {
   background: #333 none repeat scroll 0 0;
+  background-image: linear-gradient(to right, #37ccff, #7b22ff);
+  border-radius: 50%;
   bottom: 65px;
   color: #fff;
   cursor: pointer;
@@ -1775,10 +1783,13 @@ li.megamenu-img a {
   text-transform: uppercase;
   width: 40px;
   z-index: 999;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 
 #scrollUp:hover {
   background: #414dd1;
+  background-image: linear-gradient(to right, #ffcd2b, #fb07ee);
 }
 
 #scrollUp i {
@@ -1867,7 +1878,8 @@ li.megamenu-img a {
   width: 225px;
 }
 .trendig-product .owl-dots {
-  bottom: 64px;
+  display: none;
+  bottom: -100px;
   left: 81px;
   position: absolute;
 }
@@ -2246,6 +2258,7 @@ li.megamenu-img a {
 }
 
 .latest-blog-active .owl-dot {
+  display: none;
   margin-top: 20px;
 }
 .main-blog .single-latest-blog {

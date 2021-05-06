@@ -82,6 +82,18 @@ header("Cache-Control: max-age=2592000");
 	<!-- Favicons -->
 	<link rel="shortcut icon" href="assets\img\favicon.ico">
 	<!-- Fontawesome css -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/brands.min.css" integrity="sha512-SFyAczXIjDD7PVlzleuYRQ1jGCwnm4RnN+O5+L62Od3MJxHBsB0HmtMOdewV9CZWOz+ACu2CHOvF+5/yHagcwA==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/fontawesome.min.css" integrity="sha512-RUDCXG3qlIoMxuNYXWvgh3WT6t+dBpm4yzBHkLmqw3itMjBPKFtOz1/tyHrcJqtCD3lkDLH72wzbRB1/iEhEpw==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/regular.min.css" integrity="sha512-1zQwRdYvFXv3uja1GvVZ+U2o60RKNOEXF1kcdIqQrVZSLLXp9fmMj+FHzmLXZL9g67zl8z2OnXPcoDUqFl8bkA==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/solid.min.css" integrity="sha512-PSbQOcUBvm3V+L/FUQshAwNrufipONNFw1dabxWlN6PIDSlYhZALVbroWCEXXJGohgKFPofkIvMb0w3v+sZMYQ==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/svg-with-js.min.css" integrity="sha512-QpM5XbQDsKlxzYDfTqcTp+gC7g8smBiYy2TY5OSkOgBFfl+pfClr7gshZM68GZ5cYGHCusyZil1a1xxDXnk4NA==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/v4-shims.min.css" integrity="sha512-GbNjbL4pcOOlqYpRwuhTVP1zXZJGafunVqs3ODg+ryHDcppv0GGGXrIYy5K4Oz+nhMjCXGqT74v4WKw+C05Esg==" crossorigin="anonymous" />
+
 	<link rel="stylesheet" href="assets\css\font-awesome.min.css">
 	<!-- Ionicons css -->
 	<link rel="stylesheet" href="assets\css\ionicons.min.css">
@@ -109,7 +121,6 @@ header("Cache-Control: max-age=2592000");
 	<!-- Responsive css -->
 	<link rel="stylesheet" href="assets\css\responsive.css">
 	<link rel="stylesheet" href="assets\css\toastr.min.css">
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"> -->
 	<!-- Modernizer js -->
 	<link rel="stylesheet" href="assets\css\custom-style.css?v=<?php echo time(); ?>">
 
@@ -214,7 +225,7 @@ header("Cache-Control: max-age=2592000");
 										</select>
 									</div>
 									<input type="text" name="search" placeholder="Nhập từ khóa để tìm kiếm...">
-									<button><i class="lnr lnr-magnifier"></i></button>
+									<button><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-search fa-w-16 fa-fw"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" class=""></path></svg></button>
 								</form>
 							</div>
 						</div>
@@ -225,7 +236,7 @@ header("Cache-Control: max-age=2592000");
 
 								<ul class="d-flex justify-content-lg-end justify-content-center align-items-center">
 									<li>
-										<a href="cart.php"><i class="lnr lnr-cart"></i><span class="my-cart"><span class="total-pro">
+										<a href="cart.php"><i class="fas fa-shopping-cart" style="color: #4C49F0;"></i><span class="my-cart"><span class="total-pro">
 													<?php
 													$countCart = $cart->getCountCart();
 													if ($countCart) {
@@ -278,7 +289,7 @@ header("Cache-Control: max-age=2592000");
 											<?php }  ?>
 										</ul>
 									</li>
-									<li><a href="wishlist.php"><i class="lnr lnr-heart"></i><span class="my-cart"><span>Yêu</span><span>thích
+									<li><a href="wishlist.php"><i class="fas fa-heart" style="color: #ff006f;"></i><span class="my-cart"><span>Yêu</span><span>thích
 													(<?php
 														$countWishlist = $wish->getCountWishlist();
 														if ($countWishlist) {

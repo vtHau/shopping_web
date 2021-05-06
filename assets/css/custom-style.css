@@ -231,7 +231,7 @@ i.lnr.lnr-arrow-left {
 
 .single-product {
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.6rem;
+  border-radius: 0.8rem;
 }
 
 .single-product:hover .pro-img {
@@ -513,16 +513,43 @@ i.lnr.lnr-arrow-left {
   text-align: center;
   bottom: 120px;
   right: 30px;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: #333;
+  background-image: linear-gradient(to right, #37ccff, #7b22ff);
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   z-index: 1;
   cursor: pointer;
 }
 
+#btn-chat:hover {
+  background-image: linear-gradient(to right, #ffcd2b, #fb07ee);
+}
+
 #btn-chat > i {
-  line-height: 50px;
-  font-size: 32px;
+  font-size: 22px;
+  line-height: 40px;
   color: white;
+  text-align: center;
+}
+
+.custom-btn-submit {
+  border-radius: 30px !important;
+  background-image: linear-gradient(to right, #37ccff, #7b22ff);
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  border: none;
+}
+
+.custom-btn-submit:hover {
+  background-image: linear-gradient(to right, #ffcd2b, #fb07ee);
+}
+
+.custom-box-quantity {
+  border: none !important;
+  border-radius: 30px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
