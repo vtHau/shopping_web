@@ -25,6 +25,23 @@ if (isset($_GET["type"])) {
 			}
 			break;
 
+		case "search":
+			$keyword = $_GET["keyword"];
+			$searchProduct = $product->searchProduct($keyword);
+			if($searchProduct) {
+				while ($row = $searchProduct->fetch_object()) {
+					$getStar = $review->getStar($row->productID);
+					if ($getStar) {
+						$starText = $getStar->fetch_assoc()["totalStar"];
+						$star = floor($starText);
+						$row->productStar = $star;
+					}
+					$result[] = $row;
+				}
+			}
+
+		break;
+
 		default:
 			break;
 	}

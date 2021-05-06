@@ -385,23 +385,23 @@ ul {
   width: 100%;
 }
 .categorie-search-box input {
-  background: white none repeat scroll 0 0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  background: #f1f3f5 none repeat scroll 0 0;
+  border: none;
+  border-radius: 20px;
   color: #a9a9a9;
   font-size: 13px;
   height: 38px;
-  padding: 0 226px 0 16px;
+  padding: 22px 60px 22px 16px;
   width: 100%;
 }
 .categorie-search-box button {
-  background: #414dd1 none repeat scroll 0 0;
+  background: transparent;
   border: medium none;
   border-radius: 0 3px 3px 0;
-  color: white;
-  font-size: 25px;
-  height: 38px;
-  line-height: 38px;
+  color: grey;
+  font-size: 14px;
+  height: 44px;
+  line-height: 44px;
   margin: 0;
   padding: 0;
   position: absolute;
@@ -417,7 +417,7 @@ ul {
 }
 
 .categorie-search-box button:hover {
-  background: rgba(230, 46, 4, 0.8) none repeat scroll 0 0;
+  background: transparent;
   cursor: pointer;
 }
 .categorie-search-box .form-group {
@@ -447,13 +447,17 @@ ul {
   width: 100%;
 }
 
+.nice-select {
+  background-color: #f1f3f5 !important;
+}
+
 .categorie-search-box .nice-select .list {
   height: auto;
   overflow-y: auto;
 }
 
 .bootstrap-select {
-  border-radius: 15px 0 0 15px;
+  /* border-radius: 15px 0 0 15px; */
   border-style: none solid none none;
   border-width: 0 1px 0 0;
   color: #777777;
