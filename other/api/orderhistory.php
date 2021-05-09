@@ -10,14 +10,38 @@ $order = new order();
 
 $json = file_get_contents('php://input');
 $info = json_decode($json, true);
-$userID = $info["userID"];
+$type = $info["type"];
 
-$getOrderHistory = $order->getOrderHistory($userID);
-if ($getOrderHistory) {
-  while ($row = $getOrderHistory->fetch_object()) {
-    $result[] = $row;
-  }
-  echo json_encode($result);
-} else {
-  echo 'NOT_FOUND_ORDER_HISTORY';
+switch ($type) {
+	case 'GET_ORDER':
+		$userID = $info["userID"];
+
+		$getOrderHistory = $order->getOrderHistory($userID);
+		if ($getOrderHistory) {
+		  while ($row = $getOrderHistory->fetch_object()) {
+		    $result[] = $row;
+		  }
+		  echo json_encode($result);
+		} else {
+		  echo 'NOT_FOUND_ORDER_HISTORY';
+		}
+		break;
+
+	case "INSERT_ORDER" :
+		$userID = $info["userID"];
+
+		$insertOrder = $order->insertOrderUser($userID);
+		if($insertOrder) {
+			echo "INSERT_ORDER_SUCCESS";
+		} else {
+			echo "INSERT_ORDER_FAIL";
+		}
+
+		break;
+	
+	default:
+		# code...
+		break;
 }
+
+

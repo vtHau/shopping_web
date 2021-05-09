@@ -82,6 +82,32 @@ class order
 		return false;
 	}
 
+
+	public function insertOrderUser($userID)
+	{
+		$query = "SELECT * FROM tbl_cart WHERE userID = '$userID'";
+		$getCart = $this->db->select($query);
+
+		if ($getCart) {
+			while ($result = $getCart->fetch_assoc()) {
+				$productID = $result['productID'];
+				$productName = $result['productName'];
+				$productQuantity = $result['productQuantity'];
+				$productPrice = $result['productPrice'] * $productQuantity;
+				$productImage = $result['productImage'];
+
+				$queryOrder = "INSERT INTO tbl_order(userID, productID, productName, productQuantity, productPrice, productImage) VALUES('$userID','$productID','$productName','$productQuantity','$productPrice','$productImage')";
+				$inserOrder = $this->db->insert($queryOrder);
+			}
+		}
+
+		if ($inserOrder) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public function deleteOrderInUser($orderID)
 	{
 		$orderID = mysqli_real_escape_string($this->db->link, $orderID);

@@ -1,4 +1,10 @@
 <?php
+
+use \Firebase\JWT\JWT;
+
+require __DIR__ . './../../vendor/autoload.php';
+include_once("./getToken.php");
+
 include_once './../../classes/product.php';
 include_once './../../classes/review.php';
 $product = new product();
@@ -6,52 +12,149 @@ $review = new review();
 ?>
 
 <?php
-if (isset($_GET["type"])) {
-	$type = $_GET["type"];
 
-	switch ($type) {
-		case 'hot':
-			$productHotDeal = $product->getProductHotDeal();
-			if ($productHotDeal) {
-				while ($row = $productHotDeal->fetch_object()) {
-					$getStar = $review->getStar($row->productID);
-					if ($getStar) {
-						$starText = $getStar->fetch_assoc()["totalStar"];
-						$star = floor($starText);
-						$row->productStar = $star;
-					}
-					$result[] = $row;
+
+
+// if (isset($_GET["type"])) {
+// 	$type = $_GET["type"];
+
+// 	switch ($type) {
+// 		case 'hot':
+// 			$productHotDeal = $product->getProductHotDeal();
+// 			if ($productHotDeal) {
+// 				while ($row = $productHotDeal->fetch_object()) {
+// 					$getStar = $review->getStar($row->productID);
+// 					if ($getStar) {
+// 						$starText = $getStar->fetch_assoc()["totalStar"];
+// 						$star = floor($starText);
+// 						$row->productStar = $star;
+// 					}
+// 					$result[] = $row;
+// 				}
+// 			}
+// 			break;
+
+// 		case "search":
+// 			$keyword = $_GET["keyword"];
+// 			$searchProduct = $product->searchProduct($keyword);
+// 			if ($searchProduct) {
+// 				while ($row = $searchProduct->fetch_object()) {
+// 					$getStar = $review->getStar($row->productID);
+// 					if ($getStar) {
+// 						$starText = $getStar->fetch_assoc()["totalStar"];
+// 						$star = floor($starText);
+// 						$row->productStar = $star;
+// 					}
+// 					$result[] = $row;
+// 				}
+// 			}
+
+// 			break;
+
+// 		default:
+// 			break;
+// 	}
+
+// 	if (isset($result)) {
+// 		echo json_encode($result);
+// 	} else {
+// 		echo "NOT_FOUND_PRODUCT";
+// 	}
+// }
+
+$json = file_get_contents('php://input');
+$info = json_decode($json, true);
+$type =  $info["type"];
+
+switch ($type) {
+	case "HOT":
+		$productHotDeal = $product->getProductHotDeal();
+		if ($productHotDeal) {
+			while ($row = $productHotDeal->fetch_object()) {
+				$getStar = $review->getStar($row->productID);
+				if ($getStar) {
+					$starText = $getStar->fetch_assoc()["totalStar"];
+					$star = floor($starText);
+					$row->productStar = $star;
 				}
-			}
-			break;
-
-		case "search":
-			$keyword = $_GET["keyword"];
-			$searchProduct = $product->searchProduct($keyword);
-			if($searchProduct) {
-				while ($row = $searchProduct->fetch_object()) {
-					$getStar = $review->getStar($row->productID);
-					if ($getStar) {
-						$starText = $getStar->fetch_assoc()["totalStar"];
-						$star = floor($starText);
-						$row->productStar = $star;
-					}
-					$result[] = $row;
-				}
+				$result[] = $row;
 			}
 
+			echo json_encode($result);
+		} else {
+			echo "NOT_FOUND_PRODUCT";
+		}
 		break;
 
-		default:
-			break;
-	}
+	case 'BRAND':
+		$brandID	 = $info["brandID"];
 
-	if (isset($result)) {
-		echo json_encode($result);
-	} else {
-		echo "NOT_FOUND_PRODUCT";
-	}
+		$getProductByBrand = $product->getProductByBrand($brandID);
+		if ($getProductByBrand) {
+			while ($row = $getProductByBrand->fetch_object()) {
+				$getStar = $review->getStar($row->productID);
+				if ($getStar) {
+					$starText = $getStar->fetch_assoc()["totalStar"];
+					$star = floor($starText);
+					$row->productStar = $star;
+				}
+				$result[] = $row;
+			}
+
+			echo json_encode($result);
+		} else {
+			echo "NOT_FOUND_PRODUCT";
+		}
+		break;
+
+	case "SEARCH":
+		$keyword = $info["keyword"];
+
+		$searchProduct = $product->searchProduct($keyword);
+		if ($searchProduct) {
+			while ($row = $searchProduct->fetch_object()) {
+				$getStar = $review->getStar($row->productID);
+				if ($getStar) {
+					$starText = $getStar->fetch_assoc()["totalStar"];
+					$star = floor($starText);
+					$row->productStar = $star;
+				}
+				$result[] = $row;
+			}
+
+			echo json_encode($result);
+		} else {
+			echo "NOT_FOUND_PRODUCT";
+		}
+		break;
+
+	case "CATE":
+		$catID = $info["catID"];
+
+		$getProductByCate = $product->getProductByCategory($catID);
+		if ($getProductByCate) {
+			while ($row = $getProductByCate->fetch_object()) {
+				$getStar = $review->getStar($row->productID);
+				if ($getStar) {
+					$starText = $getStar->fetch_assoc()["totalStar"];
+					$star = floor($starText);
+					$row->productStar = $star;
+				}
+				$result[] = $row;
+			}
+
+			echo json_encode($result);
+		} else {
+			echo "NOT_FOUND_PRODUCT";
+		}
+		break;
+
+	default:
+		# code...
+		break;
 }
+
+
 // $brandID = 4;
 // $productBrand = $product->getProductByBrand($brandID);
 // if ($productBrand) {
