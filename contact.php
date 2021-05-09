@@ -16,6 +16,13 @@
 <div class="contact-area ptb-60 ptb-sm-60">
   <div class="container">
     <div id="map"></div>
+    <h3 class="info-info">Thông tin liên hệ</h3>
+    <div class="info-contact">
+      <div class="item-contact"><i class="fas fa-map-marked-alt"></i> Địa chỉ: 280 An Dương Vương, Quận 5, TP Hồ Chí Minh</div>
+      <div class="item-contact"><i class="fas fa-mobile-alt"></i> Số điện thoại: 123.456.7898</div>
+      <div class="item-contact"><i class="fas fa-envelope"></i> Email: daihocsupham@hcmue.edu.vn</div>
+      <div class="item-contact"><i class="fab fa-facebook-f"></i> Facebook: fb.com/daihocsupham.hcmue</div>
+    </div>
   </div>
 </div>
 

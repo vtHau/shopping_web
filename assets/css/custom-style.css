@@ -559,3 +559,26 @@ i.lnr.lnr-arrow-left {
   width: 800px;
   height: 500px;
 }
+
+.info-contact {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.info-info {
+  color: #4158d7;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.item-contact {
+  color: #4158d7;
+  background-color: #F8F8F8;
+  border-radius: 10px;
+  padding: 10px 10px;
+  margin: 10px 0;
+}

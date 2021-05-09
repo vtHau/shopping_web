@@ -126,9 +126,9 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                       <input type="submit" name="submit" class="btn btn-primary custom-btn-submit" value="Thêm vào giỏ hàng" />
                       <div class="ml-md-2 pro-actions">
                         <div class="ml-2 actions-secondary">
-                          <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="" data-original-title="WishList"><i class="fas fa-heartbeat"></i>
+                          <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="" data-original-title="WishList"><i class="fas fa-heartbeat" style="color: #FF006F;"></i>
                             <span>Yêu thích</span></a>
-                          <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="" data-original-title="Compare"><i class="fas fa-sync-alt"></i>
+                          <a href="product.php?compareID=<?php echo $result["productID"] ?>" title="" data-original-title="Compare"><i class="fas fa-sync-alt" style="color: #414DD1;"></i>
                             <span>So sánh</span></a>
                         </div>
                       </div>
@@ -388,7 +388,6 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
             <div class="pro-img">
               <a href=product.php?productID=<?php echo $result["productID"] ?>">
                 <img class="primary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
-                <img class="secondary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
               </a>
               <a href="product.php?productID=<?php echo $result["productID"] ?>" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
             </div>
