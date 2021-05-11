@@ -101,12 +101,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Địa chỉ</label>
-                    <input type="text" value="<?php echo $result["userAddress"] ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Địa chỉ người nhận">
-                    <small id="emailHelp" class="form-text text-muted"></small>
-                  </div>
-
-                  <div class="form-group">
                     <label for="exampleInputEmail1">Ghi chú</label>
                     <input type="text" value="" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập ghi chú nếu có">
                     <small id="emailHelp" class="form-text text-muted"></small>

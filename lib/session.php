@@ -57,7 +57,7 @@ class Session
   public static function checkUserLogin()
   {
     self::init();
-    if (self::get("userLogin") == false) {
+    if (self::get("userLogin") === false) {
       self::destroy();
       header("Location:index.php");
     }

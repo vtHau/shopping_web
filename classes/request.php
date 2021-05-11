@@ -131,11 +131,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 									<tr>
 										<th class="text-center">STT</th>
 										<th class="text-center">Tên người dùng</th>
-										<th class="text-center">Ngày sinh</th>
-										<th class="text-center">Giới tính</th>
 										<th class="text-center">Điện thoại</th>
 										<th class="text-center">Email</th>
-										<th class="text-center">Địa chỉ</th>
 										<th class="text-center">Trạng thái</th>
 										<th class="text-center">Mô tả</th>
 										<th class="text-center">Tính năng</th>
@@ -145,13 +142,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 							';
 			while ($getUser = $userOnline->fetch_assoc()) {
 				$i++;
-
-				if ($getUser["userSex"]  == 0) {
-					$sex = "Nam";
-				} else {
-					$sex = "Nữ";
-				}
-
 				if ($getUser["userBlock"]  < 5) {
 					$status = "Hoạt động";
 				} else {
@@ -172,16 +162,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 														</div>
 														<div class="widget-content-left flex2">
 															<div class="widget-heading">' . $getUser["userFullName"] . '</div>
-															<div class="widget-subheading opacity-7">' . $getUser["username"] . '</div>
 														</div>
 													</div>
 												</div>
 											</td>
-											<td class="text-center text-muted">' . $getUser["userBirthDay"] . '</td>
-											<td class="text-center text-muted"> ' . $sex . '</td>
 											<td class="text-center text-muted">' . $getUser["userPhone"] . '</td>
-											<td class="text-center text-muted">' . $getUser["userImage"] . '</td>
-											<td class="text-center text-muted">' . $getUser["userAddress"] . '</td>
+											<td class="text-center text-muted">' . $getUser["userEmail"] . '</td>
 											<td class="text-center text-muted">' . $status . '</td>
 											<td class="text-center text-muted">' . $getUser["userStatus"] . '</td>
 											<td class="text-center">

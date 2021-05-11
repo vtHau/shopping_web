@@ -42,29 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
               <label class="control-label col-md-2" for="f-name"><span class="require">*</span>Họ tên</label>
               <div class="col-md-10">
                 <input type="text" class="form-control" name="userFullName" placeholder="Vui lòng nhập họ tên">
-                <p>vui long nhap day du thong tin</p>
-              </div>
-            </div>
-
-            <div class="form-group d-md-flex align-items-md-center">
-              <label class="control-label col-md-2" for="l-name"><span class="require">*</span>Tên đăng nhập</label>
-              <div class="col-md-10">
-                <input type="text" class="form-control" name="username" placeholder="Vui lòng nhập tên đăng nhập">
-              </div>
-            </div>
-
-            <div class="form-group d-md-flex align-items-md-center">
-              <label class="control-label col-md-2" for="l-name"><span class="require">*</span>Giới tính</label>
-              <div class="col-md-10 radio-button">
-                <label class="radio-inline"><input type="radio" name="userSex" value="0" checked="checked">Nam</label>
-                <label class="radio-inline"><input type="radio" name="userSex" value="1">Nữ</label>
-              </div>
-            </div>
-
-            <div class="form-group d-md-flex align-items-md-center">
-              <label class="control-label col-md-2" for="l-name"><span class="require">*</span>Ngày sinh</label>
-              <div class="col-md-10">
-                <input type="date" class="form-control" name="userBirthDay" value="1995-01-01" placeholder="Vui lòng nhập tên đăng nhập">
+                <!-- <p>vui long nhap day du thong tin</p> -->
               </div>
             </div>
 
@@ -79,13 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
               <label class="control-label col-md-2" for="email"><span class="require">*</span>Email</label>
               <div class="col-md-10">
                 <input type="email" class="form-control" name="userEmail" placeholder="Vui lòng nhập địa chỉ email">
-              </div>
-            </div>
-
-            <div class="form-group d-md-flex align-items-md-center">
-              <label class="control-label col-md-2" for="number"><span class="require">*</span>Địa chỉ</label>
-              <div class="col-md-10">
-                <input type="text" class="form-control" name="userAddress" placeholder="Vui lòng nhập địa chỉ của bạn">
               </div>
             </div>
 
@@ -125,8 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
 
           <div class="terms">
             <div class="float-md-right">
-              <span>Tôi hoàn toàn đồng ý với <a href="#" class="agree"><b>Điều khoản</b></a></span>
-              <input type="checkbox" name="agree" value="1"> &nbsp;
               <input type="submit" name="signup" value="Đăng ký" class="return-customer-btn">
             </div>
           </div>

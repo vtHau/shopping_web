@@ -53,48 +53,48 @@ class user
 
 	public function loginCustomer($data)
 	{
-		$username = mysqli_real_escape_string($this->db->link, $data["username"]);
+		$userEmail = mysqli_real_escape_string($this->db->link, $data["userEmail"]);
 		$password = mysqli_real_escape_string($this->db->link, $data["password"]);
 
-		if ($username == "" || $password == "") {
+		if ($userEmail == "" || $password == "") {
 			$alert = "<span class='error'>Vui long hoan thanh cac truong</span>";
 			return $alert;
 		} else {
 			$password = md5($password);
-			$query = "SELECT * FROM tbl_user WHERE username = '$username' AND password = '$password'";
+			$query = "SELECT * FROM tbl_user WHERE userEmail = '$userEmail' AND password = '$password'";
 			$result = $this->db->select($query);
 
 			if ($result) {
 				$value = $result->fetch_assoc();
 				$isBlock = $value["userBlock"];
 				$userEmail = $value["userEmail"];
-				$userCode = $value["userActive"];
-				$userPhone = $value["userPhone"];
-				$username = $value["username"];
+				// $userCode = $value["userActive"];
+				// $userPhone = $value["userPhone"];
 
 				if ($isBlock < 5) {
 					if ($value["userActive"] != 1) {
-						Session::set("userCode", $value["userActive"]);
-						$userCode =  "HTStore:" . strval(md5(time())) . strval(md5($username)) . strval(md5($userEmail)) . strval(md5($userPhone));
-						$sendEmail = $this->email->sendEmail($username, $userEmail, $userCode);
-						if ($sendEmail) {
-							header("Location: reconfirm.php");
-						}
+						// Session::set("userCode", $value["userActive"]);
+						// $userCode =  "HTStore:" . strval(md5(time())) . strval(md5($username)) . strval(md5($userEmail)) . strval(md5($userPhone));
+						// $sendEmail = $this->email->sendEmail($username, $userEmail, $userCode);
+						// if ($sendEmail) {
+						// 	header("Location: reconfirm.php");
+						// }
 					} else {
 						Session::set("userBlock", false);
 						Session::set("userLogin", true);
+						$_SESSION["userLogin"] = true;
 						Session::set("loginToast", 0);
 						Session::set("userID",  $value["userID"]);
-						Session::set("username",  $value["username"]);
 						Session::set("userFullName",  $value["userFullName"]);
 						Session::set("userImage",  $value["userImage"]);
-						unset($_SESSION["userCode"]);
+						// unset($_SESSION["userCode"]);
 						$userID =  $value["userID"];
 						$lastLogin = time() + 10;
 						$query = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
 						$this->db->update($query);
-
-						header("Location: index.php");
+						if (Session::get("userLogin") === true) {
+							header("Location: index.php");
+						}
 					}
 				} else {
 					Session::set("userBlock", true);
@@ -103,7 +103,7 @@ class user
 					header("Location: userblock.php");
 				}
 			} else {
-				$query = "SELECT * FROM tbl_user WHERE username = '$username'";
+				$query = "SELECT * FROM tbl_user WHERE userEmail = '$userEmail'";
 				$result = $this->db->select($query);
 
 				if ($result) {
@@ -111,9 +111,8 @@ class user
 					$userID = $value["userID"];
 					$isBlock = $value["userBlock"];
 					$isBlock++;
-					$query = "UPDATE tbl_user SET userBlock = '$isBlock' WHERE userID = '$userID' AND username = '$username'";
+					$query = "UPDATE tbl_user SET userBlock = '$isBlock' WHERE userID = '$userID' AND userEmail = '$userEmail'";
 					$result = $this->db->update($query);
-					// header("Location: index.php");
 
 					$alert = "<span class='error'>username hoac mat khau khong hop le</span>";
 					return $alert;
@@ -127,7 +126,7 @@ class user
 
 	public function loginInMobile($userEmail, $password)
 	{
-		$query = "SELECT userID , userFullName , userEmail , userPhone , userAddress , userImage , userSex , userStatus , userBirthDay   FROM tbl_user WHERE userEmail = '$userEmail' AND password = '$password'";
+		$query = "SELECT userID , userFullName , userEmail , userPhone , userImage, userStatus FROM tbl_user WHERE userEmail = '$userEmail' AND password = '$password'";
 		$result = $this->db->select($query);
 
 		if ($result) {
@@ -139,7 +138,7 @@ class user
 
 	public function getUserInfo($userEmail)
 	{
-		$query = "SELECT userID , userFullName , userEmail , userPhone , userAddress , userImage , userSex , userStatus , userBirthDay   FROM tbl_user WHERE userEmail = '$userEmail'";
+		$query = "SELECT userID , userFullName , userEmail , userPhone , userImage ,  userStatus  FROM tbl_user WHERE userEmail = '$userEmail'";
 		$result = $this->db->select($query);
 
 		if ($result) {
@@ -153,11 +152,10 @@ class user
 	{
 		$userFullName = mysqli_real_escape_string($this->db->link, $datas["name"]);
 		$userPhone = mysqli_real_escape_string($this->db->link, $datas["phone"]);
-		$userAddress = mysqli_real_escape_string($this->db->link, $datas["address"]);
 		$userStatus = mysqli_real_escape_string($this->db->link, $datas["status"]);
 		$userID = mysqli_real_escape_string($this->db->link, $datas["userID"]);
 
-		$query = "UPDATE tbl_user SET userFullName = '$userFullName' , userPhone = '$userPhone' , userStatus = '$userStatus' , userAddress = '$userAddress' WHERE userID = '$userID' ";
+		$query = "UPDATE tbl_user SET userFullName = '$userFullName' , userPhone = '$userPhone' , userStatus = '$userStatus'  WHERE userID = '$userID' ";
 
 		$result = $this->db->update($query);
 		return $result;
@@ -187,29 +185,6 @@ class user
 		$this->db->update($queryOnline);
 	}
 
-	public function insertUserInMobile($data)
-	{
-		$userFullName = mysqli_real_escape_string($this->db->link, $data["name"]);
-		$userEmail = mysqli_real_escape_string($this->db->link, $data["email"]);
-		$password = mysqli_real_escape_string($this->db->link, $data["password"]);
-		$password = md5($password);
-
-		$userPhone = "12345678";
-		$username = strval(md5(time()));
-		$userBirthDay = "2001-01-01";
-		$userSex = 1;
-		$userAddress	= "no infomation";
-		$userStatus = "no infomation";
-
-		$userCode =  "1";
-		$query = "INSERT INTO tbl_user(username, password, userFullName, userEmail, userPhone, userBirthDay, userSex, userAddress, userImage, userStatus , userActive) VALUES('$username','$password','$userFullName','$userEmail','$userPhone', '$userBirthDay', '$userSex', '$userAddress','default.png', '$userStatus' , '$userCode') ";
-		$result = $this->db->insert($query);
-		if ($result) {
-			return true;
-		}
-		return false;
-	}
-
 	public function emailExist($data)
 	{
 		$userEmail = mysqli_real_escape_string($this->db->link, $data["email"]);
@@ -221,15 +196,32 @@ class user
 		return false;
 	}
 
+	public function insertUserInMobile($data)
+	{
+		$userFullName = mysqli_real_escape_string($this->db->link, $data["name"]);
+		$userEmail = mysqli_real_escape_string($this->db->link, $data["email"]);
+		$password = mysqli_real_escape_string($this->db->link, $data["password"]);
+		$password = md5($password);
+
+		$userPhone = "12345678";
+		$userStatus = "no infomation";
+
+		$userCode =  "1";
+		$query = "INSERT INTO tbl_user(password, userFullName, userEmail, userPhone, userAddress, userImage, userStatus , userActive) VALUES('$password','$userFullName','$userEmail','$userPhone','default.png', '$userStatus' , '$userCode') ";
+		$result = $this->db->insert($query);
+		if ($result) {
+			return true;
+		}
+		return false;
+	}
+
+
+
 	public function insertUser($data, $files)
 	{
 		$userFullName = mysqli_real_escape_string($this->db->link, $data["userFullName"]);
-		$username = mysqli_real_escape_string($this->db->link, $data["username"]);
-		$userSex = mysqli_real_escape_string($this->db->link, $data["userSex"]);
-		$userBirthDay = mysqli_real_escape_string($this->db->link, $data["userBirthDay"]);
 		$userPhone = mysqli_real_escape_string($this->db->link, $data["userPhone"]);
 		$userEmail = mysqli_real_escape_string($this->db->link, $data["userEmail"]);
-		$userAddress = mysqli_real_escape_string($this->db->link, $data["userAddress"]);
 		$userStatus = mysqli_real_escape_string($this->db->link, $data["userStatus"]);
 		$password = mysqli_real_escape_string($this->db->link, $data["password"]);
 		$password = md5($password);
@@ -244,7 +236,7 @@ class user
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "../admin/uploads/avatars/" . $unique_image;
 
-		if ($userFullName == "" || $username == "" || $userSex == "" || $userBirthDay == "" || $userPhone == "" || $userEmail == "" || $userAddress == "" || $userStatus == "" ||  $password == "") {
+		if ($userFullName == "" ||  $userPhone == "" || $userEmail == "" || $userStatus == "" ||  $password == "") {
 			$alert = "<span class='error'>Fiedls must be not empty</span>";
 			return $alert;
 		} else {
@@ -254,13 +246,26 @@ class user
 				move_uploaded_file($file_temp, $uploaded_image);
 			}
 
-			$userCode =  "HTStore:" . strval(md5(time())) . strval(md5($username)) . strval(md5($userEmail)) . strval(md5($userPhone));
-			$query = "INSERT INTO tbl_user(username, password, userFullName, userEmail, userPhone, userBirthDay, userSex, userAddress, userImage, userStatus , userActive) VALUES('$username','$password','$userFullName','$userEmail','$userPhone', '$userBirthDay', '$userSex', '$userAddress','$unique_image', '$userStatus' , '$userCode') ";
+			// $userCode =  "HTStore:" . strval(md5(time())) . strval(md5($username)) . strval(md5($userEmail)) . strval(md5($userPhone));
+			$query = "INSERT INTO tbl_user(password, userFullName, userEmail, userPhone, userImage, userStatus , userActive) VALUES('$password','$userFullName','$userEmail','$userPhone', '$unique_image', '$userStatus' , '1') ";
 			$result = $this->db->insert($query);
-			$sendEmail = $this->email->sendEmail($username, $userEmail, $userCode);
+			// $sendEmail = $this->email->sendEmail($username, $userEmail, $userCode);
 
-			if ($result && $sendEmail) {
-				header("Location: confirmaccount.php");
+			if ($result) {
+				// header("Location: confirmaccount.php");
+				$queryLogin = "SELECT * FROM tbl_user WHERE userEmail = '$userEmail' ";
+				$resultLogin = $this->db->select($queryLogin);
+
+				if ($resultLogin) {
+					$value = $resultLogin->fetch_assoc();
+					Session::set("userBlock", false);
+					Session::set("userLogin", true);
+					Session::set("loginToast", 0);
+					Session::set("userID",  $value["userID"]);
+					Session::set("userFullName",  $value["userFullName"]);
+					Session::set("userImage",  $value["userImage"]);
+					header("Location: index.php");
+				}
 			} else {
 				$alert = '<div class="text-center text-noti-red">Thêm sản phẩm không thành công</div>';
 				return $alert;
@@ -383,13 +388,13 @@ class user
 		}
 	}
 
-	function activeUser($username)
+	function activeUser($userEmail)
 	{
-		$query = "UPDATE tbl_user SET userActive = 1 WHERE username = '$username'";
+		$query = "UPDATE tbl_user SET userActive = 1 WHERE userEmail = '$userEmail'";
 		$result = $this->db->update($query);
 
 		if ($result) {
-			$query = "SELECT * FROM tbl_user  WHERE username = '$username'";
+			$query = "SELECT * FROM tbl_user  WHERE userEmail = '$userEmail'";
 			$result = $this->db->select($query);
 			$value = $result->fetch_assoc();
 
@@ -397,7 +402,6 @@ class user
 			Session::set("userLogin", true);
 			Session::set("loginToast", 0);
 			Session::set("userID",  $value["userID"]);
-			Session::set("username",  $value["username"]);
 			Session::set("userFullName",  $value["userFullName"]);
 			Session::set("userImage",  $value["userImage"]);
 			unset($_SESSION["userCode"]);

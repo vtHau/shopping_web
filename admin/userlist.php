@@ -42,11 +42,8 @@
 										<tr>
 											<th class="text-center">STT</th>
 											<th class="text-center">Tên người dùng</th>
-											<th class="text-center">Ngày sinh</th>
-											<th class="text-center">Giới tính</th>
 											<th class="text-center">Điện thoại</th>
 											<th class="text-center">Email</th>
-											<th class="text-center">Địa chỉ</th>
 											<th class="text-center">Trạng thái</th>
 											<th class="text-center">Mô tả</th>
 											<th class="text-center">Tính năng</th>
@@ -71,24 +68,12 @@
 															</div>
 															<div class="widget-content-left flex2">
 																<div class="widget-heading"><?php echo $result["userFullName"] ?></div>
-																<div class="widget-subheading opacity-7"><?php echo $result["username"] ?></div>
 															</div>
 														</div>
 													</div>
 												</td>
-												<td class="text-center text-muted"><?php echo $result["userBirthDay"] ?></td>
-												<td class="text-center text-muted">
-													<?php
-													if ($result["userSex"]  == 0) {
-														echo "Nam";
-													} else {
-														echo "Nữ";
-													}
-													?>
-												</td>
 												<td class="text-center text-muted"><?php echo $result["userPhone"] ?></td>
 												<td class="text-center text-muted"><?php echo $result["userEmail"] ?></td>
-												<td class="text-center text-muted"><?php echo $result["userAddress"] ?></td>
 												<td class="text-center text-muted">
 													<?php
 													if ($result["userBlock"] < 5) {

@@ -45,6 +45,8 @@ $chat = new chat();
 include_once "classes/visitor.php";
 $visitor = new visitor();
 
+
+
 include_once "helpers/format.php";
 $fm = new format();
 ?>
@@ -136,7 +138,7 @@ header("Cache-Control: max-age=2592000");
 				<div class="btn-signin-hide"><i class="fa fa-times" aria-hidden="true"></i></div>
 				<img class="avatar-login" src="assets/img/avatar.svg" alt="">
 				<h4 class="text-login-form">Đăng nhập</h4>
-				<input class="custom-in" type="text" name="username" placeholder="Tên người dùng" />
+				<input class="custom-in" type="text" name="userEmail" placeholder="Địa chỉ Email" />
 				<div class="input-icon">
 					<input class="custom-in" type="password" name="password" placeholder="Mật khẩu" />
 					<i class="fa fa-eye show-password"></i>
@@ -170,30 +172,6 @@ header("Cache-Control: max-age=2592000");
 				<button type="submit" name="change-password" class="btn-custom">Cập Nhập</button>
 			</form>
 		</div>
-
-		<!-- Newsletter Popup Start -->
-		<div class="popup_wrapper">
-			<div class="test">
-				<span class="popup_off">Close</span>
-				<div class="subscribe_area text-center mt-60">
-					<h2>Newsletter</h2>
-					<p>Subscribe to the Truemart mailing list to receive updates on new arrivals, special offers and other
-						discount information.</p>
-					<div class="subscribe-form-group">
-						<form action="#">
-							<input autocomplete="off" type="text" name="message" id="message" placeholder="Enter your email address">
-							<button type="submit">subscribe</button>
-						</form>
-					</div>
-					<div class="subscribe-bottom mt-15">
-						<input type="checkbox" id="newsletter-permission">
-						<label for="newsletter-permission">Don't show this popup again</label>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Newsletter Popup End -->
-
 		<!-- Main Header Area Start Here -->
 		<header>
 			<!-- Header Middle Start Here -->
@@ -209,7 +187,7 @@ header("Cache-Control: max-age=2592000");
 						<div class="col-lg-5 col-md-8 ml-auto mr-auto col-10">
 							<div class="categorie-search-box">
 								<form action="#">
-									
+
 									<input type="text" name="search" placeholder="Nhập từ khóa để tìm kiếm...">
 									<button><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-search fa-w-16 fa-fw">
 											<path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" class=""></path>
@@ -292,7 +270,7 @@ header("Cache-Control: max-age=2592000");
 										?>
 											<div class="logout-user">
 												<img class="avatar-user align-middle" src="uploads/avatars/<?php echo Session::get("userImage") ?>" alt="">
-												<span class="fullname-user align-middle"><?php echo Session::get("userFullName"); ?> <i style="line-height: inherit; font-size: inherit;" class="fa fa-angle-down"></i></span>
+												<span class="fullname-user align-middle"><?php echo Session::get("userFullName"); ?> </span>
 												<ul class="ht-dropdown dropdown-style-two" style="width: 200px;">
 													<li class="list-group-item list-group-item-action" style="border: none;"><a href="?action=logout" style="color: #212529;">Đăng xuất</a></li>
 													<li class="list-group-item list-group-item-action btn-signup-show" style="border: none; color: #212529;"> Thay đổi mật khẩu</li>

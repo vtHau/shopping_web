@@ -62,7 +62,6 @@ if (isset($_GET["transport"]) && $_GET["transport"] != NULL) {
 											<th class="text-center">Tên sản phẩm</th>
 											<th class="text-center">Tên khách hàng</th>
 											<th class="text-center">Số điện thoại</th>
-											<th class="text-center">Địa chỉ</th>
 											<th class="text-center">Số lượng</th>
 											<th class="text-center">Tổng tiền</th>
 											<th class="text-center">Thời gian</th>
@@ -94,7 +93,6 @@ if (isset($_GET["transport"]) && $_GET["transport"] != NULL) {
 												</td>
 												<td class="text-center text-muted"><?php echo $result["userFullName"] ?></td>
 												<td class="text-center text-muted"><?php echo $result["userPhone"] ?></td>
-												<td class="text-center text-muted"><?php echo $result["userAddress"] ?></td>
 												<td class="text-center text-muted"><?php echo $result["productQuantity"] ?></td>
 												<td class="text-center text-muted"><?php echo $result["productPrice"] ?></td>
 												<td class="text-center text-muted"><?php echo $result["timeOrder"] ?></td>
