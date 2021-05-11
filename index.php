@@ -1,5 +1,16 @@
 <?php include_once "inc/header.php"; ?>
 
+<!-- Control panel username:	uoolo_28593106
+Control panel password:	**********
+Control panel URL:	cpanel.ihostfull.com
+MySQL username	uoolo_28593106
+MySQL password:	**********
+MySQL hostname:	sql101.ihostfull.com
+FTP username:	uoolo_28593106
+FTP password:	**********
+FTP host name:	ftp.ihostfull.com
+Your Website URL:	http://mwstore.ihostfull.com
+ 	  -->
 
 <div class="slider_box">
   <div class="slider-wrapper theme-default">
