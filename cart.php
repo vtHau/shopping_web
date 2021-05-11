@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
                 ?>
                     <tr>
                       <td class="product-thumbnail">
-                        <a href="product.php?productID=<?php echo $result["productID"] ?>"><img style="height: 102px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="cart-image"></a>
+                        <a href="product.php?productID=<?php echo $result["productID"] ?>"><img style="height: 102px; object-fit: cover; border-radius: 10px;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="cart-image"></a>
                       </td>
                       <td class="product-name"><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></td>
                       <td class="product-price"><span class="amount"><?php echo $fm->formatMoney($result["productPrice"]) ?></span></td>

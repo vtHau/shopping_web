@@ -204,8 +204,10 @@ i.lnr.lnr-arrow-left {
 
 .box-both {
   width: 100%;
-  border: 1px solid #666;
+  /* border: 1px solid #666; */
+  background-color: #f8f8f8;
   padding: 4px;
+  border-radius: 10px;
   box-sizing: border-box;
 }
 
@@ -230,7 +232,8 @@ i.lnr.lnr-arrow-left {
 }
 
 .single-product {
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  /* border: 1px solid rgba(0, 0, 0, 0.125); */
+  background-color: #f8f8f8;
   border-radius: 0.8rem;
 }
 
@@ -577,8 +580,33 @@ i.lnr.lnr-arrow-left {
 
 .item-contact {
   color: #4158d7;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   border-radius: 10px;
   padding: 10px 10px;
   margin: 10px 0;
+}
+
+.thead-light > tr > th {
+  text-align: center;
+}
+
+table .thead-light th {
+  border: none !important;
+  background-color: transparent !important;
+}
+
+.back-none {
+  background-color: transparent;
+}
+
+.order-btn {
+  border-radius: 30px;
+  padding: 12px 70px;
+}
+
+.product-text-view {
+  font-size: 13px;
+  color: #007bff;
+  transform: rotateY(180deg);
+  text-shadow: 0px 0px 3px yellow;
 }

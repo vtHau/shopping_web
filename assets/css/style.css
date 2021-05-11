@@ -199,7 +199,7 @@ ul {
 
 /* categorie slider navigation css start */
 .owl-nav div {
-  background: #fff none repeat scroll 0 0;
+  background: #f8f8f8 none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
   height: 33px;
@@ -209,7 +209,6 @@ ul {
   right: 40px;
   text-align: center;
   top: -59px;
-  border: 1px solid #cbcbcb;
   transition: all 300ms ease-in 0s;
   width: 33px;
   -webkit-transition: all 300ms ease-in 0s;
@@ -673,13 +672,13 @@ span.total-pro {
 .header-bottom-list > li > a,
 .header-bottom-list > li > ul.ht-dropdown li a {
   color: #333333;
+  font-family: "Baloo", sans-serif;
   display: block;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   padding: 10px 15px;
   position: relative;
   text-transform: none;
-  font-family: "Lato", sans-serif;
 }
 
 .header-bottom-list > li > ul.ht-dropdown li a {
@@ -1269,10 +1268,10 @@ li.megamenu-img a {
 }
 
 .pro-content h4 a {
-  color: #363636;
+  /* color: #363636; */
   display: block;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: bold;
   line-height: 20px;
   margin-bottom: 9px;
   overflow: hidden;
@@ -1296,10 +1295,9 @@ li.megamenu-img a {
 }
 
 .price {
-  color: #363636;
+  color: #474747;
   font-family: "Lato", sans-serif;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
   line-height: 20px;
 }
 .prev-price {
@@ -1510,7 +1508,8 @@ li.megamenu-img a {
   color: #414dd1;
 }
 .double-product .single-product {
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  /* border: 1px solid rgba(0, 0, 0, 0.1); */
+  background-color: #f8f8f8;
 }
 .double-product .single-product:hover {
   box-shadow: none;
@@ -3433,7 +3432,7 @@ ul.tag-list > li > a {
 .table > tfoot > tr > th,
 .table > thead > tr > td,
 .table > thead > tr > th {
-  border: 1px solid #ebebeb;
+  border: 1px solid transparent;
 }
 
 .table-responsive > .table > tbody > tr > td,
@@ -3938,6 +3937,7 @@ p.checkout-coupon input[type="submit"] {
 }
 
 .table-content table th {
+  font-family: "Baloo", sans-serif;
   color: #414dd1;
   font-weight: bold !important;
   border-top: medium none;
@@ -3977,7 +3977,7 @@ p.checkout-coupon input[type="submit"] {
 
 .table-content table td.product-subtotal {
   font-size: 15px;
-  font-weight: 600;
+  /* font-weight: 600; */
   width: 120px;
 }
 
@@ -3987,6 +3987,7 @@ p.checkout-coupon input[type="submit"] {
   font-weight: 500;
   margin-left: 10px;
   color: #6f6f6f;
+  font-weight: bold;
   text-transform: capitalize;
 }
 
@@ -4015,7 +4016,7 @@ p.checkout-coupon input[type="submit"] {
 
 .table-content table .product-price .amount {
   font-size: 15px;
-  font-weight: 600;
+  /* font-weight: 600; */
 }
 
 .table-content table td.product-remove a:hover i {

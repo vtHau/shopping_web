@@ -37,12 +37,11 @@ if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
             <table>
               <thead>
                 <tr>
-                  <th class="product-thumbnail">Image</th>
-                  <th class="product-name">Product</th>
-                  <th class="product-price">Unit Price</th>
-                  <th class="product-quantity">Stock Status</th>
-                  <th class="product-subtotal">add to cart</th>
-                  <th class="product-remove">Remove</th>
+                  <th class="product-thumbnail">Hỉnh ảnh</th>
+                  <th class="product-name">Tên sản phẩm</th>
+                  <th class="product-price">Giá</th>
+                  <th class="product-subtotal">Thêm vào giỏ hàng</th>
+                  <th class="product-remove">Xóa</th>
                 </tr>
               </thead>
               <tbody>
@@ -57,7 +56,6 @@ if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
                       </td>
                       <td class="product-name"><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></td>
                       <td class="product-price"><span class="amount"><?php echo $result["productPrice"] ?></span></td>
-                      <td class="product-stock-status"><span>in stock</span></td>
                       <td class="product-add-to-cart"><a href="wishlist.php?productID=<?php echo $result["productID"] ?>">Add to cart</a></td>
                       <td class="product-remove"> <a href="wishlist.php?deleteID=<?php echo $result["wishlistID"] ?>"><i class="fa fa-times" aria-hidden="true"></i></a></td>
                     </tr>

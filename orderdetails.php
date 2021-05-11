@@ -32,7 +32,7 @@ if (isset($_GET["received"])) {
     <div class="row">
       <div class="col-md-12">
         <div class="box-both">
-          <table class="table table-striped" style=" width: 100%;">
+          <table class="table" style=" width: 100%;">
             <thead class="thead-light">
               <tr>
                 <th scope="col">Hình ảnh</th>

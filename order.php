@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
     <div class="row">
       <div class="col-md-12">
         <div class="box-both">
-          <table class="table table-striped" style=" width: 100%;">
+          <table class="table " style=" width: 100%;">
             <thead class="thead-light">
               <tr>
                 <th scope="col">Hình ảnh</th>
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
                   $total += $result["productPrice"] * $result["productQuantity"];
               ?>
                   <tr>
-                    <td class="align-middle text-center" scope="row"><a href="product.php?productID=<?php echo $result["productID"] ?>"><img style="border-radius: 50%; height: 50px; width: 50px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="cart-image"></a></td>
+                    <td class="align-middle text-center" scope="row"><a href="product.php?productID=<?php echo $result["productID"] ?>"><img style="border-radius: 10px; height: 50px; width: 50px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="cart-image"></a></td>
                     <td class="align-middle text-center"><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></td>
                     <td class="align-middle text-center"><?php echo $result["productQuantity"] ?></td>
                     <td class="align-middle text-center"><?php echo $result["productPrice"] ?></td>
@@ -112,9 +112,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
               ?>
             </div>
           </div>
-          <div class="box-both mt-20">
+          <div class="box-both mt-20 back-none">
             <div class="form-group text-center mt-20">
-              <input type="submit" style="width: 350px;" name="order" value="Đặt hàng" class="btn btn-primary" />
+              <input type="submit" name="order" value="Đặt hàng" class="btn btn-primary order-btn" />
             </div>
           </div>
         </form>

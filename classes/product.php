@@ -177,6 +177,16 @@ class product
 		}
 	}
 
+	public function updateViewProduct($productID)
+	{
+		$query = "UPDATE tbl_product SET productView = productView + 1 WHERE productID = '$productID'";
+		$result = $this->db->update($query);
+		if ($result) {
+			return true;
+		}
+		return false;
+	}
+
 	public function updateProduct($ID, $data, $files)
 	{
 		$productName = mysqli_real_escape_string($this->db->link, $data['productName']);

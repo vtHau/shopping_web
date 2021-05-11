@@ -102,7 +102,7 @@ if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
               while ($result = $getCom->fetch_assoc()) {
             ?>
                 <td class="product-description">
-                  <a class="compare-cart text-uppercase" href="compare.php?productID=<?php echo $result["productID"] ?>"> + add to cart</a>
+                  <a class="compare-cart text-uppercase" href="compare.php?productID=<?php echo $result["productID"] ?>">Thêm vào giỏ hàng</a>
                 </td>
             <?php
               }

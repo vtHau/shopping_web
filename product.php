@@ -9,6 +9,8 @@ if (!isset($_GET["productID"]) || $_GET["productID"] == NULL) {
   if (!$getProduct) {
     header("Location: index.php");
   }
+
+  $updateViewProduct = $product->updateViewProduct($productID);
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
