@@ -1,15 +1,14 @@
 <?php
-
 require_once 'phpmailer/Exception.php';
 require_once 'phpmailer/PHPMailer.php';
 require_once 'phpmailer/SMTP.php';
-
+// https://accounts.google.com/DisplayUnlockCaptcha
 use PHPMailer\PHPMailer\PHPMailer;
 
 
 class email
 {
-	public   function sendEmail($username, $emailReceive, $userCode, $title = 'HTStore: Xác nhận đăng ký tài khoản HTStore.')
+	public   function sendEmail($emailReceive, $userCode, $title = 'MWStore: Xác nhận đăng ký tài khoản MWStore.')
 	{
 		$result = true;
 
@@ -42,14 +41,14 @@ class email
 				font-size: 30px;
 				font-weight: bold;
 				font-family:  Tahoma, Geneva, Verdana, sans-serif;
-				 ">HT Store</div>
+				 ">MW Store</div>
 				<div class="content" style="
 				font-family:  Tahoma, Geneva, Verdana, sans-serif;
 				padding: 20px 20px;
 				margin: 20px 0;
 				background-color: rgba(218, 216, 216, 0.322);
 				border-radius: 10px;">
-					Có ai đó đã sử dụng địa chỉ Email của bạn để đăng ký tài khoản <b>HT Store</b>, nếu chính xác là bạn vui lòng nhấp
+					Có ai đó đã sử dụng địa chỉ Email của bạn để đăng ký tài khoản <b>MW Store</b>, nếu chính xác là bạn vui lòng nhấp
 					vào nút xác nhận để kích hoạt tài khoản.
 				</div>
 				<div class="footer">
@@ -61,16 +60,17 @@ class email
 					box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
 						rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 					padding: 10px 35px;
-					background-color: rgba(44, 44, 243, 0.863);"><a href="http://localhost/webshop/confirmemail.php?code=' . $userCode . '" style=" color: whitesmoke;
+					background-color: rgba(44, 44, 243, 0.863);"><a href="https://mwstoree.000webhostapp.com/confirmemail.php?code=' . $userCode . '" style=" color: whitesmoke;
 			text-decoration: none;">Xác nhận</a></Button>
 				</div>
 			</div>';
 			$mail->Body = $contentMail;
 
 			$mail->send();
-			Session::set("username", $username);
-			Session::set("userCode", $userCode);
+			$_SESSION["userEmail"] = $emailReceive;
+			$_SESSION["userCode"] = $userCode;
 		} catch (Exception $e) {
+			// echo $e;
 			$result = false;
 		}
 

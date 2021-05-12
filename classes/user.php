@@ -68,17 +68,16 @@ class user
 				$value = $result->fetch_assoc();
 				$isBlock = $value["userBlock"];
 				$userEmail = $value["userEmail"];
-				// $userCode = $value["userActive"];
-				// $userPhone = $value["userPhone"];
+				$userCode = $value["userActive"];
 
 				if ($isBlock < 5) {
 					if ($value["userActive"] != 1) {
-						// Session::set("userCode", $value["userActive"]);
-						// $userCode =  "HTStore:" . strval(md5(time())) . strval(md5($username)) . strval(md5($userEmail)) . strval(md5($userPhone));
-						// $sendEmail = $this->email->sendEmail($username, $userEmail, $userCode);
-						// if ($sendEmail) {
-						// 	header("Location: reconfirm.php");
-						// }
+						Session::set("userCode", $value["userActive"]);
+						$userCode =  "MWStore:" . strval(md5(time())) . strval(md5($userEmail));
+						$sendEmail = $this->email->sendEmail($userEmail, $userCode);
+						if ($sendEmail) {
+							header("Location: reconfirm.php");
+						}
 					} else {
 						Session::set("userBlock", false);
 						Session::set("userLogin", true);
@@ -87,7 +86,7 @@ class user
 						Session::set("userID",  $value["userID"]);
 						Session::set("userFullName",  $value["userFullName"]);
 						Session::set("userImage",  $value["userImage"]);
-						// unset($_SESSION["userCode"]);
+						unset($_SESSION["userCode"]);
 						$userID =  $value["userID"];
 						$lastLogin = time() + 10;
 						$query = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
@@ -246,26 +245,14 @@ class user
 				move_uploaded_file($file_temp, $uploaded_image);
 			}
 
-			// $userCode =  "HTStore:" . strval(md5(time())) . strval(md5($username)) . strval(md5($userEmail)) . strval(md5($userPhone));
-			$query = "INSERT INTO tbl_user(password, userFullName, userEmail, userPhone, userImage, userStatus , userActive) VALUES('$password','$userFullName','$userEmail','$userPhone', '$unique_image', '$userStatus' , '1') ";
+			$userCode =  "MWStore:" . strval(md5(time())) . strval(md5($userEmail));
+			$query = "INSERT INTO tbl_user(password, userFullName, userEmail, userPhone, userImage, userStatus , userActive) VALUES('$password','$userFullName','$userEmail','$userPhone', '$unique_image', '$userStatus' , '$userCode') ";
 			$result = $this->db->insert($query);
-			// $sendEmail = $this->email->sendEmail($username, $userEmail, $userCode);
+			$sendEmail = $this->email->sendEmail($userEmail, $userCode);
 
-			if ($result) {
-				// header("Location: confirmaccount.php");
-				$queryLogin = "SELECT * FROM tbl_user WHERE userEmail = '$userEmail' ";
-				$resultLogin = $this->db->select($queryLogin);
-
-				if ($resultLogin) {
-					$value = $resultLogin->fetch_assoc();
-					Session::set("userBlock", false);
-					Session::set("userLogin", true);
-					Session::set("loginToast", 0);
-					Session::set("userID",  $value["userID"]);
-					Session::set("userFullName",  $value["userFullName"]);
-					Session::set("userImage",  $value["userImage"]);
-					header("Location: index.php");
-				}
+			if ($result && $sendEmail) {
+				Session::set("userEmail",  $userEmail);
+				header("Location: confirmaccount.php");
 			} else {
 				$alert = '<div class="text-center text-noti-red">Thêm sản phẩm không thành công</div>';
 				return $alert;

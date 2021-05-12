@@ -4,16 +4,17 @@ include_once "inc/header.php";
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["code"]) && $_GET["code"] == $_SESSION["userCode"]) {
   $confirm = false;
 
-  if (isset($_SESSION["username"]) && isset($_SESSION["userCode"])) {
+  if (isset($_SESSION["userEmail"]) && isset($_SESSION["userCode"])) {
     $confirm = true;
     $userCodeGET = $_GET["code"];
     $userCodeSES =  $_SESSION["userCode"];
 
     if (($userCodeGET == $userCodeSES) && $confirm) {
-      $username = $_SESSION["username"];
-      $cus->activeUser($username);
+      $userEmail = $_SESSION["userEmail"];
+      $cus->activeUser($userEmail);
     } else {
       $confirm = false;
+      header("Location: index.php");
     }
   }
 } else {

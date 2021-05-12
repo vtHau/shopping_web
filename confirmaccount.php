@@ -1,7 +1,7 @@
 ﻿<?php include_once "inc/header.php"; ?>
 
 <?php
-if (!isset($_SESSION["username"])) {
+if (!isset($_SESSION["userEmail"])) {
   header("Location: index.php");
 }
 ?>
