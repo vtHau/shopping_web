@@ -12,13 +12,17 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["code"]) && $_GET["code"
     if (($userCodeGET == $userCodeSES) && $confirm) {
       $userEmail = $_SESSION["userEmail"];
       $cus->activeUser($userEmail);
+      if ($cus) {
+        $confirm = true;
+      } else {
+        $confirm = false;
+      }
     } else {
       $confirm = false;
-      header("Location: index.php");
     }
   }
 } else {
-  header("Location: index.php");
+  $confirm = false;
 }
 ?>
 
@@ -48,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["code"]) && $_GET["code"
                 if ($confirm) {
                   echo "Đang kích hoạt tài khoản, vui lòng chờ vài giây...";
                 } else {
-                  echo "Liên kết xác nhận đã hết hạn hoặc bị hỏng, vui lòng đăng nhập lại để gửi lại mã xác nhận.";
+                  echo "Liên kết xác nhận đã hết hạn hoặc bị hỏng, vui lòng đăng nhập trên thiết bị này lại để gửi lại mã xác nhận.";
                 }
                 ?></p>
           </div>
