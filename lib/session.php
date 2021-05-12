@@ -67,7 +67,7 @@ class Session
   {
     if (self::get("userBlock") == true) {
       $url = $_SERVER['REQUEST_URI'];
-      if ($url != "/webshop/userblock.php") {
+      if ($url != "/userblock.php") {
         header("Location:userblock.php");
       }
     }
