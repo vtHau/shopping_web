@@ -13,60 +13,22 @@ $review = new review();
 
 <?php
 
-
-
-// if (isset($_GET["type"])) {
-// 	$type = $_GET["type"];
-
-// 	switch ($type) {
-// 		case 'hot':
-// 			$productHotDeal = $product->getProductHotDeal();
-// 			if ($productHotDeal) {
-// 				while ($row = $productHotDeal->fetch_object()) {
-// 					$getStar = $review->getStar($row->productID);
-// 					if ($getStar) {
-// 						$starText = $getStar->fetch_assoc()["totalStar"];
-// 						$star = floor($starText);
-// 						$row->productStar = $star;
-// 					}
-// 					$result[] = $row;
-// 				}
-// 			}
-// 			break;
-
-// 		case "search":
-// 			$keyword = $_GET["keyword"];
-// 			$searchProduct = $product->searchProduct($keyword);
-// 			if ($searchProduct) {
-// 				while ($row = $searchProduct->fetch_object()) {
-// 					$getStar = $review->getStar($row->productID);
-// 					if ($getStar) {
-// 						$starText = $getStar->fetch_assoc()["totalStar"];
-// 						$star = floor($starText);
-// 						$row->productStar = $star;
-// 					}
-// 					$result[] = $row;
-// 				}
-// 			}
-
-// 			break;
-
-// 		default:
-// 			break;
-// 	}
-
-// 	if (isset($result)) {
-// 		echo json_encode($result);
-// 	} else {
-// 		echo "NOT_FOUND_PRODUCT";
-// 	}
-// }
-
 $json = file_get_contents('php://input');
 $info = json_decode($json, true);
 $type =  $info["type"];
 
 switch ($type) {
+	case "UPDATE_VIEW":
+		$productID = $info["productID"];
+		$updateView = $product->updateViewProduct($productID);
+
+		if ($updateView) {
+			echo "UPDATE_VIEW_SUCCESS";
+		} else {
+			echo "UPDATE_VIEW_FAIL";
+		}
+
+		break;
 	case "HOT":
 		$productHotDeal = $product->getProductHotDeal();
 		if ($productHotDeal) {

@@ -204,9 +204,9 @@ class user
 
 		$userPhone = "12345678";
 		$userStatus = "no infomation";
-
 		$userCode =  "1";
-		$query = "INSERT INTO tbl_user(password, userFullName, userEmail, userPhone, userAddress, userImage, userStatus , userActive) VALUES('$password','$userFullName','$userEmail','$userPhone','default.png', '$userStatus' , '$userCode') ";
+
+		$query = "INSERT INTO tbl_user(password, userFullName, userEmail, userPhone, userImage, userStatus , userActive) VALUES('$password','$userFullName','$userEmail','$userPhone','default.png', '$userStatus' , '$userCode') ";
 		$result = $this->db->insert($query);
 		if ($result) {
 			return true;
