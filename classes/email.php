@@ -8,27 +8,30 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class email
 {
+	private $mail;
+
+	public function __construct()
+	{
+		$this->mail = new PHPMailer(true);
+		$this->mail->isSMTP();
+		$this->mail->Host = 'smtp.gmail.com';
+		$this->mail->SMTPAuth = true;
+		$this->mail->Username  = 'mwstoreeee@gmail.com';
+		$this->mail->Password = 'trunghau288';
+		$this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+		$this->mail->Port = '587';
+		$this->mail->CharSet = 'UTF-8';
+		$this->mail->setFrom('mwstoreeee@gmail.com');
+		$this->mail->isHTML(true);
+	}
+
 	public   function sendEmail($emailReceive, $userCode, $title = 'MWStore: Xác nhận đăng ký tài khoản MWStore.')
 	{
 		$result = true;
-
-		$mail = new PHPMailer(true);
-
 		try {
-			$mail->isSMTP();
-			$mail->Host = 'smtp.gmail.com';
-			$mail->SMTPAuth = true;
-			$mail->Username  = 'haudevit@gmail.com'; // Gmail address which you want to use as SMTP server
-			$mail->Password = 'hauit2881573'; // Gmail address Password
-			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-			$mail->Port = '587';
-			$mail->CharSet = 'UTF-8';
-			$mail->setFrom('haudevit@gmail.com'); // Gmail address which you used as SMTP server
-			$mail->addAddress($emailReceive); // Email address where you want to receive emails (you can use any of your gmail address including the gmail address which you used as SMTP server)
 
-			$mail->isHTML(true);
-			$mail->Subject = $title;
-			// $content = 'http://' . 'google.com.vn';
+			$this->mail->addAddress($emailReceive); // Email address where you want to receive emails (you can use any of your gmail address including the gmail address which you used as SMTP server)
+			$this->mail->Subject = $title;
 			$contentMail = '<div class="container" style="
 			margin: 0 auto;
 			padding: 20px;
@@ -64,13 +67,12 @@ class email
 			text-decoration: none;">Xác nhận</a></Button>
 				</div>
 			</div>';
-			$mail->Body = $contentMail;
+			$this->mail->Body = $contentMail;
 
-			$mail->send();
+			$this->mail->send();
 			$_SESSION["userEmail"] = $emailReceive;
 			$_SESSION["userCode"] = $userCode;
 		} catch (Exception $e) {
-			// echo $e;
 			$result = false;
 		}
 
@@ -81,23 +83,9 @@ class email
 	{
 		$result = true;
 
-		$mail = new PHPMailer(true);
-
 		try {
-			$mail->isSMTP();
-			$mail->Host = 'smtp.gmail.com';
-			$mail->SMTPAuth = true;
-			$mail->Username  = 'haudevit@gmail.com'; // Gmail address which you want to use as SMTP server
-			$mail->Password = 'hauit2881573'; // Gmail address Password
-			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-			$mail->Port = '587';
-			$mail->CharSet = 'UTF-8';
-			$mail->setFrom('haudevit@gmail.com'); // Gmail address which you used as SMTP server
-			$mail->addAddress($emailReceive); // Email address where you want to receive emails (you can use any of your gmail address including the gmail address which you used as SMTP server)
-
-			$mail->isHTML(true);
-			$mail->Subject = $title;
-			// $content = 'http://' . 'google.com.vn';
+			$this->mail->addAddress($emailReceive); // Email address where you want to receive emails (you can use any of your gmail address including the gmail address which you used as SMTP server)
+			$this->mail->Subject = $title;
 			$contentMail = '<div class="container" style="
 			margin: 0 auto;
 			padding: 20px;
@@ -133,17 +121,13 @@ class email
 			text-decoration: none; font-size: 20px; text-align: center; ">' . $code . '</div></div>
 				</div>
 			</div>';
-			$mail->Body = $contentMail;
+			$this->mail->Body = $contentMail;
 
-			$mail->send();
-			
+			$this->mail->send();
 		} catch (Exception $e) {
-			// echo $e;
 			$result = false;
 		}
 
 		return $result;
 	}
 }
-
-// http://localhost/webshop/confirmemail.php?code=' . $userCode . '"
