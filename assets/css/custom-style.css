@@ -607,6 +607,21 @@ table .thead-light th {
 .product-text-view {
   font-size: 13px;
   color: #007bff;
+  font-weight: bold;
   transform: rotateY(180deg);
   text-shadow: 0px 0px 3px yellow;
+}
+
+.title-name {
+  color: #414dd1;
+  font-family: "Baloo", sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-left: 60px;
+}
+
+.table-responsive-sm {
+  background-color: #f8f8f8;
+  border-radius: 10px;
 }

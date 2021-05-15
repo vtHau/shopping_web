@@ -57,7 +57,7 @@ if (isset($_GET["received"])) {
               ?>
                   <tr>
                     <td class="align-middle text-center" scope="row"><a href="product.php?productID=<?php echo $result["productID"] ?>"><img style="border-radius: 50%; height: 50px; width: 50px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="cart-image"></a></td>
-                    <td class="align-middle text-center"><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></td>
+                    <td class="align-middle text-center"><a href="product.php?productID=<?php echo $result["productID"] ?>" style="font-weight: bold;"><?php echo $result["productName"] ?></a></td>
                     <td class="align-middle text-center"><?php echo $result["productQuantity"] ?></td>
                     <td class="align-middle text-center"><?php echo $result["productPrice"] ?></td>
                     <td class="align-middle text-center"><?php echo $result["productPrice"] * $result["productQuantity"] ?></td>
@@ -100,7 +100,7 @@ if (isset($_GET["received"])) {
     <div class="row mt-20">
       <div class="col-md-12">
         <div class="box-both text-right">
-          <p style="font-weight: bold;">Tổng tiền:
+          <p style="font-weight: bold; color: #007bff">Tổng tiền:
             <?php if (isset($total)) {
               echo $fm->formatMoney($total);
             } else echo "0 VND"  ?></p>
@@ -111,4 +111,7 @@ if (isset($_GET["received"])) {
 </div>
 </div>
 <!-- Error 404 Area End -->
+<script type="text/javascript">
+  document.title = "Chi tiết đơn hàng";
+</script>
 <?php include_once "inc/footer.php"; ?>

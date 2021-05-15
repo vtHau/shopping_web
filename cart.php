@@ -129,4 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
   </div>
 </div>
 <!-- Cart Main Area End -->
+<script type="text/javascript">
+  document.title = "Giỏ hàng";
+</script>
 <?php include_once "inc/footer.php"; ?>

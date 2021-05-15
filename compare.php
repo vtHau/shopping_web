@@ -168,4 +168,7 @@ if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
   </div>
 </div>
 <!-- Compare Page End -->
+<script type="text/javascript">
+  document.title = "So sánh sản phẩm";
+</script>
 <?php include_once "inc/footer.php"; ?>

@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnNugn1lBVUCA1UTt6lz-PbrMXIy2mYTw&callback=initMap&libraries=&v=weekly" async></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjtSUOzmO7fOLgSjU46z0nh6H6AayolWc&callback=initMap&libraries=&v=weekly" async></script>
 <script>
   function initMap() {
     const VietNam = {
@@ -47,4 +47,7 @@
   }
 </script>
 <!-- Contact Email Area End -->
+<script type="text/javascript">
+  document.title = "Thông tin liên hệ";
+</script>
 <?php include_once "inc/footer.php"; ?>

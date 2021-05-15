@@ -75,4 +75,7 @@ if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
   </div>
 </div>
 <!-- Wish List End -->
+<script type="text/javascript">
+  document.title = "Sản phẩm yêu thích";
+</script>
 <?php include_once "inc/footer.php"; ?>

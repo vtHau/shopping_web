@@ -326,7 +326,7 @@ ul {
   right: 0px;
 }
 .ht-dropdown {
-  background: #fff;
+  background: #f8f8f8;
   left: 0;
   opacity: 0;
   padding: 10px 0px;
@@ -497,11 +497,12 @@ ul {
   vertical-align: top;
 }
 .cart-box-width {
-  background: white none repeat scroll 0 0;
+  background: #f8f8f8 none repeat scroll 0 0;
   box-shadow: 0 3px 9.3px 0.7px rgba(0, 0, 0, 0.15);
   left: auto;
   padding: 0;
   width: 290px;
+  border-radius: 10px;
 }
 .single-cart-box {
   margin-bottom: 18px;
@@ -550,7 +551,7 @@ ul {
 }
 
 .cart-actions a {
-  background: #2c2c2c none repeat scroll 0 0;
+  background: #414dd1 none repeat scroll 0 0;
   border-radius: 5px;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -1123,20 +1124,22 @@ li.megamenu-img a {
 }
 .brand-banner a,
 .brand-banner-sidebar a {
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  /* border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1); */
   display: block;
   padding: 12.4px 10px;
   text-align: center;
 }
 .brand-banner a:last-child,
 .brand-banner-sidebar a:last-child {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
 }
 .brand-banner,
 .brand-banner-sidebar {
-  border-left: 1px solid rgba(0, 0, 0, 0.1);
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  /* border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1); */
+  background-color: #f8f8f8;
+  border-radius: 10px;
 }
 
 .big-banner-box {
@@ -1467,17 +1470,6 @@ li.megamenu-img a {
 /*----------------------------------------*/
 /* 6. Arrivals Products CSS
 /*----------------------------------------*/
-
-.section-ttitle h2,
-.title-box h2 {
-  color: #212121;
-  font-size: 34px;
-  font-weight: 900;
-  line-height: 1;
-  margin: 0;
-  font-family: "Anton";
-  text-transform: capitalize;
-}
 .tab-menu {
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3462,7 +3454,7 @@ ul.tag-list > li > a {
 }
 
 .product-description p {
-  text-align: left;
+  text-align: center;
 }
 
 .product-description i {

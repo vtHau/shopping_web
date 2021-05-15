@@ -1,6 +1,7 @@
 ﻿<?php include_once "inc/header.php"; ?>
 
 <?php
+$title = "";
 if (!isset($_GET["productID"]) || $_GET["productID"] == NULL) {
   header("Location: index.php");
 } else {
@@ -84,7 +85,9 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
             <!-- Thumbnail Description Start -->
             <div class="col-lg-7">
               <div class="thubnail-desc fix">
-                <h3 class="product-header"><?php echo $result["productName"] ?></h3>
+                <h3 class="product-header"><?php $title = $result["productName"];
+                                            echo $result["productName"];
+                                            ?></h3>
                 <div class="rating-summary fix mtb-10">
                   <div class="rating">
                     <?php
@@ -424,5 +427,8 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
 </div>
 <!-- Hot Deal Products End Here -->
 
+<script type="text/javascript">
+  document.title = "<?= $title ?>";
+</script>
 
 <?php include_once "inc/footer.php"; ?>

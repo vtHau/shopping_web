@@ -102,7 +102,12 @@ class order
 		}
 
 		if ($inserOrder) {
-			return true;
+			$query = "DELETE FROM tbl_cart WHERE userID = '$userID'";
+			$resultDelete = $this->db->delete($query);
+			if ($resultDelete) {
+				return true;
+			}
+			return false;
 		}
 
 		return false;

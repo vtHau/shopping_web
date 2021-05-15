@@ -66,12 +66,12 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 }
 ?>
 
-<?php
-header("Cache-Control: no-cache, must-revalidate");
-header("Pragma: no-cache");
-header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
-header("Cache-Control: max-age=2592000");
-?>
+<!-- <?php
+			header("Cache-Control: no-cache, must-revalidate");
+			header("Pragma: no-cache");
+			header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+			header("Cache-Control: max-age=2592000");
+			?> -->
 
 <!doctype html>
 <html lang="vn">
@@ -79,7 +79,7 @@ header("Cache-Control: max-age=2592000");
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible">
-	<title>THStore</title>
+	<title>MW Store</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicons -->
 	<link rel="shortcut icon" href="assets\img\favicon.ico">
@@ -125,7 +125,6 @@ header("Cache-Control: max-age=2592000");
 	<link rel="stylesheet" href="assets\css\toastr.min.css">
 	<!-- Modernizer js -->
 	<link rel="stylesheet" href="assets\css\custom-style.css?v=<?php echo time(); ?>">
-
 </head>
 <!-- hello -->
 
@@ -243,7 +242,7 @@ header("Cache-Control: max-age=2592000");
 													?>
 													<div class="cart-footer">
 														<ul class="price-content">
-															<li>Total <span><?php echo $fm->formatMoney($total) ?></span></li>
+															<li>Tổng cộng <span><?php echo $fm->formatMoney($total) ?></span></li>
 														</ul>
 														<div class="cart-actions text-center">
 															<a class="cart-checkout" href="checkout.php">Thanh toán</a>
@@ -281,8 +280,10 @@ header("Cache-Control: max-age=2592000");
 											<a href="#" class="align-middle">
 												<i class="lnr lnr-user"></i>
 												<div class="my-cart align-middle">
-													<a href="signup.php" style="font-weight: bold; cursor:pointer">Đăng ký</a>
-													<p><strong class="btn-signin-show" style="cursor:pointer">Đăng nhập</strong></p>
+													<a href="signup.php" style="cursor:pointer; color: black;">Đăng ký</a>
+													<p>
+													<p class="btn-signin-show" style="cursor:pointer;">Đăng nhập</p>
+													</p>
 												</div>
 											</a>
 										<?php } ?>
@@ -328,6 +329,7 @@ header("Cache-Control: max-age=2592000");
 									<li><a href="shop.php">Thêm<i class="fa fa-angle-down"></i></a>
 										<!-- Home Version Dropdown Start -->
 										<ul class="ht-dropdown dropdown-style-two">
+											<li><a href="contact.php">Liên hệ</a></li>
 											<li><a href="product.php">Thông tin tài khoản</a></li>
 										</ul>
 										<!-- Home Version Dropdown End -->

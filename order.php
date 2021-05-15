@@ -124,4 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
 </div>
 </div>
 <!-- Error 404 Area End -->
+<script type="text/javascript">
+  document.title = "Đặt hàng";
+</script>
 <?php include_once "inc/footer.php"; ?>
