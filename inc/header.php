@@ -143,12 +143,10 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 <!-- hello -->
 
 <body>
-	<!-- Main Wrapper Start Here -->
-	<div class="wrapper">
-
-		<div class="wrap-signin-form">
-			<form class="login-form" autocomplete="off" action="" method="POST">
-				<div class="btn-signin-hide"><i class="fa fa-times" aria-hidden="true"></i></div>
+	<div class="modal fade" id="modal-signin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<form class="modal-content login-form" role="document" autocomplete="off" action="" method="POST">
+				<div class="btn-signin-hide" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></div>
 				<img class="avatar-login" src="assets/img/avatar.svg" alt="">
 				<h4 class="text-login-form">Đăng nhập</h4>
 				<input class="custom-in" type="text" name="userEmail" placeholder="Địa chỉ Email" />
@@ -160,13 +158,14 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 				<button type="submit" name="login" class="btn-custom">Đăng Nhập</button>
 			</form>
 		</div>
+	</div>
 
-		<div class="wrap-signup-form">
-			<form class="login-form" autocomplete="off" action="" method="POST">
-				<div class="btn-signup-hide"><i class="fa fa-times" aria-hidden="true"></i></div>
+	<div class="modal fade" id="modal-change-password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<form class="modal-content login-form" autocomplete="off" action="" method="POST">
+				<div class="btn-signin-hide" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></div>
 				<img class="avatar-login" src="assets/img/avatar.svg" alt="">
 				<h4 class="text-login-form" style="margin-bottom: 35px;">Thay đổi mật khẩu</h4>
-
 				<div class="input-icon">
 					<input class="custom-in" type="password" name="oldPassword" placeholder="Mật khẩu cũ" />
 				</div>
@@ -184,6 +183,13 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 				<a href="#" class="forgot">Quên mật khẩu?</a>
 				<button type="submit" name="change-password" class="btn-custom">Cập Nhập</button>
 			</form>
+		</div>
+	</div>
+	<!-- Main Wrapper Start Here -->
+	<div class="wrapper">
+
+		<div class="wrap-signup-form">
+
 		</div>
 		<!-- Main Header Area Start Here -->
 		<header>
@@ -285,8 +291,8 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 												<span class="fullname-user align-middle"><?php echo Session::get("userFullName"); ?> </span>
 												<ul class="ht-dropdown dropdown-style-two" style="width: 200px;">
 													<li class="list-group-item list-group-item-action" style="border: none;"><a href="?action=logout" style="color: #212529;">Đăng xuất</a></li>
-													<li class="list-group-item list-group-item-action btn-signup-show" style="border: none; color: #212529;"> Thay đổi mật khẩu</li>
-													<li class="list-group-item list-group-item-action" style="border: none;"><a href="" style="color: #212529;">Thông tin tài khoản</a></li>
+													<li class="list-group-item list-group-item-action" style="border: none; color: #212529;" data-toggle="modal" data-target="#modal-change-password"> Thay đổi mật khẩu</li>
+													<li class="list-group-item list-group-item-action" style="border: none;"><a href="userinfo.php" style="color: #212529;">Thông tin tài khoản</a></li>
 												</ul>
 											</div>
 										<?php } else { ?>
@@ -295,7 +301,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 												<div class="my-cart align-middle">
 													<a href="signup.php" style="cursor:pointer; color: black;">Đăng ký</a>
 													<p>
-													<p class="btn-signin-show" style="cursor:pointer;">Đăng nhập</p>
+													<p class="btn-signin-show" style="cursor:pointer;" data-toggle="modal" data-target="#modal-signin">Đăng nhập</p>
 													</p>
 												</div>
 											</a>
@@ -342,7 +348,6 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 										<!-- Home Version Dropdown Start -->
 										<ul class="ht-dropdown dropdown-style-two">
 											<li><a href="contact.php">Liên hệ</a></li>
-											<li><a href="userinfo.php">Thông tin tài khoản</a></li>
 										</ul>
 										<!-- Home Version Dropdown End -->
 									</li>

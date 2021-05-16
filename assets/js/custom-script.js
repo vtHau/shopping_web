@@ -12,34 +12,6 @@ $(document).ready(function () {
     }
   });
 
-  $(".btn-signin-show").on("click", function () {
-    $(".wrap-signin-form").css({
-      visibility: "visible",
-    });
-    document.body.style.overflow = "hidden"; // ADD THIS LINE
-  });
-
-  $(".btn-signin-hide").on("click", function () {
-    $(".wrap-signin-form").css({
-      visibility: "hidden",
-    });
-    document.body.style.overflow = "auto"; // ADD THIS LINE
-  });
-
-  $(".btn-signup-show").on("click", function () {
-    $(".wrap-signup-form").css({
-      visibility: "visible",
-    });
-    document.body.style.overflow = "hidden"; // ADD THIS LINE
-  });
-
-  $(".btn-signup-hide").on("click", function () {
-    $(".wrap-signup-form").css({
-      visibility: "hidden",
-    });
-    document.body.style.overflow = "auto"; // ADD THIS LINE
-  });
-
   $("#edit-comment").on("click", function () {
     $(".box-edit").toggle();
   });
