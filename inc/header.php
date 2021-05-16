@@ -125,6 +125,20 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 	<link rel="stylesheet" href="assets\css\toastr.min.css">
 	<!-- Modernizer js -->
 	<link rel="stylesheet" href="assets\css\custom-style.css?v=<?php echo time(); ?>">
+	<style>
+		img[alt*="000webhost"],
+		img[alt*="000webhost"][style],
+		img[src*="000webhost"],
+		img[src*="000webhost"][style],
+		body>div:nth-last-of-type(1)[style] {
+			opacity: 0 !important;
+			pointer-events: none !important;
+			width: 0px !important;
+			height: 0px !important;
+			visibility: hidden !important;
+			display: none !important;
+		}
+	</style>
 </head>
 <!-- hello -->
 

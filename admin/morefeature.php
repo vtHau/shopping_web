@@ -10,7 +10,7 @@ if (!isset($_GET["userID"]) || $_GET["userID"] == NULL) {
 
 if (isset($_GET["deleteID"])) {
 	$ID = $_GET["deleteID"];
-	$deleteProduct = $product->deleteProduct($ID);
+	$deleteUser = $user->deleteUser($ID);
 }
 
 
@@ -113,7 +113,7 @@ if (isset($_GET["unblock"])) {
 						</div>
 
 						<div class="col-md-3 text-center">
-							<a href="deleteID=<?php echo $userID ?>">
+							<a href="morefeature.php?deleteID=<?php echo $userID ?>">
 								<div class="card-device more-feature float-left">
 									<div class="card-device-title">
 										<i class="fa fa-trash" style="font-size: 25px;"></i>

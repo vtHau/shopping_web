@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
             <div class="form-group d-md-flex align-items-md-center">
               <label class="control-label col-md-2" for="f-name"><span class="require">*</span>Họ tên</label>
               <div class="col-md-10">
-                <input type="text" class="form-control" name="userFullName" placeholder="Vui lòng nhập họ tên" required>
+                <input type="text" class="form-control" name="userFullName" placeholder="Vui lòng nhập họ tên" required minlength="2">
                 <!-- <p>vui long nhap day du thong tin</p> -->
               </div>
             </div>
@@ -69,14 +69,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
             <div class="form-group d-md-flex align-items-md-center">
               <label class="control-label col-md-2" for="pwd"><span class="require">*</span>Mật khẩu</label>
               <div class="col-md-10">
-                <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu của bạn" required>
+                <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu của bạn" required minlength="8">
               </div>
             </div>
             <div class="form-group d-md-flex align-items-md-center">
               <label class="control-label col-md-2" for="pwd-confirm"><span class="require">*</span>Nhập lại mật
                 khẩu</label>
               <div class="col-md-10">
-                <input type="password" class="form-control" name="repassword" placeholder="Nhập lại mật khẩu của bạn" required>
+                <input type="password" class="form-control" name="repassword" placeholder="Nhập lại mật khẩu của bạn" required minlength="8">
               </div>
             </div>
           </fieldset>

@@ -63,7 +63,7 @@ class email
 					box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
 						rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 					padding: 10px 35px;
-					background-color: rgba(44, 44, 243, 0.863);"><a href="http://localhost/webshop/confirmemail.php?code=' . $userCode . '" style=" color: whitesmoke;
+					background-color: rgba(44, 44, 243, 0.863);"><a href="https://mwstoree.000webhostapp.com/confirmemail.php?code=' . $userCode . '" style=" color: whitesmoke;
 			text-decoration: none;">Xác nhận</a></Button>
 				</div>
 			</div>';

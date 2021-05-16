@@ -439,4 +439,15 @@ class user
 			header("Location: index.php");
 		}
 	}
+
+	public function deleteUser($userID)
+	{
+		$query = "DELETE FROM tbl_user WHERE userID = '$userID'";
+		$result = $this->db->delete($query);
+		if ($result) {
+			header("Location: userlist.php");
+		} else {
+			return false;
+		}
+	}
 }
