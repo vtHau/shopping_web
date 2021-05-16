@@ -195,6 +195,17 @@ class user
 		return false;
 	}
 
+	public function checkEmail($userEmail)
+	{
+		$userEmail = mysqli_real_escape_string($this->db->link, $userEmail);
+		$query = "SELECT * FROM tbl_user WHERE userEmail = '$userEmail'";
+		$result = $this->db->select($query);
+		if ($result) {
+			return true;
+		}
+		return false;
+	}
+
 	public function insertUserInMobile($data)
 	{
 		$userFullName = mysqli_real_escape_string($this->db->link, $data["name"]);
@@ -223,37 +234,54 @@ class user
 		$userEmail = mysqli_real_escape_string($this->db->link, $data["userEmail"]);
 		$userStatus = mysqli_real_escape_string($this->db->link, $data["userStatus"]);
 		$password = mysqli_real_escape_string($this->db->link, $data["password"]);
+		$repassword = mysqli_real_escape_string($this->db->link, $data["repassword"]);
+
+		$checkEmail = $this->checkEmail($userEmail);
+		if ($checkEmail) {
+			$alert = "<div class='error' style='text-align: center; color: red;'>Địa chỉ Email đã tồn tại</div>";
+			return $alert;
+		}
+
+		if ($password !== $repassword) {
+			$alert = "<div class='error' style='text-align: center; color: red;'>Mật khẩu không khớp, vui lòng kiểm tra lại 2 trường mật khẩu</div>";
+			return $alert;
+		} else {
+			if (strlen($password) < 8) {
+				$alert = "<div class='error' style='text-align: center; color: red;'>Mật khẩu quá ngắn</div>";
+				return $alert;
+			}
+		}
 		$password = md5($password);
 
-		if (!isset($userPhone) || $userPhone === "") {
-			$userPhone = "1234567890";
-		}
-		if (!isset($userStatus) || $userStatus === "") {
-			$userStatus = "Chua cap nhap";
-		}
 
-		$permited = ['jpg', 'jpeg', 'png', 'gif'];
-		$file_name = $files['userImage']['name'];
-		$file_size = $files['userImage']['size'];
-		$file_temp = $files['userImage']['tmp_name'];
-
-
-		$div = explode('.', $file_name);
-		$file_ext = strtolower(end($div));
-		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
-		$uploaded_image = "admin/uploads/avatars/" . $unique_image;
-
-		if ($userFullName == "" ||  $userPhone == "" || $userEmail == "" ||  $password == "") {
+		if ($userFullName == "" || $userEmail == "" ||  $password == "") {
 			$alert = "<span class='error'>Bạn phải nhập đầy đủ các trường</span>";
 			return $alert;
 		} else {
+			if (!isset($userPhone) || $userPhone === "") {
+				$userPhone = "1234567890";
+			}
+			if (!isset($userStatus) || $userStatus === "") {
+				$userStatus = "Chua cap nhap";
+			}
+
+			$permited = ['jpg', 'jpeg', 'png', 'gif'];
+			$file_name = $files['userImage']['name'];
+			$file_size = $files['userImage']['size'];
+			$file_temp = $files['userImage']['tmp_name'];
+
+
+			$div = explode('.', $file_name);
+			$file_ext = strtolower(end($div));
+			$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
+			$uploaded_image = "admin/uploads/avatars/" . $unique_image;
+
 			if (empty($file_name) || $file_name === "") {
 				$unique_image = "default.png";
 			} else {
 				move_uploaded_file($file_temp, $uploaded_image);
 				echo $file_temp;
 			}
-
 
 			$userCode =  "MWStore:" . strval(md5(time())) . strval(md5($userEmail));
 			$query = "INSERT INTO tbl_user(password, userFullName, userEmail, userPhone, userImage, userStatus , userActive) VALUES('$password','$userFullName','$userEmail','$userPhone', '$unique_image', '$userStatus' , '$userCode') ";
