@@ -22,7 +22,7 @@ if (isset($_GET["keyword"])) {
 <!-- Breadcrumb End -->
 <!-- Error 404 Area Start -->
 <?php
-if ($productSearch) {
+if (isset($productSearch) && $productSearch) {
 ?>
   <div class="error404-area ptb-60 ptb-sm-60">
     <div class="container">

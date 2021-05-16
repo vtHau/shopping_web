@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateUser"])) {
     <div class="row">
       <div class="col-sm-12">
         <div class="register-title">
-          <h3 class="mb-10 text-center">Thông tin tài khoản</h3>
+          <h3 class="mb-10 text-center title-name  title-search">Thông tin tài khoản</h3>
         </div>
       </div>
     </div>
