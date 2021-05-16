@@ -63,14 +63,15 @@ class user
 
 
 
-	public function loginCustomer($data)
+	public function signInUser($userEmail, $password)
 	{
-		$userEmail = mysqli_real_escape_string($this->db->link, $data["userEmail"]);
-		$password = mysqli_real_escape_string($this->db->link, $data["password"]);
+		$userEmail = mysqli_real_escape_string($this->db->link, $userEmail);
+		$password = mysqli_real_escape_string($this->db->link, $password);
 
 		if ($userEmail == "" || $password == "") {
 			$alert = "<span class='error'>Vui long hoan thanh cac truong</span>";
-			return $alert;
+			// return $alert;
+			return "INPUT_FILL";
 		} else {
 			$password = md5($password);
 			$query = "SELECT * FROM tbl_user WHERE userEmail = '$userEmail' AND password = '$password'";
@@ -88,7 +89,8 @@ class user
 						$userCode =  "MWStore:" . strval(md5(time())) . strval(md5($userEmail));
 						$sendEmail = $this->email->sendEmail($userEmail, $userCode);
 						if ($sendEmail) {
-							header("Location: reconfirm.php");
+							// header("Location: reconfirm.php");
+							return "RECONFIRM";
 						}
 					} else {
 						Session::set("userBlock", false);
@@ -104,14 +106,16 @@ class user
 						$query = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
 						$this->db->update($query);
 						if (Session::get("userLogin") === true) {
-							header("Location: index.php");
+							// header("Location: index.php");
+							return "SIGN_SUCCESS";
 						}
 					}
 				} else {
 					Session::set("userBlock", true);
 					Session::set("userID",  $value["userID"]);
 					Session::set("userFullName",  $value["userFullName"]);
-					header("Location: userblock.php");
+					// header("Location: userblock.php");
+					return "USER_BLOCK";
 				}
 			} else {
 				$query = "SELECT * FROM tbl_user WHERE userEmail = '$userEmail'";
@@ -126,10 +130,12 @@ class user
 					$result = $this->db->update($query);
 
 					$alert = "<span class='error'>username hoac mat khau khong hop le</span>";
-					return $alert;
+					// return $alert;
+					return "SIGN_FAIL";
 				} else {
 					$alert = "<span class='error'>username hoac mat khau khong hop le</span>";
-					return $alert;
+					// return $alert;
+					return "SIGN_FAIL";
 				}
 			}
 		}

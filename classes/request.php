@@ -186,4 +186,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 
 		echo $result;
 	}
+
+
+	if ($_POST["type"] == "SIGN_IN") {
+		$email = $_POST["email"];
+		$password = $_POST["password"];
+		$userSign = $user->signInUser($email, $password);
+		echo $userSign;
+	}
 }

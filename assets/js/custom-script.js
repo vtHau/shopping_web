@@ -1,5 +1,6 @@
-var ratedIndex = 0;
+import * as config from "./../../constants/constants";
 
+var ratedIndex = 0;
 $(document).ready(function () {
   $("#zoom-img").elevateZoom({
     scrollZoom: true,
@@ -162,21 +163,75 @@ $(document).ready(function () {
     $("#popup-chat").toggle();
   });
 
-  // resetStar();
-  // if (localStorage.getItem("ratedIndex") != null) {
-  //   ratedIndex = parseInt(localStorage.getItem("ratedIndex"));
-  //   setStar(ratedIndex);
-  // }
+  $(".sign-email").focus(function () {
+    $(".sign-fail").css({
+      display: "none",
+    });
+  });
 
-  // $(".review-list > .review-list-li > i.fa").mouseover(function () {
-  //   ratedIndex = parseInt($(this).data("index"));
-  //   setStar(ratedIndex);
-  //   console.log("Hover Index: " + ratedIndex);
-  // });
+  $(".sign-password").focus(function () {
+    $(".sign-fail").css({
+      display: "none",
+    });
+  });
 
-  // $(".review-list > .review-list-li > i.fa").mouseleave(function () {
-  //   resetStar();
-  // });
+  $(".sign-btn").click(async function () {
+    const email = $(".sign-email").val().trim();
+    const password = $(".sign-password").val().trim();
+    $(".sign-btn").attr("disabled", "disabled");
+    $(".sign-btn").css({ "background-color": "#ccc", cursor: "context-menu" });
+    await $.ajax({
+      url: "classes/request.php",
+      method: "POST",
+      data: {
+        type: "SIGN_IN",
+        email,
+        password,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "SIGN_SUCCESS":
+            window.location = `${config.HOST_NAME}index.php`;
+            break;
+
+          case "USER_BLOCK":
+            window.location = `${config.HOST_NAME}userblock.php`;
+            break;
+
+          case "RECONFIRM":
+            window.location = `${config.HOST_NAME}reconfirm.php`;
+            break;
+
+          case "INPUT_FILL":
+            $(".sign-fail")
+              .css({
+                display: "block",
+              })
+              .html("Hãy nhập đủ các trường dữ liệu");
+            break;
+
+          case "SIGN_FAIL":
+            $(".sign-fail")
+              .css({
+                display: "block",
+              })
+              .html("Email hoặc mật khẩu không đúng !!!");
+            break;
+
+          default:
+            break;
+        }
+      },
+      error: function (rep) {
+        console.log("FAIL");
+      },
+    });
+    $(".sign-btn").removeAttr("disabled");
+    $(".sign-btn").css({
+      "background-color": "var(--primary)",
+      cursor: "pointer",
+    });
+  });
 });
 
 window.addEventListener("load", function () {

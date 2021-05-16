@@ -52,10 +52,6 @@ $fm = new format();
 ?>
 
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
-	$loginCustomer = $cus->loginCustomer($_POST);
-}
-
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["change-password"])) {
 	$changePassword = $cus->changePassword($_POST);
 }
@@ -143,20 +139,22 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 <!-- hello -->
 
 <body>
+
 	<div class="modal fade" id="modal-signin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
-			<form class="modal-content login-form" role="document" autocomplete="off" action="" method="POST">
+			<div class="modal-content login-form" role="document">
 				<div class="btn-signin-hide" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></div>
 				<img class="avatar-login" src="assets/img/avatar.svg" alt="">
 				<h4 class="text-login-form">Đăng nhập</h4>
-				<input class="custom-in" type="text" name="userEmail" placeholder="Địa chỉ Email" />
+				<input class="custom-in sign-email" type="text" name="userEmail" placeholder="Nhập địa chỉ Email..." />
 				<div class="input-icon">
-					<input class="custom-in" type="password" name="password" placeholder="Mật khẩu" />
+					<input class="custom-in sign-password" type="password" name="password" placeholder="Nhập mật khẩu..." />
 					<i class="fa fa-eye show-password"></i>
 				</div>
-				<a href="#" class="forgot">Quên mật khẩu?</a>
-				<button type="submit" name="login" class="btn-custom">Đăng Nhập</button>
-			</form>
+				<p class="sign-fail"></p>
+				<a href="" class="forgot">Quên mật khẩu?</a>
+				<button class="btn-custom sign-btn">Đăng Nhập</button>
+			</div>
 		</div>
 	</div>
 
