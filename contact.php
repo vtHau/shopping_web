@@ -1,4 +1,4 @@
-﻿<?php include_once "inc/header.php"; ?>
+﻿﻿<?php include_once "inc/header.php"; ?>
 </div>
 <div class="breadcrumb-area mt-30">
   <div class="container">
@@ -26,14 +26,21 @@
   </div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjtSUOzmO7fOLgSjU46z0nh6H6AayolWc&callback=initMap&libraries=&v=weekly" async></script>
+
+<!-- Contact Email Area End -->
+<script type="text/javascript">
+  document.title = "Thông tin liên hệ";
+</script>
+<?php include_once "inc/footer.php"; ?>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUlOcYeXI66r7zBtBQDoqEs6QO4UElJjU&callback=initMap" async defer></script>
+
 <script>
-  function initMap() {
-    const VietNam = {
+  window.initMap = function(){
+    var VietNam = {
       lat: 10.761573058608514,
       lng: 106.68217271221745,
     };
-    const map = new google.maps.Map(document.getElementById("map"), {
+    var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 18,
       center: VietNam,
     });
@@ -46,8 +53,3 @@
     });
   }
 </script>
-<!-- Contact Email Area End -->
-<script type="text/javascript">
-  document.title = "Thông tin liên hệ";
-</script>
-<?php include_once "inc/footer.php"; ?>

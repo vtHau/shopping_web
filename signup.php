@@ -45,23 +45,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
                 <!-- <p>vui long nhap day du thong tin</p> -->
               </div>
             </div>
-
-            <div class="form-group d-md-flex align-items-md-center">
-              <label class="control-label col-md-2" for="number"><span class="require">*</span>Điện thoại</label>
-              <div class="col-md-10">
-                <input type="number" class="form-control" name="userPhone" placeholder="Vui lòng nhập số điện thoại">
-              </div>
-            </div>
-
             <div class="form-group d-md-flex align-items-md-center">
               <label class="control-label col-md-2" for="email"><span class="require">*</span>Email</label>
               <div class="col-md-10">
                 <input type="email" class="form-control" name="userEmail" placeholder="Vui lòng nhập địa chỉ email">
               </div>
             </div>
-
             <div class="form-group d-md-flex align-items-md-center">
-              <label class="control-label col-md-2" for="number"><span class="require">*</span>Trạng thái</label>
+              <label class="control-label col-md-2" for="number"><span class="require"></span>Điện thoại</label>
+              <div class="col-md-10">
+                <input type="number" class="form-control" name="userPhone" placeholder="Vui lòng nhập số điện thoại">
+              </div>
+            </div>
+            <div class="form-group d-md-flex align-items-md-center">
+              <label class="control-label col-md-2" for="number"><span class="require"></span>Trạng thái</label>
               <div class="col-md-10">
                 <input type="text" class="form-control" name="userStatus" placeholder="Vui lòng nhập trạng thái của bạn">
               </div>
@@ -89,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
             <div class="form-group d-md-flex align-items-md-center">
               <label class="control-label col-md-2" for="number"><span class="require"></span>Ảnh đại diện</label>
               <div class="col-md-10">
-                <input type="file" class="form-control" name="userImage">
+                <input type="file" class="form-control" name="userImage" id="validatedCustomFile" accept=".PNG, .JPEG, .JPG">
               </div>
             </div>
           </fieldset>
@@ -109,4 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
 </div>
 
 <!-- Error 404 Area End -->
+<script type="text/javascript">
+  document.title = "Đăng ký tài khoản";
+</script>
 <?php include_once "inc/footer.php"; ?>

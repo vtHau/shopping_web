@@ -3,10 +3,10 @@ include_once "inc/header.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["code"]) && $_GET["code"] == $_SESSION["userCode"]) {
   $confirm = false;
-
   if (isset($_SESSION["userEmail"]) && isset($_SESSION["userCode"])) {
     $confirm = true;
     $userCodeGET = $_GET["code"];
+    echo $userCodeSES;
     $userCodeSES =  $_SESSION["userCode"];
 
     if (($userCodeGET == $userCodeSES) && $confirm) {
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["code"]) && $_GET["code"
     }
   }
 } else {
-  $confirm = false;
+  header("Location: index.php");
 }
 ?>
 
@@ -72,7 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["code"]) && $_GET["code"
 </div>
 <!-- Error 404 Area End -->
 <?php include_once "inc/footer.php"; ?>
-
+<script type="text/javascript">
+  document.title = "Xác nhận đăng ký tài khoản";
+</script>
 <?php
 $getChat = $chat->getChat();
 if ($getChat) {

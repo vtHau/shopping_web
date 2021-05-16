@@ -225,25 +225,35 @@ class user
 		$password = mysqli_real_escape_string($this->db->link, $data["password"]);
 		$password = md5($password);
 
-		$permited = array('jpg', 'jpeg', 'png', 'gif');
+		if (!isset($userPhone) || $userPhone === "") {
+			$userPhone = "1234567890";
+		}
+		if (!isset($userStatus) || $userStatus === "") {
+			$userStatus = "Chua cap nhap";
+		}
+
+		$permited = ['jpg', 'jpeg', 'png', 'gif'];
 		$file_name = $files['userImage']['name'];
 		$file_size = $files['userImage']['size'];
 		$file_temp = $files['userImage']['tmp_name'];
 
+
 		$div = explode('.', $file_name);
 		$file_ext = strtolower(end($div));
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
-		$uploaded_image = "../admin/uploads/avatars/" . $unique_image;
+		$uploaded_image = "admin/uploads/avatars/" . $unique_image;
 
-		if ($userFullName == "" ||  $userPhone == "" || $userEmail == "" || $userStatus == "" ||  $password == "") {
-			$alert = "<span class='error'>Fiedls must be not empty</span>";
+		if ($userFullName == "" ||  $userPhone == "" || $userEmail == "" ||  $password == "") {
+			$alert = "<span class='error'>Bạn phải nhập đầy đủ các trường</span>";
 			return $alert;
 		} else {
-			if (empty($file_name)) {
+			if (empty($file_name) || $file_name === "") {
 				$unique_image = "default.png";
 			} else {
 				move_uploaded_file($file_temp, $uploaded_image);
+				echo $file_temp;
 			}
+
 
 			$userCode =  "MWStore:" . strval(md5(time())) . strval(md5($userEmail));
 			$query = "INSERT INTO tbl_user(password, userFullName, userEmail, userPhone, userImage, userStatus , userActive) VALUES('$password','$userFullName','$userEmail','$userPhone', '$unique_image', '$userStatus' , '$userCode') ";
