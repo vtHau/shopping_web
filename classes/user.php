@@ -41,6 +41,18 @@ class user
 		return $result;
 	}
 
+	public function getInfoUser()
+	{
+		$userID = session_id();
+		if (Session::isUserLogin()) {
+			$userID = Session::get("userID");
+		}
+		$query = "SELECT userID ,  userFullName , userImage , userPhone , userEmail , userStatus FROM tbl_user WHERE userID = '$userID'";
+		$result = $this->db->select($query);
+
+		return $result;
+	}
+
 	public function getAllUser()
 	{
 		$query = "SELECT * FROM tbl_user";
@@ -145,6 +157,56 @@ class user
 		}
 
 		return false;
+	}
+
+	public function updateUser($data, $files)
+	{
+		$userFullName = mysqli_real_escape_string($this->db->link, $data["userFullName"]);
+		$userPhone = mysqli_real_escape_string($this->db->link, $data["userPhone"]);
+		$userStatus = mysqli_real_escape_string($this->db->link, $data["userStatus"]);
+
+		if ($userFullName == "") {
+			$alert = "<span class='error'>Bạn phải nhập đầy đủ các trường</span>";
+			return $alert;
+		} else {
+			if (!isset($userPhone) || $userPhone === "") {
+				$userPhone = "0380381234";
+			}
+			if (!isset($userStatus) || $userStatus === "") {
+				$userStatus = "No infomation";
+			}
+
+			$permited = ['jpg', 'jpeg', 'png', 'gif'];
+			$file_name = $files['userImage']['name'];
+			$file_size = $files['userImage']['size'];
+			$file_temp = $files['userImage']['tmp_name'];
+
+
+			$div = explode('.', $file_name);
+			$file_ext = strtolower(end($div));
+			$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
+			$uploaded_image = "admin/uploads/avatars/" . $unique_image;
+
+			if (empty($file_name) || $file_name === "") {
+				$unique_image = "default.png";
+			} else {
+				move_uploaded_file($file_temp, $uploaded_image);
+			}
+
+			$userID = Session::get("userID");
+			$query = "UPDATE tbl_user SET userFullName = '$userFullName' ,  userPhone = '$userPhone'  ,  userStatus = '$userStatus' , userImage = '$unique_image'  WHERE userID = '$userID'";
+			$result = $this->db->update($query);
+
+			if ($result) {
+				Session::set("userFullName",  $userFullName);
+				Session::set("userImage", $unique_image);
+				$alert = '<p class="text-center mtb-10" style="font-weight: bold; color: red;">Cập nhập thông tin thành công</p>';
+				return $alert;
+			} else {
+				$alert = '<p class="text-center mtb-10" style="font-weight: bold; color: red;" >Cập nhập thông tin không thành công</p>';
+				return $alert;
+			}
+		}
 	}
 
 	public function updateInfoUser($datas)
@@ -280,7 +342,6 @@ class user
 				$unique_image = "default.png";
 			} else {
 				move_uploaded_file($file_temp, $uploaded_image);
-				echo $file_temp;
 			}
 
 			$userCode =  "MWStore:" . strval(md5(time())) . strval(md5($userEmail));

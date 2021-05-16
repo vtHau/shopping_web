@@ -43,4 +43,7 @@ if (!isset($_SESSION["userEmail"])) {
   </div>
 </div>
 <!-- Error 404 Area End -->
+<script type="text/javascript">
+  document.title = "Đăng ký tài khoản thành công";
+</script>
 <?php include_once "inc/footer.php"; ?>

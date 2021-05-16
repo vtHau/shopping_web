@@ -625,3 +625,11 @@ table .thead-light th {
   background-color: #f8f8f8;
   border-radius: 10px;
 }
+
+.border-circle {
+  display: block;
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #5defb793;
+}

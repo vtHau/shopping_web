@@ -339,11 +339,11 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 										<!-- Home Version Dropdown End -->
 									</li>
 
-									<li><a href="shop.php">Thêm<i class="fa fa-angle-down"></i></a>
+									<li><a href="">Thêm<i class="fa fa-angle-down"></i></a>
 										<!-- Home Version Dropdown Start -->
 										<ul class="ht-dropdown dropdown-style-two">
 											<li><a href="contact.php">Liên hệ</a></li>
-											<li><a href="product.php">Thông tin tài khoản</a></li>
+											<li><a href="userinfo.php">Thông tin tài khoản</a></li>
 										</ul>
 										<!-- Home Version Dropdown End -->
 									</li>
