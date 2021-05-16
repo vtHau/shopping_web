@@ -333,13 +333,12 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 									<li><a>Đơn hàng<i class="fa fa-angle-down"></i></a>
 										<!-- Home Version Dropdown Start -->
 										<ul class="ht-dropdown dropdown-style-two">
-											<li><a href="order.php">Đặt hàng</a></li>
 											<li><a href="orderdetails.php">Chi tiết đơn hàng</a></li>
 										</ul>
 										<!-- Home Version Dropdown End -->
 									</li>
 
-									<li><a href="">Thêm<i class="fa fa-angle-down"></i></a>
+									<li><a>Thêm<i class="fa fa-angle-down"></i></a>
 										<!-- Home Version Dropdown Start -->
 										<ul class="ht-dropdown dropdown-style-two">
 											<li><a href="contact.php">Liên hệ</a></li>
@@ -425,7 +424,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 									<?php
 									if (Session::isUserLogin()) {
 									?>
-										<img class="info-avatar" src="uploads/avatars/<?php echo Session::get("userImage") ?>" alt="" />
+										<img class="info-avatar" src="admin/uploads/avatars/<?php echo Session::get("userImage") ?>" alt="" />
 										<strong class="my-cart align-middle" style="margin-left: 2px;"><?php echo Session::get("userFullName"); ?></strong>
 									<?php } ?>
 								</a>

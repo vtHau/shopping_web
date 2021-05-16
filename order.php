@@ -2,6 +2,13 @@
 <?php Session::checkUserLogin() ?>
 
 <?php
+$getCart = $cart->getCart();
+if (!$getCart) {
+  header("Location: index.php");
+}
+?>
+
+<?php
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
   $insertOrder = $order->insertOrder();
 

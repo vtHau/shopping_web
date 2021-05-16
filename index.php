@@ -686,7 +686,7 @@ Your Website URL:	http://mwstore.ihostfull.com
 <div class="main-brand-banner   pb-100 pb-sm-60 pt-sm-55" style="padding-top: 60px;">
   <div class="container">
     <div class="section-ttitle mb-30 text-center">
-      <h2 class="title-name">Danh sách thương hiệu</h2>
+      <h2 class="title-name mr-50 ">Danh sách thương hiệu</h2>
     </div>
     <div class="row no-gutters">
       <div class="col-lg-3">
