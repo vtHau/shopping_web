@@ -10,7 +10,6 @@ if (!isset($_GET["productID"]) || $_GET["productID"] == NULL) {
   if (!$getProduct) {
     header("Location: index.php");
   }
-
   $updateViewProduct = $product->updateViewProduct($productID);
 }
 
@@ -317,7 +316,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                       }
                       ?>
                       <i class="fa fa-edit" id="edit-comment"></i>
-                      <i class="fa fa-trash" id="delete-comment"></i>
+                      <i class="fas fa-trash" id="delete-comment"></i>
                     </div>
                   </div>
                 </div>

@@ -64,42 +64,39 @@ class cart
 		$productQuantity = mysqli_real_escape_string($this->db->link, $productQuantity);
 		$productID = mysqli_real_escape_string($this->db->link, $productID);
 
-		$query = "SELECT * FROM tbl_product WHERE productID = '$productID' ";
-		$result = $this->db->select($query)->fetch_assoc();
-
-		$productName = $result['productName'];
-		$productPrice = $result['productPrice'];
-		$productImage = $result['productImage'];
-
 		$userID = session_id();
 		if (Session::isUserLogin()) {
 			$userID = Session::get("userID");
 		}
 
-		$queryInsert = "INSERT INTO tbl_cart(userID, productID, productName, productPrice, productQuantity, productImage) VALUES('$userID', '$productID', '$productName','$productPrice','$productQuantity','$productImage' ) ";
-		$resultInsert = $this->db->insert($queryInsert);
+		$query = "SELECT * FROM tbl_cart WHERE userID = '$userID' AND productID = '$productID' ";
+		$result = $this->db->select($query);
 
-		if ($resultInsert) {
-			header('Location:cart.php');
+		if ($result) {
+			$productQuantity = $result->fetch_assoc()["productQuantity"] + 1;
+			$query = "UPDATE tbl_cart SET productQuantity = '$productQuantity' WHERE userID = '$userID' AND productID = '$productID' ";
+			$result = $this->db->update($query);
+			if ($result) {
+				header("Location: cart.php");
+			}
+			return false;
 		} else {
-			$msg = "them that bai";
-			return $msg;
+			$query = "SELECT * FROM tbl_product WHERE productID = '$productID' ";
+			$result = $this->db->select($query)->fetch_assoc();
+
+			$productName = $result['productName'];
+			$productPrice = $result['productPrice'];
+			$productImage = $result['productImage'];
+
+			$queryInsert = "INSERT INTO tbl_cart(userID, productID, productName, productPrice, productQuantity, productImage) VALUES('$userID', '$productID', '$productName','$productPrice','$productQuantity','$productImage' ) ";
+			$resultInsert = $this->db->insert($queryInsert);
+
+			if ($resultInsert) {
+				header("Location: cart.php");
+			} else {
+				return false;
+			}
 		}
-
-
-		// if ($result['product_remain'] > $quantity) {
-
-		// 	$query_insert = "INSERT INTO tbl_cart(productId,productName,quantity,sId,price,image) VALUES('$id','$productName','$quantity','$sId','$price','$image' ) ";
-		// 	$insert_cart = $this->db->insert($query_insert);
-		// 	if ($result) {
-		// 		header('Location:cart.php');
-		// 	} else {
-		// 		header('Location:404.php');
-		// 	}
-		// } else {
-		// 	$msg = "<span class='erorr'> Số lượng " . $quantity . " bạn đặt quá số lượng chúng tôi chỉ còn " . $result['product_remain'] . " cái</span> ";
-		// 	return $msg;
-		// }
 	}
 
 	public function insertCartMobile($userID, $productID, $productQuantity)

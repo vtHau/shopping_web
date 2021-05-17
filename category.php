@@ -98,4 +98,7 @@ if (!isset($_GET["catID"]) || $_GET["catID"] == NULL) {
     </ul>
   </div>
 </div>
+<script type="text/javascript">
+  document.title = "<?= $catName ?>";
+</script>
 <?php include_once "inc/footer.php"; ?>

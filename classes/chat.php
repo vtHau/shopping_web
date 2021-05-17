@@ -39,6 +39,7 @@ class chat
 
 	public function getChatInAdmin($userID)
 	{
+		$userID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
 		$adminID = Session::get("adminID");
 
 		$query = "SELECT * FROM tbl_chat
@@ -52,6 +53,8 @@ class chat
 
 	public function insertChat($message)
 	{
+		$message = $this->fm->validation(mysqli_real_escape_string($this->db->link, $message));
+
 		$userID = Session::get("userID");
 
 		if ($message == "") {
@@ -67,6 +70,10 @@ class chat
 
 	public function insertChatInAdmin($userID, $message)
 	{
+
+		$userID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
+		$message = $this->fm->validation(mysqli_real_escape_string($this->db->link, $message));
+
 		$adminID = Session::get("adminID");
 
 		if ($message == "") {
@@ -82,6 +89,7 @@ class chat
 
 	public function deleteBrand($ID)
 	{
+		$ID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
 		$query = "DELETE FROM tbl_brand WHERE brandID = '$ID'";
 		$result = $this->db->delete($query);
 		if ($result) {

@@ -13,13 +13,11 @@ class user
 {
 	private $db;
 	private $fm;
-	private $email;
 
 	public function __construct()
 	{
 		$this->db = new Database();
 		$this->fm = new Format();
-		$this->email = new email();
 	}
 
 
@@ -65,12 +63,10 @@ class user
 
 	public function signInUser($userEmail, $password)
 	{
-		$userEmail = mysqli_real_escape_string($this->db->link, $userEmail);
-		$password = mysqli_real_escape_string($this->db->link, $password);
+		$userEmail = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userEmail));
+		$password =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $password));
 
 		if ($userEmail == "" || $password == "") {
-			$alert = "<span class='error'>Vui long hoan thanh cac truong</span>";
-			// return $alert;
 			return "INPUT_FILL";
 		} else {
 			$password = md5($password);
@@ -89,14 +85,11 @@ class user
 						$userCode =  "MWStore:" . strval(md5(time())) . strval(md5($userEmail));
 						$sendEmail = $this->email->sendEmail($userEmail, $userCode);
 						if ($sendEmail) {
-							// header("Location: reconfirm.php");
 							return "RECONFIRM";
 						}
 					} else {
 						Session::set("userBlock", false);
 						Session::set("userLogin", true);
-						$_SESSION["userLogin"] = true;
-						Session::set("loginToast", 0);
 						Session::set("userID",  $value["userID"]);
 						Session::set("userFullName",  $value["userFullName"]);
 						Session::set("userImage",  $value["userImage"]);
@@ -106,7 +99,6 @@ class user
 						$query = "UPDATE tbl_user SET userLastLogin = '$lastLogin' WHERE userID = '$userID'";
 						$this->db->update($query);
 						if (Session::get("userLogin") === true) {
-							// header("Location: index.php");
 							return "SIGN_SUCCESS";
 						}
 					}
@@ -114,7 +106,6 @@ class user
 					Session::set("userBlock", true);
 					Session::set("userID",  $value["userID"]);
 					Session::set("userFullName",  $value["userFullName"]);
-					// header("Location: userblock.php");
 					return "USER_BLOCK";
 				}
 			} else {
@@ -128,13 +119,8 @@ class user
 					$isBlock++;
 					$query = "UPDATE tbl_user SET userBlock = '$isBlock' WHERE userID = '$userID' AND userEmail = '$userEmail'";
 					$result = $this->db->update($query);
-
-					$alert = "<span class='error'>username hoac mat khau khong hop le</span>";
-					// return $alert;
 					return "SIGN_FAIL";
 				} else {
-					$alert = "<span class='error'>username hoac mat khau khong hop le</span>";
-					// return $alert;
 					return "SIGN_FAIL";
 				}
 			}
@@ -143,6 +129,9 @@ class user
 
 	public function loginInMobile($userEmail, $password)
 	{
+		$userEmail = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userEmail));
+		$password =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $password));
+
 		$query = "SELECT userID , userFullName , userEmail , userPhone , userImage, userStatus FROM tbl_user WHERE userEmail = '$userEmail' AND password = '$password'";
 		$result = $this->db->select($query);
 
@@ -155,6 +144,7 @@ class user
 
 	public function getUserInfo($userEmail)
 	{
+		$userEmail = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userEmail));
 		$query = "SELECT userID , userFullName , userEmail , userPhone , userImage ,  userStatus  FROM tbl_user WHERE userEmail = '$userEmail'";
 		$result = $this->db->select($query);
 
@@ -167,9 +157,9 @@ class user
 
 	public function updateUser($data, $files)
 	{
-		$userFullName = mysqli_real_escape_string($this->db->link, $data["userFullName"]);
-		$userPhone = mysqli_real_escape_string($this->db->link, $data["userPhone"]);
-		$userStatus = mysqli_real_escape_string($this->db->link, $data["userStatus"]);
+		$userFullName = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["userFullName"]));
+		$userPhone = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["userPhone"]));
+		$userStatus = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["userStatus"]));
 
 		if ($userFullName == "") {
 			$alert = "<span class='error'>Bạn phải nhập đầy đủ các trường</span>";
@@ -217,10 +207,10 @@ class user
 
 	public function updateInfoUser($datas)
 	{
-		$userFullName = mysqli_real_escape_string($this->db->link, $datas["name"]);
-		$userPhone = mysqli_real_escape_string($this->db->link, $datas["phone"]);
-		$userStatus = mysqli_real_escape_string($this->db->link, $datas["status"]);
-		$userID = mysqli_real_escape_string($this->db->link, $datas["userID"]);
+		$userFullName = $this->fm->validation(mysqli_real_escape_string($this->db->link, $datas["name"]));
+		$userPhone = $this->fm->validation(mysqli_real_escape_string($this->db->link, $datas["phone"]));
+		$userStatus = $this->fm->validation(mysqli_real_escape_string($this->db->link, $datas["status"]));
+		$userID = $this->fm->validation($this->db->link, $datas["userID"]);
 
 		$query = "UPDATE tbl_user SET userFullName = '$userFullName' , userPhone = '$userPhone' , userStatus = '$userStatus'  WHERE userID = '$userID' ";
 
@@ -254,7 +244,7 @@ class user
 
 	public function emailExist($data)
 	{
-		$userEmail = mysqli_real_escape_string($this->db->link, $data["email"]);
+		$userEmail = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["email"]));
 		$query = "SELECT * FROM tbl_user WHERE userEmail = '$userEmail'";
 		$result = $this->db->select($query);
 		if ($result) {
@@ -265,7 +255,7 @@ class user
 
 	public function checkEmail($userEmail)
 	{
-		$userEmail = mysqli_real_escape_string($this->db->link, $userEmail);
+		$userEmail = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userEmail));
 		$query = "SELECT * FROM tbl_user WHERE userEmail = '$userEmail'";
 		$result = $this->db->select($query);
 		if ($result) {
@@ -276,9 +266,9 @@ class user
 
 	public function insertUserInMobile($data)
 	{
-		$userFullName = mysqli_real_escape_string($this->db->link, $data["name"]);
-		$userEmail = mysqli_real_escape_string($this->db->link, $data["email"]);
-		$password = mysqli_real_escape_string($this->db->link, $data["password"]);
+		$userFullName = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["name"]));
+		$userEmail = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["email"]));
+		$password = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["password"]));
 		$password = md5($password);
 
 		$userPhone = "12345678";
@@ -297,12 +287,12 @@ class user
 
 	public function insertUser($data, $files)
 	{
-		$userFullName = mysqli_real_escape_string($this->db->link, $data["userFullName"]);
-		$userPhone = mysqli_real_escape_string($this->db->link, $data["userPhone"]);
-		$userEmail = mysqli_real_escape_string($this->db->link, $data["userEmail"]);
-		$userStatus = mysqli_real_escape_string($this->db->link, $data["userStatus"]);
-		$password = mysqli_real_escape_string($this->db->link, $data["password"]);
-		$repassword = mysqli_real_escape_string($this->db->link, $data["repassword"]);
+		$userFullName = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["userFullName"]));
+		$userPhone = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["userPhone"]));
+		$userEmail = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["userEmail"]));
+		$userStatus = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["userStatus"]));
+		$password = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["password"]));
+		$repassword = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["repassword"]));
 
 		$checkEmail = $this->checkEmail($userEmail);
 		if ($checkEmail) {
@@ -367,10 +357,10 @@ class user
 
 	public function updatePassword($datas)
 	{
-		$userID = mysqli_real_escape_string($this->db->link, $datas["userID"]);
-		$password = mysqli_real_escape_string($this->db->link, $datas["password"]);
+		$userID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $datas["userID"]));
+		$password = $this->fm->validation(mysqli_real_escape_string($this->db->link, $datas["password"]));
+		$newPassword = $this->fm->validation(mysqli_real_escape_string($this->db->link, $datas["newPassword"]));
 		$password = md5($password);
-		$newPassword = mysqli_real_escape_string($this->db->link, $datas["newPassword"]);
 
 		$query = "SELECT * FROM tbl_user WHERE userID = '$userID' AND password = '$password' ";
 		$result = $this->db->select($query);
@@ -393,8 +383,8 @@ class user
 			$userID = Session::get("userID");
 		}
 
-		$oldPassword = mysqli_real_escape_string($this->db->link, $oldPassword);
-		$newPassword = mysqli_real_escape_string($this->db->link, $newPassword);
+		$oldPassword = $this->fm->validation(mysqli_real_escape_string($this->db->link, $oldPassword));
+		$newPassword = $this->fm->validation(mysqli_real_escape_string($this->db->link, $newPassword));
 
 		$queryPassword = "SELECT * FROM tbl_user WHERE userID = '$userID'";
 		$resutlPassword = $this->db->select($queryPassword)->fetch_assoc();
@@ -425,6 +415,7 @@ class user
 
 	public function getCustomer($ID)
 	{
+		$ID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
 		$query = "SELECT * FROM tbl_user WHERE userID = '$ID'";
 		$result = $this->db->select($query);
 		return $result;
@@ -432,6 +423,7 @@ class user
 
 	public function blockUser($userID)
 	{
+		$userID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
 		$query = "UPDATE tbl_user SET userBlock = 6 WHERE userID = '$userID'";
 		$result = $this->db->update($query);
 
@@ -444,6 +436,7 @@ class user
 
 	public function unBlockUser($userID)
 	{
+		$userID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
 		$query = "UPDATE tbl_user SET userBlock = 0 WHERE userID = '$userID'";
 		$result = $this->db->update($query);
 
@@ -479,6 +472,7 @@ class user
 
 	function activeUser($userEmail)
 	{
+		$userEmail = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userEmail));
 		$query = "UPDATE tbl_user SET userActive = 1 WHERE userEmail = '$userEmail'";
 		$result = $this->db->update($query);
 
@@ -506,6 +500,7 @@ class user
 
 	public function deleteUser($userID)
 	{
+		$userID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
 		$query = "DELETE FROM tbl_user WHERE userID = '$userID'";
 		$result = $this->db->delete($query);
 		if ($result) {

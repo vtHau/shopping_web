@@ -31,6 +31,7 @@ class product
 
 	public function getProductByBrand($brandID)
 	{
+		$brandID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $brandID));
 		$query =
 			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
 			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
@@ -44,6 +45,7 @@ class product
 
 	public function getProductByCategory($catID)
 	{
+		$catID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $catID));
 		$query =
 			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
 			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
@@ -96,6 +98,7 @@ class product
 
 	public function searchProduct($keyword)
 	{
+		$keyword = $this->fm->validation(mysqli_real_escape_string($this->db->link, $keyword));
 		$query =
 			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
 			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
@@ -121,6 +124,7 @@ class product
 
 	public function getProductByID($ID)
 	{
+		$ID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
 		$query =
 			"SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName 
 		 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
@@ -140,15 +144,15 @@ class product
 
 	public function insertProduct($data, $files)
 	{
-		$productName = mysqli_real_escape_string($this->db->link, $data['productName']);
-		$productCategory = mysqli_real_escape_string($this->db->link, $data['productCategory']);
-		$productBrand = mysqli_real_escape_string($this->db->link, $data['productBrand']);
-		$productQuantity = mysqli_real_escape_string($this->db->link, $data['productQuantity']);
-		$productDesc = mysqli_real_escape_string($this->db->link, $data['productDesc']);
-		$productPrice = mysqli_real_escape_string($this->db->link, $data['productPrice']);
-		$productFeather = mysqli_real_escape_string($this->db->link, $data['productFeather']);
-		$productSell = mysqli_real_escape_string($this->db->link, $data['productSell']);
-		$productHotDeal = mysqli_real_escape_string($this->db->link, $data['productHotDeal']);
+		$productName = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productName']));
+		$productCategory = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productCategory']));
+		$productBrand = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productBrand']));
+		$productQuantity = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productQuantity']));
+		$productDesc = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productDesc']));
+		$productPrice = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productPrice']));
+		$productFeather = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productFeather']));
+		$productSell = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productSell']));
+		$productHotDeal = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productHotDeal']));
 
 		$permited = array('jpg', 'jpeg', 'png', 'gif');
 		$file_name = $files['productImage']['name'];
@@ -179,6 +183,7 @@ class product
 
 	public function updateViewProduct($productID)
 	{
+		$productID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $productID));
 		$query = "UPDATE tbl_product SET productView = productView + 1 WHERE productID = '$productID'";
 		$result = $this->db->update($query);
 		if ($result) {
@@ -189,15 +194,15 @@ class product
 
 	public function updateProduct($ID, $data, $files)
 	{
-		$productName = mysqli_real_escape_string($this->db->link, $data['productName']);
-		$productCategory = mysqli_real_escape_string($this->db->link, $data['productCategory']);
-		$productBrand = mysqli_real_escape_string($this->db->link, $data['productBrand']);
-		$productQuantity = mysqli_real_escape_string($this->db->link, $data['productQuantity']);
-		$productDesc = mysqli_real_escape_string($this->db->link, $data['productDesc']);
-		$productPrice = mysqli_real_escape_string($this->db->link, $data['productPrice']);
-		$productFeather = mysqli_real_escape_string($this->db->link, $data['productFeather']);
-		$productSell = mysqli_real_escape_string($this->db->link, $data['productSell']);
-		$productHotDeal = mysqli_real_escape_string($this->db->link, $data['productHotDeal']);
+		$productName = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productName']));
+		$productCategory = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productCategory']));
+		$productBrand = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productBrand']));
+		$productQuantity = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productQuantity']));
+		$productDesc = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productDesc']));
+		$productPrice = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productPrice']));
+		$productFeather = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productFeather']));
+		$productSell = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productSell']));
+		$productHotDeal = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productHotDeal']));
 
 		$permited = array('jpg', 'jpeg', 'png', 'gif');
 		$file_name = $files['productImage']['name'];
@@ -254,6 +259,7 @@ class product
 
 	public function deleteProduct($ID)
 	{
+		$ID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
 		$query = "DELETE FROM tbl_product WHERE productID = '$ID' ";
 		$result = $this->db->delete($query);
 		if ($result) {

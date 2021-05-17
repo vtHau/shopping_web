@@ -31,7 +31,6 @@ class format
    {
       $path = $_SERVER['SCRIPT_FILENAME'];
       $title = basename($path, '.php');
-      //$title = str_replace('_', ' ', $title);
       if ($title == 'index') {
          $title = 'home';
       } elseif ($title == 'contact') {
