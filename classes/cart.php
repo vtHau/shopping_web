@@ -160,33 +160,10 @@ class cart
 		$result = $this->db->update($query);
 
 		if ($result) {
-			header("Location: cart.php");
+			return "UPDATE_QUANTITY_SUCCESS";
 		} else {
-			$msg = "<span class='erorr'>  bạn đặt quá số lượng chúng tôi chỉ còn  </span> ";
-			return $msg;
+			return "UPDATE_QUANTITY_FAIL";
 		}
-
-		// $query_product = "SELECT * FROM tbl_product WHERE productId = '$proId' ";
-		// $result_product = $this->db->select($query_product)->fetch_assoc();
-
-		// if ($quantity < $result_product['product_remain']) {
-		// 	$query = "UPDATE tbl_cart SET
-
-		// 		quantity = '$quantity'
-
-		// 		WHERE cartId = '$cartId'";
-
-		// 	$result = $this->db->update($query);
-		// 	if ($result) {
-		// 		header('Location:cart.php');
-		// 	} else {
-		// 		$msg = "<span class='erorr'> Product Quantity Update NOT Succesfully</span> ";
-		// 		return $msg;
-		// 	}
-		// } else {
-		// 	$msg = "<span class='erorr'> Số lượng " . $quantity . " bạn đặt quá số lượng chúng tôi chỉ còn " . $result_product['product_remain'] . " cái</span> ";
-		// 	return $msg;
-		// }
 	}
 
 	public function deleteCartByID($cartID)

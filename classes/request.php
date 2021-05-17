@@ -8,6 +8,9 @@ $device = new device();
 include_once "chat.php";
 $chat = new chat();
 
+include_once "cart.php";
+$cart = new cart();
+
 include_once "../lib/session.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
@@ -200,5 +203,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 		$newPassword = $_POST["newPassword"];
 		$changePass = $user->changePassword($oldPassword, $newPassword);
 		echo $changePass;
+	}
+
+	if ($_POST["type"] == "CHANGE_QUANTITY_PRODUCT") {
+		$productID = $_POST["productID"];
+		$quantity = $_POST["quantity"];
+		$updateQuantity = $cart->updateQuantityCart($productID, $quantity);
+		echo $updateQuantity;
 	}
 }

@@ -486,6 +486,34 @@ $(document).ready(function () {
       });
     }
   });
+
+  $(".product-quantity-update").on("input", function () {
+    const quantity = $(this).val();
+    const productID = parseInt($(this).data("productid"));
+    if (quantity >= 1) {
+      $.ajax({
+        url: "classes/request.php",
+        method: "POST",
+        data: {
+          type: "CHANGE_QUANTITY_PRODUCT",
+          productID,
+          quantity,
+        },
+        success: function (res) {
+          switch (res.trim()) {
+            case "UPDATE_QUANTITY_SUCCESS":
+              location.reload();
+              break;
+            default:
+              break;
+          }
+        },
+        error: function (rep) {
+          console.log("FAIL");
+        },
+      });
+    }
+  });
 });
 
 window.addEventListener("load", function () {

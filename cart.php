@@ -6,13 +6,6 @@ if (isset($_GET["deleteID"])) {
   $deleteCart = $cart->deleteCart($cartID);
 }
 
-
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
-  $cartID = $_POST["cartID"];
-  $productQuantity = $_POST["productQuantity"];
-  $updateQuantity = $cart->updateQuantityCart($cartID, $productQuantity);
-}
-
 ?>
 
 </div>
@@ -67,11 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateCart"])) {
                       <td class="product-name"><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></td>
                       <td class="product-price"><span class="amount"><?php echo $fm->formatMoney($result["productPrice"]) ?></span></td>
                       <td class="product-quantity">
-                        <form action="" method="POST">
-                          <input type="hidden" name="cartID" value="<?php echo $result["cartID"] ?>" />
-                          <input name="productQuantity" type="number" min="1" value="<?php echo $result["productQuantity"] ?>">
-                          <input type="submit" name="updateCart" value="Update" class="btn btn-primary btn-sm">
-                        </form>
+                        <div>
+                          <input name="productQuantity" class="product-quantity-update" data-productid="<?php echo $result["cartID"] ?>" type="number" min="1" value="<?php echo $result["productQuantity"] ?>">
+                        </div>
                       </td>
                       <td class="product-subtotal"><?php echo $fm->formatMoney($result["productPrice"] * $result["productQuantity"]) ?></td>
                       <td class="product-remove"> <a href="cart.php?deleteID=<?php echo $result["cartID"] ?>"><i class="fa fa-times" aria-hidden="true"></i></a></td>
