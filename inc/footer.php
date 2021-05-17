@@ -1,4 +1,30 @@
   </div>
+
+  <div class="footer">
+    <div class="content-left">
+      <a href="index.php"><img src="assets\img\logo\kkk.png" alt="logo-image" style="width: 120px;"></a>
+    </div>
+    <div class="content-center">
+      <div class="info-left">
+        <h6 class="title-info">Giới thiệu</h6>
+        <p class="footer-info-item"><i class="fas fa-map-marked-alt"></i> Địa chỉ: 280 An Dương Vương, Quận 5, TP Hồ Chí Minh</p>
+        <p class="footer-info-item"><i class="fas fa-mobile-alt"></i> Số điện thoại: 123.456.7898</p>
+
+      </div>
+      <div class="info-right">
+        <h6 class="title-info">Giới thiệu</h6>
+        <p class="footer-info-item"><i class="fas fa-envelope"></i> Email: daihocsupham@hcmue.edu.vn</p>
+        <p class="footer-info-item"><i class="fab fa-facebook-f"></i> Facebook: fb.com/daihocsupham.hcmue</p>
+      </div>
+
+    </div>
+    <div class="content-right">
+      <div class="fb-page" data-href="https://www.facebook.com/MW-Store-100730118877099/" data-width="340" data-height="140" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+        <blockquote cite="https://www.facebook.com/MW-Store-100730118877099/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/MW-Store-100730118877099/">MW Store</a></blockquote>
+      </div>
+    </div>
+  </div>
+  <p class="title-end">MW Store website thương mại điện tử</p>
   <?php
   if (Session::isUserLogin()) {
   ?>

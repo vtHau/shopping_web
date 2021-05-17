@@ -629,3 +629,69 @@ table .thead-light th {
   text-align: left;
   margin-left: 10px;
 }
+
+.footer {
+  background: #f8f8f8;
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.content-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+.content-right {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-center {
+  display: flex;
+  flex-grow: 1;
+}
+
+.info-left {
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info-right {
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-info-item {
+  text-align: left;
+  margin: 4px;
+  color: #007bff;
+}
+
+.title-info {
+  font-family: "Baloo", sans-serif;
+  text-transform: uppercase;
+  color: #007bff;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-family: Baloo, sans-serif !important;
+}
+
+.title-end {
+  background-color: #f8f8f8;
+  text-align: center;
+  font-family: "Baloo", sans-serif;
+  text-transform: uppercase;
+  color: #007bff;
+  font-weight: bold;
+}
