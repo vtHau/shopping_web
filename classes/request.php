@@ -194,4 +194,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 		$userSign = $user->signInUser($email, $password);
 		echo $userSign;
 	}
+
+	if ($_POST["type"] == "CHANGE_PASSWORD") {
+		$oldPassword = $_POST["oldPassword"];
+		$newPassword = $_POST["newPassword"];
+		$changePass = $user->changePassword($oldPassword, $newPassword);
+		echo $changePass;
+	}
 }

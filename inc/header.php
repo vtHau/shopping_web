@@ -146,9 +146,9 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 				<div class="btn-signin-hide" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></div>
 				<img class="avatar-login" src="assets/img/avatar.svg" alt="">
 				<h4 class="text-login-form">Đăng nhập</h4>
-				<input class="custom-in sign-email" type="text" name="userEmail" placeholder="Nhập địa chỉ Email..." />
+				<input class="custom-in sign-email" style="margin-bottom: 14px;" type="email" name="userEmail" placeholder="Nhập địa chỉ Email..." />
 				<div class="input-icon">
-					<input class="custom-in sign-password" type="password" name="password" placeholder="Nhập mật khẩu..." />
+					<input class="custom-in sign-password" style="margin-bottom: 14px;" type="password" name="password" placeholder="Nhập mật khẩu..." />
 					<i class="fa fa-eye show-password"></i>
 				</div>
 				<p class="sign-fail"></p>
@@ -160,27 +160,26 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 
 	<div class="modal fade" id="modal-change-password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
-			<form class="modal-content login-form" autocomplete="off" action="" method="POST">
+			<div class="modal-content login-form">
 				<div class="btn-signin-hide" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></div>
 				<img class="avatar-login" src="assets/img/avatar.svg" alt="">
 				<h4 class="text-login-form" style="margin-bottom: 35px;">Thay đổi mật khẩu</h4>
 				<div class="input-icon">
-					<input class="custom-in" type="password" name="oldPassword" placeholder="Mật khẩu cũ" />
+					<input class="custom-in old-password" type="password" name="oldPassword" placeholder="Mật khẩu cũ" />
+					<p class="input-fail mess-old-password">err</p>
 				</div>
 				<div class="input-icon">
-					<input class="custom-in" type="password" name="newPassword" placeholder="Mật khẩu mới" />
+					<input class="custom-in new-password" type="password" name="newPassword" placeholder="Mật khẩu mới" />
+					<p class="input-fail mess-new-password">err</p>
 				</div>
 				<div class="input-icon">
-					<input class="custom-in" type="password" name="reNewPassword" placeholder="Nhập lại mật khẩu" />
+					<input class="custom-in pre-new-password" type="password" name="reNewPassword" placeholder="Nhập lại mật khẩu" />
+					<p class="input-fail mess-pre-new-password">err</p>
 				</div>
-				<?php
-				if (isset($changePassword)) {
-					echo $changePassword;
-				}
-				?>
-				<a href="#" class="forgot">Quên mật khẩu?</a>
-				<button type="submit" name="change-password" class="btn-custom">Cập Nhập</button>
-			</form>
+				<p class="input-fail change-password-fail" style="text-align: center;">err</p>
+				<a class="forgot">Quên mật khẩu?</a>
+				<button name="change-password" class="btn-custom btn-change-password">Cập Nhập</button>
+			</div>
 		</div>
 	</div>
 	<!-- Main Wrapper Start Here -->

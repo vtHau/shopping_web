@@ -1,5 +1,3 @@
-import * as config from "./../../constants/constants";
-
 var ratedIndex = 0;
 $(document).ready(function () {
   $("#zoom-img").elevateZoom({
@@ -175,12 +173,82 @@ $(document).ready(function () {
     });
   });
 
-  $(".sign-btn").click(async function () {
-    const email = $(".sign-email").val().trim();
-    const password = $(".sign-password").val().trim();
+  function emailIsValid(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function disableSignIn() {
     $(".sign-btn").attr("disabled", "disabled");
     $(".sign-btn").css({ "background-color": "#ccc", cursor: "context-menu" });
-    await $.ajax({
+  }
+
+  function enableSignIn() {
+    $(".sign-btn").removeAttr("disabled");
+    $(".sign-btn").css({
+      "background-color": "var(--primary)",
+      cursor: "pointer",
+    });
+  }
+
+  $(".sign-email").blur(function () {
+    const email = $(".sign-email").val().trim();
+    const checkEmail = emailIsValid(email);
+    if (!checkEmail) {
+      $(".sign-fail")
+        .css({
+          display: "block",
+        })
+        .html("Địa chỉ Email không hợp lệ");
+    }
+  });
+
+  $(".sign-password").blur(function () {
+    const password = $(".sign-password").val().trim();
+    if (password.length < 0) {
+      $(".sign-fail")
+        .css({
+          display: "block",
+        })
+        .html("Mật khẩu quá ngắn");
+    }
+  });
+
+  $(".sign-btn").click(function () {
+    const email = $(".sign-email").val().trim();
+    const password = $(".sign-password").val().trim();
+
+    if (email === "" || password === "") {
+      $(".sign-fail")
+        .css({
+          display: "block",
+        })
+        .html("Vui lòng nhập đủ dữ liệu");
+
+      return;
+    }
+    if (password.length < 0) {
+      $(".sign-fail")
+        .css({
+          display: "block",
+        })
+        .html("Mật khẩu quá ngắn");
+      return;
+    }
+
+    const checkEmail = emailIsValid(email);
+    if (!checkEmail) {
+      $(".sign-fail")
+        .css({
+          display: "block",
+        })
+        .html("Địa chỉ Email không hợp lệ");
+
+      return;
+    }
+
+    disableSignIn();
+
+    $.ajax({
       url: "classes/request.php",
       method: "POST",
       data: {
@@ -191,15 +259,18 @@ $(document).ready(function () {
       success: function (res) {
         switch (res.trim()) {
           case "SIGN_SUCCESS":
-            window.location = `${config.HOST_NAME}index.php`;
+            window.location = `http://localhost/webshop/index.php`;
+            enableSignIn();
             break;
 
           case "USER_BLOCK":
-            window.location = `${config.HOST_NAME}userblock.php`;
+            window.location = `http://localhost/webshop/userblock.php`;
+            enableSignIn();
             break;
 
           case "RECONFIRM":
-            window.location = `${config.HOST_NAME}reconfirm.php`;
+            window.location = `http://localhost/webshop/reconfirm.php`;
+            enableSignIn();
             break;
 
           case "INPUT_FILL":
@@ -208,6 +279,7 @@ $(document).ready(function () {
                 display: "block",
               })
               .html("Hãy nhập đủ các trường dữ liệu");
+            enableSignIn();
             break;
 
           case "SIGN_FAIL":
@@ -216,6 +288,7 @@ $(document).ready(function () {
                 display: "block",
               })
               .html("Email hoặc mật khẩu không đúng !!!");
+            enableSignIn();
             break;
 
           default:
@@ -226,11 +299,192 @@ $(document).ready(function () {
         console.log("FAIL");
       },
     });
-    $(".sign-btn").removeAttr("disabled");
-    $(".sign-btn").css({
-      "background-color": "var(--primary)",
-      cursor: "pointer",
+  });
+  //change password form
+
+  $(".old-password").focus(function () {
+    $(".mess-old-password").css({
+      visibility: "hidden",
     });
+    $(".change-password-fail").css({
+      visibility: "hidden",
+    });
+  });
+  $(".pre-new-password").focus(function () {
+    $(".mess-pre-new-password").css({
+      visibility: "hidden",
+    });
+  });
+  $(".new-password").focus(function () {
+    $(".mess-new-password").css({
+      visibility: "hidden",
+    });
+  });
+
+  $(".old-password").blur(function () {
+    const oldPassword = $(".old-password").val().trim();
+    if (oldPassword === "") {
+      $(".mess-old-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Nhập mật khẩu cũ");
+      return;
+    }
+    if (oldPassword.length < 8) {
+      $(".mess-old-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Mật khẩu phải từ 8 số trở lên");
+      return;
+    }
+  });
+  $(".new-password").blur(function () {
+    const newPassword = $(".new-password").val().trim();
+    if (newPassword === "") {
+      $(".mess-new-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Nhập mật khẩu mới");
+      return;
+    }
+    if (newPassword.length < 8) {
+      $(".mess-new-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Mật khẩu phải từ 8 số trở lên");
+      return;
+    }
+  });
+  $(".pre-new-password").blur(function () {
+    const newPassword = $(".new-password").val().trim();
+    const reNewPassword = $(".pre-new-password").val().trim();
+    if (reNewPassword === "") {
+      $(".mess-pre-new-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Nhập lại mật khẩu mới");
+      return;
+    }
+    if (reNewPassword.length < 8) {
+      $(".mess-pre-new-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Mật khẩu phải từ 8 số trở lên");
+      return;
+    }
+    if (newPassword !== reNewPassword) {
+      $(".mess-pre-new-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Mật khẩu không khớp, kiểm tra lại");
+      return;
+    }
+  });
+
+  $(".btn-change-password").click(function () {
+    var isTrue = true;
+
+    const oldPassword = $(".old-password").val().trim();
+    if (oldPassword === "") {
+      $(".mess-old-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Nhập mật khẩu cũ");
+      isTrue = false;
+    }
+    if (oldPassword.length < 8) {
+      $(".mess-old-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Mật khẩu phải từ 8 số trở lên");
+      isTrue = false;
+    }
+    const newPassword = $(".new-password").val().trim();
+    const reNewPassword = $(".pre-new-password").val().trim();
+    if (reNewPassword === "") {
+      $(".mess-pre-new-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Nhập lại mật khẩu mới");
+      isTrue = false;
+    }
+    if (reNewPassword.length < 8) {
+      $(".mess-pre-new-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Mật khẩu phải từ 8 số trở lên");
+      isTrue = false;
+    }
+    if (newPassword !== reNewPassword) {
+      $(".mess-pre-new-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Mật khẩu không khớp, kiểm tra lại");
+      isTrue = false;
+    }
+
+    if (newPassword === "") {
+      $(".mess-new-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Nhập mật khẩu mới");
+      return;
+    }
+    if (newPassword.length < 8) {
+      $(".mess-new-password")
+        .css({
+          visibility: "visible",
+        })
+        .html("Mật khẩu phải từ 8 số trở lên");
+      isTrue = false;
+    }
+    if (isTrue) {
+      $.ajax({
+        url: "classes/request.php",
+        method: "POST",
+        data: {
+          type: "CHANGE_PASSWORD",
+          oldPassword,
+          newPassword,
+        },
+        success: function (res) {
+          switch (res.trim()) {
+            case "CHANGE_PASSWORD_SUCCESS":
+              $("#modal-change-password").modal("hide");
+              toastr["success"]("Đổi mật khẩu thành công !!!", "Thành công");
+              break;
+
+            case "PASSWORD_WRONG":
+              $(".change-password-fail")
+                .css({
+                  visibility: "visible",
+                })
+                .html("Mật khẩu hiện tại không đúng");
+
+              break;
+
+            default:
+              break;
+          }
+        },
+        error: function (rep) {
+          console.log("FAIL");
+        },
+      });
+    }
   });
 });
 

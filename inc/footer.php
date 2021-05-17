@@ -111,11 +111,9 @@
   <script src="assets\js\toastr.min.js"></script>
 
 
-  <script src="assets\js\custom-script.js?v=<?php echo time(); ?>"></script>
   <script src="assets\js\zoom.js?v=<?php echo time(); ?>"></script>
-  <!-- <script src="http:\\127.0.0.1\webshop\assets\js\custom-script.js"></script> -->
-  <!-- <script src="http://maps.google.com/maps/api/js?key=AIzaSyBnNugn1lBVUCA1UTt6lz-PbrMXIy2mYTw"></script> -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.js"></script> -->
+  <script src="assets\js\validate.js?v=<?php echo time(); ?>"></script>
+
   <script>
     toastr.options = {
       closeButton: true,
@@ -135,6 +133,8 @@
       hideMethod: "fadeOut",
     }
   </script>
+  <script src="assets\js\custom-script.js?v=<?php echo time(); ?>"></script>
+
 
   <script>
     var isBlock;

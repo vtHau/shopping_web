@@ -73,7 +73,6 @@ button.btn-custom {
   border: 1px solid #eee;
   color: #333;
   border-radius: 4px;
-  margin-bottom: 18px;
   display: block;
   width: 100%;
   transition: border 0.25s linear;
@@ -621,4 +620,12 @@ table .thead-light th {
 .sign-fail {
   display: none;
   color: red;
+}
+
+.input-fail {
+  visibility: hidden;
+  color: red;
+  font-size: 12px;
+  text-align: left;
+  margin-left: 10px;
 }

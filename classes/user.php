@@ -386,31 +386,27 @@ class user
 		return false;
 	}
 
-	public function changePassword($data)
+	public function changePassword($oldPassword, $newPassword)
 	{
 		$userID = session_id();
 		if (Session::isUserLogin()) {
 			$userID = Session::get("userID");
 		}
 
-		$oldPassword = mysqli_real_escape_string($this->db->link, $data["oldPassword"]);
-		$newPassword = mysqli_real_escape_string($this->db->link, $data["newPassword"]);
-		$reNewPassword = mysqli_real_escape_string($this->db->link, $data["reNewPassword"]);
+		$oldPassword = mysqli_real_escape_string($this->db->link, $oldPassword);
+		$newPassword = mysqli_real_escape_string($this->db->link, $newPassword);
 
 		$queryPassword = "SELECT * FROM tbl_user WHERE userID = '$userID'";
 		$resutlPassword = $this->db->select($queryPassword)->fetch_assoc();
 		$password = $resutlPassword["password"];
 
-		if ($password != md5($oldPassword)) {
-			$alert = '<div class="text-center text-noti-red">Sai mat khau</div>';
+		if ($password !== md5($oldPassword)) {
+			$alert = 'PASSWORD_WRONG';
 			return $alert;
 		}
 
-		if ($oldPassword == "" || $newPassword == "" || $reNewPassword == "") {
-			$alert = '<div class="text-center text-noti-red">Ban phai nhap day du cac truong</div>';
-			return $alert;
-		} elseif ($newPassword != $reNewPassword) {
-			$alert = '<div class="text-center text-noti-red">Hai mat khau khong khop</div>';
+		if ($oldPassword == "" || $newPassword == "") {
+			$alert = 'INPUT_FILL';
 			return $alert;
 		} else {
 			$password = md5($newPassword);
@@ -418,9 +414,10 @@ class user
 			$resultUpdate = $this->db->update($queryUpdate);
 
 			if ($resultUpdate) {
-				header("Location: cart.php");
+				$alert = 'CHANGE_PASSWORD_SUCCESS';
+				return $alert;
 			} else {
-				$alert = '<div class="text-center text-noti-red">Cap nhap mat khau khong thanh cong</div>';
+				$alert = 'CHANGE_PASSWORD_FAIL';
 				return $alert;
 			}
 		}
