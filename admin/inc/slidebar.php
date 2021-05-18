@@ -39,7 +39,7 @@
         <li class="app-sidebar__heading">Trang chủ</li>
         <li>
           <a href="index.php" class="mm-active">
-            <i class="metismenu-icon pe-7s-diamond"></i>
+            <i class="metismenu-icon pe-7s-display2"></i>
             Trang chủ
           </a>
         </li>
@@ -47,7 +47,7 @@
         <li class="app-sidebar__heading">Tính Năng Quản Trị</li>
         <li>
           <a href="#">
-            <i class="metismenu-icon pe-7s-diamond"></i>
+            <i class="metismenu-icon pe-7s-display2"></i>
             Danh mục
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
           </a>
@@ -69,7 +69,7 @@
 
         <li>
           <a href="#">
-            <i class="metismenu-icon pe-7s-diamond"></i>
+            <i class="metismenu-icon pe-7s-display2"></i>
             Thương hiệu
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
           </a>
@@ -92,7 +92,7 @@
 
         <li>
           <a href="#">
-            <i class="metismenu-icon pe-7s-diamond"></i>
+            <i class="metismenu-icon pe-7s-display2"></i>
             Sản phẩm
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
           </a>
@@ -115,7 +115,7 @@
 
         <li>
           <a href="#">
-            <i class="metismenu-icon pe-7s-diamond"></i>
+            <i class="metismenu-icon pe-7s-display2"></i>
             Slider
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
           </a>
@@ -138,7 +138,7 @@
 
         <li>
           <a href="#">
-            <i class="metismenu-icon pe-7s-diamond"></i>
+            <i class="metismenu-icon pe-7s-display2"></i>
             Mua hàng
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
           </a>
@@ -155,7 +155,7 @@
 
         <li>
           <a href="#">
-            <i class="metismenu-icon pe-7s-diamond"></i>
+            <i class="metismenu-icon pe-7s-display2"></i>
             Người dùng
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
           </a>
@@ -179,7 +179,7 @@
 
         <li>
           <a href="#">
-            <i class="metismenu-icon pe-7s-diamond"></i>
+            <i class="metismenu-icon pe-7s-display2"></i>
             Bình luận
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
           </a>
@@ -203,7 +203,7 @@
 
         <li>
           <a href="#">
-            <i class="metismenu-icon pe-7s-diamond"></i>
+            <i class="metismenu-icon pe-7s-display2"></i>
             Thông tin
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
           </a>
@@ -220,8 +220,8 @@
 
         <li>
           <a href="#">
-            <i class="metismenu-icon pe-7s-diamond"></i>
-            Thống kê
+            <i class="metismenu-icon pe-7s-display2"></i>
+            Truy cập
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
           </a>
           <ul>

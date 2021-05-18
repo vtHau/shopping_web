@@ -695,3 +695,82 @@ table .thead-light th {
   color: #007bff;
   font-weight: bold;
 }
+
+.weather {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-weather {
+  font-family: "Baloo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 auto;
+  font-size: 40px;
+  color: #007bff;
+}
+
+.box-temp {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-temp {
+  width: 80px;
+  height: 80px;
+}
+
+.text-temp {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.box-weather-common {
+  margin-top: 40px;
+  background: #f8f8f8;
+  width: 80%;
+  border-radius: 10px;
+}
+.row-weather {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.col-weather {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-info-text {
+  text-align: center;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.mal {
+  margin-left: 100px;
+}
+
+.img-temp {
+  display: block;
+  margin: 0 auto;
+}
+.weather-city {
+  text-align: center;
+  color: #007bff;
+  font-weight: bold;
+}

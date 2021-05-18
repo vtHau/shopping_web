@@ -68,8 +68,9 @@ class order
 
 		$query = "SELECT * FROM tbl_cart WHERE userID = '$userID'";
 		$getCart = $this->db->select($query);
-
 		if ($getCart) {
+			$contentMail = "";
+
 			while ($result = $getCart->fetch_assoc()) {
 				$productID = $result['productID'];
 				$productName = $result['productName'];
@@ -77,11 +78,18 @@ class order
 				$productPrice = $result['productPrice'] * $productQuantity;
 				$productImage = $result['productImage'];
 
+				$contentMail .= '<tr style=" width: 100%;">';
+				$contentMail .= '<td style=" text-align: center; font-family:  Tahoma, Geneva, Verdana, sans-serif;"> ' . $productName .  '</td>';
+				$contentMail .= '<td style=" text-align: center; font-family:  Tahoma, Geneva, Verdana, sans-serif;"> ' . $productQuantity .  '</td>';
+				$contentMail .= '<td style=" text-align: center; font-family:  Tahoma, Geneva, Verdana, sans-serif;"> ' . $this->fm->formatMoney($productPrice) .  '</td>';
+				$contentMail .= '<td style=" text-align: center; font-family:  Tahoma, Geneva, Verdana, sans-serif;"> ' .  $this->fm->formatMoney($productQuantity * $productPrice) .  '</td>';
+				$contentMail .= '</tr>';
+
 				$queryOrder = "INSERT INTO tbl_order(userID, productID, productName, productQuantity, productPrice, productImage) VALUES('$userID','$productID','$productName','$productQuantity','$productPrice','$productImage')";
 
 				$inserOrder = $this->db->insert($queryOrder);
-				$sendMail = $this->email->sendOrder(Session::get("userEmail"), $getCart);
 			}
+			$sendMail = $this->email->sendOrder(Session::get("userEmail"), $contentMail);
 		}
 
 

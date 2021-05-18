@@ -167,23 +167,9 @@ class email
 						<th style="  width: 25%; font-family:  Tahoma, Geneva, Verdana, sans-serif;
 						color: #414DD1;">Tổng tiền</th>
 					</tr>';
-
-			while ($result = $datas->fetch_assoc()) {
-				$productName = $result['productName'];
-				$productQuantity = $result['productQuantity'];
-				$productPrice = $result['productPrice'] * $productQuantity;
-
-				$contentMail .= '<tr style=" width: 100%;">';
-
-				$contentMail .= '<td style=" text-align: center; font-family:  Tahoma, Geneva, Verdana, sans-serif;"> ' . $productName .  '</td>';
-				$contentMail .= '<td style=" text-align: center; font-family:  Tahoma, Geneva, Verdana, sans-serif;"> ' . $productQuantity .  '</td>';
-				$contentMail .= '<td style=" text-align: center; font-family:  Tahoma, Geneva, Verdana, sans-serif;"> ' . $this->fm->formatMoney($productPrice) .  '</td>';
-				$contentMail .= '<td style=" text-align: center; font-family:  Tahoma, Geneva, Verdana, sans-serif;"> ' .  $this->fm->formatMoney($productQuantity * $productPrice) .  '</td>';
-
-				$contentMail .= '</tr>';
-			}
-
+			$contentMail .= $datas;
 			$contentMail .= '	</table></div>';
+
 			$this->mail->Body = $contentMail;
 
 			$this->mail->send();
