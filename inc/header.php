@@ -45,6 +45,9 @@ $chat = new chat();
 include_once "classes/visitor.php";
 $visitor = new visitor();
 
+include_once "classes/email.php";
+$email = new email();
+
 
 
 include_once "helpers/format.php";

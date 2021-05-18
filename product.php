@@ -140,7 +140,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                   </form>
                 </div>
                 <div class="pro-ref mt-20">
-                  <p><span class="in-stock"><i class="ion-checkmark-round"></i> Còn hàng</span></p>
+
                 </div>
               </div>
             </div>

@@ -13,11 +13,13 @@ class user
 {
 	private $db;
 	private $fm;
+	private $email;
 
 	public function __construct()
 	{
 		$this->db = new Database();
 		$this->fm = new Format();
+		$this->email = new email();
 	}
 
 
@@ -91,6 +93,7 @@ class user
 						Session::set("userBlock", false);
 						Session::set("userLogin", true);
 						Session::set("userID",  $value["userID"]);
+						Session::set("userEmail",  $value["userEmail"]);
 						Session::set("userFullName",  $value["userFullName"]);
 						Session::set("userImage",  $value["userImage"]);
 						unset($_SESSION["userCode"]);
@@ -485,6 +488,7 @@ class user
 			Session::set("userLogin", true);
 			Session::set("loginToast", 0);
 			Session::set("userID",  $value["userID"]);
+			Session::set("userEmail",  $value["userEmail"]);
 			Session::set("userFullName",  $value["userFullName"]);
 			Session::set("userImage",  $value["userImage"]);
 			unset($_SESSION["userCode"]);

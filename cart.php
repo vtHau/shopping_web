@@ -105,7 +105,12 @@ if (isset($_GET["deleteID"])) {
                   <?php }  ?>
                 </table>
                 <div class="wc-proceed-to-checkout">
-                  <a href="order.php">Đặt hàng</a>
+                  <?php
+                  if (Session::isUserLogin()) {
+                    echo ' <a href="order.php">Đặt hàng</a>';
+                  }
+
+                  ?>
                 </div>
               </div>
             </div>

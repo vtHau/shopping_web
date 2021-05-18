@@ -1,14 +1,18 @@
 <?php
+$filepath = realpath(dirname(__FILE__));
 require_once 'phpmailer/Exception.php';
 require_once 'phpmailer/PHPMailer.php';
 require_once 'phpmailer/SMTP.php';
 // https://accounts.google.com/DisplayUnlockCaptcha
 use PHPMailer\PHPMailer\PHPMailer;
 
+include_once($filepath . '/../helpers/format.php');
+
 
 class email
 {
 	private $mail;
+	private $fm;
 
 	public function __construct()
 	{
@@ -23,6 +27,7 @@ class email
 		$this->mail->CharSet = 'UTF-8';
 		$this->mail->setFrom('mwstoreeee@gmail.com');
 		$this->mail->isHTML(true);
+		$this->fm = new Format();
 	}
 
 	public   function sendEmail($emailReceive, $userCode, $title = 'MWStore: Xác nhận đăng ký tài khoản MWStore.')
@@ -121,6 +126,64 @@ class email
 			text-decoration: none; font-size: 20px; text-align: center; ">' . $code . '</div></div>
 				</div>
 			</div>';
+			$this->mail->Body = $contentMail;
+
+			$this->mail->send();
+		} catch (Exception $e) {
+			$result = false;
+		}
+
+		return $result;
+	}
+
+
+	public   function sendOrder($emailReceive, $datas, $title = 'MWStore: Chi tiết đơn hàng của bạn')
+	{
+		$result = true;
+
+		try {
+			$this->mail->addAddress($emailReceive); // Email address where you want to receive emails (you can use any of your gmail address including the gmail address which you used as SMTP server)
+			$this->mail->Subject = $title;
+			$contentMail = '<div style=" margin: 0 auto;
+			padding: 20px;
+			width: 600px;
+			background-color: #f8f8f8;
+			border-radius: 10px;">
+				<p style="text-align: center;
+				font-family: Tahoma, Geneva, Verdana, sans-serif;
+				color: #414DD1;
+				font-weight: bold;
+				text-transform: uppercase;
+				font-size: 20px;
+				margin: 0;">Đơn hàng</p>
+				<table style=" width: 100%;">
+					<tr style=" width: 100%;">
+						<th style=" width: 35%; font-family:  Tahoma, Geneva, Verdana, sans-serif;
+						color: #414DD1;">Tên sản phẩm</th>
+						<th style=" width: 15%; font-family:  Tahoma, Geneva, Verdana, sans-serif;
+						color: #414DD1;">Số lượng</th>
+						<th style="  width: 25%; font-family: Tahoma, Geneva, Verdana, sans-serif;
+						color: #414DD1;">Giá</th>
+						<th style="  width: 25%; font-family:  Tahoma, Geneva, Verdana, sans-serif;
+						color: #414DD1;">Tổng tiền</th>
+					</tr>';
+
+			while ($result = $datas->fetch_assoc()) {
+				$productName = $result['productName'];
+				$productQuantity = $result['productQuantity'];
+				$productPrice = $result['productPrice'] * $productQuantity;
+
+				$contentMail .= '<tr style=" width: 100%;">';
+
+				$contentMail .= '<td style=" text-align: center; font-family:  Tahoma, Geneva, Verdana, sans-serif;"> ' . $productName .  '</td>';
+				$contentMail .= '<td style=" text-align: center; font-family:  Tahoma, Geneva, Verdana, sans-serif;"> ' . $productQuantity .  '</td>';
+				$contentMail .= '<td style=" text-align: center; font-family:  Tahoma, Geneva, Verdana, sans-serif;"> ' . $this->fm->formatMoney($productPrice) .  '</td>';
+				$contentMail .= '<td style=" text-align: center; font-family:  Tahoma, Geneva, Verdana, sans-serif;"> ' .  $this->fm->formatMoney($productQuantity * $productPrice) .  '</td>';
+
+				$contentMail .= '</tr>';
+			}
+
+			$contentMail .= '	</table></div>';
 			$this->mail->Body = $contentMail;
 
 			$this->mail->send();

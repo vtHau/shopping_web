@@ -2,6 +2,11 @@
 $filepath = realpath(dirname(__FILE__));
 include_once($filepath . '/../lib/database.php');
 include_once($filepath . '/../helpers/format.php');
+
+?>
+
+<?php
+include_once "email.php";
 ?>
 
 <?php
@@ -10,11 +15,13 @@ class order
 {
 	private $db;
 	private $fm;
+	private $email;
 
 	public function __construct()
 	{
 		$this->db = new Database();
 		$this->fm = new Format();
+		$this->email = new email();
 	}
 
 	public function getUserID()
@@ -71,9 +78,12 @@ class order
 				$productImage = $result['productImage'];
 
 				$queryOrder = "INSERT INTO tbl_order(userID, productID, productName, productQuantity, productPrice, productImage) VALUES('$userID','$productID','$productName','$productQuantity','$productPrice','$productImage')";
+
 				$inserOrder = $this->db->insert($queryOrder);
+				$sendMail = $this->email->sendOrder(Session::get("userEmail"), $getCart);
 			}
 		}
+
 
 		if ($inserOrder) {
 			return true;

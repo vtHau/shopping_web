@@ -259,16 +259,19 @@ $(document).ready(function () {
       success: function (res) {
         switch (res.trim()) {
           case "SIGN_SUCCESS":
+            // window.location = `https://mwstoree.000webhostapp.com/index.php`;
             window.location = `http://localhost/webshop/index.php`;
             enableSignIn();
             break;
 
           case "USER_BLOCK":
+            // window.location = `https://mwstoree.000webhostapp.com/userblock.php`;
             window.location = `http://localhost/webshop/userblock.php`;
             enableSignIn();
             break;
 
           case "RECONFIRM":
+            // window.location = `https://mwstoree.000webhostapp.com/reconfirm.php`;
             window.location = `http://localhost/webshop/reconfirm.php`;
             enableSignIn();
             break;
