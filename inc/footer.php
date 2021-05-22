@@ -133,11 +133,9 @@
   <!-- Plugin js -->
   <script src="assets\js\plugins.js"></script>
   <!-- Main activaion js -->
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js' /> -->
   <script src="assets\js\main.js?v=<?php echo time(); ?>"></script>
   <script src="assets\js\toastr.min.js"></script>
-
-
-  <script src="assets\js\zoom.js?v=<?php echo time(); ?>"></script>
   <script src="assets\js\validate.js?v=<?php echo time(); ?>"></script>
 
   <script>
@@ -159,6 +157,9 @@
       hideMethod: "fadeOut",
     }
   </script>
+
+  <script src="assets\js\zoom.js?v=<?php echo time(); ?>"></script>
+  <script async='async' src='https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js'></script>
   <script src="assets\js\custom-script.js?v=<?php echo time(); ?>"></script>
 
 

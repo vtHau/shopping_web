@@ -145,7 +145,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 		<div class="modal-dialog" role="document">
 			<div class="modal-content login-form" role="document">
 				<div class="btn-signin-hide" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></div>
-				<img class="avatar-login" src="assets/img/avatar.svg" alt="">
+				<img class="avatar-login" src="admin/assets/images/login/avatar.svg" alt="">
 				<h4 class="text-login-form">Đăng nhập</h4>
 				<input class="custom-in sign-email" style="margin-bottom: 14px;" type="email" name="userEmail" placeholder="Nhập địa chỉ Email..." />
 				<div class="input-icon">
@@ -345,6 +345,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 									<li><a>Thêm<i class="fa fa-angle-down"></i></a>
 										<!-- Home Version Dropdown Start -->
 										<ul class="ht-dropdown dropdown-style-two">
+											<li><a href="weather.php">Tiện ích</a></li>
 											<li><a href="contact.php">Liên hệ</a></li>
 										</ul>
 										<!-- Home Version Dropdown End -->

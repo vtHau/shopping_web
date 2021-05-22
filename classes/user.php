@@ -53,6 +53,14 @@ class user
 		return $result;
 	}
 
+	public function getUserNotConfirm()
+	{
+		$query = "SELECT userID ,  userFullName , userImage , userPhone , userEmail , userStatus FROM tbl_user WHERE userActive <> 1 ";
+		$result = $this->db->select($query);
+
+		return $result;
+	}
+
 	public function getAllUser()
 	{
 		$query = "SELECT * FROM tbl_user";
@@ -512,5 +520,25 @@ class user
 		} else {
 			return false;
 		}
+	}
+
+	public function deleteUserExtension($userID)
+	{
+		$userID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
+		$query = "DELETE FROM tbl_user WHERE userID = '$userID'";
+		$result = $this->db->delete($query);
+		if ($result) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function activeUserExtension($userID)
+	{
+		$userID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
+		$query = "UPDATE tbl_user SET userActive = 1 WHERE userID = '$userID'";
+		$result = $this->db->update($query);
+		return $result;
 	}
 }

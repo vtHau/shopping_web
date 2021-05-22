@@ -75,7 +75,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
               <!-- Thumbnail Large Image start -->
               <div class="tab-content">
                 <div id="thumb1" class="tab-pane fade show active">
-                  <a data-fancybox="images" href=""><img id='zoom-img' style="width: 400px; height: 400px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="product-view"></a>
+                  <a data-fancybox="images" href=""><img id="img-zoom" style="width: 400px; height: 400px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="product-view"></a>
                 </div>
               </div>
               <!-- Thumbnail Large Image End -->

@@ -17,6 +17,7 @@ class adminLogin
 		$this->db = new Database();
 		$this->fm = new Format();
 	}
+
 	public function checkLogin($adminUser, $adminPass)
 	{
 		$adminUser = $this->fm->validation($adminUser); //gọi ham validation từ file Format để ktra
@@ -51,6 +52,39 @@ class adminLogin
 				$alert = "Tài khoản hoặc mật khẩu không đúng";
 				return $alert;
 			}
+		}
+	}
+
+	public function signinRequest($adminEmail, $adminPass)
+	{
+		$adminEmail = $this->fm->validation($adminEmail);
+		$adminPass = $this->fm->validation($adminPass);
+		// $adminEmail = mysqli_real_escape_string($this->db->link, $adminEmail);
+
+		if (empty($adminEmail) || empty($adminPass)) {
+			return false;
+		} else {
+			$query = "SELECT adminID , adminName , adminEmail , adminImage , adminDescription FROM tbl_admin WHERE adminEmail = '$adminEmail' AND adminPass = '$adminPass' ";
+			$result = $this->db->select($query);
+
+			if ($result) {
+				return $result;
+			} else {
+				return false;
+			}
+		}
+	}
+
+	public function getAdminInfo($adminEmail)
+	{
+		$query = "SELECT adminID , adminName , adminEmail , adminImage , adminDescription FROM tbl_admin WHERE adminEmail = '$adminEmail' ";
+
+		$result = $this->db->select($query);
+
+		if ($result) {
+			return $result;
+		} else {
+			return false;
 		}
 	}
 }
