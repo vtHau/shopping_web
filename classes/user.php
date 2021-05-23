@@ -57,8 +57,10 @@ class user
 	{
 		$query = "SELECT userID ,  userFullName , userImage , userPhone , userEmail , userStatus FROM tbl_user WHERE userActive <> 1 ";
 		$result = $this->db->select($query);
-
-		return $result;
+		if ($result) {
+			return $result;
+		}
+		return false;
 	}
 
 	public function getAllUser()
@@ -539,6 +541,9 @@ class user
 		$userID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
 		$query = "UPDATE tbl_user SET userActive = 1 WHERE userID = '$userID'";
 		$result = $this->db->update($query);
-		return $result;
+		if ($result) {
+			return true;
+		}
+		return false;
 	}
 }

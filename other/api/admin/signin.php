@@ -1,4 +1,3 @@
-
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
@@ -22,5 +21,5 @@ if ($signinAdmin) {
   $result = ["token" => $JWT, "adminInfo" => $info];
   echo json_encode($result);
 } else {
-  echo "SINGIN_FAIL";
+  echo json_encode("SINGIN_FAIL");
 }

@@ -20,7 +20,7 @@ switch ($type) {
       };
       echo json_encode($result);
     } else {
-      echo "NOT_FOUND_USER";
+      echo json_encode("NOT_FOUND_USER");
     }
     break;
 
@@ -35,9 +35,11 @@ switch ($type) {
           $result[] = $row;
         };
         echo json_encode($result);
+      } else {
+        echo json_encode("NOT_FOUND_USER");
       }
     } else {
-      echo "CONFIRM_USER_FAIL";
+      echo json_encode("CONFIRM_USER_FAIL");
     }
     break;
 
@@ -52,14 +54,15 @@ switch ($type) {
           $result[] = $row;
         };
         echo json_encode($result);
+      } else {
+        echo json_encode("NOT_FOUND_USER");
       }
     } else {
-      echo "DELETE_USER_FAIL";
+      echo json_encode("DELETE_USER_FAIL");
     }
     break;
 
   default:
-    # code...
     break;
 }
 ?>

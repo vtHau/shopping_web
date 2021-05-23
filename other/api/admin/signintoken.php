@@ -18,7 +18,7 @@ $key = "TrungHau";
 try {
   $decoded = JWT::decode($token, $key, array('HS256'));
   if ($decoded->expire < time()) {
-    echo 'TOKEN_INVALID';
+    echo json_encode('TOKEN_INVALID');
   } else {
     $email = $decoded->email;
 
@@ -30,9 +30,9 @@ try {
       $result = ["token" => $jwt, "adminInfo" => $info];
       echo json_encode($result);
     } else {
-      echo 'TOKEN_INVALID';
+      echo json_encode('TOKEN_INVALID');
     }
   }
 } catch (Exception $e) {
-  echo 'TOKEN_INVALID';
+  echo  json_encode('TOKEN_INVALID');
 }

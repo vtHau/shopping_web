@@ -20,7 +20,7 @@ switch ($type) {
       };
       echo json_encode($result);
     } else {
-      echo "NOT_FOUND_REVIEW";
+      echo json_encode("NOT_FOUND_REVIEW");
     }
     break;
 
@@ -35,9 +35,11 @@ switch ($type) {
           $result[] = $row;
         };
         echo json_encode($result);
+      } else {
+        echo json_encode("NOT_FOUND_REVIEW");
       }
     } else {
-      echo "CONFIRM_REVIEW_FAIL";
+      echo json_encode("CONFIRM_REVIEW_FAIL");
     }
     break;
 
@@ -52,14 +54,15 @@ switch ($type) {
           $result[] = $row;
         };
         echo json_encode($result);
+      } else {
+        echo json_encode("NOT_FOUND_REVIEW");
       }
     } else {
-      echo "DELETE_REVIEW_FAIL";
+      echo json_encode("DELETE_REVIEW_FAIL");
     }
     break;
 
   default:
-    # code...
     break;
 }
 ?>

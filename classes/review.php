@@ -45,7 +45,10 @@ class review
 	{
 		$query = "SELECT * FROM tbl_review , tbl_user WHERE  tbl_review.status = 0 AND tbl_review.userID = tbl_user.userID";
 		$result = $this->db->select($query);
-		return $result;
+		if ($result) {
+			return $result;
+		}
+		return false;
 	}
 
 	public function getStar($productID)
@@ -196,7 +199,10 @@ class review
 		$reviewID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $reviewID));
 		$query = "DELETE FROM tbl_review WHERE reviewID = '$reviewID'";
 		$result = 	$this->db->delete($query);
-		return $result;
+		if ($result) {
+			return true;
+		}
+		return false;
 	}
 
 	public function confirmReview($reviewID)
@@ -204,7 +210,10 @@ class review
 		$reviewID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $reviewID));
 		$query = "UPDATE tbl_review SET status = 1 WHERE reviewID = '$reviewID'";
 		$result = $this->db->update($query);
-		return $result;
+		if ($result) {
+			return true;
+		}
+		return false;
 	}
 }
 ?>
