@@ -26,6 +26,7 @@ class category
 
 	public function getCategoryLimit($limit)
 	{
+		$limit =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $limit));
 		$query = "SELECT * FROM tbl_category ORDER BY catID DESC LIMIT $limit ";
 		$result = $this->db->select($query);
 		return $result;
@@ -33,6 +34,7 @@ class category
 
 	public function getCategoryByID($ID)
 	{
+		$ID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
 		$query = "SELECT * FROM tbl_category WHERE catID = '$ID' ORDER BY catID DESC";
 		$result = $this->db->select($query);
 		return $result;
@@ -47,8 +49,8 @@ class category
 
 	public function insertCategory($data, $files)
 	{
-		$catName = mysqli_real_escape_string($this->db->link, $data["catName"]);
-		$catDescription = mysqli_real_escape_string($this->db->link, $data["catDescription"]);
+		$catName =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["catName"]));
+		$catDescription =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["catDescription"]));
 
 		$permited = ['jpg', 'jpeg', 'png', 'gif'];
 		$file_name = $files['catImage']['name'];
@@ -80,8 +82,9 @@ class category
 
 	public function updateCategory($ID, $data, $files)
 	{
-		$catName = mysqli_real_escape_string($this->db->link, $data["catName"]);
-		$catDescription = mysqli_real_escape_string($this->db->link, $data["catDescription"]);
+		$ID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
+		$catName =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["catName"]));
+		$catDescription =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["catDescription"]));
 
 		$permited = ['jpg', 'jpeg', 'png', 'gif'];
 		$file_name = $files['catImage']['name'];
@@ -115,6 +118,7 @@ class category
 
 	public function deleteCategory($ID)
 	{
+		$ID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
 		$query = "DELETE FROM tbl_category WHERE catID = '$ID'";
 		$result = $this->db->delete($query);
 		if ($result) {

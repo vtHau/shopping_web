@@ -40,9 +40,9 @@ class slider
 
 	public function insertSlider($data, $files)
 	{
-		$sliderName = mysqli_real_escape_string($this->db->link, $data['sliderName']);
-		$productID = mysqli_real_escape_string($this->db->link, $data['productID']);
-		$sliderType = mysqli_real_escape_string($this->db->link, $data['sliderType']);
+		$sliderName =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['sliderName']));
+		$productID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productID']));
+		$sliderType =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['sliderType']));
 
 		$permited = array('jpg', 'jpeg', 'png', 'gif');
 		$file_name = $files['sliderImage']['name'];
@@ -63,7 +63,6 @@ class slider
 			$query = "INSERT INTO tbl_slider(productID, sliderName, sliderType, sliderImage) VALUES('$productID', '$sliderName', '$sliderType', '$unique_image') ";
 			$result = $this->db->insert($query);
 			if ($result) {
-				// header("Location: productlist.php");
 				return true;
 			} else {
 				$alert = '<div class="text-center text-noti-red">Thêm sản phẩm không thành công</div>';
@@ -74,9 +73,9 @@ class slider
 
 	public function updateSlider($ID, $data, $files)
 	{
-		$sliderName = mysqli_real_escape_string($this->db->link, $data['sliderName']);
-		$productID = mysqli_real_escape_string($this->db->link, $data['productID']);
-		$sliderType = mysqli_real_escape_string($this->db->link, $data['sliderType']);
+		$sliderName =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['sliderName']));
+		$productID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['productID']));
+		$sliderType =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $data['sliderType']));
 
 		$permited = array('jpg', 'jpeg', 'png', 'gif');
 		$file_name = $files['sliderImage']['name'];
@@ -123,6 +122,8 @@ class slider
 
 	public function deleteSlider($sliderID)
 	{
+		$sliderID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $sliderID));
+
 		$query = "DELETE FROM tbl_slider WHERE sliderID = '$sliderID'";
 		$result = $this->db->delete($query);
 

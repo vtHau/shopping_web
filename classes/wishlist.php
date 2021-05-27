@@ -46,6 +46,7 @@ class wishlist
 
 	public function insertWishlist($productID)
 	{
+		$productID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $productID));
 		$productID = mysqli_real_escape_string($this->db->link, $productID);
 
 		$query = "SELECT * FROM tbl_product WHERE productID = '$productID' ";
@@ -66,26 +67,12 @@ class wishlist
 			$msg = "them that bai";
 			return $msg;
 		}
-
-
-		// if ($result['product_remain'] > $quantity) {
-
-		// 	$query_insert = "INSERT INTO tbl_wishlist(productId,productName,quantity,sId,price,image) VALUES('$id','$productName','$quantity','$sId','$price','$image' ) ";
-		// 	$insert_cart = $this->db->insert($query_insert);
-		// 	if ($result) {
-		// 		header('Location:cart.php');
-		// 	} else {
-		// 		header('Location:404.php');
-		// 	}
-		// } else {
-		// 	$msg = "<span class='erorr'> Số lượng " . $quantity . " bạn đặt quá số lượng chúng tôi chỉ còn " . $result['product_remain'] . " cái</span> ";
-		// 	return $msg;
-		// }
 	}
 
 	public function deleteWishlist($wishlistID)
 	{
-		$wishlistID = mysqli_real_escape_string($this->db->link, $wishlistID);
+		$wishlistID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $wishlistID));
+
 		$query = "DELETE FROM tbl_wishlist WHERE wishlistID = '$wishlistID'";
 		$result = $this->db->delete($query);
 		if ($result) {

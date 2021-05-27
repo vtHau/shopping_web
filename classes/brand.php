@@ -25,6 +25,7 @@ class brand
 
 	public function getBrandLimit($limit)
 	{
+		$limit =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $limit));
 		$query = "SELECT * FROM tbl_brand ORDER BY brandID DESC LIMIT $limit";
 		$result = $this->db->select($query);
 		return $result;
@@ -32,6 +33,7 @@ class brand
 
 	public function getBrandByID($ID)
 	{
+		$ID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
 		$query = "SELECT * FROM tbl_brand WHERE brandID = '$ID' ORDER BY brandID DESC";
 		$result = $this->db->select($query);
 		return $result;
@@ -46,8 +48,8 @@ class brand
 
 	public function insertBrand($data, $files)
 	{
-		$brandName = mysqli_real_escape_string($this->db->link, $data["brandName"]);
-		$brandDescription = mysqli_real_escape_string($this->db->link, $data["brandDescription"]);
+		$brandName =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["brandName"]));
+		$brandDescription =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["brandDescription"]));
 
 		$permited = ['jpg', 'jpeg', 'png', 'gif'];
 		$file_name = $files['brandImage']['name'];
@@ -79,8 +81,9 @@ class brand
 
 	public function updateBrand($ID, $data, $files)
 	{
-		$brandName = mysqli_real_escape_string($this->db->link, $data["brandName"]);
-		$brandDescription = mysqli_real_escape_string($this->db->link, $data["brandDescription"]);
+		$ID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
+		$brandName = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["brandName"]));
+		$brandDescription = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["brandDescription"]));
 
 		$permited = ['jpg', 'jpeg', 'png', 'gif'];
 		$file_name = $files['brandImage']['name'];
@@ -113,6 +116,7 @@ class brand
 	}
 	public function deleteBrand($ID)
 	{
+		$ID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
 		$query = "DELETE FROM tbl_brand WHERE brandID = '$ID'";
 		$result = $this->db->delete($query);
 		if ($result) {

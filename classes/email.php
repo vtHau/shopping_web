@@ -32,6 +32,7 @@ class email
 
 	public   function sendEmail($emailReceive, $userCode, $title = 'MWStore: Xác nhận đăng ký tài khoản MWStore.')
 	{
+		
 		$result = true;
 		try {
 

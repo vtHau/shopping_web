@@ -1,2 +1,23 @@
 php_flag output_buffering on
 SetEnvIfNoCase Request_URI ^ / thumb.php no-gzip -vary
+
+# Désactivate the display of contents of rédirectories
+Options All -Indexes
+
+# Mask the information of server
+ServerSignature Off
+
+# Activation du suivi des liens symboliques
+Options +FollowSymLinks
+
+# Choix du fuseau horaire
+SetEnv TZ Asia/Ho_Chi_Minh
+
+
+
+# Protections  diverses (XSS, clickjacking and MIME-Type sniffing)
+<ifModule mod_headers.c>
+Header set X-XSS-Protection  "1; mode=block"
+Header always append X-Frame-Options SAMEORIGIN
+Header set X-Content-Type-Options: "nosniff”
+</ifModule>

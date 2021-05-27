@@ -91,7 +91,9 @@ header("Cache-Control: max-age=2592000");
     <!-- start header -->
     <div class="app-header header-shadow">
       <div class="app-header__logo">
-        <a href="index.php" class="logo-src"></a>
+        <a href="index.php" class="">
+          <img src="..\assets\img\logo\kkk.png" alt="logo-image" style="width: 120px;">
+        </a>
         <div class="header__pane ml-auto">
           <div>
             <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -165,10 +167,6 @@ header("Cache-Control: max-age=2592000");
                       <i class="fa fa-angle-down ml-2 opacity-8"></i>
                     </a>
                     <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                      <button type="button" tabindex="0" class="dropdown-item">Thông tin tài khoản</button>
-                      <div tabindex="-1" class="dropdown-divider"></div>
-                      <button type="button" tabindex="0" class="dropdown-item">Thay đổi mật khẩu</button>
-                      <div tabindex="-1" class="dropdown-divider"></div>
                       <a tabindex="0" class="dropdown-item" href="?action=logout">Đăng Xuất</a>
                     </div>
                   </div>

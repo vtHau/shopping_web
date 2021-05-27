@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
 		</div>
 		<div class="login-content">
 			<form action="" method="POST">
-				<img src="assets/images/login/avatar.svg">
+				<img src="assets/images/login/avatar.png">
 
 				<h2 class="title">Đăng Nhập</h2>
 

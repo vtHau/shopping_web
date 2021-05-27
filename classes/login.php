@@ -20,11 +20,8 @@ class adminLogin
 
 	public function checkLogin($adminUser, $adminPass)
 	{
-		$adminUser = $this->fm->validation($adminUser); //gọi ham validation từ file Format để ktra
-		$adminPass = $this->fm->validation($adminPass);
-
-		$adminUser = mysqli_real_escape_string($this->db->link, $adminUser);
-		$adminPass = mysqli_real_escape_string($this->db->link, $adminPass); //mysqli gọi 2 biến. (adminUser and link) biến link -> gọi conect db từ file db
+		$adminUser =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $adminUser));
+		$adminPass =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $adminPass));
 
 		if (empty($adminUser) || empty($adminPass)) {
 			$alert = "Bạn chưa nhập đầy đủ thông tin";
@@ -57,9 +54,8 @@ class adminLogin
 
 	public function signinRequest($adminEmail, $adminPass)
 	{
-		$adminEmail = $this->fm->validation($adminEmail);
-		$adminPass = $this->fm->validation($adminPass);
-		// $adminEmail = mysqli_real_escape_string($this->db->link, $adminEmail);
+		$adminEmail =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $adminEmail));
+		$adminPass =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $adminPass));
 
 		if (empty($adminEmail) || empty($adminPass)) {
 			return false;
@@ -77,6 +73,7 @@ class adminLogin
 
 	public function getAdminInfo($adminEmail)
 	{
+		$adminEmail =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $adminEmail));
 		$query = "SELECT adminID , adminName , adminEmail , adminImage , adminDescription FROM tbl_admin WHERE adminEmail = '$adminEmail' ";
 
 		$result = $this->db->select($query);

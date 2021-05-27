@@ -37,7 +37,7 @@ class compare
 
 	public function inserCompare($productID)
 	{
-		$productID = mysqli_real_escape_string($this->db->link, $productID);
+		$productID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $productID));
 
 		$query = "SELECT * FROM tbl_product WHERE productID = '$productID' ";
 		$result = $this->db->select($query)->fetch_assoc();
@@ -73,9 +73,9 @@ class compare
 
 	public function deleteCompare($compareID)
 	{
-		$compareID = mysqli_real_escape_string($this->db->link, $compareID);
-		$query = "DELETE FROM tbl_compare WHERE compareID = '$compareID'";
+		$compareID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $compareID));
 
+		$query = "DELETE FROM tbl_compare WHERE compareID = '$compareID'";
 		$result = $this->db->delete($query);
 
 		if ($result) {

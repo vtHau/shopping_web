@@ -35,6 +35,7 @@ class user
 
 	public function getUserByID($userID)
 	{
+		$userID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
 		$query = "SELECT * FROM tbl_user WHERE userID = '$userID'";
 		$result = $this->db->select($query);
 

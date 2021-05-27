@@ -40,25 +40,3 @@
 </div>
 <!-- Error 404 Area End -->
 <?php include_once "inc/footer.php"; ?>
-
-<?php
-            $getChat = $chat->getChat();
-            if ($getChat) {
-              while ($result = $getChat->fetch_assoc()) {
-                $isUser = false;
-                if ($result["fromID"] == Session::get("userID")) {
-                  $isUser = true;
-                }
-            ?>
-                <div class="box-mess <?php if ($isUser) echo "to-right"; ?>">
-                  <div class="box-image">
-                    <img src="avatar.png" alt="">
-                  </div>
-                  <div class="mess-content">
-                    <p><?php echo $result["message"] ?></p>
-                  </div>
-                </div>
-            <?php
-              }
-            }
-            ?>

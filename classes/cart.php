@@ -40,6 +40,7 @@ class cart
 
 	public function getCartByID($userID)
 	{
+		$userID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
 		$query =
 			"SELECT tbl_product.*, tbl_cart.* ,  tbl_category.catName, tbl_brand.brandName 
 			 FROM tbl_product INNER JOIN tbl_category ON tbl_product.productCategory = tbl_category.catID
@@ -62,7 +63,7 @@ class cart
 	{
 		$productQuantity = $this->fm->validation($productQuantity);
 		$productQuantity = mysqli_real_escape_string($this->db->link, $productQuantity);
-		$productID = mysqli_real_escape_string($this->db->link, $productID);
+		$productID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $productID));
 
 		$userID = session_id();
 		if (Session::isUserLogin()) {
@@ -101,9 +102,10 @@ class cart
 
 	public function insertCartMobile($userID, $productID, $productQuantity)
 	{
+		$userID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
 		$productQuantity = $this->fm->validation($productQuantity);
 		$productQuantity = mysqli_real_escape_string($this->db->link, $productQuantity);
-		$productID = mysqli_real_escape_string($this->db->link, $productID);
+		$productID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $productID));
 		$query = "SELECT * FROM tbl_cart WHERE userID = '$userID' AND productID = '$productID'";
 		$result = $this->db->select($query);
 
@@ -136,8 +138,8 @@ class cart
 
 	public function updateCartQuantity($cartID, $productQuantity)
 	{
-		$cartID = mysqli_real_escape_string($this->db->link, $cartID);
-		$productQuantity = mysqli_real_escape_string($this->db->link, $productQuantity);
+		$cartID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $cartID));
+		$productQuantity =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $productQuantity));
 
 		$query = "UPDATE tbl_cart SET productQuantity = '$productQuantity' WHERE cartID = '$cartID'";
 		$result = $this->db->update($query);
@@ -150,8 +152,8 @@ class cart
 
 	public function updateQuantityCart($cartID, $productQuantity)
 	{
-		$cartID = mysqli_real_escape_string($this->db->link, $cartID);
-		$productQuantity = mysqli_real_escape_string($this->db->link, $productQuantity);
+		$cartID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $cartID));
+		$productQuantity =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $productQuantity));
 
 		$query = "UPDATE tbl_cart SET productQuantity = '$productQuantity' WHERE cartID = '$cartID'";
 		$result = $this->db->update($query);
@@ -165,7 +167,7 @@ class cart
 
 	public function deleteCartByID($cartID)
 	{
-		$cartID = mysqli_real_escape_string($this->db->link, $cartID);
+		$cartID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $cartID));
 		$query = "DELETE FROM tbl_cart WHERE cartID = '$cartID'";
 		$result = $this->db->delete($query);
 		if ($result) {
@@ -177,7 +179,7 @@ class cart
 
 	public function deleteCart($cartID)
 	{
-		$cartID = mysqli_real_escape_string($this->db->link, $cartID);
+		$cartID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $cartID));
 		$query = "DELETE FROM tbl_cart WHERE cartID = '$cartID'";
 		$result = $this->db->delete($query);
 		if ($result) {
@@ -204,142 +206,6 @@ class cart
 			$msg = "<span class='error'>Sản phẩm đã được xóa</span>";
 			return $msg;
 		}
-	}
-
-	public function check_cart()
-	{
-		$sId = session_id();
-		$query = "SELECT * FROM tbl_cart WHERE sId = '$sId' ";
-		$result = $this->db->select($query);
-		return $result;
-	}
-	public function check_order($customer_id)
-	{
-		$sId = session_id();
-		$query = "SELECT * FROM tbl_order WHERE customer_id = '$customer_id' ";
-		$result = $this->db->select($query);
-		return $result;
-	}
-	public function del_all_data_cart()
-	{
-		$sId = session_id();
-		$query = "DELETE FROM tbl_cart WHERE sId = '$sId' ";
-		$result = $this->db->select($query);
-		return $result;
-	}
-	public function del_compare($customer_id)
-	{
-		$sId = session_id();
-		$query = "DELETE FROM tbl_compare WHERE customer_id = '$customer_id'";
-		$result = $this->db->delete($query);
-		return $result;
-	}
-	public function insertOrder($customer_id)
-	{
-		$sId = session_id();
-		$query = "SELECT * FROM tbl_cart WHERE sId = '$sId'";
-		$get_product = $this->db->select($query);
-		if ($get_product) {
-			while ($result = $get_product->fetch_assoc()) {
-				$productid = $result['productId'];
-				$productName = $result['productName'];
-				$quantity = $result['quantity'];
-				$price = $result['price'] * $quantity;
-				$image = $result['image'];
-				$customer_id = $customer_id;
-				$query_order = "INSERT INTO tbl_order(productId,productName,quantity,price,image,customer_id) VALUES('$productid','$productName','$quantity','$price','$image','$customer_id')";
-				$insert_order = $this->db->insert($query_order);
-			}
-		}
-	}
-	public function getAmountPrice($customer_id)
-	{
-		$query = "SELECT price FROM tbl_order WHERE customer_id = '$customer_id' ";
-		$get_price = $this->db->select($query);
-		return $get_price;
-	}
-	public function get_cart_ordered($customer_id)
-	{
-		$query = "SELECT * FROM tbl_order WHERE customer_id = '$customer_id' ";
-		$get_cart_ordered = $this->db->select($query);
-		return $get_cart_ordered;
-	}
-	public function get_inbox_cart()
-	{
-		$query = "SELECT * FROM tbl_order ";
-		$get_inbox_cart = $this->db->select($query);
-		return $get_inbox_cart;
-	}
-
-	public function shifted($id, $proid, $qty, $time, $price)
-	{
-		$id = mysqli_real_escape_string($this->db->link, $id);
-		$proid = mysqli_real_escape_string($this->db->link, $proid);
-		$qty = mysqli_real_escape_string($this->db->link, $qty);
-		$time = mysqli_real_escape_string($this->db->link, $time);
-		$price = mysqli_real_escape_string($this->db->link, $price);
-
-		$query_select = "SELECT * FROM tbl_product WHERE productId='$proid'";
-		$get_select = $this->db->select($query_select);
-
-		if ($get_select) {
-			while ($result = $get_select->fetch_assoc()) {
-				$soluong_new = $result['product_remain'] - $qty;
-				$qty_soldout = $result['product_soldout'] + $qty;
-
-				$query_soluong = "UPDATE tbl_product SET
-
-					product_remain = '$soluong_new',product_soldout = '$qty_soldout' WHERE productId = '$proid'";
-				$result = $this->db->update($query_soluong);
-			}
-		}
-
-		$query = "UPDATE tbl_order SET
-
-			status = '1'
-
-			WHERE id = '$id' AND date_order = '$time' AND price = '$price' ";
-
-
-		$result = $this->db->update($query);
-		if ($result) {
-			$msg = "<span class='success'> Update Order Succesfully</span> ";
-			return $msg;
-		} else {
-			$msg = "<span class='erorr'> Update Order NOT Succesfully</span> ";
-			return $msg;
-		}
-	}
-	public function del_shifted($id, $time, $price)
-	{
-		$id = mysqli_real_escape_string($this->db->link, $id);
-		$time = mysqli_real_escape_string($this->db->link, $time);
-		$price = mysqli_real_escape_string($this->db->link, $price);
-		$query = "DELETE FROM tbl_order 
-					  WHERE id = '$id' AND date_order = '$time' AND price = '$price' ";
-
-		$result = $this->db->update($query);
-		if ($result) {
-			$msg = "<span class='success'> DELETE Order Succesfully</span> ";
-			return $msg;
-		} else {
-			$msg = "<span class='erorr'> DELETE Order NOT Succesfully</span> ";
-			return $msg;
-		}
-	}
-	public function shifted_confirm($id, $time, $price)
-	{
-		$id = mysqli_real_escape_string($this->db->link, $id);
-		$time = mysqli_real_escape_string($this->db->link, $time);
-		$price = mysqli_real_escape_string($this->db->link, $price);
-		$query = "UPDATE tbl_order SET
-
-			status = '2'
-
-			WHERE customer_id = '$id' AND date_order = '$time' AND price = '$price' ";
-
-		$result = $this->db->update($query);
-		return $result;
 	}
 }
 ?>

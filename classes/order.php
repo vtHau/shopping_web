@@ -47,6 +47,7 @@ class order
 
 	public function getOrderHistory($userID)
 	{
+		$userID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
 		$query = "SELECT * FROM tbl_order WHERE userID = '$userID' AND statusOrder <> 4";
 		$result = $this->db->select($query);
 		return $result;
@@ -103,6 +104,7 @@ class order
 
 	public function insertOrderUser($userID)
 	{
+		$userID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
 		$query = "SELECT * FROM tbl_cart WHERE userID = '$userID'";
 		$getCart = $this->db->select($query);
 
@@ -133,7 +135,8 @@ class order
 
 	public function deleteOrderInUser($orderID)
 	{
-		$orderID = mysqli_real_escape_string($this->db->link, $orderID);
+		$orderID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $orderID));
+
 		$query = "UPDATE tbl_order SET statusOrder = 4 WHERE orderID = '$orderID'";
 
 		$result = $this->db->update($query);
@@ -148,7 +151,7 @@ class order
 
 	public function deleteOrderInAdmin($orderID)
 	{
-		$orderID = mysqli_real_escape_string($this->db->link, $orderID);
+		$orderID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $orderID));
 		$query = "DELETE FROM tbl_order WHERE orderID = '$orderID'";
 
 		$result = $this->db->delete($query);
@@ -163,7 +166,7 @@ class order
 
 	public function confirmOrder($orderID)
 	{
-		$orderID = mysqli_real_escape_string($this->db->link, $orderID);
+		$orderID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $orderID));
 		$query = "UPDATE tbl_order SET statusOrder = 1 WHERE orderID = '$orderID'";
 
 		$result = $this->db->update($query);
@@ -178,7 +181,7 @@ class order
 
 	public function transportOrder($orderID)
 	{
-		$orderID = mysqli_real_escape_string($this->db->link, $orderID);
+		$orderID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $orderID));
 		$query = "UPDATE tbl_order SET statusOrder = 2 WHERE orderID = '$orderID'";
 
 		$result = $this->db->update($query);
@@ -193,7 +196,7 @@ class order
 
 	public function receivedOrderInUser($orderID)
 	{
-		$orderID = mysqli_real_escape_string($this->db->link, $orderID);
+		$orderID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $orderID));
 		$query = "UPDATE tbl_order SET statusOrder = 3 WHERE orderID = '$orderID'";
 
 		$result = $this->db->update($query);
