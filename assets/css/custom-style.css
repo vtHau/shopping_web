@@ -816,6 +816,7 @@ table .thead-light th {
 }
 
 .post-title {
+  color: black;
   font-size: 18px;
   padding-bottom: 2px;
   font-weight: 500;

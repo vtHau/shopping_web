@@ -5,7 +5,7 @@
 $html =  file_get_html("https://www.techrum.vn");
 $getPosts = $html->find("div.block-container.porta-article-container");
 $posts = [];
-for ($i =  0; $i < 20; $i++) {
+for ($i =  0; $i < 2; $i++) {
   $post = [];
   $post["title"] = trim($getPosts[$i]->find("h2.block-header a", 0)->innertext);
   $post["href"] = trim($getPosts[$i]->find("h2.block-header a", 0)->href);
