@@ -122,16 +122,22 @@ class slider
 
 	public function deleteSlider($sliderID)
 	{
-		$sliderID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $sliderID));
+		$sliderID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $sliderID));
 
-		$query = "DELETE FROM tbl_slider WHERE sliderID = '$sliderID'";
-		$result = $this->db->delete($query);
+		$queryImg = "SELECT sliderImage FROM tbl_slider WHERE sliderID = '$sliderID'";
+		$sliderImage = $this->db->select($queryImg)->fetch_assoc()["sliderImage"];
 
-		if ($result) {
-			header("Location: sliderlist.php");
+		if (unlink("../admin/uploads/sliders/" . $sliderImage)) {
+			$query = "DELETE FROM tbl_slider WHERE sliderID = '$sliderID'";
+			$result = $this->db->delete($query);
+
+			if ($result) {
+				header("Location: sliderlist.php");
+			} else {
+				$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
+				return $alert;
+			}
 		}
-
-		return false;
 	}
 }
 ?>

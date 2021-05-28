@@ -118,15 +118,21 @@ class category
 
 	public function deleteCategory($ID)
 	{
-		$ID =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
-		$query = "DELETE FROM tbl_category WHERE catID = '$ID'";
-		$result = $this->db->delete($query);
-		if ($result) {
-			$alert = "<span class='success'>Category Deleted Successfully</span>";
-			return $alert;
-		} else {
-			$alert = "<span class='success'>Category Deleted Not Success</span>";
-			return $alert;
+		$ID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
+
+		$queryImg = "SELECT catImage  FROM tbl_category WHERE catID = '$ID'";
+		$catImage = $this->db->select($queryImg)->fetch_assoc()["catImage"];
+
+		if (unlink("../admin/uploads/categorys/" . $catImage)) {
+			$query = "DELETE FROM tbl_category WHERE catID = '$ID'";
+			$result = $this->db->delete($query);
+
+			if ($result) {
+				header("Location: categorylist.php");
+			} else {
+				$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
+				return $alert;
+			}
 		}
 	}
 }

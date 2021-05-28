@@ -117,14 +117,20 @@ class brand
 	public function deleteBrand($ID)
 	{
 		$ID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
-		$query = "DELETE FROM tbl_brand WHERE brandID = '$ID'";
-		$result = $this->db->delete($query);
-		if ($result) {
-			$alert = "<span class='success'>Brand Deleted Successfully</span>";
-			return $alert;
-		} else {
-			$alert = "<span class='success'>Brand Deleted Not Success</span>";
-			return $alert;
+
+		$queryImg = "SELECT brandImage FROM tbl_brand WHERE brandID = '$ID' ";
+		$brandImage = $this->db->select($queryImg)->fetch_assoc()["brandImage"];
+
+		if (unlink("../admin/uploads/brands/" . $brandImage)) {
+			$query = "DELETE FROM tbl_brand WHERE brandID = '$ID'";
+			$result = $this->db->delete($query);
+
+			if ($result) {
+				header("Location: brandlist.php");
+			} else {
+				$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
+				return $alert;
+			}
 		}
 	}
 }

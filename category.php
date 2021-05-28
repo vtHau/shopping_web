@@ -17,7 +17,7 @@ if (!isset($_GET["catID"]) || $_GET["catID"] == NULL) {
   <div class="container">
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
-        <li><a href="index.php">Home</a></li>
+        <li><a href="index.php">Trang chủ</a></li>
         <li class="active"><a href="category.php">Danh mục</a></li>
       </ul>
     </div>

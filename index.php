@@ -352,7 +352,6 @@ Your Website URL:	http://mwstore.ihostfull.com
                           </div>
                         </div>
                         <!-- Product Content End -->
-                        <span class="sticker-new">new</span>
                       </div>
                       <!-- Single Product End -->
 
@@ -407,7 +406,6 @@ Your Website URL:	http://mwstore.ihostfull.com
                             </div>
                           </div>
                           <!-- Product Content End -->
-                          <span class="sticker-new">new</span>
                         </div>
                         <!-- Single Product End -->
                       <?php } ?>
@@ -530,7 +528,6 @@ Your Website URL:	http://mwstore.ihostfull.com
                           </div>
                         </div>
                         <!-- Product Content End -->
-                        <span class="sticker-new">new</span>
                       </div>
                       <!-- Single Product End -->
 
@@ -585,7 +582,6 @@ Your Website URL:	http://mwstore.ihostfull.com
                             </div>
                           </div>
                           <!-- Product Content End -->
-                          <span class="sticker-new">new</span>
                         </div>
                         <!-- Single Product End -->
                       <?php } ?>

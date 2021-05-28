@@ -516,20 +516,38 @@ class user
 	public function deleteUser($userID)
 	{
 		$userID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
+
+		$queryImg = "SELECT userImage FROM tbl_user WHERE userID = '$userID'";
+		$userImage = $this->db->select($queryImg)->fetch_assoc()["sliderImage"];
+		if ($userImage !== "default.png") {
+			$deleteAvatar = unlink("admin/uploads/avatars/" . $userImage);
+		}
+
 		$query = "DELETE FROM tbl_user WHERE userID = '$userID'";
 		$result = $this->db->delete($query);
+
 		if ($result) {
 			header("Location: userlist.php");
 		} else {
-			return false;
+			$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
+			return $alert;
 		}
 	}
 
 	public function deleteUserExtension($userID)
 	{
+
 		$userID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
+
+		$queryImg = "SELECT userImage FROM tbl_user WHERE userID = '$userID'";
+		$userImage = $this->db->select($queryImg)->fetch_assoc()["sliderImage"];
+		if ($userImage !== "default.png") {
+			$deleteAvatar = unlink("admin/uploads/avatars/" . $userImage);
+		}
+
 		$query = "DELETE FROM tbl_user WHERE userID = '$userID'";
 		$result = $this->db->delete($query);
+
 		if ($result) {
 			return true;
 		} else {

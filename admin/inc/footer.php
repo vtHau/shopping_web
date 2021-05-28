@@ -40,10 +40,11 @@
 
 </html>
 
-<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<script type="text/javascript" src="./assets/scripts/main.js"></script>
 <script src="..\assets\js\vendor\jquery-3.2.1.min.js"></script>
 <script src="..\assets\js\toastr.min.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="./assets/scripts/main.js"></script>
+<script type="text/javascript" src="./assets/scripts/custom-script.js?v=<?php echo time(); ?>"></script>
 
 <script>
   toastr.options = {

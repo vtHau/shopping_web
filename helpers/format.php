@@ -27,6 +27,18 @@ class format
       return $data;
    }
 
+   function getPrice($str)
+   {
+      $result = "";
+      $n = strlen($str) - 5;
+      for ($i = 0; $i < $n; $i++) {
+         if ($str[$i] >= "0" && $str[$i] <= "9") {
+            $result .= $str[$i];
+         }
+      }
+      return trim($result);
+   }
+
    public function title()
    {
       $path = $_SERVER['SCRIPT_FILENAME'];

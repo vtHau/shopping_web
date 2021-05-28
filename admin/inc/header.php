@@ -41,6 +41,9 @@ $visitor = new visitor();
 include_once "../classes/toastify.php";
 $toast = new toastify();
 
+include_once "../classes/crawldata.php";
+$crawldata = new crawldata();
+
 ?>
 
 <?php

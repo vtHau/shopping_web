@@ -110,6 +110,13 @@
                 Danh sách sản phẩm
               </a>
             </li>
+            <li>
+              <a href="productreference.php">
+                <i class="metismenu-icon">
+                </i>
+                Tham khảo sản phẩm
+              </a>
+            </li>
           </ul>
         </li>
 

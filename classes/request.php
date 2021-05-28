@@ -11,6 +11,15 @@ $chat = new chat();
 include_once "cart.php";
 $cart = new cart();
 
+include_once "product.php";
+$product = new product();
+
+include_once "crawldata.php";
+$crawldata = new crawldata();
+
+include_once "./../helpers/format.php";
+$fm = new format();
+
 include_once "../lib/session.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
@@ -210,5 +219,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 		$quantity = $_POST["quantity"];
 		$updateQuantity = $cart->updateQuantityCart($productID, $quantity);
 		echo $updateQuantity;
+	}
+
+	if ($_POST["type"] == "CRAWL_BRAND") {
+		$brandID =  $_POST["brandID"];
+		$products = $crawldata->getProducts($brandID);
+
+		if ($products) {
+			$result = "";
+			foreach ($products as $product) {
+				$result .= '<div class="product-item"> 
+											<div class="over-add">
+												<div class="btn-add" data-brand="' . $product["brand"] . '" data-name="' . $product["name"] . '" data-price="' . $product["price"] . '" data-desc="' . $product["desc"] . '" data-src="' . $product["image"] . '">Thêm vào</div>
+											</div>
+											<div class="box-product-img">
+												<img src="' . $product["image"] . '" alt="" class="product-img" />
+											</div>
+											<div class="box-product-info">
+												<p class="product-info product-name">' . $product["name"] . '</p>
+												<p class="product-info product-price">' . $fm->formatMoney($product["price"]) . '</p>
+												<p class="product-info product-desc">' . $product["desc"] . '</p>
+											</div>
+										</div>';
+			}
+			echo $result;
+		} else {
+			echo "";
+		}
+	}
+
+	if ($_POST["type"] == "ADD_PRODUCT_CRAWL") {
+		$productBrand =  $_POST["brand"];
+		$productName =  $_POST["name"];
+		$productPrice =  $_POST["price"];
+		$productDesc =  $_POST["desc"];
+		$src =  $_POST["src"];
+
+		$insertProductCrawl = $product->insertProductCrawl($productBrand, $productName, $productPrice, $productDesc, $src);
+		echo $insertProductCrawl;
 	}
 }

@@ -181,6 +181,38 @@ class product
 		}
 	}
 
+	public function insertProductCrawl($productBrand, $productName, $productPrice, $productDesc, $src)
+	{
+		$$productBrand = $this->fm->validation(mysqli_real_escape_string($this->db->link, $productBrand));
+		$productName = $this->fm->validation(mysqli_real_escape_string($this->db->link, $productName));
+		$productPrice = $this->fm->validation(mysqli_real_escape_string($this->db->link, $productPrice));
+		$productDesc = $this->fm->validation(mysqli_real_escape_string($this->db->link, $productDesc));
+		$src = $this->fm->validation(mysqli_real_escape_string($this->db->link, $src));
+
+		$productCategory = 10;
+		$productQuantity = 100;
+		$productFeather = 1;
+		$productSell = 1;
+		$productHotDeal = 1;
+
+		$unique_image = basename($src);
+		$uploaded_image = '../admin/uploads/products/' . $unique_image;
+		file_put_contents($uploaded_image, file_get_contents($src));
+
+		if ($productName == "" || $productCategory == "" || $productBrand == "" || $productQuantity == "" || $productDesc == "" || $productPrice == "" || $productFeather == "" || $productSell == "" || $productHotDeal == "") {
+			$alert = "<span class='error'>Fiedls must be not empty</span>";
+			return $alert;
+		} else {
+			$query = "INSERT INTO tbl_product(productName, productCategory, productBrand, productQuantity, productDesc, productPrice, productFeather, productSell, productHotDeal, productImage) VALUES('$productName','$productCategory','$productBrand', '$productQuantity','$productDesc','$productPrice','$productFeather', '$productSell', '$productHotDeal','$unique_image') ";
+			$result = $this->db->insert($query);
+			if ($result) {
+				return "ADD_SUCCESS";
+			} else {
+				return "ADD_FAIL";
+			}
+		}
+	}
+
 	public function updateViewProduct($productID)
 	{
 		$productID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $productID));
@@ -260,14 +292,24 @@ class product
 	public function deleteProduct($ID)
 	{
 		$ID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $ID));
-		$query = "DELETE FROM tbl_product WHERE productID = '$ID' ";
-		$result = $this->db->delete($query);
-		if ($result) {
-			header("Location: productlist.php");
-		} else {
-			$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
-			return $alert;
+
+		$queryImg = "SELECT productImage FROM tbl_product WHERE productID = '$ID' ";
+		$productImage = $this->db->select($queryImg)->fetch_assoc()["productImage"];
+
+		if (unlink('../admin/uploads/products/' . $productImage)) {
+			$query = "DELETE FROM tbl_product WHERE productID = '$ID' ";
+			$result = $this->db->delete($query);
+
+			if ($result) {
+				header("Location: productlist.php");
+			} else {
+				$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
+				return $alert;
+			}
 		}
+
+		$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
+		return $alert;
 	}
 }
 ?>
