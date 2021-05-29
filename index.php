@@ -1,37 +1,22 @@
 <?php include_once "inc/header.php"; ?>
 
-<!-- Control panel username:	uoolo_28593106
-Control panel password:	**********
-Control panel URL:	cpanel.ihostfull.com
-MySQL username	uoolo_28593106
-MySQL password:	**********
-MySQL hostname:	sql101.ihostfull.com
-FTP username:	uoolo_28593106
-FTP password:	**********
-FTP host name:	ftp.ihostfull.com
-Your Website URL:	http://mwstore.ihostfull.com
- 	  -->
-
-<div class="slider_box">
-  <div class="slider-wrapper theme-default">
-    <div id="slider" class="nivoSlider">
-      <?php
-      $getSlider = $slider->getSliderInUser();
-      if ($getSlider) {
+<?php
+$getSlider = $slider->getSliderInUser();
+if ($getSlider) {
+?>
+  <div class="slider_box">
+    <div class="slider-wrapper theme-default">
+      <div id="slider" class="nivoSlider">
+        <?php
         while ($result = $getSlider->fetch_assoc()) {
-      ?>
+        ?>
           <a style="width: 1920px; height: 409px; object-fit: cover; " href="product.php?productID=<?php echo $result["productID"] ?>"><img style="width: 1920px; height: 409px; object-fit: cover; " src="admin/uploads/sliders/<?php echo $result["sliderImage"] ?>" /></a>
-      <?php
-        }
-      }
-      ?>
+        <?php  }  ?>
+      </div>
     </div>
   </div>
+<?php  }  ?>
 </div>
-</div>
-
-</div>
-
 <div class="trendig-product mt-70">
   <div class="container">
     <div class="trending-box">
@@ -97,8 +82,6 @@ Your Website URL:	http://mwstore.ihostfull.com
   </div>
 </div>
 
-
-<!-- Ban chay Start Here -->
 <div class="trendig-product mt-70">
   <div class="container">
     <div class="trending-box">
@@ -106,24 +89,19 @@ Your Website URL:	http://mwstore.ihostfull.com
         <h2 class="title-name">Bán Chạy</h2>
       </div>
       <div class="product-list-box">
-        <!-- Arrivals Product Activation Start Here -->
         <div class="trending-pro-active owl-carousel">
           <?php
           $productSell = $product->getProductSell();
           if ($productSell) {
             while ($result = $productSell->fetch_assoc()) {
           ?>
-              <!-- Single Product Start -->
               <div class="single-product">
-                <!-- Product Image Start -->
                 <div class="pro-img">
                   <a href="product.php?productID=<?php echo $result["productID"] ?>">
                     <img class="primary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                   </a>
                   <p class="quick_view product-text-view" title="Lượt xem"> <i class="fas fa-eye"></i> <?php echo  $result["productView"] ?></p>
                 </div>
-                <!-- Product Image End -->
-                <!-- Product Content Start -->
                 <div class="pro-content">
                   <div class="pro-info">
                     <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
@@ -158,23 +136,16 @@ Your Website URL:	http://mwstore.ihostfull.com
                     </div>
                   </div>
                 </div>
-                <!-- Product Content End -->
               </div>
-              <!-- Single Product End -->
           <?php }
           } ?>
         </div>
-        <!-- Arrivals Product Activation End Here -->
       </div>
-      <!-- main-product-tab-area-->
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Ban chay End Here -->
 
 
-<!-- Hot Deal Products Start Here -->
 <div class="hot-deal-products mt-70">
   <div class="container">
     <!-- Product Title Start -->
@@ -185,27 +156,19 @@ Your Website URL:	http://mwstore.ihostfull.com
 
     </div>
 
-    <!-- Product Title End -->
-    <!-- Hot Deal Product Activation Start -->
     <div class="hot-deal-active owl-carousel">
-      <!-- Single Product Start -->
-
       <?php
       $productHotDeal = $product->getProductHotDeal();
       if ($productHotDeal) {
         while ($result = $productHotDeal->fetch_assoc()) {
       ?>
-          <!-- Single Product Start -->
           <div class="single-product">
-            <!-- Product Image Start -->
             <div class="pro-img">
               <a href="product.php?productID=<?php echo $result["productID"] ?>">
                 <img class="primary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
               </a>
               <p class="quick_view product-text-view" title="Lượt xem"> <i class="fas fa-eye"></i> <?php echo  $result["productView"] ?></p>
             </div>
-            <!-- Product Image End -->
-            <!-- Product Content Start -->
             <div class="pro-content">
               <div class="pro-info">
                 <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
@@ -240,22 +203,14 @@ Your Website URL:	http://mwstore.ihostfull.com
                 </div>
               </div>
             </div>
-            <!-- Product Content End -->
           </div>
-          <!-- Single Product End -->
       <?php }
       } ?>
-      <!-- Single Product End -->
     </div>
-    <!-- Hot Deal Product Active End -->
 
   </div>
-  <!-- Container End -->
 </div>
-<!-- Hot Deal Products End Here -->
 
-
-<!-- Thuong hieu Products Area Start Here -->
 <div class="arrivals-product mt-70">
   <div class="container">
     <div class="main-product-tab-area">
@@ -263,7 +218,6 @@ Your Website URL:	http://mwstore.ihostfull.com
         <div class="">
           <h2 class="title-name">Thương hiệu</h2>
         </div>
-        <!-- Nav tabs -->
         <ul class="nav tabs-area" role="tablist">
           <?php
           $getBrand = $brand->getBrand();
@@ -283,7 +237,6 @@ Your Website URL:	http://mwstore.ihostfull.com
           ?>
         </ul>
       </div>
-      <!-- Tab Contetn Start -->
       <div class="tab-content">
         <?php
         $getBrand = $brand->getBrand();
@@ -297,7 +250,6 @@ Your Website URL:	http://mwstore.ihostfull.com
                                                                           echo "show active";
                                                                         };
                                                                         $isBrandActive = false; ?>">
-              <!-- Arrivals Product Activation Start Here -->
               <div class="electronics-pro-active owl-carousel">
                 <?php
                 $productByBrand = $product->getProductByBrand($brandID);
@@ -305,17 +257,13 @@ Your Website URL:	http://mwstore.ihostfull.com
                   while ($result = $productByBrand->fetch_assoc()) {
                 ?>
                     <div class="double-product">
-                      <!-- Single Product Start -->
                       <div class="single-product">
-                        <!-- Product Image Start -->
                         <div class="pro-img">
                           <a href="product.php?productID=<?php echo $result["productID"] ?>">
                             <img class="primary-img" style="height: 381px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                           </a>
                           <p class="quick_view product-text-view" title="Lượt xem"> <i class="fas fa-eye"></i> <?php echo  $result["productView"] ?></p>
                         </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
                         <div class="pro-content">
                           <div class="pro-info">
                             <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
@@ -351,25 +299,19 @@ Your Website URL:	http://mwstore.ihostfull.com
                             </div>
                           </div>
                         </div>
-                        <!-- Product Content End -->
                       </div>
-                      <!-- Single Product End -->
 
                       <?php
                       $rowResult = $productByBrand->fetch_assoc();
                       if ($rowResult) {
                       ?>
-                        <!-- Single Product Start -->
                         <div class="single-product">
-                          <!-- Product Image Start -->
                           <div class="pro-img">
                             <a href="product.php?productID=<?php echo $rowResult["productID"] ?>">
                               <img class="primary-img" style="height: 381px; object-fit: cover;" src="admin/uploads/products/<?php echo $rowResult["productImage"] ?>" alt="single-product">
                             </a>
                             <p class="quick_view product-text-view" title="Lượt xem"> <i class="fas fa-eye"></i> <?php echo  $result["productView"] ?></p>
                           </div>
-                          <!-- Product Image End -->
-                          <!-- Product Content Start -->
                           <div class="pro-content">
                             <div class="pro-info">
                               <h4><a href="product.php?productID=<?php echo $rowResult["productID"] ?>"><?php echo $rowResult["productName"] ?></a></h4>
@@ -405,9 +347,7 @@ Your Website URL:	http://mwstore.ihostfull.com
                               </div>
                             </div>
                           </div>
-                          <!-- Product Content End -->
                         </div>
-                        <!-- Single Product End -->
                       <?php } ?>
                     </div>
                 <?php
@@ -415,23 +355,16 @@ Your Website URL:	http://mwstore.ihostfull.com
                 }
                 ?>
               </div>
-              <!-- Arrivals Product Activation End Here -->
             </div>
         <?php
           }
         }
         ?>
       </div>
-      <!-- Tab Content End -->
     </div>
-    <!-- main-product-tab-area-->
   </div>
-  <!-- Container End -->
 </div>
-<!-- Thuong hieu Area End Here -->
 
-
-<!-- Danh muc Products Area Start Here -->
 <div class="arrivals-product mt-70">
   <div class="container">
     <div class="main-product-tab-area">
@@ -439,7 +372,6 @@ Your Website URL:	http://mwstore.ihostfull.com
         <div class="s">
           <h2 class="title-name">Danh mục</h2>
         </div>
-        <!-- Nav tabs -->
         <ul class="nav tabs-area" role="tablist">
           <?php
           $getCat = $cat->getCategory();
@@ -459,7 +391,6 @@ Your Website URL:	http://mwstore.ihostfull.com
           ?>
         </ul>
       </div>
-      <!-- Tab Contetn Start -->
       <div class="tab-content">
         <?php
         $getCat = $cat->getCategory();
@@ -473,7 +404,6 @@ Your Website URL:	http://mwstore.ihostfull.com
                                                                       echo "show active";
                                                                     };
                                                                     $isCatActive = false; ?>">
-              <!-- Arrivals Product Activation Start Here -->
               <div class="electronics-pro-active owl-carousel">
                 <?php
                 $productByCategory = $product->getProductByCategory($catID);
@@ -481,17 +411,13 @@ Your Website URL:	http://mwstore.ihostfull.com
                   while ($result = $productByCategory->fetch_assoc()) {
                 ?>
                     <div class="double-product">
-                      <!-- Single Product Start -->
                       <div class="single-product">
-                        <!-- Product Image Start -->
                         <div class="pro-img">
                           <a href="product.php?productID=<?php echo $result["productID"] ?>">
                             <img class="primary-img" style="height: 381px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                           </a>
                           <p class="quick_view product-text-view" title="Lượt xem"> <i class="fas fa-eye"></i> <?php echo  $result["productView"] ?></p>
                         </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
                         <div class="pro-content">
                           <div class="pro-info">
                             <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
@@ -527,25 +453,19 @@ Your Website URL:	http://mwstore.ihostfull.com
                             </div>
                           </div>
                         </div>
-                        <!-- Product Content End -->
                       </div>
-                      <!-- Single Product End -->
 
                       <?php
                       $rowResult = $productByCategory->fetch_assoc();
                       if ($rowResult) {
                       ?>
-                        <!-- Single Product Start -->
                         <div class="single-product">
-                          <!-- Product Image Start -->
                           <div class="pro-img">
                             <a href="product.php?productID=<?php echo $rowResult["productID"] ?>">
                               <img class="primary-img" style="height: 381px; object-fit: cover;" src="admin/uploads/products/<?php echo $rowResult["productImage"] ?>" alt="single-product">
                             </a>
                             <p class="quick_view product-text-view" title="Lượt xem"> <i class="fas fa-eye"></i> <?php echo  $result["productView"] ?></p>
                           </div>
-                          <!-- Product Image End -->
-                          <!-- Product Content Start -->
                           <div class="pro-content">
                             <div class="pro-info">
                               <h4><a href="product.php?productID=<?php echo $rowResult["productID"] ?>"><?php echo $rowResult["productName"] ?></a></h4>
@@ -581,9 +501,7 @@ Your Website URL:	http://mwstore.ihostfull.com
                               </div>
                             </div>
                           </div>
-                          <!-- Product Content End -->
                         </div>
-                        <!-- Single Product End -->
                       <?php } ?>
                     </div>
                 <?php
@@ -591,28 +509,20 @@ Your Website URL:	http://mwstore.ihostfull.com
                 }
                 ?>
               </div>
-              <!-- Arrivals Product Activation End Here -->
             </div>
         <?php
           }
         }
         ?>
       </div>
-      <!-- Tab Content End -->
     </div>
-    <!-- main-product-tab-area-->
   </div>
-  <!-- Container End -->
 </div>
-<!-- Danh muc Area End Here -->
 
-
-<!-- San pham moi -->
 <div class="like-product pt-50  pt-sm-50 pb-sm-55 ">
   <div class="container">
     <div class="like-product-area">
       <h2 class="title-name">Sản Phẩm Mới</h2>
-      <!-- Arrivals Product Activation Start Here -->
       <div class="like-pro-active owl-carousel">
         <?php
         $getProduct = $product->getProductLimit();
@@ -620,15 +530,12 @@ Your Website URL:	http://mwstore.ihostfull.com
           while ($result = $getProduct->fetch_assoc()) {
         ?>
             <div class="single-product">
-              <!-- Product Image Start -->
               <div class="pro-img">
                 <a href="product.php?productID=<?php echo $result["productID"] ?>">
                   <img class="primary-img" style="height: 277px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
                 </a>
                 <p class="quick_view product-text-view" title="Lượt xem"> <i class="fas fa-eye"></i> <?php echo  $result["productView"] ?></p>
               </div>
-              <!-- Product Image End -->
-              <!-- Product Content Start -->
               <div class="pro-content">
                 <div class="pro-info">
                   <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
@@ -663,22 +570,15 @@ Your Website URL:	http://mwstore.ihostfull.com
                   </div>
                 </div>
               </div>
-              <!-- Product Content End -->
             </div>
         <?php }
         } ?>
 
       </div>
-      <!-- Arrivals Product Activation End Here -->
     </div>
-    <!-- main-product-tab-area-->
   </div>
-  <!-- Container End -->
 </div>
-<!-- San pham moi -->
 
-
-<!-- Brand Banner Area Start Here -->
 <div class="main-brand-banner   pb-100 pb-sm-60 pt-sm-55" style="padding-top: 60px;">
   <div class="container">
     <div class="section-ttitle mb-30 text-center">
@@ -691,7 +591,6 @@ Your Website URL:	http://mwstore.ihostfull.com
         </div>
       </div>
       <div class="col-lg-6">
-        <!-- Brand Banner Start -->
         <div class="brand-banner owl-carousel">
           <?php
           $getBrand = $brand->getBrand();
@@ -725,7 +624,6 @@ Your Website URL:	http://mwstore.ihostfull.com
           ?>
 
         </div>
-        <!-- Brand Banner End -->
       </div>
       <div class="col-lg-3">
         <div class="col-img">
@@ -734,10 +632,8 @@ Your Website URL:	http://mwstore.ihostfull.com
       </div>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Brand Banner Area End Here -->
 <script type="text/javascript">
-  document.title = "MW Store cửa hàng thương mại điện tử";
+  document.title = "MW Store";
 </script>
 <?php include_once "inc/footer.php"; ?>

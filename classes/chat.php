@@ -96,7 +96,7 @@ class chat
 			$alert = "<span class='success'>Brand Deleted Successfully</span>";
 			return $alert;
 		} else {
-			$alert = "<span class='success'>Brand Deleted Not Success</span>";
+			$alert = "<span class='success'>Thất bại</span>";
 			return $alert;
 		}
 	}

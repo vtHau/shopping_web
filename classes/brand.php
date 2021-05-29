@@ -73,7 +73,7 @@ class brand
 			if ($result) {
 				header("Location: brandlist.php");
 			} else {
-				$alert = '<div class="text-center text-noti-red">Thêm thương hiệu không thành công</div>';
+				$alert = '<div class="text-center text-noti-red">Thất bại</div>';
 				return $alert;
 			}
 		}
@@ -110,7 +110,7 @@ class brand
 		if ($result) {
 			header("Location: brandlist.php");
 		} else {
-			$alert = '<div class="text-center text-noti-red">Cập nhập thương hiệu không thành công</div>';
+			$alert = '<div class="text-center text-noti-red">Thất bại</div>';
 			return $alert;
 		}
 	}
@@ -128,7 +128,7 @@ class brand
 			if ($result) {
 				header("Location: brandlist.php");
 			} else {
-				$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
+				$alert = '<div class="text-center text-noti-red">Thất bại</div>';
 				return $alert;
 			}
 		}

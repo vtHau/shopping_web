@@ -363,7 +363,7 @@ class user
 				Session::set("userEmail",  $userEmail);
 				header("Location: confirmaccount.php");
 			} else {
-				$alert = '<div class="text-center text-noti-red">Thêm sản phẩm không thành công</div>';
+				$alert = '<div class="text-center text-noti-red">Thất bại</div>';
 				return $alert;
 			}
 		}
@@ -529,7 +529,7 @@ class user
 		if ($result) {
 			header("Location: userlist.php");
 		} else {
-			$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
+			$alert = '<div class="text-center text-noti-red">Thất bại</div>';
 			return $alert;
 		}
 	}

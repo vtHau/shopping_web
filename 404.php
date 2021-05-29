@@ -21,8 +21,8 @@
         <div class="error-wrapper text-center">
           <div class="error-text">
             <h1>404</h1>
-            <h2>Opps! PAGE NOT BE FOUND</h2>
-            <p>Sorry but the page you are looking for does not exist, have been removed, name changed or is temporarity unavailable.</p>
+            <h2>Không tìm thấy trang</h2>
+            <p>Chúng tôi không tìm thấy trang bạn yêu cầu, vui lòng thử lại.</p>
           </div>
           <div class="search-error">
             <form id="search-form" action="#">
@@ -31,7 +31,7 @@
             </form>
           </div>
           <div class="error-button">
-            <a href="index.php">Back to home page</a>
+            <a href="index.php">Về trang chủ</a>
           </div>
         </div>
       </div>
@@ -40,3 +40,7 @@
 </div>
 <!-- Error 404 Area End -->
 <?php include_once "inc/footer.php"; ?>
+
+<script type="text/javascript">
+  document.title = "Không tìm thấy";
+</script>

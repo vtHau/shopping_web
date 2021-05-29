@@ -27,7 +27,7 @@ var btnSubmit = document.getElementById("btn-submit");
 function checkInput() {
   inputUser.addEventListener("blur", function () {
     if (inputUser.value == "") {
-      notiUser.innerHTML = "Bạn chưa nhập tên người dùng.";
+      notiUser.innerHTML = "Bạn chưa nhập email.";
     } else {
       notiUser.remove();
     }

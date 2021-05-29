@@ -13,7 +13,13 @@ Options +FollowSymLinks
 # Choix du fuseau horaire
 SetEnv TZ Asia/Ho_Chi_Minh
 
+<Files .htaccess>
 
+Order Allow,Deny
+
+Deny from all
+
+</Files>
 
 # Protections  diverses (XSS, clickjacking and MIME-Type sniffing)
 <ifModule mod_headers.c>
@@ -21,3 +27,12 @@ Header set X-XSS-Protection  "1; mode=block"
 Header always append X-Frame-Options SAMEORIGIN
 Header set X-Content-Type-Options: "nosniff”
 </ifModule>
+
+
+Options +FollowSymlinks
+RewriteEngine on
+ErrorDocument 404 http://mwstoree.000webhostapp.com/404.php
+
+Options +FollowSymlinks
+RewriteEngine on
+ErrorDocument 403 http://mwstoree.000webhostapp.com/404.php

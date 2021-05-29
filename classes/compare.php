@@ -53,10 +53,9 @@ class compare
 		$resultInsert = $this->db->insert($queryInsert);
 
 		if ($resultInsert) {
-			echo "<script>console.log('them thanh cong')</script>";
 			header('Location:compare.php');
 		} else {
-			$msg = "them that bai";
+			$msg = "Thất bại";
 			return $msg;
 		}
 	}
@@ -81,7 +80,7 @@ class compare
 		if ($result) {
 			header('Location:compare.php');
 		} else {
-			$msg = "<span class='error'>Sản phẩm đã được xóa</span>";
+			$msg = "<span class='error'>Thất bại</span>";
 			return $msg;
 		}
 	}

@@ -18,25 +18,25 @@ class adminLogin
 		$this->fm = new Format();
 	}
 
-	public function checkLogin($adminUser, $adminPass)
+	public function checkLogin($adminEmail, $adminPass)
 	{
-		$adminUser =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $adminUser));
+		$adminEmail =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $adminEmail));
 		$adminPass =  $this->fm->validation(mysqli_real_escape_string($this->db->link, $adminPass));
 
-		if (empty($adminUser) || empty($adminPass)) {
+		if (empty($adminEmail) || empty($adminPass)) {
 			$alert = "Bạn chưa nhập đầy đủ thông tin";
 			return $alert;
 		} else {
-			$query = "SELECT * FROM tbl_admin WHERE (adminUser = '$adminUser' AND adminPass = '$adminPass') OR (adminEmail = '$adminUser' AND adminPass = '$adminPass') LIMIT 1 ";
+			$query = "SELECT * FROM tbl_admin WHERE adminEmail = '$adminEmail' AND adminPass = '$adminPass' LIMIT 1 ";
 			$result = $this->db->select($query);
 
 			if ($result != false) {
 				$value = $result->fetch_assoc();
 
-				if (($value["adminUser"] == $adminUser && $value["adminPass"] == $adminPass) || ($value["adminEmail"] == $adminUser && $value["adminPass"] == $adminPass)) {
+				if ($value["adminEmail"] == $adminEmail && $value["adminPass"] == $adminPass) {
 					Session::set('adminLogined', true);
 					Session::set('adminID', $value['adminID']);
-					Session::set('adminUser', $value['adminUser']);
+					Session::set('adminEmail', $value['adminEmail']);
 					Session::set('adminName', $value['adminName']);
 					Session::set('adminImage', $value['adminImage']);
 					Session::set('adminDescription', $value['adminDescription']);

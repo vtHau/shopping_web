@@ -130,7 +130,7 @@ class category
 			if ($result) {
 				header("Location: categorylist.php");
 			} else {
-				$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
+				$alert = '<div class="text-center text-noti-red">Xóa danh mục không thành công</div>';
 				return $alert;
 			}
 		}

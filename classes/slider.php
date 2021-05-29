@@ -134,7 +134,7 @@ class slider
 			if ($result) {
 				header("Location: sliderlist.php");
 			} else {
-				$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
+				$alert = '<div class="text-center text-noti-red">Thất bại</div>';
 				return $alert;
 			}
 		}

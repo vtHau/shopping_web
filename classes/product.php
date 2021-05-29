@@ -175,7 +175,7 @@ class product
 			if ($result) {
 				header("Location: productlist.php");
 			} else {
-				$alert = '<div class="text-center text-noti-red">Thêm sản phẩm không thành công</div>';
+				$alert = '<div class="text-center text-noti-red">Thất bại</div>';
 				return $alert;
 			}
 		}
@@ -283,7 +283,7 @@ class product
 			if ($result) {
 				header("Location: productlist.php");
 			} else {
-				$alert = '<div class="text-center text-noti-red">Cập nhập sản phẩm không thành công</div>';
+				$alert = '<div class="text-center text-noti-red">Thất bại</div>';
 				return $alert;
 			}
 		}
@@ -303,12 +303,12 @@ class product
 			if ($result) {
 				header("Location: productlist.php");
 			} else {
-				$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
+				$alert = '<div class="text-center text-noti-red">Thất bại</div>';
 				return $alert;
 			}
 		}
 
-		$alert = '<div class="text-center text-noti-red">Xóa sản phẩm không thành công</div>';
+		$alert = '<div class="text-center text-noti-red">Thất bại</div>';
 		return $alert;
 	}
 }

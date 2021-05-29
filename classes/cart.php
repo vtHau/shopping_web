@@ -185,7 +185,7 @@ class cart
 		if ($result) {
 			header('Location:cart.php');
 		} else {
-			$msg = "<span class='error'>Sản phẩm đã được xóa</span>";
+			$msg = "<span class='error'>Thất bại</span>";
 			return $msg;
 		}
 	}
@@ -203,7 +203,7 @@ class cart
 		if ($result) {
 			header('Location: orderdetails.php');
 		} else {
-			$msg = "<span class='error'>Sản phẩm đã được xóa</span>";
+			$msg = "<span class='error'>Thất bại</span>";
 			return $msg;
 		}
 	}

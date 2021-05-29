@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
 
 <head>
 	<title>Đăng nhập trang quản trị</title>
+	<link rel="shortcut icon" href="assets\images\favicon.ico">
 	<link rel="stylesheet" type="text/css" href="assets/style/login-style.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
@@ -38,11 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
 
 				<div class="input-div one">
 					<div class="i">
-						<i class="fas fa-user"></i>
+						<i class="fas fa-envelope"></i>
 					</div>
 					<div class="div">
-						<h5>Tên người dùng</h5>
-						<input id="input-user" type="text" class="input" name="adminUser" required>
+						<h5>Email</h5>
+						<input id="input-user" type="email" class="input" name="adminUser" required>
 					</div>
 				</div>
 				<h6 style="margin: 0px; font-size: 12px; color: red;" id="noti-user"></h6>

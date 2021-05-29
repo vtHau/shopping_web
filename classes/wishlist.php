@@ -64,7 +64,7 @@ class wishlist
 		if ($resultInsert) {
 			header('Location:wishlist.php');
 		} else {
-			$msg = "them that bai";
+			$msg = "Thất bại";
 			return $msg;
 		}
 	}
@@ -78,7 +78,7 @@ class wishlist
 		if ($result) {
 			header('Location:wishlist.php');
 		} else {
-			$msg = "<span class='error'>Sản phẩm đã được xóa</span>";
+			$msg = "<span class='error'>Thất bại</span>";
 			return $msg;
 		}
 	}

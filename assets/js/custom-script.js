@@ -1,14 +1,6 @@
 var ratedIndex = 0;
 
 $(document).ready(function () {
-  $("#img-zoom").elevateZoom({
-    zoomType: "lens",
-
-    lensShape: "round",
-
-    lensSize: 200,
-  });
-
   $(window).scroll(function () {
     if ($(this).scrollTop() > 300) {
       $(".hide-cart-info").addClass("show-cart-info");
@@ -128,6 +120,7 @@ $(document).ready(function () {
         star: ratedIndex,
       },
       success: function (res) {
+        toastr["success"]("Thành công !!!", "Thành công");
         location.reload();
       },
       error: function (rep) {
@@ -265,16 +258,25 @@ $(document).ready(function () {
       success: function (res) {
         switch (res.trim()) {
           case "SIGN_SUCCESS":
+            toastr["success"]("Đăng nhập thành công !!!", "Thành công !!!");
             window.location = `https://mwstoree.000webhostapp.com/index.php`;
             enableSignIn();
             break;
 
           case "USER_BLOCK":
+            toastr["warning"](
+              "Tài khoản của bạn đã bị khóa :(",
+              "Thất bại !!!"
+            );
             window.location = `https://mwstoree.000webhostapp.com/userblock.php`;
             enableSignIn();
             break;
 
           case "RECONFIRM":
+            toastr["warning"](
+              "Vui lòng kích hoạt tài khoản :(",
+              "Thất bại !!!"
+            );
             window.location = `https://mwstoree.000webhostapp.com/reconfirm.php`;
             enableSignIn();
             break;
@@ -294,6 +296,10 @@ $(document).ready(function () {
                 display: "block",
               })
               .html("Email hoặc mật khẩu không đúng !!!");
+            toastr["error"](
+              "Email hoặc mật khẩu không đúng :(",
+              "Thất bại !!!"
+            );
             enableSignIn();
             break;
 
@@ -470,10 +476,17 @@ $(document).ready(function () {
           switch (res.trim()) {
             case "CHANGE_PASSWORD_SUCCESS":
               $("#modal-change-password").modal("hide");
-              toastr["success"]("Đổi mật khẩu thành công !!!", "Thành công");
+              toastr["success"](
+                "Đổi mật khẩu thành công !!!",
+                "Thành công !!!"
+              );
               break;
 
             case "PASSWORD_WRONG":
+              toastr["error"](
+                "Mật khẩu hiện tại không đúng :(",
+                "Thất bại !!!"
+              );
               $(".change-password-fail")
                 .css({
                   visibility: "visible",

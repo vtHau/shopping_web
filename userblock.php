@@ -40,3 +40,6 @@ if (!Session::get("userBlock")) {
 </div>
 <!-- Error 404 Area End -->
 <?php include_once "inc/footer.php"; ?>
+<script type="text/javascript">
+  document.title = "Khóa tài khoản";
+</script>

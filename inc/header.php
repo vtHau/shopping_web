@@ -48,8 +48,6 @@ $visitor = new visitor();
 include_once "classes/email.php";
 $email = new email();
 
-
-
 include_once "helpers/format.php";
 $fm = new format();
 ?>
@@ -61,12 +59,12 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 }
 ?>
 
-<!-- <?php
-			header("Cache-Control: no-cache, must-revalidate");
-			header("Pragma: no-cache");
-			header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
-			header("Cache-Control: max-age=2592000");
-			?> -->
+<?php
+header("Cache-Control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+header("Cache-Control: max-age=2592000");
+?>
 
 <!doctype html>
 <html lang="vn">
@@ -120,6 +118,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 	<link rel="stylesheet" href="assets\css\toastr.min.css">
 	<!-- Modernizer js -->
 	<link rel="stylesheet" href="assets\css\custom-style.css?v=<?php echo time(); ?>">
+
 	<style>
 		img[alt*="000webhost"],
 		img[alt*="000webhost"][style],
@@ -135,7 +134,6 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 		}
 	</style>
 </head>
-<!-- hello -->
 
 <body>
 	<div id="fb-root"></div>
@@ -183,15 +181,10 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 			</div>
 		</div>
 	</div>
-	<!-- Main Wrapper Start Here -->
 	<div class="wrapper">
-
 		<div class="wrap-signup-form">
-
 		</div>
-		<!-- Main Header Area Start Here -->
 		<header>
-			<!-- Header Middle Start Here -->
 			<div class="header-middle ptb-15">
 				<div class="container">
 					<div class="row align-items-center no-gutters">
@@ -200,7 +193,6 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 								<a href="index.php"><img src="assets\img\logo\kkk.png" alt="logo-image" style="width: 120px;"></a>
 							</div>
 						</div>
-						<!-- Categorie Search Box Start Here -->
 						<div class="col-lg-5 col-md-8 ml-auto mr-auto col-10">
 							<div class="categorie-search-box">
 								<form action="search.php" method="GET">
@@ -211,8 +203,6 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 								</form>
 							</div>
 						</div>
-						<!-- Categorie Search Box End Here -->
-						<!-- Cart Box Start Here -->
 						<div class="col-lg-4 col-md-12">
 							<div class="cart-box mt-all-30">
 								<ul class="d-flex justify-content-lg-end justify-content-center align-items-center">
@@ -234,7 +224,6 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 											if ($getCart) {
 											?>
 												<li>
-													<!-- Cart Box Start -->
 													<?php
 													$total = 0;
 													while ($result = $getCart->fetch_assoc()) {
@@ -253,7 +242,6 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 															</div>
 															<a class="del-icone" href="cart.php?deleteID=<?php echo $result["cartID"] ?>"><i class="ion-close"></i></a>
 														</div>
-														<!-- Cart Box End -->
 													<?php
 													}
 													?>
@@ -265,7 +253,6 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 															<a class="cart-checkout" href="checkout.php">Thanh toán</a>
 														</div>
 													</div>
-													<!-- Cart Footer Inner End -->
 												</li>
 											<?php }  ?>
 										</ul>
@@ -306,26 +293,17 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 										<?php } ?>
 									</li>
 								</ul>
-
-
 							</div>
 						</div>
-						<!-- Cart Box End Here -->
 					</div>
-					<!-- Row End -->
 				</div>
-				<!-- Container End -->
 			</div>
-			<!-- Header Middle End Here -->
-			<!-- Header Bottom Start Here -->
 			<div class="header-bottom  header-sticky">
 				<div class="container">
 					<div class="row align-items-center">
-
 						<div class="col-xl-3 col-lg-4 col-md-6 vertical-menu d-none d-lg-block">
 							<span class="categorie-title">Danh mục</span>
 						</div>
-
 						<div class="col-xl-6 col-lg-8 col-md-12 ">
 							<nav class="d-none d-lg-block">
 								<ul class="header-bottom-list d-flex">
@@ -335,64 +313,40 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 									<li><a href="compare.php">So sánh</a></li>
 
 									<li><a>Đơn hàng<i class="fa fa-angle-down"></i></a>
-										<!-- Home Version Dropdown Start -->
 										<ul class="ht-dropdown dropdown-style-two">
 											<li><a href="orderdetails.php">Chi tiết đơn hàng</a></li>
 										</ul>
-										<!-- Home Version Dropdown End -->
 									</li>
 
 									<li><a>Thêm<i class="fa fa-angle-down"></i></a>
-										<!-- Home Version Dropdown Start -->
 										<ul class="ht-dropdown dropdown-style-two">
 											<li><a href="contact.php">Liên hệ</a></li>
-											<li><a href="weather.php">Tiện ích</a></li>
+											<li><a href="weather.php">Thời tiết</a></li>
 											<li><a href="news.php">Tin tức</a></li>
 										</ul>
-										<!-- Home Version Dropdown End -->
 									</li>
 								</ul>
 							</nav>
 							<div class="mobile-menu d-block d-lg-none">
 								<nav>
 									<ul>
-										<li><a href="index.php">home</a>
-											<!-- Home Version Dropdown Start -->
+										<li><a href="index.php">Trang chủ</a>
+										<li><a href="cart.php">Giỏ hàng</a>
+										<li><a href="wishlist.php">Yêu thích</a></li>
+										<li><a href="compare.php">So sánh</a></li>
+										<li>
+											<a>Đơn hàng</a>
 											<ul>
-												<li><a href="index.php">Home Version 1</a></li>
+												<li><a href="orderdetails.php">Chi tiết đơn hàng</a></li>
 											</ul>
-											<!-- Home Version Dropdown End -->
 										</li>
-										<li><a href="shop.php">shop</a>
-											<!-- Mobile Menu Dropdown Start -->
+										<li><a>Thêm</a>
 											<ul>
-												<li><a href="product.php">product details</a></li>
-												<li><a href="compare.php">compare</a></li>
-												<li><a href="cart.php">cart</a></li>
-												<li><a href="checkout.php">checkout</a></li>
-												<li><a href="wishlist.php">wishlist</a></li>
+												<li><a href="contact.php">Liên hệ</a></li>
+												<li><a href="weather.php">Thời tiết</a></li>
+												<li><a href="news.php">Tin tức</a></li>
 											</ul>
-											<!-- Mobile Menu Dropdown End -->
 										</li>
-										<li><a href="blog.php">Blog</a>
-											<!-- Mobile Menu Dropdown Start -->
-											<ul>
-												<li><a href="single-blog.php">blog details</a></li>
-											</ul>
-											<!-- Mobile Menu Dropdown End -->
-										</li>
-										<li><a href="#">pages</a>
-											<!-- Mobile Menu Dropdown Start -->
-											<ul>
-												<li><a href="register.php">register</a></li>
-												<li><a href="login.php">sign in</a></li>
-												<li><a href="forgot-password.php">forgot password</a></li>
-												<li><a href="404.php">404</a></li>
-											</ul>
-											<!-- Mobile Menu Dropdown End -->
-										</li>
-										<li><a href="about.php">about us</a></li>
-										<li><a href="contact.php">contact us</a></li>
 									</ul>
 								</nav>
 							</div>
@@ -436,17 +390,11 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 							</div>
 						</div>
 					</div>
-					<!-- Row End -->
 				</div>
-				<!-- Container End -->
 			</div>
-			<!-- Header Bottom End Here -->
-
-
-			<!-- Mobile Vertical Menu Start Here -->
 			<div class="container d-block d-lg-none">
 				<div class="vertical-menu mt-30">
-					<span class="categorie-title mobile-categorei-menu">Shop by Categories </span>
+					<span class="categorie-title mobile-categorei-menu">Danh mục</span>
 					<nav>
 						<div id="cate-mobile-toggle" class="category-menu sidebar-menu sidbar-style mobile-categorei-menu-list menu-hidden ">
 							<ul>
@@ -462,18 +410,13 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 								?>
 							</ul>
 						</div>
-						<!-- category-menu-end -->
 					</nav>
 				</div>
 			</div>
-			<!-- Mobile Vertical Menu Start End -->
 		</header>
-		<!-- Main Header Area End Here
-    <!- Categorie Menu & Slider Area Start Here -->
 		<div class="main-page-banner off-white-bg home-3">
 			<div class="container">
 				<div class="row">
-					<!-- Vertical Menu Start Here -->
 					<div class="col-xl-3 col-lg-4 d-none d-lg-block">
 						<div class="vertical-menu mb-all-30">
 							<nav>
@@ -490,13 +433,9 @@ if (isset($_GET["action"]) && $_GET["action"] == "logout") {
 										}
 									}
 									?>
-
 								</ul>
 							</nav>
 						</div>
 					</div>
-					<!-- Vertical Menu End Here -->
 				</div>
-				<!-- Row End -->
 			</div>
-			<!-- Container End -->

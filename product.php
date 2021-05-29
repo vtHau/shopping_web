@@ -44,7 +44,6 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
 ?>
 
 </div>
-<!-- Breadcrumb Start -->
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
@@ -54,10 +53,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
       </ul>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Breadcrumb End -->
-<!-- Product Thumbnail Start -->
 <div class="main-product-thumbnail ptb-60 ptb-sm-60">
   <div class="container">
     <div class="thumb-bg">
@@ -70,18 +66,13 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
           $productName = $result["productName"];
       ?>
           <div class="row">
-            <!-- Main Thumbnail Image Start -->
             <div class="col-lg-5 mb-all-40">
-              <!-- Thumbnail Large Image start -->
               <div class="tab-content">
                 <div id="thumb1" class="tab-pane fade show active">
                   <a data-fancybox="images" href=""><img id="img-zoom" style="width: 400px; height: 400px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="product-view"></a>
                 </div>
               </div>
-              <!-- Thumbnail Large Image End -->
             </div>
-            <!-- Main Thumbnail Image End -->
-            <!-- Thumbnail Description Start -->
             <div class="col-lg-7">
               <div class="thubnail-desc fix">
                 <h3 class="product-header"><?php $title = $result["productName"];
@@ -144,20 +135,14 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                 </div>
               </div>
             </div>
-            <!-- Thumbnail Description End -->
           </div>
       <?php
         }
       }
       ?>
-
-      <!-- Row End -->
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Product Thumbnail End -->
-<!-- Product Thumbnail Description Start -->
 <div class="thumnail-desc pb-100 pb-sm-60">
   <div class="container">
     <div class="row">
@@ -170,7 +155,6 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
             echo '<li><a data-toggle="tab" href="#your-review">Đánh giá của bạn</a></li>';
           }  ?>
         </ul>
-        <!-- Product Thumbnail Tab Content Start -->
         <div class="tab-content thumb-content border-default">
 
           <div id="dtail" class="tab-pane fade show active">
@@ -236,7 +220,6 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
             $getComment = $review->getComment($productID);
             if (!$getComment) {
             ?>
-              <!-- Reviews Start -->
               <div class="review border-default universal-padding mt-30">
 
                 <h2 class="review-title mb-30">
@@ -245,7 +228,6 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                 </h2>
                 <p class="review-mini-title">Đánh giá</p>
                 <ul class="review-list">
-                  <!-- Single Review List Start -->
                   <li class="review-list-li">
                     <i class="fa fa-star-o" data-index="1"></i>
                     <i class="fa fa-star-o" data-index="2"></i>
@@ -253,9 +235,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                     <i class="fa fa-star-o" data-index="4"></i>
                     <i class="fa fa-star-o" data-index="5"></i>
                   </li>
-                  <!-- Single Review List End -->
                 </ul>
-                <!-- Reviews Field Start -->
                 <div class="riview-field mt-40">
                   <form autocomplete="off" action="" id="form-review" method="POST">
                     <div class="form-group">
@@ -266,9 +246,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                     <div class="customer-btn review-submit">Gửi</div>
                   </form>
                 </div>
-                <!-- Reviews Field Start -->
               </div>
-              <!-- Reviews End -->
               <?php } else {
               while ($resultCom = $getComment->fetch_assoc()) {
               ?>
@@ -288,15 +266,18 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                       <div class="row">
                         <div class="mr-2">
                           <div class="list-star">
+
                             <?php
-                            $star = $resultCom["star"];
-                            for ($j = 0; $j < $star; $j++) {
-                              echo ' <i class="fa fa-star"></i>';
+                            $star = floor($resultCom["star"]);
+                            for ($i = 0; $i < $star; $i++) {
+                            ?>
+                              <i class="fa fa-star"></i>
+                            <?php
                             }
                             for ($star; $star < 5; $star++) {
-                              echo ' <i class="fa fa-star-o"></i>';
-                            }
                             ?>
+                              <i class="fa fa-star-o"></i>
+                            <?php } ?>
                           </div>
                         </div>
                         <div>
@@ -327,22 +308,20 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                   </h2>
                   <p class="review-mini-title">Đánh giá</p>
                   <ul class="review-list">
-                    <!-- Single Review List Start -->
                     <li class="review-list-li">
                       <?php
                       $star = floor($resultCom["star"]);
-
                       for ($i = 0; $i < $star; $i++) {
-                        echo '<i class="fa fa-star" data-index="' . $i + 1 . '"></i>';
+                      ?>
+                        <i class="fa fa-star" data-index="<?php echo $i  + 1 ?>"></i>
+                      <?php
                       }
                       for ($star; $star < 5; $star++) {
-                        echo '<i class="fa fa-star-o" data-index="' . $star + 1 . '"></i>';
-                      }
                       ?>
+                        <i class="fa fa-star-o" data-index="<?php echo $star + 1 ?>"></i>
+                      <?php } ?>
                     </li>
-                    <!-- Single Review List End -->
                   </ul>
-                  <!-- Reviews Field Start -->
                   <div class="riview-field mt-40">
                     <form autocomplete="off" action="" id="form-review" method="POST">
                       <div class="form-group">
@@ -353,7 +332,6 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                       <div class="customer-btn review-update">Gửi</div>
                     </form>
                   </div>
-                  <!-- Reviews Field Start -->
                 </div>
             <?php
               }
@@ -361,42 +339,28 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
             ?>
           </div>
         </div>
-        <!-- Product Thumbnail Tab Content End -->
       </div>
     </div>
-    <!-- Row End -->
   </div>
-  <!-- Container End -->
 </div>
-<!-- Product Thumbnail Description End -->
-<!-- Hot Deal Products Start Here -->
 <div class="hot-deal-products pb-90 pb-sm-50">
   <div class="container">
-    <!-- Product Title Start -->
     <div class="post-title pb-10">
       <h2>Sản phẩm liên quan</h2>
     </div>
-    <!-- Product Title End -->
-    <!-- Hot Deal Product Activation Start -->
     <div class="hot-deal-active owl-carousel">
-      <!-- Single Product Start -->
-
       <?php
       $productCategory = $product->getProductByCategory($catID);
       if ($productCategory) {
         while ($result = $productCategory->fetch_assoc()) {
       ?>
-          <!-- Single Product Start -->
           <div class="single-product">
-            <!-- Product Image Start -->
             <div class="pro-img">
-              <a href=product.php?productID=<?php echo $result["productID"] ?>">
+              <a href="product.php?productID=<?php echo $result["productID"] ?>">
                 <img class="primary-img" style="height: 226px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="single-product">
               </a>
               <a href="product.php?productID=<?php echo $result["productID"] ?>" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
             </div>
-            <!-- Product Image End -->
-            <!-- Product Content Start -->
             <div class="pro-content">
               <div class="pro-info">
                 <h4><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h4>
@@ -412,19 +376,12 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                 </div>
               </div>
             </div>
-            <!-- Product Content End -->
           </div>
-          <!-- Single Product End -->
       <?php }
       } ?>
-      <!-- Single Product End -->
     </div>
-    <!-- Hot Deal Product Active End -->
-
   </div>
-  <!-- Container End -->
 </div>
-<!-- Hot Deal Products End Here -->
 
 <script type="text/javascript">
   document.title = "<?= $title ?>";
