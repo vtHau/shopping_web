@@ -1,12 +1,5 @@
 ﻿<?php include_once "inc/header.php"; ?>
 
-<?php
-if (isset($_GET["deleteID"])) {
-  $cartID = $_GET["deleteID"];
-  $deleteCart = $cart->deleteCart($cartID);
-}
-?>
-
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
@@ -58,7 +51,7 @@ if (isset($_GET["deleteID"])) {
                         </div>
                       </td>
                       <td class="product-subtotal"><?php echo $fm->formatMoney($result["productPrice"] * $result["productQuantity"]) ?></td>
-                      <td class="product-remove"> <a href="cart.php?deleteID=<?php echo $result["cartID"] ?>"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                      <td class="product-remove"> <a><i class="fa fa-times del-cart" data-id='<?php echo $result["cartID"] ?>' aria-hidden="true"></i></a></td>
                     </tr>
                 <?php   }
                 } ?>

@@ -11,11 +11,6 @@ if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
     $insertCart = $cart->insertCart($productID, 1);
   }
 }
-
-if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
-  $compareID = $_GET["deleteID"];
-  $deleteCompare = $com->deleteCompare($compareID);
-}
 ?>
 
 <div class="breadcrumb-area mt-30">
@@ -107,8 +102,8 @@ if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
               while ($result = $getCom->fetch_assoc()) {
             ?>
                 <td class="product-description">
-                  <a href="compare.php?deleteID=<?php echo $result["compareID"] ?>">
-                    <i class="fa fa-trash-o"></i>
+                  <a>
+                    <i class="fa fa-trash-o del-compare" data-id="<?php echo $result["compareID"] ?>"></i>
                   </a>
                 </td>
             <?php

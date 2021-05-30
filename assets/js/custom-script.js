@@ -533,6 +533,102 @@ $(document).ready(function () {
       });
     }
   });
+
+  // del cart
+
+  $(".del-cart").click(function () {
+    const cartID = parseInt($(this).data("id"));
+
+    $.ajax({
+      url: "classes/request.php",
+      method: "POST",
+      data: {
+        type: "DEL_CART",
+        cartID,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "DEL_SUCCESS":
+            location.reload();
+            break;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
+
+  // del love
+
+  $(".del-love").click(function () {
+    const loveID = parseInt($(this).data("id"));
+
+    $.ajax({
+      url: "classes/request.php",
+      method: "POST",
+      data: {
+        type: "DEL_LOVE",
+        loveID,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "DEL_SUCCESS":
+            location.reload();
+            break;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
+
+  $(".del-compare").click(function () {
+    const compareID = parseInt($(this).data("id"));
+
+    $.ajax({
+      url: "classes/request.php",
+      method: "POST",
+      data: {
+        type: "DEL_COMPARE",
+        compareID,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "DEL_SUCCESS":
+            location.reload();
+            break;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
+
+  $(".del-order").click(function () {
+    const orderID = parseInt($(this).data("id"));
+
+    $.ajax({
+      url: "classes/request.php",
+      method: "POST",
+      data: {
+        type: "DEL_ORDER",
+        orderID,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "DEL_SUCCESS":
+            location.reload();
+            break;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
 });
 
 window.addEventListener("load", function () {

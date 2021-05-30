@@ -78,10 +78,9 @@ class compare
 		$result = $this->db->delete($query);
 
 		if ($result) {
-			header('Location:compare.php');
+			return "DEL_SUCCESS";
 		} else {
-			$msg = "<span class='error'>Thất bại</span>";
-			return $msg;
+			return "DEL_FAIL";
 		}
 	}
 }

@@ -183,10 +183,9 @@ class cart
 		$query = "DELETE FROM tbl_cart WHERE cartID = '$cartID'";
 		$result = $this->db->delete($query);
 		if ($result) {
-			header('Location:cart.php');
+			return "DEL_SUCCESS";
 		} else {
-			$msg = "<span class='error'>Thất bại</span>";
-			return $msg;
+			return "DEL_FAIL";
 		}
 	}
 

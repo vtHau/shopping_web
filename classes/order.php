@@ -142,10 +142,9 @@ class order
 		$result = $this->db->update($query);
 
 		if ($result) {
-			header('Location:orderdetails.php');
+			return "DEL_SUCCESS";
 		} else {
-			$msg = "<span class='error'>Thất bại</span>";
-			return $msg;
+			return "DEL_FAIL";
 		}
 	}
 

@@ -2,10 +2,6 @@
 <?php Session::checkUserLogin() ?>
 
 <?php
-if (isset($_GET["deleteID"])) {
-  $orderID = $_GET["deleteID"];
-  $deleteOrderInUser = $order->deleteOrderInUser($orderID);
-}
 
 if (isset($_GET["received"])) {
   $orderID = $_GET["received"];
@@ -77,7 +73,7 @@ if (isset($_GET["received"])) {
                       ?>
                         <a style="font-weight: bold;" href=" orderdetails.php?received=<?php echo $result["orderID"] ?>">Đã nhận hàng</a>
                       <?php } elseif ($result["statusOrder"] == "3") { ?>
-                        <a href="orderdetails.php?deleteID=<?php echo $result["orderID"] ?>"> <i class="fa fa-times" style="font-size: 20px; color: red;" aria-hidden="true"> </i> </a>
+                        <a> <i class="fa fa-times del-order" data-id="<?php echo $result["orderID"] ?>" style="font-size: 20px; color: red; cursor: pointer;" aria-hidden="true"> </i> </a>
                       <?php } else {
                         echo "N/A";
                       } ?>

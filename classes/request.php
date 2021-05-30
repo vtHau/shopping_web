@@ -11,6 +11,15 @@ $chat = new chat();
 include_once "cart.php";
 $cart = new cart();
 
+include_once "order.php";
+$order = new order();
+
+include_once "wishlist.php";
+$wishlist = new wishlist();
+
+include_once "compare.php";
+$compare = new compare();
+
 include_once "product.php";
 $product = new product();
 
@@ -257,5 +266,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 
 		$insertProductCrawl = $product->insertProductCrawl($productBrand, $productName, $productPrice, $productDesc, $src);
 		echo $insertProductCrawl;
+	}
+
+	if ($_POST["type"] == "DEL_CART") {
+		$cartID = $_POST["cartID"];
+		$deleteCart = $cart->deleteCart($cartID);
+		echo $deleteCart;
+	}
+
+	if ($_POST["type"] == "DEL_LOVE") {
+		$loveID = $_POST["loveID"];
+		$delLove = $wishlist->deleteWishlist($loveID);
+		echo $delLove;
+	}
+
+	if ($_POST["type"] == "DEL_COMPARE") {
+		$compareID = $_POST["compareID"];
+		$deleteCompare = $compare->deleteCompare($compareID);
+		echo $deleteCompare;
+	}
+
+	if ($_POST["type"] == "DEL_ORDER") {
+		$orderID = $_POST["orderID"];
+		$deleteOrderInUser = $order->deleteOrderInUser($orderID);
+		echo $deleteOrderInUser;
 	}
 }

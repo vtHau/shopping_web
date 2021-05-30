@@ -1,11 +1,6 @@
 ﻿<?php include_once "inc/header.php"; ?>
 
 <?php
-if (isset($_GET["deleteID"])) {
-  $wishlistID = $_GET["deleteID"];
-  $deleteWishlist = $wish->deleteWishlist($wishlistID);
-}
-
 if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
   $productID = $_GET["productID"];
   $insertCart = $cart->insertCart($productID, 1);
@@ -51,7 +46,7 @@ if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
                       <td class="product-name"><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></td>
                       <td class="product-price"><span class="amount"><?php echo $result["productPrice"] ?></span></td>
                       <td class="product-add-to-cart"><a href="wishlist.php?productID=<?php echo $result["productID"] ?>">Add to cart</a></td>
-                      <td class="product-remove"> <a href="wishlist.php?deleteID=<?php echo $result["wishlistID"] ?>"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                      <td class="product-remove"> <a><i class="fa fa-times del-love" data-id="<?php echo $result["wishlistID"] ?>" aria-hidden="true"></i></a></td>
                     </tr>
                 <?php
                   }
