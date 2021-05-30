@@ -13,10 +13,10 @@ class slider
 
 	public function __construct()
 	{
-		$this->db = new Database();
+		$this->db = Database::getInstance();
 		$this->fm = new Format();
 	}
-
+	
 	public function getSlider()
 	{
 		$query = "SELECT * FROM tbl_slider";

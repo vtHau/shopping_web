@@ -1,6 +1,8 @@
 php_flag output_buffering on
 SetEnvIfNoCase Request_URI ^ / thumb.php no-gzip -vary
 
+
+
 # Désactivate the display of contents of rédirectories
 Options All -Indexes
 
@@ -31,8 +33,8 @@ Header set X-Content-Type-Options: "nosniff”
 
 Options +FollowSymlinks
 RewriteEngine on
-ErrorDocument 404 http://mwstoree.000webhostapp.com/404.php
+ErrorDocument 404 https://mwstoree.000webhostapp.com/404.php
 
 Options +FollowSymlinks
 RewriteEngine on
-ErrorDocument 403 http://mwstoree.000webhostapp.com/404.php
+ErrorDocument 403 https://mwstoree.000webhostapp.com/404.php

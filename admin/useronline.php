@@ -64,5 +64,5 @@ if (isset($_GET["deleteID"])) {
 
 			setInterval(function() {
 				getUserStatus();
-			}, 3000);
+			}, 10000);
 		</script>

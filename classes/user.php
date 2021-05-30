@@ -17,12 +17,10 @@ class user
 
 	public function __construct()
 	{
-		$this->db = new Database();
+		$this->db = Database::getInstance();
 		$this->fm = new Format();
 		$this->email = new email();
 	}
-
-
 
 	public function getUserID()
 	{

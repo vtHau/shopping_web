@@ -9,13 +9,11 @@ include_once($filepath . '/../helpers/format.php');
 
 class crawldata
 {
-	private $db;
-	private $fm;
-
+	public $db;
 	public function __construct()
 	{
-		$this->db = new Database();
 		$this->fm = new Format();
+		$this->db = new Database();
 	}
 
 	public function getNews()

@@ -3,23 +3,26 @@ $filepath = realpath(dirname(__FILE__));
 include($filepath . '/../config/config.php'); ?>
 
 <?php
-class Database extends PDO
+class Database
 {
   public $host   = DB_HOST;
   public $user   = DB_USER;
   public $pass   = DB_PASS;
   public $dbname = DB_NAME;
 
-
+  private static $_instance;
   public $link;
   public $error;
 
-  public function __construct()
+  public static function getInstance()
   {
-    $this->connectDB();
+    if (!self::$_instance) {
+      self::$_instance = new self();
+    }
+    return self::$_instance;
   }
 
-  private function connectDB()
+  public function __construct()
   {
     $this->link = new mysqli(
       $this->host,
@@ -33,7 +36,6 @@ class Database extends PDO
     }
   }
 
-  // Select or Read data
   public function select($query)
   {
     $result = $this->link->query($query) or
@@ -77,6 +79,15 @@ class Database extends PDO
       return $delete_row;
     } else {
       return false;
+    }
+  }
+
+  public function __destruct()
+  {
+    try {
+      $this->link->close();
+    } catch (Exception $e) {
+      echo "Message: " . $e->getMessage();
     }
   }
 }

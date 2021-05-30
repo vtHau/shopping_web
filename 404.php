@@ -1,19 +1,14 @@
 ﻿<?php include_once "inc/header.php"; ?>
-</div>
-
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
       <ul class="d-flex align-items-center">
-        <li><a href="index.php">Home</a></li>
+        <li><a href="index.php">Trang chủ</a></li>
         <li class="active"><a href="404.php">404</a></li>
       </ul>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Breadcrumb End -->
-<!-- Error 404 Area Start -->
 <div class="error404-area ptb-60 ptb-sm-60">
   <div class="container">
     <div class="row">
@@ -38,9 +33,7 @@
     </div>
   </div>
 </div>
-<!-- Error 404 Area End -->
 <?php include_once "inc/footer.php"; ?>
-
 <script type="text/javascript">
   document.title = "Không tìm thấy";
 </script>

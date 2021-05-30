@@ -12,7 +12,6 @@ if (!isset($_GET["catID"]) || $_GET["catID"] == NULL) {
 }
 ?>
 
-</div>
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
@@ -26,7 +25,6 @@ if (!isset($_GET["catID"]) || $_GET["catID"] == NULL) {
 
 <div class="hot-deal-products pt-40 mt-40  pb-90 pb-sm-50">
   <div class="container">
-    <!-- Product Title Start -->
     <div class="post-title pb-30">
       <h2 class="title-name title-search">
         Danh mục

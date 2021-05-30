@@ -43,7 +43,6 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
 }
 ?>
 
-</div>
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">

@@ -1,6 +1,6 @@
 <?php
 $filepath = realpath(dirname(__FILE__));
-include_once($filepath . '/../lib/database.php');
+require_once($filepath . '/../lib/database.php');
 include_once($filepath . '/../helpers/format.php');
 ?>
 
@@ -13,8 +13,8 @@ class product
 
 	public function __construct()
 	{
-		$this->db = new Database();
 		$this->fm = new Format();
+		$this->db = Database::getInstance();
 	}
 
 	public function getProduct()
@@ -298,7 +298,7 @@ class product
 
 		if (unlink('../admin/uploads/products/' . $productImage)) {
 			$query = "DELETE FROM tbl_product WHERE productID = '$ID' ";
-			$result = $this->db->delete($query);
+			$result = $this->db->update($query);
 
 			if ($result) {
 				header("Location: productlist.php");

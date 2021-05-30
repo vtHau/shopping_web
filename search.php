@@ -5,9 +5,6 @@ if (isset($_GET["keyword"])) {
   $productSearch = $product->searchProduct($keyword);
 }
 ?>
-
-
-</div>
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
@@ -17,16 +14,12 @@ if (isset($_GET["keyword"])) {
       </ul>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Breadcrumb End -->
-<!-- Error 404 Area Start -->
 <?php
 if (isset($productSearch) && $productSearch) {
 ?>
   <div class="error404-area ptb-60 ptb-sm-60">
     <div class="container">
-
       <h4 class="title-name title-search mb-20">Kết quả tìm kiếm cho: <?= $keyword ?></h4>
       <ul class="work-list">
         <?php
@@ -78,12 +71,10 @@ if (isset($productSearch) && $productSearch) {
               </div>
             </div>
           </li>
-
         <?php
         }
         ?>
       </ul>
-
     </div>
   </div>
 <?php
@@ -93,7 +84,6 @@ if (isset($productSearch) && $productSearch) {
 <?php
 }
 ?>
-<!-- Error 404 Area End -->
 <script type="text/javascript">
   document.title = "Tìm kiếm";
 </script>

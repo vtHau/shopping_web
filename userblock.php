@@ -4,10 +4,7 @@
 if (!Session::get("userBlock")) {
   header("Location: index.php");
 }
-
-
 ?>
-</div>
 
 <div class="breadcrumb-area mt-30">
   <div class="container">
@@ -18,10 +15,7 @@ if (!Session::get("userBlock")) {
       </ul>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Breadcrumb End -->
-<!-- Error 404 Area Start -->
 <div class="error404-area ptb-60 ptb-sm-60">
   <div class="container">
     <div class="row">
@@ -38,7 +32,6 @@ if (!Session::get("userBlock")) {
     </div>
   </div>
 </div>
-<!-- Error 404 Area End -->
 <?php include_once "inc/footer.php"; ?>
 <script type="text/javascript">
   document.title = "Khóa tài khoản";

@@ -1,5 +1,5 @@
 ﻿﻿<?php include_once "inc/header.php"; ?>
-</div>
+
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
@@ -9,10 +9,7 @@
       </ul>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Breadcrumb End -->
-<!-- Contact Email Area Start -->
 <div class="contact-area ptb-60 ptb-sm-60">
   <div class="container">
     <div id="map"></div>
@@ -26,8 +23,6 @@
   </div>
 </div>
 
-
-<!-- Contact Email Area End -->
 <script type="text/javascript">
   document.title = "Thông tin liên hệ";
 </script>
@@ -35,7 +30,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUlOcYeXI66r7zBtBQDoqEs6QO4UElJjU&callback=initMap" async defer></script>
 
 <script>
-  window.initMap = function(){
+  window.initMap = function() {
     var VietNam = {
       lat: 10.761573058608514,
       lng: 106.68217271221745,

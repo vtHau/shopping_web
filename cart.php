@@ -5,10 +5,8 @@ if (isset($_GET["deleteID"])) {
   $cartID = $_GET["deleteID"];
   $deleteCart = $cart->deleteCart($cartID);
 }
-
 ?>
 
-</div>
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
@@ -18,17 +16,12 @@ if (isset($_GET["deleteID"])) {
       </ul>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Breadcrumb End -->
-<!-- Cart Main Area Start -->
 <div class="cart-main-area ptb-60 ptb-sm-60">
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-sm-12">
-        <!-- Form Start -->
         <form action="" method="POST">
-          <!-- Table Content Start -->
           <div class="table-content table-responsive mb-45">
             <table>
               <thead>
@@ -72,16 +65,12 @@ if (isset($_GET["deleteID"])) {
               </tbody>
             </table>
           </div>
-          <!-- Table Content Start -->
           <div class="row">
-            <!-- Cart Button Start -->
             <div class="col-md-8 col-sm-12">
               <div class="buttons-cart">
                 <a href="index.php">Tiếp tục mua sắm</a>
               </div>
             </div>
-            <!-- Cart Button Start -->
-            <!-- Cart Totals Start -->
             <div class="col-md-4 col-sm-12">
               <div class="cart_totals float-md-right text-md-right">
                 <h2>Tổng tiền</h2>
@@ -91,10 +80,7 @@ if (isset($_GET["deleteID"])) {
                   if ($getCart) {
                   ?>
                     <tbody>
-                      <!-- <tr class="cart-subtotal">
-                        <th>Subtotal</th>
-                        <td><span class="amount"><?php echo $fm->formatMoney($total) ?></span></td>
-                      </tr> -->
+                      <?php echo $fm->formatMoney($total) ?>
                       <tr class="order-total">
                         <th>Tổng tiền</th>
                         <td>
@@ -109,22 +95,16 @@ if (isset($_GET["deleteID"])) {
                   if (Session::isUserLogin()) {
                     echo ' <a href="order.php">Đặt hàng</a>';
                   }
-
                   ?>
                 </div>
               </div>
             </div>
-            <!-- Cart Totals End -->
           </div>
-          <!-- Row End -->
         </form>
-        <!-- Form End -->
       </div>
     </div>
-    <!-- Row End -->
   </div>
 </div>
-<!-- Cart Main Area End -->
 <script type="text/javascript">
   document.title = "Giỏ hàng";
 </script>

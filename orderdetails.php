@@ -13,7 +13,6 @@ if (isset($_GET["received"])) {
 }
 ?>
 
-</div>
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
@@ -23,10 +22,7 @@ if (isset($_GET["received"])) {
       </ul>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Breadcrumb End -->
-<!-- Error 404 Area Start -->
 <div class="error404-area ptb-60 ptb-sm-60">
   <div class="container">
     <div class="row">
@@ -75,7 +71,6 @@ if (isset($_GET["received"])) {
                       }
                       ?>
                     </td>
-
                     <td disabled class="align-middle text-center">
                       <?php
                       if ($result["statusOrder"] == "2") {
@@ -87,12 +82,10 @@ if (isset($_GET["received"])) {
                         echo "N/A";
                       } ?>
                     </td>
-
                   </tr>
               <?php   }
               } ?>
             </tbody>
-
           </table>
         </div>
       </div>
@@ -110,7 +103,6 @@ if (isset($_GET["received"])) {
   </div>
 </div>
 </div>
-<!-- Error 404 Area End -->
 <script type="text/javascript">
   document.title = "Chi tiết đơn hàng";
 </script>

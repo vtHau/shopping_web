@@ -5,7 +5,6 @@ if (!isset($_SESSION["userEmail"])) {
   header("Location: index.php");
 }
 ?>
-</div>
 
 <div class="breadcrumb-area mt-30">
   <div class="container">
@@ -16,10 +15,7 @@ if (!isset($_SESSION["userEmail"])) {
       </ul>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Breadcrumb End -->
-<!-- Error 404 Area Start -->
 <div class="error404-area ptb-60 ptb-sm-60">
   <div class="container">
     <div class="row">
@@ -42,7 +38,6 @@ if (!isset($_SESSION["userEmail"])) {
     </div>
   </div>
 </div>
-<!-- Error 404 Area End -->
 <script type="text/javascript">
   document.title = "Đăng ký tài khoản thành công";
 </script>

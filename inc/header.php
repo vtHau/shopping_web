@@ -3,6 +3,10 @@ ob_start();
 include_once "lib/session.php";
 Session::init();
 Session::isUserBlock();
+
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 ?>
 
 <?php
@@ -231,11 +235,11 @@ header("Cache-Control: max-age=2592000");
 													?>
 														<div class="single-cart-box">
 															<div class="cart-img">
-																<a href="#"><img style="height: 78px; width: 78px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="cart-image"></a>
+																<a href="product.php?productID=<?php echo $result["productID"] ?>"><img style="height: 78px; width: 78px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="cart-image"></a>
 																<span class="pro-quantity"><?php echo $result["productQuantity"] ?></span>
 															</div>
 															<div class="cart-content">
-																<h6><a href="product.php"><?php echo $result["productName"] ?></a></h6>
+																<h6><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></h6>
 																<span class="cart-price"><?php echo $fm->formatMoney($result["productPrice"]) ?></span>
 																<span></span>
 																<span></span>
@@ -250,7 +254,7 @@ header("Cache-Control: max-age=2592000");
 															<li>Tổng cộng <span><?php echo $fm->formatMoney($total) ?></span></li>
 														</ul>
 														<div class="cart-actions text-center">
-															<a class="cart-checkout" href="checkout.php">Thanh toán</a>
+															<a class="cart-checkout" href="order.php">Thanh toán</a>
 														</div>
 													</div>
 												</li>
@@ -439,3 +443,4 @@ header("Cache-Control: max-age=2592000");
 					</div>
 				</div>
 			</div>
+		</div>

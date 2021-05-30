@@ -16,10 +16,8 @@ if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
   $compareID = $_GET["deleteID"];
   $deleteCompare = $com->deleteCompare($compareID);
 }
-
 ?>
 
-</div>
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
@@ -29,16 +27,12 @@ if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
       </ul>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Breadcrumb End -->
-<!-- Compare Page Start -->
 <div class="compare-product ptb-60 ptb-sm-60">
   <div class="container">
     <div class="table-responsive-sm">
       <table class="table text-center compare-content">
         <tbody>
-
           <tr>
             <td class="product-title">Sản phẩm</td>
             <?php
@@ -62,8 +56,6 @@ if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
             }
             ?>
           </tr>
-
-
           <tr>
             <td class="product-title">Thông tin</td>
             <?php
@@ -79,7 +71,6 @@ if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
             }
             ?>
           </tr>
-
           <tr>
             <td class="product-title">Giá</td>
             <?php
@@ -93,7 +84,6 @@ if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
             }
             ?>
           </tr>
-
           <tr>
             <td class="product-title">Giỏ hàng</td>
             <?php
@@ -108,9 +98,7 @@ if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
               }
             }
             ?>
-
           </tr>
-
           <tr>
             <td class="product-title">Xóa</td>
             <?php
@@ -161,13 +149,11 @@ if (isset($_GET["deleteID"]) && $_GET["deleteID"] != NULL) {
             }
             ?>
           </tr>
-
         </tbody>
       </table>
     </div>
   </div>
 </div>
-<!-- Compare Page End -->
 <script type="text/javascript">
   document.title = "So sánh sản phẩm";
 </script>

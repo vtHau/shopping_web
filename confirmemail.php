@@ -26,9 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["code"]) && $_GET["code"
 }
 ?>
 
-
-</div>
-
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
@@ -38,10 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["code"]) && $_GET["code"
       </ul>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Breadcrumb End -->
-<!-- Error 404 Area Start -->
 <div class="error404-area ptb-60 ptb-sm-60">
   <div class="container">
     <div class="row">
@@ -70,29 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["code"]) && $_GET["code"
     </div>
   </div>
 </div>
-<!-- Error 404 Area End -->
 <?php include_once "inc/footer.php"; ?>
 <script type="text/javascript">
   document.title = "Xác nhận đăng ký tài khoản";
 </script>
-<?php
-$getChat = $chat->getChat();
-if ($getChat) {
-  while ($result = $getChat->fetch_assoc()) {
-    $isUser = false;
-    if ($result["fromID"] == Session::get("userID")) {
-      $isUser = true;
-    }
-?>
-    <div class="box-mess <?php if ($isUser) echo "to-right"; ?>">
-      <div class="box-image">
-        <img src="avatar.png" alt="">
-      </div>
-      <div class="mess-content">
-        <p><?php echo $result["message"] ?></p>
-      </div>
-    </div>
-<?php
-  }
-}
-?>

@@ -11,14 +11,12 @@ if (!$getCart) {
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
   $insertOrder = $order->insertOrder();
-
   if ($insertOrder) {
     $deleteAllCart = $cart->deleteAllCart();
   }
 }
 ?>
 
-</div>
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
@@ -28,10 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
       </ul>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Breadcrumb End -->
-<!-- Error 404 Area Start -->
 <div class="error404-area ptb-60 ptb-sm-60">
   <div class="container">
     <div class="row">
@@ -67,7 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
               <?php   }
               } ?>
             </tbody>
-
           </table>
         </div>
       </div>
@@ -112,7 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
                     <input type="text" value="" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập ghi chú nếu có">
                     <small id="emailHelp" class="form-text text-muted"></small>
                   </div>
-
               <?php
                 }
               }
@@ -130,7 +123,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order"])) {
   </div>
 </div>
 </div>
-<!-- Error 404 Area End -->
 <script type="text/javascript">
   document.title = "Đặt hàng";
 </script>

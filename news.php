@@ -4,8 +4,6 @@ include_once "./classes/crawldata.php";
 $crawldata = new crawldata();
 ?>
 
-</div>
-
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">

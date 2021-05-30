@@ -12,7 +12,6 @@ if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
 }
 ?>
 
-</div>
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
@@ -22,17 +21,12 @@ if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
       </ul>
     </div>
   </div>
-  <!-- Container End -->
 </div>
-<!-- Breadcrumb End -->
-<!-- Wish List Start -->
 <div class="cart-main-area wish-list ptb-60 ptb-sm-60">
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
-        <!-- Form Start -->
         <form action="#">
-          <!-- Table Content Start -->
           <div class="table-content table-responsive">
             <table>
               <thead>
@@ -66,15 +60,11 @@ if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
               </tbody>
             </table>
           </div>
-          <!-- Table Content Start -->
         </form>
-        <!-- Form End -->
       </div>
     </div>
-    <!-- Row End -->
   </div>
 </div>
-<!-- Wish List End -->
 <script type="text/javascript">
   document.title = "Sản phẩm yêu thích";
 </script>
