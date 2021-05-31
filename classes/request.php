@@ -17,11 +17,23 @@ $order = new order();
 include_once "wishlist.php";
 $wishlist = new wishlist();
 
+include_once "slider.php";
+$slider = new slider();
+
 include_once "compare.php";
 $compare = new compare();
 
+include_once "brand.php";
+$brand = new brand();
+
+include_once "category.php";
+$category = new category();
+
 include_once "product.php";
 $product = new product();
+
+include_once "review.php";
+$review = new review();
 
 include_once "crawldata.php";
 $crawldata = new crawldata();
@@ -290,5 +302,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 		$orderID = $_POST["orderID"];
 		$deleteOrderInUser = $order->deleteOrderInUser($orderID);
 		echo $deleteOrderInUser;
+	}
+
+	if ($_POST["type"] == "DEL_ORDER_ADMIN") {
+		$orderID = $_POST["orderID"];
+		$deleteOrderInAdmin = $order->deleteOrderInAdmin($orderID);
+		echo $deleteOrderInAdmin;
+	}
+
+	if ($_POST["type"] == "DEL_BRAND") {
+		$brandID = $_POST["brandID"];
+		$delBrand = $brand->deleteBrand($brandID);
+		echo $delBrand;
+	}
+
+	if ($_POST["type"] == "DEL_CAT") {
+		$catID = $_POST["catID"];
+		$delCat = $category->deleteCategory($catID);
+		echo $delCat;
+	}
+	if ($_POST["type"] == "DEL_PRODUCT") {
+		$productID = $_POST["productID"];
+		$delProduct = $product->deleteProduct($productID);
+		echo $delProduct;
+	}
+	if ($_POST["type"] == "DEL_SLI") {
+		$sliID = $_POST["sliID"];
+		$delSli = $slider->deleteSlider($sliID);
+		echo $delSli;
+	}
+	if ($_POST["type"] == "DEL_USER") {
+		$userID = $_POST["userID"];
+		$delUser = $user->deleteUser($userID);
+		echo $delUser;
+	}
+	if ($_POST["type"] == "DEL_REVIEW") {
+		$reivewID = $_POST["reivewID"];
+		$delReview = $review->deleteReviewAdmin($reivewID);
+		echo $delReview;
 	}
 }

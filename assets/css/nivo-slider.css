@@ -9,8 +9,10 @@
 
 /* The Nivo Slider styles */
 .nivoSlider {
+  padding-top: 20px;
+  width: 70% !important;
+  margin: 0 auto;
   position: relative;
-  width: 100%;
   height: auto;
   overflow: hidden;
 }
@@ -21,11 +23,14 @@
   max-width: none;
 }
 .nivo-main-image {
+  overflow: hidden;
+  border-radius: 20px;
   display: block !important;
   position: relative !important;
-  width: 1920px !important;
-  height: 409px !important;
+  width: 100% !important;
+  height: auto !important;
   object-fit: cover !important;
+  background-size: cover;
   background-position: center;
 }
 

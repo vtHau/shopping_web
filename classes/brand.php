@@ -62,7 +62,7 @@ class brand
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "../admin/uploads/brands/" . $unique_image;
 
-		if ($brandName == '' || $brandDescription == "" || $file_name == "") {
+		if ($brandName == '' || $brandDescription == "" || $file_name == "" || !in_array($file_ext, $permited)) {
 			$alert = "<span class='error'>Fiedls must be not empty</span>";
 			return $alert;
 		} else {
@@ -96,7 +96,7 @@ class brand
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "../admin/uploads/brands/" . $unique_image;
 
-		if ($brandName == '' || $brandDescription == "") {
+		if ($brandName == '' || $brandDescription == "" || !in_array($file_ext, $permited)) {
 			$alert = "<span class='error'>Fiedls must be not empty</span>";
 			return $alert;
 		} elseif (!empty($file_name)) {
@@ -127,10 +127,9 @@ class brand
 			$result = $this->db->delete($query);
 
 			if ($result) {
-				header("Location: brandlist.php");
+				return "DEL_SUCCESS";
 			} else {
-				$alert = '<div class="text-center text-noti-red">Thất bại</div>';
-				return $alert;
+				return "DEL_FAIL";
 			}
 		}
 	}

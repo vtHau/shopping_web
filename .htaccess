@@ -13,7 +13,8 @@ ServerSignature Off
 Options +FollowSymLinks
 
 # Choix du fuseau horaire
-SetEnv TZ Asia/Ho_Chi_Minh
+php_value date.timezone 'Asia/Ho_Chi_Minh'
+php_value date.timezone Asia/Ho_Chi_Minh
 
 <Files .htaccess>
 

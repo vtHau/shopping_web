@@ -67,4 +67,164 @@ $(document).ready(function () {
       },
     });
   });
+
+  $(".del-brand").click(function () {
+    const brandID = parseInt($(this).data("id"));
+
+    $.ajax({
+      url: "../classes/request.php",
+      method: "POST",
+      data: {
+        type: "DEL_BRAND",
+        brandID,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "DEL_SUCCESS":
+            location.reload();
+            break;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
+
+  $(".del-cat").click(function () {
+    const catID = parseInt($(this).data("id"));
+
+    $.ajax({
+      url: "../classes/request.php",
+      method: "POST",
+      data: {
+        type: "DEL_CAT",
+        catID,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "DEL_SUCCESS":
+            location.reload();
+            break;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
+
+  $(".del-product").click(function () {
+    const productID = parseInt($(this).data("id"));
+
+    $.ajax({
+      url: "../classes/request.php",
+      method: "POST",
+      data: {
+        type: "DEL_PRODUCT",
+        productID,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "DEL_SUCCESS":
+            location.reload();
+            break;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
+
+  $(".del-slider").click(function () {
+    const sliID = parseInt($(this).data("id"));
+
+    $.ajax({
+      url: "../classes/request.php",
+      method: "POST",
+      data: {
+        type: "DEL_SLI",
+        sliID,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "DEL_SUCCESS":
+            location.reload();
+            break;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
+
+  $(".del-order-admin").click(function () {
+    const orderID = parseInt($(this).data("id"));
+
+    $.ajax({
+      url: "../classes/request.php",
+      method: "POST",
+      data: {
+        type: "DEL_ORDER_ADMIN",
+        orderID,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "DEL_SUCCESS":
+            location.reload();
+            break;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
+  $(".del-user").click(function () {
+    const userID = parseInt($(this).data("id"));
+
+    $.ajax({
+      url: "../classes/request.php",
+      method: "POST",
+      data: {
+        type: "DEL_USER",
+        userID,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "DEL_SUCCESS":
+            location.reload();
+            break;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
+  $(".del-review").click(function () {
+    const reivewID = parseInt($(this).data("id"));
+
+    $.ajax({
+      url: "../classes/request.php",
+      method: "POST",
+      data: {
+        type: "DEL_REVIEW",
+        reivewID,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "DEL_SUCCESS":
+            location.reload();
+            break;
+            2;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
 });

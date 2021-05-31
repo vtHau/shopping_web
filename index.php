@@ -10,7 +10,7 @@ if ($getSlider) {
         <?php
         while ($result = $getSlider->fetch_assoc()) {
         ?>
-          <a style="width: 1920px; height: 409px; object-fit: cover; " href="product.php?productID=<?php echo $result["productID"] ?>"><img style="width: 1920px; height: 409px; object-fit: cover; " src="admin/uploads/sliders/<?php echo $result["sliderImage"] ?>" /></a>
+          <a href="product.php?productID=<?php echo $result["productID"] ?>"><img src="admin/uploads/sliders/<?php echo $result["sliderImage"] ?>" /></a>
         <?php  }  ?>
       </div>
     </div>

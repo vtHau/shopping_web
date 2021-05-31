@@ -164,7 +164,7 @@ class product
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "../admin/uploads/products/" . $unique_image;
 
-		if ($productName == "" || $productCategory == "" || $productBrand == "" || $productQuantity == "" || $productDesc == "" || $productPrice == "" || $productFeather == "" || $productSell == "" || $productHotDeal == "" || $file_name == "") {
+		if ($productName == "" || $productCategory == "" || $productBrand == "" || $productQuantity == "" || $productDesc == "" || $productPrice == "" || $productFeather == "" || $productSell == "" || $productHotDeal == "" || $file_name == "" || !in_array($file_ext, $permited)) {
 			$alert = "<span class='error'>Fiedls must be not empty</span>";
 			return $alert;
 		} else {
@@ -246,7 +246,7 @@ class product
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "../admin/uploads/products/" . $unique_image;
 
-		if ($productName == "" || $productCategory == "" || $productBrand == "" || $productQuantity == "" || $productDesc == "" || $productPrice == "" || $productFeather == "" || $productSell == "" || $productHotDeal == "") {
+		if ($productName == "" || $productCategory == "" || $productBrand == "" || $productQuantity == "" || $productDesc == "" || $productPrice == "" || $productFeather == "" || $productSell == "" || $productHotDeal == "" || !in_array($file_ext, $permited)) {
 			$alert = "<span class='error'>Fiedls must be not empty</span>";
 			return $alert;
 		} else {
@@ -301,15 +301,13 @@ class product
 			$result = $this->db->update($query);
 
 			if ($result) {
-				header("Location: productlist.php");
+				return "DEL_SUCCESS";
 			} else {
-				$alert = '<div class="text-center text-noti-red">Thất bại</div>';
-				return $alert;
+				return "DEL_FAIL";
 			}
 		}
 
-		$alert = '<div class="text-center text-noti-red">Thất bại</div>';
-		return $alert;
+		return "DEL_FAIL";
 	}
 }
 ?>

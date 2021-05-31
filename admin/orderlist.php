@@ -131,7 +131,7 @@ if (isset($_GET["transport"]) && $_GET["transport"] != NULL) {
 														<a style="pointer-events: none;" href="?deleteID=<?php echo $result["productID"] ?>" class="btn btn-light btn-sm font-weight-bold"><del>Xóa</del></a>
 													<?php } elseif ($result["statusOrder"] == 4) {
 													?>
-														<a href="?deleteID=<?php echo $result["orderID"] ?>" class="btn btn-danger btn-sm font-weight-bold">Xóa</a>
+														<a data-id="<?php echo $result["orderID"] ?>" class="btn btn-danger btn-sm font-weight-bold del-order-admin">Xóa</a>
 													<?php } ?>
 
 												</td>

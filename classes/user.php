@@ -189,7 +189,6 @@ class user
 			$file_size = $files['userImage']['size'];
 			$file_temp = $files['userImage']['tmp_name'];
 
-
 			$div = explode('.', $file_name);
 			$file_ext = strtolower(end($div));
 			$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
@@ -197,6 +196,9 @@ class user
 
 			if (empty($file_name) || $file_name === "") {
 				$unique_image = "default.png";
+			} elseif (!in_array($file_ext, $permited)) {
+				$alert = '<div class="text-center text-noti-red">File khong hop le</div>';
+				return $alert;
 			} else {
 				move_uploaded_file($file_temp, $uploaded_image);
 			}
@@ -295,8 +297,6 @@ class user
 		return false;
 	}
 
-
-
 	public function insertUser($data, $files)
 	{
 		$userFullName = $this->fm->validation(mysqli_real_escape_string($this->db->link, $data["userFullName"]));
@@ -348,6 +348,9 @@ class user
 
 			if (empty($file_name) || $file_name === "") {
 				$unique_image = "default.png";
+			} elseif (!in_array($file_ext, $permited)) {
+				$alert = '<div class="text-center text-noti-red">File khong hop le</div>';
+				return $alert;
 			} else {
 				move_uploaded_file($file_temp, $uploaded_image);
 			}
@@ -525,10 +528,9 @@ class user
 		$result = $this->db->delete($query);
 
 		if ($result) {
-			header("Location: userlist.php");
+			return "DEL_SUCCESS";
 		} else {
-			$alert = '<div class="text-center text-noti-red">Thất bại</div>';
-			return $alert;
+			return "DEL_FAIL";
 		}
 	}
 

@@ -108,7 +108,7 @@ header("Cache-Control: max-age=2592000");
 	<!-- Meanmenu css -->
 	<link rel="stylesheet" href="assets\css\meanmenu.min.css">
 	<!-- Nivo slider css -->
-	<link rel="stylesheet" href="assets\css\nivo-slider.css">
+	<link rel="stylesheet" href="assets\css\nivo-slider.css?v=<?php echo time(); ?>">
 	<!-- Owl carousel css -->
 	<link rel="stylesheet" href="assets\css\owl.carousel.min.css">
 	<!-- Bootstrap css -->

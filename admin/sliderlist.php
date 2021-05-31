@@ -88,7 +88,7 @@ if (isset($_GET["deleteID"])) {
 
 												<td class="text-center">
 													<a href="slideredit.php?editID=<?php echo $result["sliderID"] ?>" class="btn btn-primary btn-sm">Chỉnh sửa</a>
-													<a href="?deleteID=<?php echo $result["sliderID"] ?>" class="btn btn-danger btn-sm">Xóa</a>
+													<a data-id="<?php echo $result["sliderID"] ?>" class="btn btn-danger btn-sm del-slider">Xóa</a>
 												</td>
 											</tr>
 										<?php } ?>

@@ -75,7 +75,7 @@ if (isset($_GET["deleteID"])) {
 												</td>
 												<td class="text-center">
 													<a href="brandedit.php?editID=<?php echo $result["brandID"] ?>" class="btn btn-primary btn-sm">Chỉnh sửa</a>
-													<a href="?deleteID=<?php echo $result["brandID"] ?>" class="btn btn-danger btn-sm">Xóa</a>
+													<a data-id="<?php echo $result["brandID"] ?>" class="btn btn-danger btn-sm del-brand">Xóa</a>
 												</td>
 											</tr>
 										<?php } ?>

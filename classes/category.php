@@ -62,7 +62,7 @@ class category
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "../admin/uploads/categorys/" . $unique_image;
 
-		if ($catName == '' || $catDescription == "" || $file_name == "") {
+		if ($catName == '' || $catDescription == "" || $file_name == "" || !in_array($file_ext, $permited)) {
 			$alert = "<span class='error'>Fiedls must be not empty</span>";
 			return $alert;
 		} else {
@@ -96,7 +96,7 @@ class category
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "../admin/uploads/categorys/" . $unique_image;
 
-		if ($catName == '' || $catDescription == "") {
+		if ($catName == '' || $catDescription == "" || !in_array($file_ext, $permited)) {
 			$alert = "<span class='error'>Fiedls must be not empty</span>";
 			return $alert;
 		} elseif (!empty($file_name)) {
@@ -128,10 +128,9 @@ class category
 			$result = $this->db->delete($query);
 
 			if ($result) {
-				header("Location: categorylist.php");
+				return "DEL_SUCCESS";
 			} else {
-				$alert = '<div class="text-center text-noti-red">Xóa danh mục không thành công</div>';
-				return $alert;
+				return "DEL_FAIL";
 			}
 		}
 	}

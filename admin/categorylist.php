@@ -79,7 +79,7 @@ if (isset($_GET["deleteID"])) {
 												</td>
 												<td class="text-center">
 													<a href="categoryedit.php?editID=<?php echo $result["catID"] ?>" class="btn btn-primary btn-sm">Chỉnh sửa</a>
-													<a href="?deleteID=<?php echo $result["catID"] ?>" class="btn btn-danger btn-sm">Xóa</a>
+													<a data-id="<?php echo $result["catID"] ?>" class="btn btn-danger btn-sm del-cat">Xóa</a>
 												</td>
 											</tr>
 										<?php } ?>

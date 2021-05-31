@@ -114,7 +114,7 @@ if (isset($_GET["deleteReviewID"])) {
 
 												<td class="text-center">
 													<a href="commentlist.php?confirmReviewID=<?php echo $result["reviewID"] ?>" class="btn btn-success btn-sm">Xác nhận</a>
-													<a href="commentlist.php?deleteReviewID=<?php echo $result["reviewID"] ?>" class="btn btn-danger btn-sm">Xóa</a>
+													<a data-id="<?php echo $result["reviewID"] ?>" class="btn btn-danger btn-sm del-review">Xóa</a>
 												</td>
 											</tr>
 										<?php } ?>

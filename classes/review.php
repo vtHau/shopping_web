@@ -205,6 +205,17 @@ class review
 		return false;
 	}
 
+	public function deleteReviewAdmin($reviewID)
+	{
+		$reviewID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $reviewID));
+		$query = "DELETE FROM tbl_review WHERE reviewID = '$reviewID'";
+		$result = 	$this->db->delete($query);
+		if ($result) {
+			return "DEL_SUCCESS";
+		}
+		return "DEL_FAIL";
+	}
+
 	public function confirmReview($reviewID)
 	{
 		$reviewID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $reviewID));

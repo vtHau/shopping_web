@@ -6,11 +6,6 @@ if (isset($_GET["confirmReviewID"])) {
 	$reviewID = $_GET["confirmReviewID"];
 	$confirmReview = $review->confirmReview($reviewID);
 }
-
-if (isset($_GET["deleteReviewID"])) {
-	$reviewID = $_GET["deleteReviewID"];
-	$deleteReviewID = $review->deleteReviewID($reviewID);
-}
 ?>
 
 <div class="app-main">
@@ -117,7 +112,7 @@ if (isset($_GET["deleteReviewID"])) {
 													if ($result["status"] == 0) { 	?>
 														<a href="commentlist.php?confirmReviewID=<?php echo $result["reviewID"] ?>" class="btn btn-success btn-sm">Xác nhận</a>
 													<?php	}	?>
-													<a href="commentlist.php?deleteReviewID=<?php echo $result["reviewID"] ?>" class="btn btn-danger btn-sm">Xóa</a>
+													<a data-id="<?php echo $result["reviewID"] ?>" class="btn btn-danger btn-sm del-review">Xóa</a>
 												</td>
 											</tr>
 										<?php } ?>
