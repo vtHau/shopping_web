@@ -87,7 +87,7 @@ if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
               while ($result = $getCom->fetch_assoc()) {
             ?>
                 <td class="product-description">
-                  <a class="compare-cart text-uppercase" href="compare.php?productID=<?php echo $result["productID"] ?>">Thêm vào giỏ hàng</a>
+                  <a class="compare-cart text-uppercase add-cart" style=" cursor: pointer; border: none; background-image: linear-gradient(to right, #37ccff, #7b22ff);" data-id="<?php echo $result["productID"] ?>">Thêm vào giỏ hàng</a>
                 </td>
             <?php
               }

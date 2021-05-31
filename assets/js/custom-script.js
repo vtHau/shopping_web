@@ -1,6 +1,7 @@
 var ratedIndex = 0;
 
 $(document).ready(function () {
+
   $(window).scroll(function () {
     if ($(this).scrollTop() > 300) {
       $(".hide-cart-info").addClass("show-cart-info");
@@ -621,6 +622,59 @@ $(document).ready(function () {
         switch (res.trim()) {
           case "DEL_SUCCESS":
             location.reload();
+            break;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
+
+  $(".add-cart").click(function () {
+    const productID = parseInt($(this).data("id"));
+
+    $.ajax({
+      url: "classes/request.php",
+      method: "POST",
+      data: {
+        type: "ADD_CART",
+        productID,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "ADD_SUCCESS":
+            toastr["success"](
+              "Thêm vào giỏ hàng thành công !!!",
+              "Thành công !!!"
+            );
+            break;
+          default:
+            break;
+        }
+      },
+      error: function (rep) {},
+    });
+  });
+  $(".custom-btn-submit").click(function () {
+    const productID = parseInt($(this).data("id"));
+    const quantity = parseInt($(".custom-box-quantity").val());
+
+    $.ajax({
+      url: "classes/request.php",
+      method: "POST",
+      data: {
+        type: "ADD_CART",
+        productID,
+        quantity,
+      },
+      success: function (res) {
+        switch (res.trim()) {
+          case "ADD_SUCCESS":
+            toastr["success"](
+              "Thêm vào giỏ hàng thành công !!!",
+              "Thành công !!!"
+            );
             break;
           default:
             break;

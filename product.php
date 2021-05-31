@@ -13,11 +13,6 @@ if (!isset($_GET["productID"]) || $_GET["productID"] == NULL) {
   $updateViewProduct = $product->updateViewProduct($productID);
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
-  $productQuantity = $_POST["productQuantity"];
-  $insertCart = $cart->insertCart($productID, $productQuantity);
-}
-
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
   $productID = $_POST["productID"];
   $comment = $_POST["comment"];
@@ -69,6 +64,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
               <div class="tab-content">
                 <div id="thumb1" class="tab-pane fade show active">
                   <a data-fancybox="images" href=""><img id="img-zoom" style="width: 400px; height: 400px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="product-view"></a>
+
                 </div>
               </div>
             </div>
@@ -114,10 +110,10 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                 </div>
                 <p class="mb-20 pro-desc-details"><?php echo $result["productDesc"] ?></p>
                 <div class="box-quantity d-flex hot-product2">
-                  <form action="" method="POST">
+                  <div action="" method="POST">
                     <div style="display: flex;">
                       <input class="quantity mr-15 custom-box-quantity" type="number" name="productQuantity" min="1" value="1" />
-                      <input type="submit" name="submit" class="btn btn-primary custom-btn-submit" value="Thêm vào giỏ hàng" />
+                      <button class="btn btn-primary custom-btn-submit" data-id="<?php echo $result["productID"] ?>"> Thêm vào giỏ hàng</button>
                       <div class="ml-md-2 pro-actions">
                         <div class="ml-2 actions-secondary">
                           <a href="product.php?wishlistID=<?php echo $result["productID"] ?>" title="" data-original-title="WishList"><i class="fas fa-heartbeat" style="color: #FF006F;"></i>
@@ -127,10 +123,9 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
                         </div>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
                 <div class="pro-ref mt-20">
-
                 </div>
               </div>
             </div>
@@ -382,8 +377,10 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
   </div>
 </div>
 
+
+
+<?php include_once "inc/footer.php"; ?>
+
 <script type="text/javascript">
   document.title = "<?= $title ?>";
 </script>
-
-<?php include_once "inc/footer.php"; ?>

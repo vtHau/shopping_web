@@ -341,4 +341,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"])) {
 		$delReview = $review->deleteReviewAdmin($reivewID);
 		echo $delReview;
 	}
+
+
+	if ($_POST["type"] == "ADD_CART") {
+		$productID = $_POST["productID"];
+		$productQuantity = 1;
+		if (isset($_POST["quantity"])) {
+			$productQuantity = $_POST["quantity"];
+		}
+		$insertCart = $cart->insertCart($productID, $productQuantity);
+		echo $insertCart;
+	}
 }

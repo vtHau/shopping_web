@@ -78,7 +78,7 @@ class cart
 			$query = "UPDATE tbl_cart SET productQuantity = '$productQuantity' WHERE userID = '$userID' AND productID = '$productID' ";
 			$result = $this->db->update($query);
 			if ($result) {
-				header("Location: cart.php");
+				return "ADD_SUCCESS";
 			}
 			return false;
 		} else {
@@ -93,9 +93,9 @@ class cart
 			$resultInsert = $this->db->insert($queryInsert);
 
 			if ($resultInsert) {
-				header("Location: cart.php");
+				return "ADD_SUCCESS";
 			} else {
-				return false;
+				return "ADD_FAIL";
 			}
 		}
 	}

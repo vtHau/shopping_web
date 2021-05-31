@@ -672,14 +672,14 @@ table .thead-light th {
 .footer-info-item {
   text-align: left;
   margin: 4px;
-  color: #007bff;
+  color: #5c5c5c;
 }
 
 .title-info {
   font-family: "Baloo", sans-serif;
   text-transform: uppercase;
   color: #007bff;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 10px;
 }
 

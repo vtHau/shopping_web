@@ -17,6 +17,7 @@
   overflow: hidden;
 }
 .nivoSlider img {
+  overflow: hidden;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -46,6 +47,7 @@
   margin: 0;
   z-index: 6;
   display: none;
+  overflow: hidden;
   background: white;
   filter: alpha(opacity=0);
   opacity: 0;

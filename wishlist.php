@@ -1,12 +1,5 @@
 ﻿<?php include_once "inc/header.php"; ?>
 
-<?php
-if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
-  $productID = $_GET["productID"];
-  $insertCart = $cart->insertCart($productID, 1);
-}
-?>
-
 <div class="breadcrumb-area mt-30">
   <div class="container">
     <div class="breadcrumb">
@@ -45,7 +38,7 @@ if (isset($_GET["productID"]) && $_GET["productID"] != NULL) {
                       </td>
                       <td class="product-name"><a href="product.php?productID=<?php echo $result["productID"] ?>"><?php echo $result["productName"] ?></a></td>
                       <td class="product-price"><span class="amount"><?php echo $result["productPrice"] ?></span></td>
-                      <td class="product-add-to-cart"><a href="wishlist.php?productID=<?php echo $result["productID"] ?>">Add to cart</a></td>
+                      <td class="product-add-to-cart"><a class="add-cart" data-id="<?php echo $result["productID"] ?>">Add to cart</a></td>
                       <td class="product-remove"> <a><i class="fa fa-times del-love" data-id="<?php echo $result["wishlistID"] ?>" aria-hidden="true"></i></a></td>
                     </tr>
                 <?php
