@@ -1,7 +1,18 @@
 php_flag output_buffering on
 SetEnvIfNoCase Request_URI ^ / thumb.php no-gzip -vary
 
+<IfModule mod_rewrite.c>
+    RewriteEngine on
 
+    RewriteCond %{REMOTE_ADDR} !^111\.111\.111\.111
+    RewriteCond %{REQUEST_URI} !maintenance.html$ [NC]
+    RewriteCond %{REQUEST_URI} !\.(jpe?g?|png|gif) [NC]
+
+    # Check if the maintenance.html file exists,
+    # if so, redirect all requests to that file.
+    RewriteCond %{DOCUMENT_ROOT}/maintenance.html -f
+    RewriteRule .* /maintenance.html [L]
+</IfModule>
 
 # Désactivate the display of contents of rédirectories
 Options All -Indexes

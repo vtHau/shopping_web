@@ -1,7 +1,6 @@
 var ratedIndex = 0;
 
 $(document).ready(function () {
-
   $(window).scroll(function () {
     if ($(this).scrollTop() > 300) {
       $(".hide-cart-info").addClass("show-cart-info");
@@ -174,7 +173,9 @@ $(document).ready(function () {
   });
 
   function emailIsValid(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      email
+    );
   }
 
   function disableSignIn() {

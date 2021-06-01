@@ -63,8 +63,7 @@ if (isset($_GET["compareID"]) && $_GET["compareID"] != NULL) {
             <div class="col-lg-5 mb-all-40">
               <div class="tab-content">
                 <div id="thumb1" class="tab-pane fade show active">
-                  <a data-fancybox="images" href=""><img id="img-zoom" style="width: 400px; height: 400px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="product-view"></a>
-
+                  <img id="" style="width: 400px; height: 400px; object-fit: cover;" src="admin/uploads/products/<?php echo $result["productImage"] ?>" alt="product-view">
                 </div>
               </div>
             </div>
