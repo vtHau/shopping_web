@@ -70,8 +70,6 @@ class user
 		return $result;
 	}
 
-
-
 	public function signInUser($userEmail, $password)
 	{
 		$userEmail = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userEmail));
@@ -237,6 +235,13 @@ class user
 		$time = time();
 		$query = "SELECT * FROM tbl_user WHERE userLastLogin > '$time'";
 		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function countUser()
+	{
+		$query = "SELECT COUNT(userID) AS countUser FROM tbl_user ";
+		$result = $this->db->select($query)->fetch_assoc();
 		return $result;
 	}
 
@@ -519,7 +524,8 @@ class user
 		$userID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $userID));
 
 		$queryImg = "SELECT userImage FROM tbl_user WHERE userID = '$userID'";
-		$userImage = $this->db->select($queryImg)->fetch_assoc()["sliderImage"];
+		$userImage = $this->db->select($queryImg)->fetch_assoc()["userImage"];
+
 		if ($userImage !== "default.png") {
 			$deleteAvatar = unlink("admin/uploads/avatars/" . $userImage);
 		}

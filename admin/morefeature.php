@@ -6,6 +6,11 @@ if (!isset($_GET["userID"]) || $_GET["userID"] == NULL) {
 	echo '<script> window.location = "userlist.php" </script>';
 } else {
 	$userID = $_GET["userID"];
+
+	$getUser = $user->getCustomer($userID);
+	if (!$getUser) {
+		header("Location: userlist.php");
+	};
 }
 
 if (isset($_GET["deleteID"])) {
@@ -58,7 +63,6 @@ if (isset($_GET["unblock"])) {
 						<i class="fas fa-user-cog" style="font-size: 40px;"></i>
 						<br>
 						<?php
-						$getUser = $user->getCustomer($userID);
 						if ($getUser) {
 							$result = $getUser->fetch_assoc();
 							echo $result["userFullName"];
@@ -113,15 +117,13 @@ if (isset($_GET["unblock"])) {
 						</div>
 
 						<div class="col-md-3 text-center">
-							<a data-id="<?php echo $userID ?>" class="del-user">
-								<div class="card-device more-feature float-left">
-									<div class="card-device-title">
-										<i class="fa fa-trash" style="font-size: 25px;"></i>
-										<br />
-										Xóa
-									</div>
+							<div class="card-device more-feature float-left">
+								<div class="card-device-title del-user" data-id="<?php echo $userID ?>">
+									<i class="fa fa-trash " style="font-size: 25px;"></i>
+									<br />
+									Xóa
 								</div>
-							</a>
+							</div>
 						</div>
 						<input type="hidden" class="user-id" style="display: none;" value="<?php echo $userID; ?>" />
 					</div>

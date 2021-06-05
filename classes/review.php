@@ -26,6 +26,13 @@ class review
 		return $userID;
 	}
 
+	public function countReview()
+	{
+		$query = "SELECT COUNT(reviewID) AS countReview FROM tbl_review ";
+		$result = $this->db->select($query)->fetch_assoc();
+		return $result;
+	}
+
 	public function getReview($productID)
 	{
 		$productID = $this->fm->validation(mysqli_real_escape_string($this->db->link, $productID));

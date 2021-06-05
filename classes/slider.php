@@ -24,6 +24,13 @@ class slider
 		return $result;
 	}
 
+	public function countSlider()
+	{
+		$query = "SELECT COUNT(sliderID) AS countSlider FROM tbl_slider ";
+		$result = $this->db->select($query)->fetch_assoc();
+		return $result;
+	}
+
 	public function getSliderInUser()
 	{
 		$query = "SELECT * FROM tbl_slider WHERE sliderType = 1";

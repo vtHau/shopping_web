@@ -33,6 +33,13 @@ class order
 		return $userID;
 	}
 
+	public function countOrder()
+	{
+		$query = "SELECT COUNT(orderID) AS countOrder FROM tbl_order ";
+		$result = $this->db->select($query)->fetch_assoc();
+		return $result;
+	}
+
 	public function getOrderInUser()
 	{
 		$userID = session_id();

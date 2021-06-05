@@ -34,14 +34,7 @@
 								</div>
 								<div class="widget-content-right">
 									<div class="widget-numbers text-success">
-										<?php
-										$countCategory = $cat->countCategory();
-										if ($countCategory) {
-											echo $countCategory["countCategory"];
-										} else {
-											echo "0";
-										}
-										?>
+									
 									</div>
 								</div>
 							</div>
@@ -58,14 +51,7 @@
 								</div>
 								<div class="widget-content-right">
 									<div class="widget-numbers text-warning">
-										<?php
-										$countBrand = $brand->countBrand();
-										if ($countBrand) {
-											echo $countBrand["countBrand"];
-										} else {
-											echo "0";
-										}
-										?>
+									
 									</div>
 								</div>
 							</div>
